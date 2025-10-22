@@ -48,7 +48,7 @@ class VisualizeFrame(ttk.Frame):
     def pie_chart(self):
         data = gcal.calendars_time_spent()
         fig, ax = plt.subplots(figsize=(6, 4))
-        ax.pie(data.values(), labels=data.keys(), autopct="%1.1f%%", startangle=90)
+        ax.pie(list(data.values()), labels=list(data.keys()), autopct="%1.1f%%", startangle=90)
         # Embed in tkinter
         canvas = FigureCanvasTkAgg(fig, master=self)
         canvas.draw()
@@ -81,11 +81,13 @@ class App(tk.Tk):
 
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
-
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
         self.mainloop()
+
+    def on_close(self):
+        self.destroy()
+        self.quit()
 
 
 if __name__ == "__main__":
     App()
-    print("after main loop")
-    sys.exit()
