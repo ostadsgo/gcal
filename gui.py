@@ -19,6 +19,7 @@ class CalendarFrame(ttk.Frame):
     def make_calendars(self):
         calendars = gcal.calendars_time_spent()
         colors = gcal.calendar_colors()
+        print(colors)
         for row_index, (calendar, time_spent) in enumerate(calendars.items()):
 
             # A calendar detail: color, name, time spent
@@ -27,7 +28,7 @@ class CalendarFrame(ttk.Frame):
                 frame,
                 width=5,
                 height=1,
-                bg=colors.get(calendar, "red"),
+                bg=colors.get(calendar, "black"),
                 relief="flat",
             ).grid(row=0, column=0, sticky="w", padx=(0, 10), pady=10)
             tk.Label(frame, text=calendar).grid(row=0, column=1, sticky="w")
@@ -43,12 +44,19 @@ class CalendarFrame(ttk.Frame):
 class VisualizeFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.colors = gcal.calendar_colors()
         self.pie_chart()
 
     def pie_chart(self):
         data = gcal.calendars_time_spent()
         fig, ax = plt.subplots(figsize=(6, 4))
-        ax.pie(list(data.values()), labels=list(data.keys()), autopct="%1.1f%%", startangle=90)
+        ax.pie(
+            list(data.values()),
+            labels=list(data.keys()),
+            autopct="%1.1f%%",
+            startangle=90,
+            colors=[self.colors.get(label, "red") for label in data.keys()],
+        )
         # Embed in tkinter
         canvas = FigureCanvasTkAgg(fig, master=self)
         canvas.draw()
@@ -73,7 +81,6 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Gcal Vis")
-        # self.minsize(1200, 800)
 
         # MainFrame
         self.main_frame = MainFrame(self, padding=(5, 5))

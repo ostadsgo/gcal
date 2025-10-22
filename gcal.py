@@ -15,11 +15,13 @@ BASE_DIR = Path(__file__).resolve().parent
 CAL_DIR = BASE_DIR / "cal"
 RENAME_CALS = False
 
+
 def rename_calendars():
     cals_name = os.listdir(CAL_DIR)
     for cal_name in cals_name:
-        new_cal_name, *_ = cal_name.split('_')
+        new_cal_name, *_ = cal_name.split("_")
         os.rename(CAL_DIR / cal_name, CAL_DIR / f"{new_cal_name}.ics")
+
 
 def read_calendar(name: str):
     cal_path = CAL_DIR / name
