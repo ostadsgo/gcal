@@ -11,10 +11,15 @@ import gcal
 class CalendarFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+
         self.calendars_insight_frame = ttk.Frame(self)
         self.categories_insight_frame = ttk.Frame(self)
-        ttk.Label(self.calendars_insight_frame, text="Calendars").grid(row=0, column=0, sticky="wsen")
-        ttk.Label(self.categories_insight_frame, text="Categories").grid(row=0, column=0, sticky="wsen")
+        ttk.Label(self.calendars_insight_frame, text="Calendars").grid(
+            row=0, column=0, sticky="wsen"
+        )
+        ttk.Label(self.categories_insight_frame, text="Categories").grid(
+            row=0, column=0, sticky="wsen"
+        )
         self.calendars_insight_frame.grid(row=0, column=0, sticky="wsen")
         self.categories_insight_frame.grid(row=1, column=0, sticky="wsen")
 
@@ -25,13 +30,18 @@ class CalendarFrame(ttk.Frame):
 
     def insight(self, section_frame, data: dict[str, int], colors: dict[str, str]):
         for row_index, (calendar, time_spent) in enumerate(data.items(), 1):
-            square_dict = dict( width=5, height=1, bg=colors.get(calendar, "black"), relief="flat")
+            color = colors.get(calendar, "black")
+            square_dict = dict(width=5, height=1, bg=color, relief="flat")
             row_frame = ttk.Frame(section_frame)
 
             # A calendar detail: color, name, time spent
-            tk.Label(row_frame, **square_dict).grid(row=0, column=0, sticky="w", padx=(0, 10), pady=10)
+            tk.Label(row_frame, **square_dict).grid(
+                row=0, column=0, sticky="w", padx=(0, 10), pady=10
+            )
             tk.Label(row_frame, text=calendar).grid(row=0, column=1, sticky="w")
-            tk.Label(row_frame, text=f"{time_spent} hrs").grid(row=0, column=2, sticky="e")
+            tk.Label(row_frame, text=f"{time_spent} hrs").grid(
+                row=0, column=2, sticky="e"
+            )
             row_frame.grid(row=row_index, column=0, sticky="wsen")
 
             # color, name, time size
@@ -55,8 +65,9 @@ class VisualizeFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.colors = gcal.calendars_color()
-        self.plot_calendar_spent()
-        self.plot_category_spent()
+        self.plot_pie()
+        # self.plot_calendar_spent()
+        # self.plot_category_spent()
 
     def pie_chart(self, data: dict, colors):
         fig, ax = plt.subplots(figsize=(6, 4))
@@ -71,6 +82,34 @@ class VisualizeFrame(ttk.Frame):
         canvas = FigureCanvasTkAgg(fig, master=self)
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True)
+
+    def pie_chart2(self, cal_data, cat_data="", cal_colors="", cat_colors=""):
+        fig, ax = plt.subplots(figsize=(8, 4))
+        size = 0.3
+        ax.pie(
+            cal_data.values(),
+            radius=1,
+            colors=[cal_colors.get(label, "red") for label in cal_data.keys()],
+            wedgeprops=dict(width=size, edgecolor="w"),
+        )
+        ax.pie(
+            cat_data.values(),
+            radius=1 - size,
+            colors=[cat_colors.get(label, "red") for label in cat_data.keys()],
+            wedgeprops=dict(width=size, edgecolor="w"),
+        )
+        canvas = FigureCanvasTkAgg(fig, master=self)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill="both", expand=True)
+        print(cal_data)
+        print(cat_data)
+
+    def plot_pie(self):
+        cal_data = gcal.calendars_time_spent()
+        cal_colors = gcal.calendars_color()
+        cat_data = gcal.categories_time_spent()
+        cat_colors = gcal.categories_color()
+        self.pie_chart2(cal_data, cat_data, cal_colors, cat_colors)
 
     def plot_calendar_spent(self):
         data = gcal.calendars_time_spent()

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Saeed",
+    "duration": 4449.0,
+    "color": "#7C7C7C",
+    "type": "calendar"
+  },
+  {
+    "name": "Sleep",
+    "duration": 421.0,
+    "type": "category",
+    "calendar": "Saeed"
+  },
+  {
+    "name": "Burnt",
+    "duration": 31.0,
+    "type": "category",
+    "calendar": "Saeed"
+  },
+  {
+    "other": {
+      "name": "other",
+      "duration": 3997.0,
+      "type": "category",
+      "calendar": "Saeed"
+    }
+  },
+  {
+    "name": "Growth",
+    "duration": 144.0,
+    "color": "#A479B1",
+    "type": "calendar"
+  },
+  {
+    "name": "Reading",
+    "duration": 40.0,
+    "type": "category",
+    "calendar": "Growth"
+  },
+  {
+    "name": "Workout",
+    "duration": 10.0,
+    "type": "category",
+    "calendar": "Growth"
+  },
+  {
+    "other": {
+      "name": "other",
+      "duration": 94.0,
+      "type": "category",
+      "calendar": "Growth"
+    }
+  },
+  { "name": "Work", "duration": 331.0, "color": "#489160", "type": "calendar" },
+  { "name": "Dev", "duration": 38.0, "type": "category", "calendar": "Work" },
+  {
+    "name": "Content",
+    "duration": 2.0,
+    "type": "category",
+    "calendar": "Work"
+  },
+  {
+    "name": "Design",
+    "duration": 10.0,
+    "type": "category",
+    "calendar": "Work"
+  },
+  { "name": "SWE", "duration": 0.0, "type": "category", "calendar": "Work" },
+  {
+    "other": {
+      "name": "other",
+      "duration": 281.0,
+      "type": "category",
+      "calendar": "Work"
+    }
+  },
+  {
+    "name": "Study",
+    "duration": 311.0,
+    "color": "#4B99D2",
+    "type": "calendar"
+  },
+  { "name": "CS", "duration": 14.0, "type": "category", "calendar": "Study" },
+  {
+    "name": "School",
+    "duration": 3.0,
+    "type": "category",
+    "calendar": "Study"
+  },
+  {
+    "other": {
+      "name": "other",
+      "duration": 294.0,
+      "type": "category",
+      "calendar": "Study"
+    }
+  }
+]
