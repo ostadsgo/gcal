@@ -1,5 +1,4 @@
 # ----------------
-# [DONE] TODO: Store claculated data in file to use it for faster char render.
 # [] TODO: Write simple parser for ics file and remove `icalendar` dependency.
 # [] TODO: Extract project form event summary.
 # [] TODO:
@@ -28,7 +27,7 @@ calendar_colors = {
 
 calendar_categories = {
     "Saeed": ("Sleep", "Burnt"),
-    "Work": ("Dev", "Content", "Design", "SWE"),
+    "Work": ("Dev", "Content", "SWE"),
     "Study": ("CS", "School"),
     "Growth": ("Reading", "Workout"),
 }
@@ -135,25 +134,25 @@ def category_data(calendar_file: str, category: str):
     category_calendar = create_category_calendar(main_calendar, category)
     duration = calendar_duration(category_calendar)
     return {
-        "name": category.title(),
-        "duration": duration,
-        "type": "category",
-        "calendar": calendar_name,
-        "color": calendar_colors.get(calendar_name),
-    }
+            "name": category.title(),
+            "duration": duration,
+            "type": "category",
+            "calendar": calendar_name,
+            "color": calendar_colors.get(calendar_name),
+        }
 
 
 def make_data():
     calendar_files = os.listdir(CALENDARS_DIR)
-    data = []
+    data = {}
     for calendar_file in calendar_files:
         calendar_name = calendar_file.replace(".ics", "")
         cal_data = calendar_data(calendar_file)
         categories = calendar_categories[calendar_name]
-        data.append(cal_data)
+        data[calendar_name] = cal_data
         for category in categories:
             cat_data = category_data(calendar_file, category)
-            data.append(cat_data)
+            data[category] = cat_data
     return data
 
 
@@ -179,9 +178,20 @@ def get_data():
     return data
 
 
-def main():
-    print(get_data())
+def calculate_other_duration(calendar_name):
+    data = get_data()
+    categories = calendar_categories[calendar_name]
+    calendar_duration = data[calendar_name]["duration"]
+    other_duration = calendar_duration
 
+    for category in categories:
+        other_duration -= data[category]["duration"]
+
+    return other_duration
+
+
+def main():
+    print(calculate_other_duration("Work"))
 
 
 if __name__ == "__main__":
