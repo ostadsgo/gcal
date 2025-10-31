@@ -1,5 +1,9 @@
 # ----------------
 # [DONE] TODO: Store claculated data in file to use it for faster char render.
+# [] TODO: Write simple parser for ics file and remove `icalendar` dependency.
+# [] TODO: Extract project form event summary.
+# [] TODO:
+# [] TODO:
 # -----------------
 
 import datetime
@@ -92,10 +96,10 @@ def calendars_name():
     return [calendar.replace(".ics", "") for calendar in os.listdir(CALENDARS_DIR)]
 
 
-def calendar_duration(calendar, year=2025) -> float:
+def calendar_duration(calendar, year=2025, month=10) -> float:
     total_duration = datetime.timedelta()
     for event in calendar.events:
-        if event["dtstart"].dt.year == year:
+        if (event["dtstart"].dt.year == year) and (event["dtstart"].dt.month == month):
             total_duration += event.duration
 
     # convert days to second then hours : 3600 = 1 hour
@@ -113,75 +117,43 @@ def create_category_calendar(calendar, category: str):
 
 
 # -- Sub category (tag) --
-def category_duration(calendar_file: str, category: str):
-    main_calendar = read_calendar(calendar_file)
-    category_calendar = create_category_calendar(main_calendar, category)
-    return calendar_duration(category_calendar)
-
-
 def calendar_data(calendar_file):
     calendar = read_calendar(calendar_file)
     calendar_name = calendar_file.replace(".ics", "")
     calendar_type = "calendar"
     return {
         "name": calendar_name,
-        "duration": calendar_duration(calendar.name),
+        "duration": calendar_duration(calendar),
         "type": calendar_type,
         "color": calendar_colors.get(calendar_name),
     }
 
 
-def calendars_data(calendar_files):
+def category_data(calendar_file: str, category: str):
+    main_calendar = read_calendar(calendar_file)
+    calendar_name = calendar_file.replace(".ics", "")
+    category_calendar = create_category_calendar(main_calendar, category)
+    duration = calendar_duration(category_calendar)
+    return {
+        "name": category.title(),
+        "duration": duration,
+        "type": "category",
+        "calendar": calendar_name,
+        "color": calendar_colors.get(calendar_name),
+    }
+
+
+def make_data():
+    calendar_files = os.listdir(CALENDARS_DIR)
+    data = []
     for calendar_file in calendar_files:
         calendar_name = calendar_file.replace(".ics", "")
-        data = calendar_data(calendar_file)
-
-
-def calculate_data():
-    data = []
-    calendars = calendars_name()
-    calendar_type = ""
-    for calendar_name in calendars:
-        calendar_type = "calendar"
-        calendar_data = {}
-
-        calendar_file = f"{calendar_name}.ics"
-        calendar = read_calendar(calendar_file)
-        calendar_dur = calendar_duration(calendar)
-
-        calendar_data["name"] = calendar_name
-        calendar_data["duration"] = calendar_dur
-        calendar_data["color"] = calendar_colors.get(calendar_name)
-        calendar_data["type"] = calendar_type
-        data.append(calendar_data)
-
-        # -- categories --
-        categories = calendar_categories.get(calendar_name, [])
-        calendar_type = "category"
-        other_duration = calendar_dur
-        for category_name in categories:
-            calendar_data = {}
-            category_dur = category_duration(calendar_file, category_name)
-            other_duration -= category_dur
-            data.append(
-                {
-                    "name": category_name,
-                    "duration": category_dur,
-                    "type": calendar_type,
-                    "calendar": calendar_name,
-                }
-            )
-
-        data.append(
-            {
-                "name": "other",
-                "duration": other_duration,
-                "type": calendar_type,
-                "calendar": calendar_name,
-            }
-        )
-        data.append(calendar_data)
-
+        cal_data = calendar_data(calendar_file)
+        categories = calendar_categories[calendar_name]
+        data.append(cal_data)
+        for category in categories:
+            cat_data = category_data(calendar_file, category)
+            data.append(cat_data)
     return data
 
 
@@ -190,9 +162,9 @@ def save_data(data):
         json.dump(data, json_file)
 
 
-def read_data():
+def read_data(filename="data.json"):
     data = None
-    with open("data.json", "r") as json_file:
+    with open(filename, "r") as json_file:
         data = json.load(json_file)
     return data
 
@@ -202,13 +174,14 @@ def get_data():
     if not is_calendar_folder_modified():
         return read_data()
 
-    data = calculate_data()
+    data = make_data()
     save_data(data)
     return data
 
 
 def main():
-    calendar_data("Work.ics")
+    print(get_data())
+
 
 
 if __name__ == "__main__":
