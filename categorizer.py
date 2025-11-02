@@ -18,7 +18,6 @@ def tofile(filename, content):
 
 
 def categorize(summary):
-
     category = {
         "Basic": (
             "lunch",

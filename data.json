@@ -7,7 +7,7 @@
   },
   "Sleep": {
     "name": "Sleep",
-    "duration": 0.0,
+    "duration": 171.0,
     "type": "category",
     "calendar": "Saeed",
     "color": "#7C7C7C"
@@ -21,20 +21,20 @@
   },
   "Growth": {
     "name": "Growth",
-    "duration": 6.0,
+    "duration": 60.0,
     "type": "calendar",
     "color": "#A479B1"
   },
   "Reading": {
     "name": "Reading",
-    "duration": 2.0,
+    "duration": 20.0,
     "type": "category",
     "calendar": "Growth",
     "color": "#A479B1"
   },
   "Workout": {
     "name": "Workout",
-    "duration": 1.0,
+    "duration": 10.0,
     "type": "category",
     "calendar": "Growth",
     "color": "#A479B1"
@@ -54,34 +54,34 @@
   },
   "Content": {
     "name": "Content",
-    "duration": 2.0,
+    "duration": 20.0,
     "type": "category",
     "calendar": "Work",
     "color": "#489160"
   },
   "SWE": {
     "name": "Swe",
-    "duration": 0.0,
+    "duration": 15.0,
     "type": "category",
     "calendar": "Work",
     "color": "#489160"
   },
   "Study": {
     "name": "Study",
-    "duration": 8.0,
+    "duration": 80.0,
     "type": "calendar",
     "color": "#4B99D2"
   },
   "CS": {
-    "name": "Cs",
-    "duration": 0.0,
+    "name": "CS",
+    "duration": 40.0,
     "type": "category",
     "calendar": "Study",
     "color": "#4B99D2"
   },
   "School": {
     "name": "School",
-    "duration": 0.0,
+    "duration": 20.0,
     "type": "category",
     "calendar": "Study",
     "color": "#4B99D2"

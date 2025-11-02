@@ -1,7 +1,7 @@
 # ----------------
 # [] TODO: Write simple parser for ics file and remove `icalendar` dependency.
 # [] TODO: Extract project form event summary.
-# [] TODO:
+# [] TODO: Improve nested data in `calendars_categories_data`
 # [] TODO:
 # -----------------
 
@@ -26,10 +26,10 @@ calendar_colors = {
 }
 
 calendar_categories = {
-    "Saeed": ("Sleep", "Burnt"),
-    "Work": ("Dev", "Content", "SWE"),
-    "Study": ("CS", "School"),
-    "Growth": ("Reading", "Workout"),
+    "Saeed": ["Sleep", "Burnt"],
+    "Work": ["Dev", "Content", "SWE"],
+    "Study": ["CS", "School"],
+    "Growth": ["Reading", "Workout"],
 }
 
 
@@ -116,7 +116,7 @@ def create_category_calendar(calendar, category: str):
 
 
 # -- Sub category (tag) --
-def calendar_data(calendar_file):
+def calendar_data_format(calendar_file: str) -> dict[str, str]:
     calendar = read_calendar(calendar_file)
     calendar_name = calendar_file.replace(".ics", "")
     calendar_type = "calendar"
@@ -134,12 +134,12 @@ def category_data(calendar_file: str, category: str):
     category_calendar = create_category_calendar(main_calendar, category)
     duration = calendar_duration(category_calendar)
     return {
-            "name": category.title(),
-            "duration": duration,
-            "type": "category",
-            "calendar": calendar_name,
-            "color": calendar_colors.get(calendar_name),
-        }
+        "name": category,
+        "duration": duration,
+        "type": "category",
+        "calendar": calendar_name,
+        "color": calendar_colors.get(calendar_name),
+    }
 
 
 def make_data():
@@ -147,7 +147,7 @@ def make_data():
     data = {}
     for calendar_file in calendar_files:
         calendar_name = calendar_file.replace(".ics", "")
-        cal_data = calendar_data(calendar_file)
+        cal_data = calendar_data_format(calendar_file)
         categories = calendar_categories[calendar_name]
         data[calendar_name] = cal_data
         for category in categories:
@@ -178,20 +178,77 @@ def get_data():
     return data
 
 
-def calculate_other_duration(calendar_name):
+def other_duration(calendar_name):
     data = get_data()
     categories = calendar_categories[calendar_name]
     calendar_duration = data[calendar_name]["duration"]
-    other_duration = calendar_duration
+    other_dur = calendar_duration
 
     for category in categories:
-        other_duration -= data[category]["duration"]
+        other_dur -= data[category]["duration"]
 
-    return other_duration
+    return other_dur
+
+
+def other_format(calendar_name):
+    other_dur = other_duration(calendar_name)
+    other = {
+        "name": "ohter",
+        "duration": other_dur,
+        "type": "other",
+        "calendar": calendar_name,
+        "color": calendar_colors[calendar_name],
+    }
+    return other
+
+
+def calendars_data():
+    data = get_data()
+    cals_data = {}
+    for name, calendar_data in data.items():
+        if calendar_data["type"] == "calendar":
+            cals_data[name] = calendar_data
+    return cals_data
+
+
+def calendar_data(calendar_name: str):
+    cals_data = calendars_data()
+    return cals_data.get(calendar_name, {})
+
+
+def all_categories_data():
+    data = get_data()
+    cals_data = {}
+    for name, calendar_data in data.items():
+        if calendar_data["type"] == "category":
+            cals_data[name] = calendar_data
+    return cals_data
+
+
+def categories_data(calendar_name: str) -> list:
+    data = []
+    cats_data = all_categories_data()
+    for cat, d in cats_data.items():
+        if d["calendar"] == calendar_name:
+            data.append(d)
+    # add other to the categories of the calendar.
+    other = other_format(calendar_name)
+    data.append(other)
+    return data
+
+
+def calendars_categories_data():
+    """Each category with other duration"""
+    cals_name = calendars_name()
+    data = []
+    for cal in cals_name:
+        data.append({cal: categories_data(cal)})
+    return data
+
 
 
 def main():
-    print(calculate_other_duration("Work"))
+    print(calendars_categories_data())
 
 
 if __name__ == "__main__":
