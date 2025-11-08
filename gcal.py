@@ -58,7 +58,7 @@ def rename_calendars():
     cals_name = os.listdir(CALENDARS_DIR)
     for cal_name in cals_name:
         new_cal_name, *_ = cal_name.split("_")
-        os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{new_cal_name}.ics")
+        os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{new_cal_name}")
 
 
 def read_calendar(name: str):
@@ -248,7 +248,7 @@ def calendars_categories_data():
 
 
 def main():
-    print(calendars_categories_data())
+    rename_calendars()
 
 
 if __name__ == "__main__":
