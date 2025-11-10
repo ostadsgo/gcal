@@ -28,18 +28,70 @@ def counter(calendar_name):
         word = str(event["summary"])
         if ':' in word:
             splited_word = word.split(":", 1)
-            words.append(splited_word[-1])
+            words.append(splited_word[-1].strip())
         else:
             words.append(word)
     
     words =  Counter(words)
     return words
 
+def move_events_by_keyword(source_cal_path, target_cal_path, keywords):
+    """Move events containing specific keywords to another calendar"""
+    
+    # Read source calendar
+    with open(source_cal_path, 'r', encoding='utf-8') as f:
+        source_cal = Calendar.from_ical(f.read())
+    
+    # Create target calendar (or read existing one)
+    try:
+        with open(target_cal_path, 'r', encoding='utf-8') as f:
+            target_cal = Calendar.from_ical(f.read())
+    except FileNotFoundError:
+        # Create new calendar if target doesn't exist
+        target_cal = Calendar()
+        target_cal.add('prodid', '-//My Calendar//mxm.dk//')
+        target_cal.add('version', '2.0')
+    
+    moved_count = 0
+    
+    # Find and move events
+    components_to_remove = []
+    for component in source_cal.walk():
+        if component.name == "VEVENT":
+            summary = str(component.get('summary', '')).lower()
+            
+            # Check if event matches any keyword
+            if any(keyword.lower() in summary for keyword in keywords):
+                # Copy event to target calendar
+                target_cal.add_component(copy.deepcopy(component))
+                # Mark for removal from source
+                components_to_remove.append(component)
+                moved_count += 1
+    
+    # Remove moved events from source calendar
+    for component in components_to_remove:
+        source_cal.subcomponents.remove(component)
+    
+    # Save both calendars
+    with open(source_cal_path, 'wb') as f:
+        f.write(source_cal.to_ical())
+    
+    with open(target_cal_path, 'wb') as f:
+        f.write(target_cal.to_ical())
+    
+    print(f"Moved {moved_count} events to {target_cal_path}")
+    return moved_count
+
 def extract_sumary(cal):
     cal = read_calendar(cal)
     for event in cal.events:
         print(str(event["summary"]))
 
+def create_description(cal):
+    for component in cal.walk():
+        description = f"Area:\nProject:\nTags:\nDifficulty:\nDetail:\n"
+        component["description"] = description
+    return cal
 
 def modify(calendar, rows):
     modified_events = 0
@@ -49,12 +101,15 @@ def modify(calendar, rows):
                 keyword, summary, area, project, tags, difficulty, detail = row
                 description = f"Area: {area}\nProject: {project}\nTags: {tags}\nDifficulty: {difficulty}\nDetail: {detail}\n"
                 if "summary" in component:
+                    # description = f"Area:\nProject:\nTags:\nDifficulty:\nDetail:\n"
+                    # component["description"] = description
                     calendar_summary = component["summary"].lower()
-                    if keyword.lower() in calendar_summary:
+                    if keyword.lower() in calendar_summary.lower():
                         component["summary"] = summary
                         component["description"] = description
                         modified_events += 1
                         break
+
                                                                   
     print("Modified events: ", modified_events)
     return calendar
@@ -62,53 +117,68 @@ def modify(calendar, rows):
 
 def main():
     rows = [
-        ("farnaz", "Teaching Farnaz", "Teaching", "Teaching Farnaz", "python, datasci", 4, "Teaching Farnaz Shasti."),
-        ("arad", "Teaching Arad", "Teaching", "Teaching Arad", "python", 3, "Teaching Arad."),
-        ("motlag", "Teaching Motlag", "Teaching", "Teaching Motlag", "python, django", 4, "Teaching Mina Motlag."),
-        ("mehrdad", "Teaching Mehrdad", "Teaching", "None", "python, matplotlib", 4,"Working with Mehrdad on varius projects"),
-        ("saeed", "Teaching dr Saeed", "Teaching", "None", "python", 4,"Teaching dr Saeed"),
-        ("saeid", "Teaching dr Saeed", "Teaching", "None", "python", 4,"Teaching dr Saeed"),
-        ("openpose", "Teaching dr Saeed", "Teaching", "None", "python", 4,"Teaching dr Saeed"),
+        # ("sleep", "Sleep", "Sleep", "", "", 1, ""),
+        # ("breakfast", "Eat", "", "", "", 1, ""),
+        # ("dinner", "Eat", "", "", "", 1, ""),
+        # ("lunch", "Eat", "", "", "", 1, ""),
+        # ("wake", "Sleep", "Sleep", "", "", 1, ""),
+        # ("yt", "Youtube", "Youtbue", "", "", 1, ""),
+        # ("youtube", "Youtube", "Youtbue", "", "", 1, ""),
+        # ("youtbue", "Youtube", "Youtbue", "", "", 1, ""),
+        # ("phone", "Phone", "", "", "", 1, ""),
+        #
+        # ("kid", "Play with Sofia", "Sofia", "", "", 1, ""),
+        #
+        # ("walk", "Walk", "Workout", "", "", 1, ""),
+        #
+        # ("reading", "Reading", "Reading", "", "", 2, ""),
+        #
+        # ("reading", "Reading", "Reading", "", "", 1, ""),
+        # ("read", "Reading", "Reading", "", "", 1, ""),
+        #
+        # ("mehrdad", "Teaching Mehrdad", "Teaching", "", "", 3, ""),
+        # ("shayan", "Teaching Shayan", "Teaching", "", "", 3, ""),
+        # ("sajad", "Teaching Sajad", "Teaching", "", "", 3, ""),
+        # ("sj", "Teaching Sajad", "Teaching", "", "", 3, ""),
+        # ("shahin", "Teaching shahin", "Teaching", "", "", 3, ""),
+        # ("zahra", "Teaching zahra", "Teaching", "", "", 3, ""),
+        # ("mojgan", "Teaching mojgan", "Teaching", "", "", 3, ""),
+        # ("masali", "Teaching Masali", "Teaching", "", "", 3, ""),
+        # ("kian", "Teaching Kian", "Teaching", "", "", 3, ""),
+        #
+        # ("ramin", "Ramin", "Friend", "", "", 3, ""),
+        #
+        # # dev
+        # ("ostad", "Dev ostadsgo", "Dev", "Ostadgso", "python, html, css", 3, "ostadsgo github page"),
+        #
+        # ("movie", "Watch Movie", "Movie", "", "", 1, ""),
+        # ("anime", "Watch anime", "Movie", "", "", 1, ""),
+        # ("monster", "Monster", "Movie", "", "anime", 1, ""),
 
-        ("snapp", "Snapp", "Snapp", "None", "None", 4,"Driving snapp for food money."),
-        ("dad", "Help dad", "Ourshop", "None", "None", 4,"Help dad on shop or home"),
-        ("ourshop", "Help dad", "Ourshop", "None", "None", 4,"Help dad on shop or home"),
-        ("jahzieh", "Help dad", "Ourshop", "None", "None", 4,"Help dad on shop or home"),
+        # ("Arad", "Teaching Arad", "Teaching", "", "", 3, ""),
+        # ("zarnegar", "Teaching zarnegar", "Teaching", "", "", 3, ""),
+        #
+        # ("mehradad", "Teaching Mehrdad", "Teaching", "", "", 3, ""),
+        # ("linux", "Learn config", "Dev", "", "linux, bash", 2, ""),
 
-        ("content", "Make Instagram post", "Content", "None", "instagram, post", 3,"Make instagram post to create networks."),
-        ("post", "Make Instagram post", "Content", "None", "instagram, post", 3,"Make instagram post to create networks."),
+        ("init", "Phone", "Phone", "", "", 1, ""),
 
-        ("gcal", "Develop gcal", "Dev", "gcal", "python, datasci", 2, "Google calendar visualizer to get insight."),
-        ("pyquiz", "Develop pyquiz", "Dev", "pyquiz", "javascript, web", 3, "Quiz application to determine level of the participent."),
-        ("random", "Random projects", "Dev", "Random projects", "python", 2, "Random project just fill the calendar."),
-        ("coding signal", "Signal plot", "Dev", "Signal Plot", "python, matplotlib", 4,"Signal visulaizer for Nastran files."),
-        ("flet", "Learn Flet", "Dev", "Learn Flet", "learn, flet", 2,"learn the basic of the flet framework"),
-        ("felt", "Learn Flet", "Dev", "Learn Flet", "learn, flet", 2,"learn the basic of the flet framework"),
+        ("commute", "Commute", "Wife", "", "", 1, ""),
+        ("wife", "Wife", "Wife", "", "", 1, ""),
+        ("family", "Family", "Wife", "", "", 1, ""),
+        ("parent", "Parent", "Family", "", "", 1, ""),
+        ("mom", "Mom", "Family", "", "", 1, ""),
 
-        ("vim", "Modify neovim", "Dev", "Learn vim/neovim", "tools, neovim", 1,"Modifiy or learn vim/neovim"),
 
-        ("codewar", "Codewars", "Dev", "None", "problem-solving, python", 4,"Problem solving on codewars"),
-        ("exerci", "Exercisim", "Dev", "None", "problem-solving, python", 4,"Problem solving on exercisim"),
-        ("tkinter", "Learn tkinter", "Dev", "Tkinter by example", "tkinter, gui", 2,"Learn to develop desktop app using tkinter"),
-        ("tk ", "Learn tkinter", "Dev", "Tkinter by example", "tkinter, gui", 2,"Learn to develop desktop app using tkinter"),
-        ("emacs", "Learn Emacs", "Dev", "None", "linux, emacs", 4,"Learn the basics and try out emacs."),
-        ("linux", "Linux config", "Dev", "None", "linux, bash", 2,"Doing varius config on Linux."),
-        ("tmuxer", "Develop temuxer", "Dev", "Tmux session switcher", "bash, tmux", 4,"Build a shell script with fzf to switch tmux sessions."),
-        ("ostadsgo", "Ostadsgo github page", "Dev", "Ostadsgo github page", "python, web", 2,"Develop my portfolio website for github page."),
-        ("github", "Ostadsgo github page", "Dev", "Ostadsgo github page", "python, web", 2,"Develop my portfolio website for github page."),
-        ("sys", "Learn Systems", "Dev", "Learn systems", "python, web", 2,"Learn about how systems work."),
-        ("think", "Read Think Python", "Dev", "Think Python", "python, book", 2,"Read and Learn the book Think Python."),
     ]
 
 
-    cal = read_calendar("temp.ics")
-    modify(cal, rows)
-    save_calendar("temp.ics", cal)
+    cal = read_calendar("saeed_temp.ics")
+    cal = modify(cal, rows)
+    save_calendar("saeed_temp.ics", cal)
 
-    items = counter("temp.ics")
 
-    print(counter('temp.ics'))
-    
+    print(counter("saeed_temp.ics"))
 
 
 
