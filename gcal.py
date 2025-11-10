@@ -1,8 +1,9 @@
 # ----------------
-# [] TODO: Write simple parser for ics file and remove `icalendar` dependency.
+# [] TODO: Feature: Write simple parser for ics file and remove `icalendar` dependency.
 # [] TODO: Extract project form event summary.
-# [] TODO: Improve nested data in `calendars_categories_data`
-# [] TODO:
+# [] TODO: Improvment:  nested data in `calendars_categories_data`
+# [] TODO: Feature: How many events happend for a specific project(or area)
+# [] TODO: 
 # -----------------
 
 import datetime
