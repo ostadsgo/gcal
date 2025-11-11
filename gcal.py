@@ -1,4 +1,3 @@
-
 import os
 import json
 import datetime
@@ -8,8 +7,6 @@ from dataclasses import dataclass
 
 import icalendar
 from icalendar import Calendar
-
-
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -23,6 +20,7 @@ class Difficulty:
     VERY_HARD = 5
 
 
+
 class Event:
     def __init__(self, component):
         self.component = component
@@ -33,73 +31,61 @@ class Event:
         self.tags = self.extract_tags("tags")
         self.difficulty = self.extract_value("difficulty")
         self.detail = self.extract_value("detail")
-        self.duration = self.calculate_duration()
+        self.dtstart = component["dtstart"].dt
+        self.dtend = component["dtend"].dt
+        self.duration = self.dtend - self.dtstart
 
     def _chop_description(self):
-        lines = []
-
         if not self.description:
-            return lines
+            return []
 
-        lines = self.description.splitlines()
-        lines = [line.lower().strip() for line in lines]
-        return lines
+        return [
+            line.strip().lower() 
+            for line in self.description.splitlines() 
+            if line.strip()
+        ]
 
     def extract_value(self, keyword):
-        value = ""
-        lines = self._chop_description()
-
-        for line in lines:
+        for line in self._chop_description():
             if keyword in line and ':' in line:
-                _, value = line.split(':', 1)
-                break
-        return value
+                *_, value = line.partition(':')
+                return value.strip() if value.strip() else ""
+        return ""
 
     def extract_tags(self, keyword):
-        tags = []
-        lines = self._chop_description()
-
-        for line in lines:
+        for line in self._chop_description():
             if keyword in line and ':' in line:
-                _, value = line.split(':', 1)
-                tags = value.split(',')
-                break
-        return tags
-
-    def calculate_duration(self):
-        duration = datetime.timedelta()
-        if self.component.name == "VEVENT":
-            start = self.component.get('dtstart').dt
-            end = self.component.get('dtend').dt
-            duration = end - start
-        return duration
+                *_, value = line.partition(":")
+                return [tag.strip() for tag in value.split(',') if tag.strip()]
+        return []
 
 
-def calendar_duration(calendar, year=2025, month=10) -> float:
-    total_duration = datetime.timedelta()
-    for event in calendar.events:
-        if (event["dtstart"].dt.year == year):
-            total_duration += event.duration
+class Calendar:
+    def __init__(self, name):
+        self.name = name
+        cal_path = CALENDARS_DIR / name
+        self.calendar = icalendar.Calendar.from_ical(cal_path.read_text())
+        self.events = self.create_events()
 
-    # convert days to second then hours : 3600 = 1 hour
-    return total_duration.total_seconds() // 3600
+    def duration(self, year=2025, month=10, day=1) -> float:
+        total_duration = datetime.timedelta()
+        for event in self.events:
+            if event.dtstart.year == year:
+                total_duration += event.duration
 
+        # convert days to second then hours : 3600 = 1 hour
+        return total_duration.total_seconds() / 3600
 
-def create_events(calendar):
-    return [Event(component) for component in calendar.walk()]
+    def create_events(self):
+        return [Event(component) for component in self.calendar.walk() if component.name == "VEVENT"]
 
 
 def main():
-    calendar_name = "Work.ics"
-    cal_path = CALENDARS_DIR / calendar_name
-    calendar = icalendar.Calendar.from_ical(cal_path.read_text())
-    events = create_events(calendar)
+    work = Calendar("Work.ics")
+    print(work.duration())
 
-    for event in events:
-        print(event.summary, event.duration)
-
-    print("Calendar duration is:", calendar_duration(calendar))
-
+    e = work.events[1]
+    print(e.tags)
 
 
 if __name__ == "__main__":

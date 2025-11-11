@@ -104,9 +104,24 @@ class VisualizeFrame(ttk.Frame):
             colors=[v["color"] for _, v in cal_data.items()],
             wedgeprops=dict(width=size, edgecolor="w"),
         )
-        values = [item["duration"] for calendar in cat_data for cal_name, data_list in calendar.items() for item in data_list]
-        colors = [item["color"] for calendar in cat_data for cal_name, data_list in calendar.items() for item in data_list]
-        labels = [item["name"] for calendar in cat_data for cal_name, data_list in calendar.items() for item in data_list]
+        values = [
+            item["duration"]
+            for calendar in cat_data
+            for cal_name, data_list in calendar.items()
+            for item in data_list
+        ]
+        colors = [
+            item["color"]
+            for calendar in cat_data
+            for cal_name, data_list in calendar.items()
+            for item in data_list
+        ]
+        labels = [
+            item["name"]
+            for calendar in cat_data
+            for cal_name, data_list in calendar.items()
+            for item in data_list
+        ]
         print(values)
         print(colors)
         ax.pie(
@@ -120,9 +135,9 @@ class VisualizeFrame(ttk.Frame):
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True)
 
-    def bar_chart(self, data): 
+    def bar_chart(self, data):
         pass
-            
+
     def plot_calendar_spent(self):
         data = gcal.calendars_data()
         self.pie_chart(data)
@@ -134,10 +149,10 @@ class VisualizeFrame(ttk.Frame):
     def draw(self):
         calendars_data = gcal.calendars_data()
         categories_data = gcal.calendars_categories_data()
-        print('-' * 50)
+        print("-" * 50)
         print(categories_data)
-        print('-' * 50)
-        
+        print("-" * 50)
+
         self.pie_chart2(calendars_data, categories_data)
 
 

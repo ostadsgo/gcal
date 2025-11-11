@@ -3,7 +3,7 @@
 # [] TODO: Extract project form event summary.
 # [] TODO: Improvment:  nested data in `calendars_categories_data`
 # [] TODO: Feature: How many events happend for a specific project(or area)
-# [] TODO: 
+# [] TODO:
 # -----------------
 
 import datetime
@@ -56,7 +56,7 @@ def is_calendar_folder_modified():
 
 
 def rename_calendars():
-    # [] BUG: there is a bug here .ics doens't added to the calendars name. 
+    # [] BUG: there is a bug here .ics doens't added to the calendars name.
     # it works differently if the calendar renamed for the first time or not.
     cals_name = os.listdir(CALENDARS_DIR)
     for cal_name in cals_name:
@@ -249,11 +249,9 @@ def calendars_categories_data():
     return data
 
 
-
 def main():
     rename_calendars()
     # rename_calendars()
-
 
 
 if __name__ == "__main__":
