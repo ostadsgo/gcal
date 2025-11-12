@@ -30,8 +30,8 @@ class CalendarFrame(ttk.Frame):
         self.categories_insight_frame.columnconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
-        self.calendars_insight()
-        self.categories_insight()
+        # self.calendars_insight()
+        # self.categories_insight()
 
     def insight(self, section_frame, data):
         # section_frame.columnconfigure(0, weight=1)
@@ -75,7 +75,7 @@ class VisualizeFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.draw()
+        # self.draw()
 
     def pie_chart(self, data):
         fig, ax = plt.subplots(figsize=(6, 4))
