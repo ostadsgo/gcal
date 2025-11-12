@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 import gcal
-from gcal import Calendar, Event, Difficulty
 
 
 # Left frame
@@ -31,14 +30,17 @@ class CalendarFrame(ttk.Frame):
         self.categories_insight_frame.columnconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
+        self.insight(self.calendars_insight_frame, gcal.data())
 
-        self.insight(self.calendars_insight_frame, gcal.calendars())
-
-    def insight(self, section_frame, calendars):
+    def insight(self, section_frame, data):
         # section_frame.columnconfigure(0, weight=1)
 
-        for row_index, calendar in enumerate(calendars, 1):
-            square_dict = dict(width=2, height=1, bg=calendar.color, relief="flat", anchor="w")
+        for index, row in enumerate(data, 1):
+            name = row.get("name")
+            color = row.get("color")
+            duration = row.get("duration")
+
+            square_dict = dict(width=2, height=1, bg=color, relief="flat", anchor="w")
             row_frame = ttk.Frame(section_frame, padding=(5, 5))
 
             # Calendar color
@@ -46,21 +48,20 @@ class CalendarFrame(ttk.Frame):
                 row=0, column=0, sticky="nw", padx=(0, 10), pady=5
             )
             # Calendar name
-            tk.Label(row_frame, text=calendar.name, anchor="w", justify="left").grid(
+            tk.Label(row_frame, text=name, anchor="w", justify="left").grid(
                 row=0, column=1, padx=(0, 10), sticky="nw"
             )
             # Calendar duration
-            tk.Label(row_frame, text=f"{calendar.duration} hrs").grid(
+            tk.Label(row_frame, text=f"{duration} hrs").grid(
                 row=0, column=2, sticky="ne"
             )
-            row_frame.grid(row=row_index, sticky="wsen")
+            row_frame.grid(row=index, sticky="wsen")
 
             # color, name, time size
             row_frame.columnconfigure(0, weight=1)
             row_frame.columnconfigure(1, weight=1)
             row_frame.columnconfigure(2, weight=1)
             row_frame.rowconfigure(0, weight=1)
-
 
 
 # Right frame
