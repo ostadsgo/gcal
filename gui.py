@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 import gcal
+from gcal import Calendar, Event, Difficulty
 
 
 # Left frame
@@ -30,44 +31,36 @@ class CalendarFrame(ttk.Frame):
         self.categories_insight_frame.columnconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
-        # self.calendars_insight()
-        # self.categories_insight()
 
-    def insight(self, section_frame, data):
+        self.insight(self.calendars_insight_frame, gcal.calendars())
+
+    def insight(self, section_frame, calendars):
         # section_frame.columnconfigure(0, weight=1)
-        for row_index, (name, calendar_data) in enumerate(data.items(), 1):
-            color = calendar_data["color"]
-            duration = calendar_data["duration"]
-            square_dict = dict(width=2, height=1, bg=color, relief="flat")
+
+        for row_index, calendar in enumerate(calendars, 1):
+            square_dict = dict(width=2, height=1, bg=calendar.color, relief="flat", anchor="w")
             row_frame = ttk.Frame(section_frame, padding=(5, 5))
 
             # Calendar color
             tk.Label(row_frame, **square_dict).grid(
-                row=0, column=0, sticky="w", padx=(0, 10), pady=5
+                row=0, column=0, sticky="nw", padx=(0, 10), pady=5
             )
             # Calendar name
-            tk.Label(row_frame, text=name).grid(
-                row=0, column=1, padx=(0, 10), sticky="w"
+            tk.Label(row_frame, text=calendar.name, anchor="w", justify="left").grid(
+                row=0, column=1, padx=(0, 10), sticky="nw"
             )
             # Calendar duration
-            tk.Label(row_frame, text=f"{duration} hrs").grid(
-                row=0, column=2, sticky="e"
+            tk.Label(row_frame, text=f"{calendar.duration} hrs").grid(
+                row=0, column=2, sticky="ne"
             )
             row_frame.grid(row=row_index, sticky="wsen")
 
             # color, name, time size
             row_frame.columnconfigure(0, weight=1)
-            row_frame.columnconfigure(1, weight=3)
+            row_frame.columnconfigure(1, weight=1)
             row_frame.columnconfigure(2, weight=1)
             row_frame.rowconfigure(0, weight=1)
 
-    def calendars_insight(self):
-        data = gcal.calendars_data()
-        self.insight(self.calendars_insight_frame, data)
-
-    def categories_insight(self):
-        data = gcal.all_categories_data()
-        self.insight(self.categories_insight_frame, data)
 
 
 # Right frame
