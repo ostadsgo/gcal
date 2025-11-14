@@ -4,7 +4,7 @@ import json
 import statistics as stats
 
 from pathlib import Path
-from dataclasses import dataclass
+from datetime import timedelta
 
 import icalendar
 
@@ -14,6 +14,8 @@ import icalendar
 BASE_DIR = Path(__file__).resolve().parent
 CALENDARS_DIR = BASE_DIR / "calendars"
 SECONDS_PER_HOUR = 3600
+
+
 
 
 class Difficulty:
@@ -33,43 +35,56 @@ class Difficulty:
         self.median = stats.median(self.difficulties)
 
 
-# I am not sure how can i use this class but it will be used i guess
-class Color:
-    def __init__(self, hex_color):
-        self.hex_color = color
 
 
-# I am not sure how can i use this class but it will be used i guess
-class Duration:
-    # event.area.duration
-    pass
+class Report:
+    def __init__(self, events):
+        self.events = events
+        self._duration = None
 
+    @property
+    def duration(self):
+        if self._duration is None:
+            self._duration = sum(event.duration for event in self.events) // SECONDS_PER_HOUR
+        return self._duration
+
+    @property
+    def count(self):
+        return len(self.events)
 
 class AreaManager:
     def __init__(self, events):
         self.events = events
 
+    def __getitem__(self, name):
+        events = [event for event in self.events if event.area == name]
+        return Report(events)
+
+
+class ProjectManager:
+    def __init__(self, events):
+        self.events = events
 
     def __getitem__(self, name):
-        areas = [event for event in self.events if event.area == name]
-        print(areas)
+        events = [event for event in self.events if event.project == name]
+        return Report(events)
 
+class TagManager:
+    def __init__(self, events):
+        self.events = events
 
+    def __getitem__(self, name):
+        events = [event for event in self.events if name in event.tags]
+        return Report(events)
 
+class DifficultyManager:
+    def __init__(self, events):
+        self.events = events
 
-class Project:
-    def __init__(text: str):
-        self.text = text
+    def __getitem__(self, name):
+        events = [event for event in self.events if event.difficulty == name]
+        return Report(events)
 
-    def duration(self, events, year=2025, month=1, day=1):
-        return (
-            sum(
-                event.duration.total_seconds()
-                for event in events
-                if event.project.text == self.text and event.dtstart.year == year
-            )
-            / SECONDS_PER_HOUR
-        )
 
 class Event:
     def __init__(self, component):
@@ -83,7 +98,7 @@ class Event:
         self.detail = self.extract_value("detail")
         self.dtstart = component["dtstart"].dt
         self.dtend = component["dtend"].dt
-        self.duration = self.dtend - self.dtstart
+        self.duration = (self.dtend - self.dtstart).total_seconds()
 
     def _chop_description(self):
         if not self.description:
@@ -120,10 +135,6 @@ class Calendar:
         self.name = self.calendar.calendar_name
         self.color = str(self.calendar.get("color", "#FF0000"))
         self.events = self._create_events()
-        # self.areas = {event.area for event in self.events}
-        self.projects = {event.project for event in self.events if event.project}
-        self.tags = {tag for event in self.events for tag in event.tags}
-        self.difficulties = [int(event.difficulty) for event in self.events if event.difficulty]
 
     def __repr__(self):
         return f"Calendar({self.name})"
@@ -143,40 +154,22 @@ class Calendar:
     def areas(self):
         return AreaManager(self.events)
 
+    @property
+    def projects(self):
+        return ProjectManager(self.events)
+
+    @property
+    def tags(self):
+        return TagManager(self.events)
+
+    @property
+    def difficulty(self):
+        return DifficultyManager(self.events)
 
     def duration(self, year=2025, month=10, day=1) -> float:
         return (
-            sum(
-                event.duration.total_seconds()
-                for event in self.events
-                if event.dtstart.year == year
-            )
-            / SECONDS_PER_HOUR
+            sum(event.duration for event in self.events) // SECONDS_PER_HOUR
         )
-
-    def area_duration(self, area, year=2025, month=1, day=1):
-        return (
-            sum(
-                event.duration.total_seconds()
-                for event in self.events
-                if event.area == area and event.dtstart.year == year
-            )
-            / SECONDS_PER_HOUR
-        )
-
-    def projects_duration(self, projects, year=2025, month=1, day=1):
-        d = dict.fromkeys(projects, 0)
-        for project in projects:
-            duration = (
-                sum(
-                    event.duration.total_seconds()
-                    for event in self.events
-                    if event.project == project and event.dtstart.year == year
-                )
-                / SECONDS_PER_HOUR
-            )
-            d[project] = duration
-        return d
 
     # get some keywords and modify calendar event and the save it
     def modify(self, keyword):
@@ -297,11 +290,11 @@ def data():
 
 def main():
     work = Calendar("Work.ics")
-    work.areas['dev']
-
-
-
-
+    print("Calendar duratin: ", work.duration())
+    print("Dev duration", work.areas['dev'].duration)
+    print("gcal duration", work.projects["gcal"].duration)
+    print("python tag duration", work.tags["python"].duration)
+    print("diff 1 dur", work.difficulty["3"].duration)
 
 
 if __name__ == "__main__":
