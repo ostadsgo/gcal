@@ -8,14 +8,11 @@ from datetime import timedelta
 
 import icalendar
 
-# TODO: Manipulate calendar to have color field
-# TODO: Use json as data cache; remove pickle
+# TODO: feat: Find top3 areas, projects, tags by duration
 
 BASE_DIR = Path(__file__).resolve().parent
 CALENDARS_DIR = BASE_DIR / "calendars"
 SECONDS_PER_HOUR = 3600
-
-
 
 
 class Difficulty:
@@ -35,8 +32,6 @@ class Difficulty:
         self.median = stats.median(self.difficulties)
 
 
-
-
 class Report:
     def __init__(self, events):
         self.events = events
@@ -45,12 +40,15 @@ class Report:
     @property
     def duration(self):
         if self._duration is None:
-            self._duration = sum(event.duration for event in self.events) // SECONDS_PER_HOUR
+            self._duration = (
+                sum(event.duration for event in self.events) // SECONDS_PER_HOUR
+            )
         return self._duration
 
     @property
     def count(self):
         return len(self.events)
+
 
 class AreaManager:
     def __init__(self, events):
@@ -69,6 +67,7 @@ class ProjectManager:
         events = [event for event in self.events if event.project == name]
         return Report(events)
 
+
 class TagManager:
     def __init__(self, events):
         self.events = events
@@ -76,6 +75,7 @@ class TagManager:
     def __getitem__(self, name):
         events = [event for event in self.events if name in event.tags]
         return Report(events)
+
 
 class DifficultyManager:
     def __init__(self, events):
@@ -132,7 +132,7 @@ class Calendar:
     def __init__(self, name):
         self.full_name = name
         self.calendar = self._read()
-        self.name = self.calendar.calendar_name
+        self.name = str(self.calendar.calendar_name)
         self.color = str(self.calendar.get("color", "#FF0000"))
         self.events = self._create_events()
 
@@ -167,13 +167,7 @@ class Calendar:
         return DifficultyManager(self.events)
 
     def duration(self, year=2025, month=10, day=1) -> float:
-        return (
-            sum(event.duration for event in self.events) // SECONDS_PER_HOUR
-        )
-
-    # get some keywords and modify calendar event and the save it
-    def modify(self, keyword):
-        pass
+        return sum(event.duration for event in self.events) // SECONDS_PER_HOUR
 
 
 class CalendarManager:
@@ -217,84 +211,88 @@ def load_data():
         return json.load(json_file)
 
 
-def calendars_data():
-    calendars = [Calendar(name) for name in os.listdir(CALENDARS_DIR)]
-    d = [
-        {"name": calendar.name, "duration": calendar.duration, "color": calendar.color}
-        for calendar in calendars
-    ]
-    return d
+def calendar_data(name):
+    cal = Calendar(name)
+    return {
+        "calendar": cal.name,
+        "name": cal.name,
+        "duration": cal.duration(),
+        "color": cal.color,
+        "type": "calendar",
+    }
 
 
-def get_calendar(name):
-    if not name in os.listdir(CALENDARS_DIR):
-        print(f"Calendar `{name}` not found in `{CALENDARS_DIR}`")
-        return
-    return Calendar(name)
+def area_data(calendar_name, area):
+    cal = Calendar(calendar_name)
+    return {
+        "calendar": cal.name,
+        "name": area,
+        "duration": cal.areas[area].duration,
+        "color": cal.color,
+        "type": "area",
+    }
 
 
-def get_shade_color(hex_color, darkness=0.3):
-    hex_color = hex_color.lstrip("#")
-    r = int(hex_color[0:2], 16)
-    g = int(hex_color[2:4], 16)
-    b = int(hex_color[4:6], 16)
-
-    # Make it darker
-    r = int(r * (1 - darkness))
-    g = int(g * (1 - darkness))
-    b = int(b * (1 - darkness))
-
-    return f"#{r:02x}{g:02x}{b:02x}"
+def project_data(calendar_name, project):
+    cal = Calendar(calendar_name)
+    return {
+        "calendar": cal.name,
+        "name": project,
+        "duration": cal.projects[project].duration,
+        "color": cal.color,
+        "type": "project",
+    }
 
 
-def areas_data(calendar_name, areas: list[str]):
-    d = {}
-    color_darkness = 0.3
-    calendar = get_calendar(calendar_name)
-    for area in areas:
-        if area in calendar.areas:
-            name = calendar.name
-            color = get_shade_color(calendar.color, color_darkness)
-            duration = calendar.area_duration(area)
-            d[area] = {"name": name, "color": color, "duration": duration}
-            color_darkness += 0.1
-    return d
+def make_data():
+    data = []
+    # make Calendar
+    for name in os.listdir("calendars"):
+        row = calendar_data(name)
+        data.append(row)
+
+    # -- area --
+    for area in ["sleep", "family"]:
+        data.append(area_data("Saeed.ics", area))
+
+    for area in ["dev", "content", "teaching"]:
+        data.append(area_data("Work.ics", area))
+
+    for area in ["reading"]:
+        data.append(area_data("Growth.ics", area))
+
+    for area in ["cs"]:
+        data.append(area_data("Study.ics", area))
+
+    # -- project --
+    for project in ["gcal", "pyquiz"]:
+        data.append(project_data("Work.ics", project))
+
+    return data
 
 
-def projects_data(calendar_name, projects: list[str]):
-    d = {}
-    color_darkness = 0.3
-    calendar = get_calendar(calendar_name)
-    for project in projects:
-        if project in calendar.projects:
-            name = calendar.name
-            color = get_shade_color(calendar.color, color_darkness)
-            duration = calendar.projects_duration(project)
-            d[project] = {"name": name, "color": color, "duration": duration}
-            color_darkness += 0.1
-    return d
+def data(field_type="calendar"):
+    if is_calendar_folder_modified():
+        rows = make_data()
+        save_data(rows)
+    else:
+        rows = load_data()
+
+    return sorted(
+        [row for row in rows if row.get("type") == field_type],
+        key=lambda row: row["duration"],
+        reverse=True
+    )
 
 
-def tags_data(tags: list[str]):
-    pass
-
-
-def data():
-    """ Data = calendars + areas + project + tags """
-    # if not is_calendar_folder_modified():
-    #     return load_data()
-    # return save_data(d)
-    d =   areas_data("Work.ics", ["dev", "content"]) | projects_data("Work.ics", ["pyquiz", "gcal"])
-    print(d)
 
 
 def main():
     work = Calendar("Work.ics")
     print("Calendar duratin: ", work.duration())
-    print("Dev duration", work.areas['dev'].duration)
-    print("gcal duration", work.projects["gcal"].duration)
-    print("python tag duration", work.tags["python"].duration)
-    print("diff 1 dur", work.difficulty["3"].duration)
+    # print(get_data())
+    # print(work.projects["gcal"].duration)
+    data()
 
 
 if __name__ == "__main__":

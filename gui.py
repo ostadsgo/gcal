@@ -14,26 +14,20 @@ class CalendarFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.calendars_insight_frame = ttk.Frame(self)
-        self.categories_insight_frame = ttk.Frame(self)
-        ttk.Label(self.calendars_insight_frame, text="Calendars").grid(
-            row=0, column=0, sticky="wsen"
-        )
-        ttk.Label(self.categories_insight_frame, text="Categories").grid(
-            row=0, column=0, sticky="wsen"
-        )
-        self.calendars_insight_frame.grid(row=0, column=0, sticky="wsen")
-        self.categories_insight_frame.grid(row=1, column=0, sticky="wsen")
+        self.row_index = 0
 
-        # size of each widget inside the frame
-        self.calendars_insight_frame.columnconfigure(0, weight=1)
-        self.categories_insight_frame.columnconfigure(0, weight=1)
-        self.columnconfigure(0, weight=1)
+        self.insight(gcal.data("calendar"))
+        self.insight(gcal.data("area"))
+        self.insight(gcal.data("project"))
 
-        self.insight(self.calendars_insight_frame, gcal.data())
+    def insight(self, data):
 
-    def insight(self, section_frame, data):
-        # section_frame.columnconfigure(0, weight=1)
+        # base frame for sections like Calendar, Areas, projects, ...
+        frame = ttk.Frame(self, relief="solid", padding=(4, 10))
+        frame.grid(row=self.row_index, column=0, sticky="wsen")
+        frame.rowconfigure(self.row_index, weight=1), 
+        frame.columnconfigure(0, weight=1)
+        self.row_index += 1
 
         for index, row in enumerate(data, 1):
             name = row.get("name")
@@ -41,7 +35,7 @@ class CalendarFrame(ttk.Frame):
             duration = row.get("duration")
 
             square_dict = dict(width=2, height=1, bg=color, relief="flat", anchor="w")
-            row_frame = ttk.Frame(section_frame, padding=(5, 5))
+            row_frame = ttk.Frame(frame, padding=(5, 5))
 
             # Calendar color
             tk.Label(row_frame, **square_dict).grid(
