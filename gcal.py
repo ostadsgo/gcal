@@ -45,23 +45,16 @@ class Duration:
     pass
 
 
-class Area:
-    def __init__(self, area):
-        self.text = area
-        self.duration = 0
+class AreaManager:
+    def __init__(self, events):
+        self.events = events
 
-    def total_duration(self, events, year=2025, month=1, day=1):
-        return (
-            sum(
-                event.duration.total_seconds()
-                for event in events
-                if event.area.text == self.text and event.dtstart.year == year
-            )
-            / SECONDS_PER_HOUR
-        )
 
-    def __str__(self):
-        return f"{self.area}"
+    def __getitem__(self, name):
+        areas = [event for event in self.events if event.area == name]
+        print(areas)
+
+
 
 
 class Project:
@@ -116,20 +109,24 @@ class Event:
                 return [tag.strip() for tag in value.split(",") if tag.strip()]
         return []
 
+    def __repr__(self):
+        return f"Event({self.summary})"
+
 
 class Calendar:
-    SECONDS_PER_HOUR = 3600
-
     def __init__(self, name):
         self.full_name = name
-        self.name = name.replace(".ics", "")
         self.calendar = self._read()
+        self.name = self.calendar.calendar_name
         self.color = str(self.calendar.get("color", "#FF0000"))
         self.events = self._create_events()
-        self.areas = set(event.area for event in self.events)
-        self.projects = set(event.project for event in self.events)
-        self.tags = set(tag for event in self.events for tag in event.tags)
-        self.difficulties = Difficulty(self.events)
+        # self.areas = {event.area for event in self.events}
+        self.projects = {event.project for event in self.events if event.project}
+        self.tags = {tag for event in self.events for tag in event.tags}
+        self.difficulties = [int(event.difficulty) for event in self.events if event.difficulty]
+
+    def __repr__(self):
+        return f"Calendar({self.name})"
 
     def _read(self):
         cal_path = CALENDARS_DIR / self.full_name
@@ -143,6 +140,10 @@ class Calendar:
         ]
 
     @property
+    def areas(self):
+        return AreaManager(self.events)
+
+
     def duration(self, year=2025, month=10, day=1) -> float:
         return (
             sum(
@@ -172,7 +173,7 @@ class Calendar:
                     for event in self.events
                     if event.project == project and event.dtstart.year == year
                 )
-                / self.SECONDS_PER_HOUR
+                / SECONDS_PER_HOUR
             )
             d[project] = duration
         return d
@@ -296,8 +297,12 @@ def data():
 
 def main():
     work = Calendar("Work.ics")
-    cal = work.calendar
-    data()
+    work.areas['dev']
+
+
+
+
+
 
 if __name__ == "__main__":
     main()
