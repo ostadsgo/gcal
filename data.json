@@ -2,56 +2,49 @@
     {
         "calendar": "Work",
         "name": "Work",
-        "duration": 742.0,
+        "duration": 671.0,
         "color": "#489160",
         "type": "calendar"
     },
     {
         "calendar": "Study",
         "name": "Study",
-        "duration": 144.0,
+        "duration": 112.0,
         "color": "#4B99D2",
         "type": "calendar"
     },
     {
         "calendar": "Growth",
         "name": "Growth",
-        "duration": 223.0,
+        "duration": 202.0,
         "color": "#A479B1",
         "type": "calendar"
     },
     {
         "calendar": "Saeed",
         "name": "Saeed",
-        "duration": 12184.0,
+        "duration": 6573.0,
         "color": "#7C7C7C",
         "type": "calendar"
     },
     {
         "calendar": "Saeed",
         "name": "sleep",
-        "duration": 4864.0,
+        "duration": 2688.0,
         "color": "#7C7C7C",
         "type": "area"
     },
     {
         "calendar": "Saeed",
         "name": "family",
-        "duration": 70.0,
-        "color": "#7C7C7C",
-        "type": "area"
-    },
-    {
-        "calendar": "Saeed",
-        "name": "friend",
-        "duration": 93.0,
+        "duration": 63.0,
         "color": "#7C7C7C",
         "type": "area"
     },
     {
         "calendar": "Work",
         "name": "dev",
-        "duration": 399.0,
+        "duration": 343.0,
         "color": "#489160",
         "type": "area"
     },
@@ -65,7 +58,7 @@
     {
         "calendar": "Work",
         "name": "teaching",
-        "duration": 186.0,
+        "duration": 180.0,
         "color": "#489160",
         "type": "area"
     },
@@ -77,23 +70,9 @@
         "type": "area"
     },
     {
-        "calendar": "Growth",
-        "name": "workout",
-        "duration": 37.0,
-        "color": "#A479B1",
-        "type": "area"
-    },
-    {
         "calendar": "Study",
         "name": "cs",
-        "duration": 39.0,
-        "color": "#4B99D2",
-        "type": "area"
-    },
-    {
-        "calendar": "Study",
-        "name": "school",
-        "duration": 8.0,
+        "duration": 37.0,
         "color": "#4B99D2",
         "type": "area"
     },

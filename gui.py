@@ -13,19 +13,20 @@ class CalendarFrame(ttk.Frame):
 
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-
         self.row_index = 0
+        self.rowconfigure(0, weight=1) 
+        self.rowconfigure(1, weight=1) 
+        self.rowconfigure(2, weight=1) 
+        self.columnconfigure(0, weight=1)
 
         self.insight(gcal.data("calendar"))
         self.insight(gcal.data("area"))
         self.insight(gcal.data("project"))
 
     def insight(self, data):
-
-        # base frame for sections like Calendar, Areas, projects, ...
-        frame = ttk.Frame(self, relief="solid", padding=(4, 10))
-        frame.grid(row=self.row_index, column=0, sticky="wsen")
-        frame.rowconfigure(self.row_index, weight=1), 
+        frame = ttk.Frame(self, relief="solid", padding=(5, 5))
+        frame.grid(row=self.row_index, column=0, pady=5, padx=(0, 5), sticky="wsen")
+        frame.rowconfigure(0, weight=1)
         frame.columnconfigure(0, weight=1)
         self.row_index += 1
 
@@ -34,8 +35,8 @@ class CalendarFrame(ttk.Frame):
             color = row.get("color")
             duration = row.get("duration")
 
-            square_dict = dict(width=2, height=1, bg=color, relief="flat", anchor="w")
             row_frame = ttk.Frame(frame, padding=(5, 5))
+            square_dict = dict(width=2, height=1, bg=color, relief="solid", anchor="w")
 
             # Calendar color
             tk.Label(row_frame, **square_dict).grid(
@@ -57,25 +58,29 @@ class CalendarFrame(ttk.Frame):
             row_frame.columnconfigure(2, weight=1)
             row_frame.rowconfigure(0, weight=1)
 
+            frame.rowconfigure(index, weight=1)
+            frame.columnconfigure(0, weight=1)
+
 
 # Right frame
 class VisualizeFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        # self.draw()
+        self.draw()
 
     def pie_chart(self, data):
         fig, ax = plt.subplots(figsize=(6, 4))
-        values = [v["duration"] for _, v in data.items()]
-        colors = [v["color"] for _, v in data.items()]
+        labels = [row.get("name") for row in data]
+        colors = [row.get("color") for row in data]
+        durations = [row.get("duration") for row in data]
 
         ax.pie(
-            values,
-            labels=list(data.keys()),
+            durations,
+            labels=labels,
+            colors=colors,
             autopct="%1.1f%%",
             startangle=90,
-            colors=colors,
         )
         # Embed in tkinter
         canvas = FigureCanvasTkAgg(fig, master=self)
@@ -110,8 +115,6 @@ class VisualizeFrame(ttk.Frame):
             for cal_name, data_list in calendar.items()
             for item in data_list
         ]
-        print(values)
-        print(colors)
         ax.pie(
             values,
             labels=labels,
@@ -135,27 +138,21 @@ class VisualizeFrame(ttk.Frame):
         self.pie_chart(data)
 
     def draw(self):
-        calendars_data = gcal.calendars_data()
-        categories_data = gcal.calendars_categories_data()
-        print("-" * 50)
-        print(categories_data)
-        print("-" * 50)
-
-        self.pie_chart2(calendars_data, categories_data)
+        self.pie_chart(gcal.data())
 
 
 class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        cal_frame = CalendarFrame(self, padding=(10, 5), relief="solid")
-        vis_frame = VisualizeFrame(self, relief="solid")
-        cal_frame.grid(row=0, column=0, sticky="wsen", padx=(0, 20))
+        cal_frame = CalendarFrame(self)
+        vis_frame = VisualizeFrame(self)
+        cal_frame.grid(row=0, column=0, sticky="wsen")
         vis_frame.grid(row=0, column=1, sticky="wsen")
 
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=30)
+        self.columnconfigure(1, weight=3)
 
 
 class App(tk.Tk):

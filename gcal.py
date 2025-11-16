@@ -8,7 +8,9 @@ from datetime import timedelta
 
 import icalendar
 
-# TODO: feat: Find top3 areas, projects, tags by duration
+# [] TODO: feat: Find top3 areas, projects, tags by duration
+# [DONE] TODO: feat: limit date range for events don't limit duration
+
 
 BASE_DIR = Path(__file__).resolve().parent
 CALENDARS_DIR = BASE_DIR / "calendars"
@@ -143,12 +145,13 @@ class Calendar:
         cal_path = CALENDARS_DIR / self.full_name
         return icalendar.Calendar.from_ical(cal_path.read_text())
 
-    def _create_events(self):
-        return [
+    def _create_events(self, year=2025):
+        events = [
             Event(component)
             for component in self.calendar.walk()
             if component.name == "VEVENT"
         ]
+        return [event for event in events if event.dtstart.year == year]
 
     @property
     def areas(self):
@@ -283,8 +286,6 @@ def data(field_type="calendar"):
         key=lambda row: row["duration"],
         reverse=True
     )
-
-
 
 
 def main():
