@@ -9,7 +9,6 @@ from datetime import timedelta
 import icalendar
 
 # [] TODO: feat: Find top3 areas, projects, tags by duration
-# [DONE] TODO: feat: limit date range for events don't limit duration
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -145,13 +144,9 @@ class Calendar:
         cal_path = CALENDARS_DIR / self.full_name
         return icalendar.Calendar.from_ical(cal_path.read_text())
 
-    def _create_events(self, year=2025):
-        events = [
-            Event(component)
-            for component in self.calendar.walk()
-            if component.name == "VEVENT"
-        ]
-        return [event for event in events if event.dtstart.year == year]
+    def _create_events(self, year=2025, month=10):
+        events = [Event(component) for component in self.calendar.walk() if component.name == "VEVENT"]
+        return [event for event in events if event.dtstart.year == year and event.dtstart.month == month]
 
     @property
     def areas(self):
@@ -166,10 +161,11 @@ class Calendar:
         return TagManager(self.events)
 
     @property
-    def difficulty(self):
+    def difficulties(self):
         return DifficultyManager(self.events)
 
-    def duration(self, year=2025, month=10, day=1) -> float:
+    @property
+    def duration(self) -> float:
         return sum(event.duration for event in self.events) // SECONDS_PER_HOUR
 
 
@@ -219,7 +215,7 @@ def calendar_data(name):
     return {
         "calendar": cal.name,
         "name": cal.name,
-        "duration": cal.duration(),
+        "duration": cal.duration,
         "color": cal.color,
         "type": "calendar",
     }
@@ -289,11 +285,13 @@ def data(field_type="calendar"):
 
 
 def main():
-    work = Calendar("Work.ics")
-    print("Calendar duratin: ", work.duration())
-    # print(get_data())
-    # print(work.projects["gcal"].duration)
     data()
+    # sample
+    work = Calendar("Work.ics")
+    print("Work calendar duration:", work.duration)
+    print(work.difficulties["1"])
+
+
 
 
 if __name__ == "__main__":

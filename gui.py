@@ -87,58 +87,26 @@ class VisualizeFrame(ttk.Frame):
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True)
 
-    def pie_chart2(self, cal_data, cat_data):
-        fig, ax = plt.subplots(figsize=(8, 4))
-        size = 0.4
-        ax.pie(
-            [v["duration"] for _, v in cal_data.items()],
-            labels=list(cal_data.keys()),
-            radius=1,
-            colors=[v["color"] for _, v in cal_data.items()],
-            wedgeprops=dict(width=size, edgecolor="w"),
-        )
-        values = [
-            item["duration"]
-            for calendar in cat_data
-            for cal_name, data_list in calendar.items()
-            for item in data_list
-        ]
-        colors = [
-            item["color"]
-            for calendar in cat_data
-            for cal_name, data_list in calendar.items()
-            for item in data_list
-        ]
-        labels = [
-            item["name"]
-            for calendar in cat_data
-            for cal_name, data_list in calendar.items()
-            for item in data_list
-        ]
-        ax.pie(
-            values,
-            labels=labels,
-            radius=1 - size,
-            colors=colors,
-            wedgeprops=dict(width=size, edgecolor="w"),
-        )
+
+    def bar_chart(self, data):
+        fig, ax = plt.subplots()
+
+        labels = [row.get("name") for row in data]
+        colors = [row.get("color") for row in data]
+        durations = [row.get("duration") for row in data]
+
+        ax.bar(labels, durations, label=labels, color=colors)
+        ax.set_ylabel("Duration in hr")
+        ax.set_title("Calendars time spent")
+
         canvas = FigureCanvasTkAgg(fig, master=self)
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True)
 
-    def bar_chart(self, data):
-        pass
-
-    def plot_calendar_spent(self):
-        data = gcal.calendars_data()
-        self.pie_chart(data)
-
-    def plot_category_spent(self):
-        data = gcal.categories_data()
-        self.pie_chart(data)
 
     def draw(self):
-        self.pie_chart(gcal.data())
+        # self.pie_chart(gcal.data())
+        self.bar_chart(gcal.data())
 
 
 class MainFrame(ttk.Frame):
