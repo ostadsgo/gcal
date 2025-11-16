@@ -168,6 +168,10 @@ class Calendar:
     def duration(self) -> float:
         return sum(event.duration for event in self.events) // SECONDS_PER_HOUR
 
+    @property
+    def count(self):
+        return len(self.events)
+
 
 class CalendarManager:
     def __init__(self):
@@ -218,7 +222,9 @@ def calendar_data(name):
         "duration": cal.duration,
         "color": cal.color,
         "type": "calendar",
+        "count": cal.count,
     }
+
 
 
 def area_data(calendar_name, area):
@@ -229,6 +235,7 @@ def area_data(calendar_name, area):
         "duration": cal.areas[area].duration,
         "color": cal.color,
         "type": "area",
+        "count": cal.areas[area].count
     }
 
 
@@ -240,6 +247,7 @@ def project_data(calendar_name, project):
         "duration": cal.projects[project].duration,
         "color": cal.color,
         "type": "project",
+        "count": cal.projects[project].count
     }
 
 
@@ -251,7 +259,7 @@ def make_data():
         data.append(row)
 
     # -- area --
-    for area in ["sleep", "family"]:
+    for area in ["sleep"]:
         data.append(area_data("Saeed.ics", area))
 
     for area in ["dev", "content", "teaching"]:
@@ -285,11 +293,11 @@ def data(field_type="calendar"):
 
 
 def main():
-    data()
+    d = data()
+    print(d)
     # sample
     work = Calendar("Work.ics")
     print("Work calendar duration:", work.duration)
-    print(work.difficulties["1"])
 
 
 

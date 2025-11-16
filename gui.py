@@ -14,9 +14,9 @@ class CalendarFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.row_index = 0
-        self.rowconfigure(0, weight=1) 
-        self.rowconfigure(1, weight=1) 
-        self.rowconfigure(2, weight=1) 
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=1)
 
         self.insight(gcal.data("calendar"))
@@ -87,7 +87,6 @@ class VisualizeFrame(ttk.Frame):
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True)
 
-
     def bar_chart(self, data):
         fig, ax = plt.subplots()
 
@@ -103,10 +102,39 @@ class VisualizeFrame(ttk.Frame):
         canvas.draw()
         canvas.get_tk_widget().pack(fill="both", expand=True)
 
+    def scatter_chart(self, data):
+        fig, ax = plt.subplots()
+
+        names = [row["name"] for row in data]
+        durations = [row["duration"] for row in data]
+        colors = [row["color"] for row in data]
+        counts = [row["count"] for row in data]
+        scale = [duration * 5 for duration in durations]
+
+        plt.figure(figsize=(10, 6))
+        scatter = ax.scatter(durations, counts, c=colors, s=scale, alpha=0.7)
+
+        for i, name in enumerate(names):
+            ax.annotate(
+                name,
+                (durations[i], counts[i]),
+                xytext=(5, 5),
+                textcoords="offset points",
+                fontsize=9,
+            )
+
+        plt.title("Calendar Analysis: Duration vs Number of Tasks")
+        plt.xlabel("Total Duration (hours)")
+        plt.ylabel("Number of Tasks")
+
+        canvas = FigureCanvasTkAgg(fig, master=self)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill="both", expand=True)
 
     def draw(self):
         # self.pie_chart(gcal.data())
-        self.bar_chart(gcal.data())
+        self.bar_chart(gcal.data("area"))
+        # self.scatter_chart(gcal.data("area"))
 
 
 class MainFrame(ttk.Frame):
