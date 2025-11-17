@@ -1,1 +1,122 @@
-[{"calendar": "Work", "name": "Work", "duration": 720.0, "color": "#FF0000", "type": "calendar", "count": 311}, {"calendar": "Study", "name": "Study", "duration": 111.0, "color": "#FF0000", "type": "calendar", "count": 51}, {"calendar": "None", "name": "None", "duration": 190.0, "color": "#FF0000", "type": "calendar", "count": 127}, {"calendar": "Saeed", "name": "Saeed", "duration": 6699.0, "color": "#FF0000", "type": "calendar", "count": 1519}, {"calendar": "Saeed", "name": "basic", "duration": 59.0, "color": "#FF0000", "type": "area", "count": 8}, {"calendar": "Saeed", "name": "family", "duration": 80.0, "color": "#FF0000", "type": "area", "count": 15}, {"calendar": "Work", "name": "dev", "duration": 378.0, "color": "#FF0000", "type": "area", "count": 152}, {"calendar": "Work", "name": "content", "duration": 109.0, "color": "#FF0000", "type": "area", "count": 47}, {"calendar": "Work", "name": "teaching", "duration": 181.0, "color": "#FF0000", "type": "area", "count": 96}, {"calendar": "None", "name": "reading", "duration": 81.0, "color": "#FF0000", "type": "area", "count": 58}, {"calendar": "Study", "name": "cs", "duration": 40.0, "color": "#FF0000", "type": "area", "count": 19}, {"calendar": "Work", "name": "gcal", "duration": 73.0, "color": "#FF0000", "type": "project", "count": 32}, {"calendar": "Work", "name": "pyquiz", "duration": 49.0, "color": "#FF0000", "type": "project", "count": 20}, {"calendar": "None", "name": "crime and punishment", "duration": 28.0, "color": "#FF0000", "type": "project", "count": 21}, {"calendar": "None", "name": "a fraction of the whole", "duration": 38.0, "color": "#FF0000", "type": "project", "count": 24}]
+[
+    {
+        "calendar": "Work",
+        "name": "Work",
+        "duration": 720.0,
+        "color": "#489160",
+        "type": "calendar",
+        "count": 311
+    },
+    {
+        "calendar": "Study",
+        "name": "Study",
+        "duration": 111.0,
+        "color": "#4B99D2",
+        "type": "calendar",
+        "count": 51
+    },
+    {
+        "calendar": "Growth",
+        "name": "Growth",
+        "duration": 190.0,
+        "color": "#A479B1",
+        "type": "calendar",
+        "count": 127
+    },
+    {
+        "calendar": "Saeed",
+        "name": "Saeed",
+        "duration": 6699.0,
+        "color": "#7C7C7C",
+        "type": "calendar",
+        "count": 1519
+    },
+    {
+        "calendar": "Saeed",
+        "name": "basic",
+        "duration": 59.0,
+        "color": "#7C7C7C",
+        "type": "area",
+        "count": 8
+    },
+    {
+        "calendar": "Saeed",
+        "name": "family",
+        "duration": 80.0,
+        "color": "#7C7C7C",
+        "type": "area",
+        "count": 15
+    },
+    {
+        "calendar": "Work",
+        "name": "dev",
+        "duration": 378.0,
+        "color": "#489160",
+        "type": "area",
+        "count": 152
+    },
+    {
+        "calendar": "Work",
+        "name": "content",
+        "duration": 109.0,
+        "color": "#489160",
+        "type": "area",
+        "count": 47
+    },
+    {
+        "calendar": "Work",
+        "name": "teaching",
+        "duration": 181.0,
+        "color": "#489160",
+        "type": "area",
+        "count": 96
+    },
+    {
+        "calendar": "Growth",
+        "name": "reading",
+        "duration": 81.0,
+        "color": "#A479B1",
+        "type": "area",
+        "count": 58
+    },
+    {
+        "calendar": "Study",
+        "name": "cs",
+        "duration": 40.0,
+        "color": "#4B99D2",
+        "type": "area",
+        "count": 19
+    },
+    {
+        "calendar": "Work",
+        "name": "gcal",
+        "duration": 73.0,
+        "color": "#489160",
+        "type": "project",
+        "count": 32
+    },
+    {
+        "calendar": "Work",
+        "name": "pyquiz",
+        "duration": 49.0,
+        "color": "#489160",
+        "type": "project",
+        "count": 20
+    },
+    {
+        "calendar": "Growth",
+        "name": "crime and punishment",
+        "duration": 28.0,
+        "color": "#A479B1",
+        "type": "project",
+        "count": 21
+    },
+    {
+        "calendar": "Growth",
+        "name": "a fraction of the whole",
+        "duration": 38.0,
+        "color": "#A479B1",
+        "type": "project",
+        "count": 24
+    }
+]

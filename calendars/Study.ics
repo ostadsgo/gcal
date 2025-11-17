@@ -1,4 +1,6 @@
 BEGIN:VCALENDAR
+NAME:Study
+COLOR:#4B99D2
 BEGIN:VEVENT
 SUMMARY:Science documentary
 DTSTART:20250203T093000Z
@@ -7,7 +9,7 @@ DTSTAMP:20251117T134148Z
 UID:3j20plfajapp241a51vm8k6dna@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Documentary\nProject:\nTags: science\nDifficulty: 3\nDet
+DESCRIPTION:area: documentary\nproject:\ntags: science\ndifficulty: 3\ndet
  ail:
 LAST-MODIFIED:20251110T141404Z
 STATUS:CONFIRMED
@@ -21,8 +23,8 @@ DTSTAMP:20251117T134148Z
 UID:45c38sbuvns6coi1esbgmohsfr@google.com
 SEQUENCE:4
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -36,7 +38,7 @@ DTSTAMP:20251117T134148Z
 UID:3dgne3ekqa7b7vndk42bc5rmij@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS \nProject: \nTags: syllabus\nDifficulty: 1\nDetail:
+DESCRIPTION:area: cs \nproject: \ntags: syllabus\ndifficulty: 1\ndetail:
 LAST-MODIFIED:20251110T150311Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -49,8 +51,8 @@ DTSTAMP:20251117T134148Z
 UID:2vvg3r9hsqnq65rvor4jdknab7@google.com
 SEQUENCE:13
 CREATED:20251110T140250Z
-DESCRIPTION:Area: English\nProject: English grammar in use\nTags: eng\, bo
- ok\nDifficulty: 3\nDetail:
+DESCRIPTION:area: english\nproject: english grammar in use\ntags: eng\, bo
+ ok\ndifficulty: 3\ndetail:
 LAST-MODIFIED:20251111T112152Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -63,8 +65,8 @@ DTSTAMP:20251117T134148Z
 UID:6hi34d1ic9j3gb9n6di3ab9kc8sm8b9p70qj2b9ickoj8dph6dhm6ob56c@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -77,7 +79,7 @@ DTSTAMP:20251117T134148Z
 UID:5vhi0as6bbgdcteqjutlnrlui1@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject:\nTags: python\nDifficulty: 3\nDetail:
+DESCRIPTION:area: python\nproject:\ntags: python\ndifficulty: 3\ndetail:
 LAST-MODIFIED:20251110T141348Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -90,8 +92,8 @@ DTSTAMP:20251117T134148Z
 UID:0s54m64s5pmh013d7g3umm60qh@google.com
 SEQUENCE:6
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Programming with C\nTags: cs101\, book\, c\
- nDifficulty: 3\nDetail:
+DESCRIPTION:area: cs\nproject: programming with c\ntags: cs101\, book\, c\
+ ndifficulty: 3\ndetail:
 LAST-MODIFIED:20251110T145844Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -104,7 +106,7 @@ DTSTAMP:20251117T134148Z
 UID:4tbq7p6en2mb330uv3ik5b0opr@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Dev\nProject:\nTags: vim\, tools\nDifficulty: 2\nDetail:
+DESCRIPTION:area: dev\nproject:\ntags: vim\, tools\ndifficulty: 2\ndetail:
 LAST-MODIFIED:20251110T141343Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -117,8 +119,8 @@ DTSTAMP:20251117T134148Z
 UID:3f9uh4tuk7vm97oiupo0oa4lk6@google.com
 SEQUENCE:2
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -131,8 +133,8 @@ DTSTAMP:20251117T134148Z
 UID:737247jfl7rs60ml04ger8okkg@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: School\nProject: Math 1\nTags: math\, book\nDifficulty: 
- 3\nDetail: Read and practice with the book Math 1.
+DESCRIPTION:area: school\nproject: math 1\ntags: math\, book\ndifficulty: 
+ 3\ndetail: read and practice with the book math 1.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -145,7 +147,7 @@ DTSTAMP:20251117T134148Z
 UID:7i4psslv88n1so4sohudp0qlfj@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS \nProject: \nTags: syllabus\nDifficulty: 1\nDetail:
+DESCRIPTION:area: cs \nproject: \ntags: syllabus\ndifficulty: 1\ndetail:
 LAST-MODIFIED:20251110T150252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -158,8 +160,8 @@ DTSTAMP:20251117T134148Z
 UID:0r1dvo37c99dqc1g6jfitb0ldf@google.com
 SEQUENCE:2
 CREATED:20251110T140250Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -173,7 +175,7 @@ DTSTAMP:20251117T134148Z
 UID:2l30s4rsoht3a0ptruopfn1m97@google.com
 SEQUENCE:0
 CREATED:20251110T155607Z
-DESCRIPTION:Area: CS\nProject: \nTags: research\nDifficulty: 2\nDetail:
+DESCRIPTION:area: cs\nproject: \ntags: research\ndifficulty: 2\ndetail:
 LAST-MODIFIED:20251110T160715Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -186,8 +188,8 @@ DTSTAMP:20251117T134148Z
 UID:2dgnoba7ql70uq9nevbeajkp8q@google.com
 SEQUENCE:21
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -200,8 +202,8 @@ DTSTAMP:20251117T134148Z
 UID:6ss34cj275j3abb261hjeb9kckr30b9p75gmabb4c8r62p1pccsm4d9l6o@google.com
 SEQUENCE:3
 CREATED:20251111T102859Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251111T102939Z
 STATUS:CONFIRMED
@@ -215,8 +217,8 @@ DTSTAMP:20251117T134148Z
 UID:4ssjvktj53muob9k8dgk85vaga@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: AS & A Level Computer Science\nTags: cs100\
- , cs\, book\nDifficulty: 4\nDetail:
+DESCRIPTION:area: cs\nproject: as & a level computer science\ntags: cs100\
+ , cs\, book\ndifficulty: 4\ndetail:
 LAST-MODIFIED:20251110T141341Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -229,7 +231,7 @@ DTSTAMP:20251117T134148Z
 UID:cco3goj5cdhm6b9o64rjib9k6coj6bb2ccq6ab9o71hmap1i6ph3ior1c8@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -242,8 +244,8 @@ DTSTAMP:20251117T134148Z
 UID:04kjq87dhtuaksgc366hab5jfe@google.com
 SEQUENCE:1
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Introduction to CS and Programming\nTags: c
- s101\, book\, python\nDifficulty: 3\nDetail:/span>
+DESCRIPTION:area: cs\nproject: introduction to cs and programming\ntags: c
+ s101\, book\, python\ndifficulty: 3\ndetail:/span>
 LAST-MODIFIED:20251110T150112Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -256,7 +258,7 @@ DTSTAMP:20251117T134148Z
 UID:08li0o1f1q13sctjt3da2vv81j@google.com
 SEQUENCE:2
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS \nProject: \nTags: syllabus\nDifficulty: 1\nDetail:
+DESCRIPTION:area: cs \nproject: \ntags: syllabus\ndifficulty: 1\ndetail:
 LAST-MODIFIED:20251110T150322Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -269,8 +271,8 @@ DTSTAMP:20251117T134148Z
 UID:1ngmbp3121vnnfdjl4gf05ond9@google.com
 SEQUENCE:12
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Introduction to CS and Programming\nTags: c
- s101\, book\, python\nDifficulty: 3\nDetail:/span>
+DESCRIPTION:area: cs\nproject: introduction to cs and programming\ntags: c
+ s101\, book\, python\ndifficulty: 3\ndetail:/span>
 LAST-MODIFIED:20251110T150103Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -283,8 +285,8 @@ DTSTAMP:20251117T134148Z
 UID:1ijc230mthpp8jdg6s6qv81vt7@google.com
 SEQUENCE:16
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: computer science and overview\nTags: cs100\
- , book\nDifficulty: 4\nDetail:
+DESCRIPTION:area: cs\nproject: computer science and overview\ntags: cs100\
+ , book\ndifficulty: 4\ndetail:
 LAST-MODIFIED:20251110T145600Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -297,8 +299,8 @@ DTSTAMP:20251117T134148Z
 UID:36tupfsrjn3c9e80c6tb49hesb@google.com
 SEQUENCE:43
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Fluent Python\nTags: python\, advanced\
- nDifficulty: 4\nDetail: Read and learn from the book fluent python.
+DESCRIPTION:area: python\nproject: fluent python\ntags: python\, advanced\
+ ndifficulty: 4\ndetail: read and learn from the book fluent python.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -311,7 +313,7 @@ DTSTAMP:20251117T134148Z
 UID:5vqbbvqr10ac0p8o7ka3tjvo41@google.com
 SEQUENCE:34
 CREATED:20251110T140251Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -324,7 +326,7 @@ DTSTAMP:20251117T134148Z
 UID:1ktij2b0tl5kppro1p65nu0pr9@google.com
 SEQUENCE:6
 CREATED:20251110T140250Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -337,8 +339,8 @@ DTSTAMP:20251117T134148Z
 UID:1jfjscthjl4mkjuogm4j09p4oo@google.com
 SEQUENCE:43
 CREATED:20251110T140250Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -352,8 +354,8 @@ DTSTAMP:20251117T134148Z
 UID:6c5btrf6148snlcu772ohnt2fs@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -366,8 +368,8 @@ DTSTAMP:20251117T134148Z
 UID:7aotfdsg1j093jmec73mcn6qff@google.com
 SEQUENCE:7
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Fluent Python\nTags: python\, advanced\
- nDifficulty: 4\nDetail: Read and learn from the book fluent python.
+DESCRIPTION:area: python\nproject: fluent python\ntags: python\, advanced\
+ ndifficulty: 4\ndetail: read and learn from the book fluent python.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -380,8 +382,8 @@ DTSTAMP:20251117T134148Z
 UID:6ergdoq5b57kigu5i3kb6ag048@google.com
 SEQUENCE:36
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -395,8 +397,8 @@ DTSTAMP:20251117T134148Z
 UID:3rgi3d4cuf12qmvkqsp6855jko@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Reading\nProject: A fraction of the whole\nTags: novel\,
-  book\nDifficulty: 3\nDetail:
+DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: novel\,
+  book\ndifficulty: 3\ndetail:
 LAST-MODIFIED:20251110T141343Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -409,8 +411,8 @@ DTSTAMP:20251117T134148Z
 UID:4ihd4p967m488ges8fjt7c5ah3@google.com
 SEQUENCE:3
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -424,7 +426,7 @@ DTSTAMP:20251117T134148Z
 UID:551hhjk5nbsdpm6c8haqregads@google.com
 SEQUENCE:39
 CREATED:20251110T140251Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -437,8 +439,8 @@ DTSTAMP:20251117T134148Z
 UID:1akc22v1252o1nl14k6lh0nibn@google.com
 SEQUENCE:0
 CREATED:20251110T140250Z
-DESCRIPTION:Area: School\nProject: Math 1\nTags: math\, book\nDifficulty: 
- 3\nDetail: Read and practice with the book Math 1.
+DESCRIPTION:area: school\nproject: math 1\ntags: math\, book\ndifficulty: 
+ 3\ndetail: read and practice with the book math 1.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -451,8 +453,8 @@ DTSTAMP:20251117T134148Z
 UID:2e99cm53deatbkg6bdnnvtgcv6@google.com
 SEQUENCE:10
 CREATED:20251110T140250Z
-DESCRIPTION:Area: Python\nProject: Fluent Python\nTags: python\, advanced\
- nDifficulty: 4\nDetail: Read and learn from the book fluent python.
+DESCRIPTION:area: python\nproject: fluent python\ntags: python\, advanced\
+ ndifficulty: 4\ndetail: read and learn from the book fluent python.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -465,8 +467,8 @@ DTSTAMP:20251117T134148Z
 UID:3lf1ko65b6f4tildfco02s4ijo@google.com
 SEQUENCE:12
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Fluent Python\nTags: python\, advanced\
- nDifficulty: 4\nDetail: Read and learn from the book fluent python.
+DESCRIPTION:area: python\nproject: fluent python\ntags: python\, advanced\
+ ndifficulty: 4\ndetail: read and learn from the book fluent python.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -479,8 +481,8 @@ DTSTAMP:20251117T134148Z
 UID:38d5j4sv2mb96llnop5hm4uoud@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -493,8 +495,8 @@ DTSTAMP:20251117T134148Z
 UID:6op64opk6oq6cb9i6pim2b9k6ss3ab9o70q3gbb26ks3edpm6ko32p9j6k@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -507,7 +509,7 @@ DTSTAMP:20251117T134148Z
 UID:7a7l3k1jvkuot77vaui1npvh67@google.com
 SEQUENCE:31
 CREATED:20251110T140251Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -520,8 +522,8 @@ DTSTAMP:20251117T134148Z
 UID:0k5vbqul95c2qh0qt118vm27qn@google.com
 SEQUENCE:0
 CREATED:20251110T140250Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -534,8 +536,8 @@ DTSTAMP:20251117T134148Z
 UID:0pugpq5d6bkdbds3fm6kg4k6p6@google.com
 SEQUENCE:41
 CREATED:20251110T140250Z
-DESCRIPTION:Area: School\nProject: Math 1\nTags: math\, book\nDifficulty: 
- 3\nDetail: Read and practice with the book Math 1.
+DESCRIPTION:area: school\nproject: math 1\ntags: math\, book\ndifficulty: 
+ 3\ndetail: read and practice with the book math 1.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -548,7 +550,7 @@ DTSTAMP:20251117T134148Z
 UID:6hi6cd9h65hj2bb26hgj2b9k6grmabb268rj6b9p6hj6ad9gcos64chj6c@google.com
 SEQUENCE:1
 CREATED:20251110T140251Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -561,8 +563,8 @@ DTSTAMP:20251117T134148Z
 UID:13mcig6c51q8kkb1l0r826q8p4@google.com
 SEQUENCE:7
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -575,7 +577,7 @@ DTSTAMP:20251117T134148Z
 UID:cos34c32coq68b9pcop64b9k75hm6bb261i64bb364q3gc1pcph68db170@google.com
 SEQUENCE:2
 CREATED:20251110T140251Z
-DESCRIPTION:Area:\nProject:\nTags:\nDifficulty:\nDetail:
+DESCRIPTION:area:\nproject:\ntags:\ndifficulty:\ndetail:
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -588,8 +590,8 @@ DTSTAMP:20251117T134148Z
 UID:42qui8jg4vaatfcjaappgu99u3@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: Computer Science and Overview\nTags: cs\, b
- ook\nDifficulty: 4\nDetail:
+DESCRIPTION:area: cs\nproject: computer science and overview\ntags: cs\, b
+ ook\ndifficulty: 4\ndetail:
 LAST-MODIFIED:20251110T141344Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -602,8 +604,8 @@ DTSTAMP:20251117T134148Z
 UID:7m568jinka60ltb4tk84qetvm4@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -616,8 +618,8 @@ DTSTAMP:20251117T134148Z
 UID:04ivmlsn287s6c3k0nsn46tpj1@google.com
 SEQUENCE:17
 CREATED:20251110T140250Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -631,8 +633,8 @@ DTSTAMP:20251117T134148Z
 UID:3ab0pat8ct2cjj6kmb7vs5ddd9@google.com
 SEQUENCE:3
 CREATED:20251110T140251Z
-DESCRIPTION:Area: School\nProject: Math 1\nTags: math\, book\nDifficulty: 
- 3\nDetail: Read and practice with the book Math 1.
+DESCRIPTION:area: school\nproject: math 1\ntags: math\, book\ndifficulty: 
+ 3\ndetail: read and practice with the book math 1.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -645,8 +647,8 @@ DTSTAMP:20251117T134148Z
 UID:2val5j2m7e60h3pb9r5f23d9v3@google.com
 SEQUENCE:0
 CREATED:20251111T112135Z
-DESCRIPTION:Area: CS\nProject: Introduction to CS and Programming\nTags: c
- s101\, book\, python\nDifficulty: 3\nDetail:/span>
+DESCRIPTION:area: cs\nproject: introduction to cs and programming\ntags: c
+ s101\, book\, python\ndifficulty: 3\ndetail:/span>
 LAST-MODIFIED:20251111T112143Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -659,8 +661,8 @@ DTSTAMP:20251117T134148Z
 UID:5qeahaisgprdr4bi4fhs8nmviv@google.com
 SEQUENCE:1
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -673,8 +675,8 @@ DTSTAMP:20251117T134148Z
 UID:6afndmirt3tjijcq9rl020qoq6@google.com
 SEQUENCE:2
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -687,8 +689,8 @@ DTSTAMP:20251117T134148Z
 UID:c4s66c1o6gsj8bb2cphjeb9k70s66bb1cco36b9o65ijie1o6sq6cphmco@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -701,8 +703,8 @@ DTSTAMP:20251117T134148Z
 UID:2re1ba13lv9utkkq42k2jpulvn@google.com
 SEQUENCE:6
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -715,8 +717,8 @@ DTSTAMP:20251117T134148Z
 UID:6vm3jnfmb3nrnovf8tv23u4f2r@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: School\nProject: Math 1\nTags: math\, book\nDifficulty: 
- 3\nDetail: Read and practice with the book Math 1.
+DESCRIPTION:area: school\nproject: math 1\ntags: math\, book\ndifficulty: 
+ 3\ndetail: read and practice with the book math 1.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -729,8 +731,8 @@ DTSTAMP:20251117T134148Z
 UID:38phneslakkfu8114t0unat648@google.com
 SEQUENCE:1
 CREATED:20251110T140251Z
-DESCRIPTION:Area: Python\nProject: Python official tutorial\nTags: python\
- , advanced\nDifficulty: 3\nDetail: Learn from python official tutorial on 
+DESCRIPTION:area: python\nproject: python official tutorial\ntags: python\
+ , advanced\ndifficulty: 3\ndetail: learn from python official tutorial on 
  python.org
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
@@ -744,8 +746,8 @@ DTSTAMP:20251117T134148Z
 UID:7g0rt5lla9k5tutqdhdbrmvevr@google.com
 SEQUENCE:5
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: Introduction to CS and Programmingbr>Tags: 
- cs101\, book\, python\nDifficulty: 3\nDetail:
+DESCRIPTION:area: cs\nproject: introduction to cs and programming\ntags: c
+ s101\, book\, python\ndifficulty: 3\ndetail:
 LAST-MODIFIED:20251110T145826Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -758,8 +760,8 @@ DTSTAMP:20251117T134148Z
 UID:1b5p9sjvrlrb6u9c8ht466gaf2@google.com
 SEQUENCE:0
 CREATED:20251110T140250Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -772,8 +774,8 @@ DTSTAMP:20251117T134148Z
 UID:02d1o8n2isjgip3dpj97662fvn@google.com
 SEQUENCE:1
 CREATED:20251110T140250Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -786,8 +788,8 @@ DTSTAMP:20251117T134148Z
 UID:6qpm469esog2v6qbolnnkf8tv2@google.com
 SEQUENCE:15
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: Think Python\nTags: cs101\, python\, book\n
- Difficulty: 3\nDetail: Learn basics of programming.
+DESCRIPTION:area: cs\nproject: think python\ntags: cs101\, python\, book\n
+ difficulty: 3\ndetail: learn basics of programming.
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -800,8 +802,8 @@ DTSTAMP:20251117T134148Z
 UID:3fmkd8b2p06f2780q0t3atbqfj@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: CS\nProject: Introduction to CS and Programming\nTags: c
- s101\, book\, python\nDifficulty: 3\nDetail:/span>
+DESCRIPTION:area: cs\nproject: introduction to cs and programming\ntags: c
+ s101\, book\, python\ndifficulty: 3\ndetail:/span>
 LAST-MODIFIED:20251110T145854Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -814,8 +816,8 @@ DTSTAMP:20251117T134148Z
 UID:68rj2d1k65ij4b9h6kq64b9k70pj6bb170rjabb3chj38cb668p36cpnc4@google.com
 SEQUENCE:0
 CREATED:20251110T140251Z
-DESCRIPTION:Area: OS\nProject: Learn Linux\nTags: linux\, bash\nDifficulty
- : 3\nDetail: Learn linux and bash programming
+DESCRIPTION:area: os\nproject: learn linux\ntags: linux\, bash\ndifficulty
+ : 3\ndetail: learn linux and bash programming
 LAST-MODIFIED:20251110T140252Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE

@@ -332,12 +332,14 @@ def main():
     d = data()
     # sample
     growth = Calendar("Growth.ics")
-    saeed = Calendar("Saeed.ics")
-    work = Calendar("Work.ics")
-    study = Calendar("Study.ics")
+    # saeed = Calendar("Saeed.ics")
+    # work = Calendar("Work.ics")
+    # study = Calendar("Study.ics")
+    # print(study.name)
+
     # print("Growth calendar duration:", growth.duration)
-    # print(growth.projects["a fraction of the whole"].duration)
-    print(growth.areas.names)
+    print(growth.projects["a fraction of the whole"].duration)
+    # print(saeed.areas.names)
 
 
 if __name__ == "__main__":
