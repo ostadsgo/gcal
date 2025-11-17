@@ -51,6 +51,7 @@ class Report:
         return len(self.events)
 
 
+
 class AreaManager:
     def __init__(self, events):
         self.events = events
@@ -58,6 +59,17 @@ class AreaManager:
     def __getitem__(self, name):
         events = [event for event in self.events if event.area == name]
         return Report(events)
+
+    def __repr__(self):
+        return f"AreaManager"
+
+    def __iter__(self):
+        areas = {event.area for event in self.events if event.area}
+        return iter(areas)
+
+    @property
+    def names(self):
+        return sorted({event.area for event in self.events if event.area})
 
 
 class ProjectManager:
@@ -68,6 +80,14 @@ class ProjectManager:
         events = [event for event in self.events if event.project == name]
         return Report(events)
 
+    def __iter__(self):
+        projects = {event.project for event in self.events if event.project}
+        return iter(projects)
+
+    @property
+    def names(self):
+        return sorted({event.project for event in self.events if event.project})
+
 
 class TagManager:
     def __init__(self, events):
@@ -77,6 +97,13 @@ class TagManager:
         events = [event for event in self.events if name in event.tags]
         return Report(events)
 
+    def __iter__(self):
+        tags = {event.tag for event in self.events if event.tag}
+        return iter(tags)
+
+    @property
+    def names(self):
+        return sorted({event.tag for event in self.events if event.tag})
 
 class DifficultyManager:
     def __init__(self, events):
@@ -153,7 +180,7 @@ class Calendar:
         return [
             event
             for event in events
-            if event.dtstart.year == year and event.dtstart.month == month
+            if event.dtstart.year == year 
         ]
 
     @property
@@ -266,7 +293,7 @@ def make_data():
         data.append(row)
 
     # -- area --
-    for area in ["sleep"]:
+    for area in ["basic", "family"]:
         data.append(area_data("Saeed.ics", area))
 
     for area in ["dev", "content", "teaching"]:
@@ -282,6 +309,8 @@ def make_data():
     for project in ["gcal", "pyquiz"]:
         data.append(project_data("Work.ics", project))
 
+    for project in ["crime and punishment", "a fraction of the whole"]:
+        data.append(project_data("Growth.ics", project))
     return data
 
 
@@ -301,10 +330,14 @@ def data(field_type="calendar"):
 
 def main():
     d = data()
-    print(d)
     # sample
+    growth = Calendar("Growth.ics")
+    saeed = Calendar("Saeed.ics")
     work = Calendar("Work.ics")
-    print("Work calendar duration:", work.duration)
+    study = Calendar("Study.ics")
+    # print("Growth calendar duration:", growth.duration)
+    # print(growth.projects["a fraction of the whole"].duration)
+    print(growth.areas.names)
 
 
 if __name__ == "__main__":
