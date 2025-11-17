@@ -58,10 +58,10 @@ def is_calendar_folder_modified():
 def rename_calendars():
     # [] BUG: there is a bug here .ics doens't added to the calendars name.
     # it works differently if the calendar renamed for the first time or not.
-    cals_name = os.listdir(CALENDARS_DIR)
-    for cal_name in cals_name:
-        new_cal_name, *_ = cal_name.split("_")
-        os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{new_cal_name}")
+    for cal_name in os.listdir(CALENDARS_DIR):
+        if '_' in cal_name:
+            name, *_ = cal_name.split("_")
+            os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{name}.ics")
 
 
 def read_calendar(name: str):

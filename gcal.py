@@ -145,8 +145,16 @@ class Calendar:
         return icalendar.Calendar.from_ical(cal_path.read_text())
 
     def _create_events(self, year=2025, month=10):
-        events = [Event(component) for component in self.calendar.walk() if component.name == "VEVENT"]
-        return [event for event in events if event.dtstart.year == year and event.dtstart.month == month]
+        events = [
+            Event(component)
+            for component in self.calendar.walk()
+            if component.name == "VEVENT"
+        ]
+        return [
+            event
+            for event in events
+            if event.dtstart.year == year and event.dtstart.month == month
+        ]
 
     @property
     def areas(self):
@@ -226,7 +234,6 @@ def calendar_data(name):
     }
 
 
-
 def area_data(calendar_name, area):
     cal = Calendar(calendar_name)
     return {
@@ -235,7 +242,7 @@ def area_data(calendar_name, area):
         "duration": cal.areas[area].duration,
         "color": cal.color,
         "type": "area",
-        "count": cal.areas[area].count
+        "count": cal.areas[area].count,
     }
 
 
@@ -247,7 +254,7 @@ def project_data(calendar_name, project):
         "duration": cal.projects[project].duration,
         "color": cal.color,
         "type": "project",
-        "count": cal.projects[project].count
+        "count": cal.projects[project].count,
     }
 
 
@@ -288,7 +295,7 @@ def data(field_type="calendar"):
     return sorted(
         [row for row in rows if row.get("type") == field_type],
         key=lambda row: row["duration"],
-        reverse=True
+        reverse=True,
     )
 
 
@@ -298,8 +305,6 @@ def main():
     # sample
     work = Calendar("Work.ics")
     print("Work calendar duration:", work.duration)
-
-
 
 
 if __name__ == "__main__":
