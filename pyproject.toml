@@ -7,4 +7,5 @@ requires-python = ">=3.13"
 dependencies = [
     "icalendar>=6.3.1",
     "matplotlib>=3.10.7",
+    "pytz>=2025.2",
 ]

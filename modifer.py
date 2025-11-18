@@ -1,11 +1,14 @@
 from pathlib import Path
 import icalendar
 import copy
+import zipfile
+import os
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+import json
 from icalendar import Calendar
-
-import sqlite3
-
 
 # TODO: add color to each calendar
 # unzip calendar folder
@@ -17,6 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent
 CALENDARS_DIR = BASE_DIR / "calendars"
 SECONDS_PER_HOUR = 3600
 
+
+def unzip_to_calendars(zip_path, extract_to="calendars"):
+    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(extract_to)
+    print("extracted")
+
+
+def rename_calendars():
+    for cal_name in os.listdir(CALENDARS_DIR):
+        if '_' in cal_name:
+            name, *_ = cal_name.split("_")
+            os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{name}.ics")
 
 def read_calendar(filename):
     cal_path = CALENDARS_DIR / filename
@@ -40,16 +55,53 @@ def print_summary(filename):
     for i in set(summeries):
         print(i)
 
+def fix_timezone_in_ics(input_file, output_file):
+    # Read the calendar file
+    with open(CALENDARS_DIR/input_file, 'rb') as f:
+        cal = Calendar.from_ical(f.read())
+    
+    tehran_tz = ZoneInfo("Asia/Tehran")
+    
+    # Process each event
+    for component in cal.walk('VEVENT'):
+        # Convert DTSTART
+        if 'DTSTART' in component:
+            dt = component['DTSTART'].dt
+            if isinstance(dt, datetime) and dt.tzinfo:
+                # Convert UTC to Tehran time and make it timezone-naive
+                local_dt = dt.astimezone(tehran_tz).replace(tzinfo=None)
+                component['DTSTART'].dt = local_dt
+        
+        # Convert DTEND
+        if 'DTEND' in component:
+            dt = component['DTEND'].dt
+            if isinstance(dt, datetime) and dt.tzinfo:
+                local_dt = dt.astimezone(tehran_tz).replace(tzinfo=None)
+                component['DTEND'].dt = local_dt
+    
+    # Write the modified calendar
+    with open(CALENDARS_DIR/output_file, 'wb') as f:
+        f.write(cal.to_ical())
+    
+    print(f"Timezone fixed! Saved to {output_file}")
+
+# Usage
 def add_calendar_name(calendar, name):
     calendar.calendar_name = name
     save_calendar(f"{name}.ics", calendar)
-
+    print(f"Add calendar name `{calendar.calendar_name}`")
 
 
 def add_calendar_color(calendar, color):
     calendar.color = color
     save_calendar(f"{calendar.calendar_name}.ics", calendar)
+    print(f"Add color name `{calendar.color}`")
 
+def calendar_meta_data(cal, new_cal):
+    for prop_name, prop_value in cal.property_items():
+        if prop_name not in ['components', 'prodid', 'version']:
+            new_cal.add(prop_name, prop_value)
+    return new_cal
 
 def add_description(cal_name, filename):
     cal = read_calendar(cal_name)
@@ -101,6 +153,7 @@ def calendar_walk(cal_name, keywords, data, filename):
 def delete_span_br(cal_name, filename):
     cal = read_calendar(cal_name)
     new_cal = Calendar()
+    # new_cal = calendar_meta_data(cal, new_cal)
     count = 0
 
     for component in cal.walk():
@@ -143,10 +196,31 @@ def modify():
 
 
 def main():
-    growth = read_calendar("Growth.ics")
-    work = read_calendar("Work.ics")
-    saeed = read_calendar("Saeed.ics")
-    study = read_calendar("Study.ics")
+
+    # extract to get calendars file --
+    # unzip_to_calendars("/home/saeed/dwl/saeed.ghollami@gmail.com.ical.zip") 
+
+    # -- rename calendars file -- 
+    # rename_calendars()
+
+
+    # -- calendars
+    # growth = read_calendar("Growth.ics")
+    # work = read_calendar("Work.ics")
+    # saeed = read_calendar("Saeed.ics")
+    # study = read_calendar("Study.ics")
+
+    # -- delete span and br *MUST FIRST*
+    # delete_span_br("Work.ics", "Work.ics")
+    # delete_span_br("Saeed.ics", "Saeed.ics")
+    # delete_span_br("Growth.ics", "Growth.ics")
+    # delete_span_br("Study.ics", "Study.ics")
+
+    # -- fix time zone --
+    fix_timezone_in_ics("Growth.ics", "Growth.ics")
+    fix_timezone_in_ics("Work.ics", "Work.ics")
+    fix_timezone_in_ics("Saeed.ics", "Saeed.ics")
+    fix_timezone_in_ics("Study.ics", "Study.ics")
 
     # -- Add extra fields ---
     # add_calendar_name(growth, "Growth")
@@ -154,17 +228,13 @@ def main():
     # add_calendar_name(study, "Study")
     # add_calendar_name(saeed, "Saeed")
 
-    add_calendar_color(growth, "#A479B1")
-    add_calendar_color(work, "#489160")
-    add_calendar_color(study, "#4B99D2")
-    add_calendar_color(saeed, "#7C7C7C")
+    # -- add colors
+    # add_calendar_color(growth, "#A479B1")
+    # add_calendar_color(work, "#489160")
+    # add_calendar_color(study, "#4B99D2")
+    # add_calendar_color(saeed, "#7C7C7C")
 
 
-
-    # -- delete span and br
-    # delete_span_br("Study.ics", "Study.ics")
-    # delete_span_br("Study.ics", "Study.ics")
-    # delete_span_br("Study.ics", "Study.ics")
 
 
 if __name__ == "__main__":

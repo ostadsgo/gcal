@@ -4,9 +4,10 @@ import json
 import statistics as stats
 
 from pathlib import Path
-from datetime import timedelta
+from datetime import datetime, timezone, timedelta
 
 import icalendar
+from zoneinfo import ZoneInfo
 
 # [] TODO: feat: Find top3 areas, projects, tags by duration
 
@@ -124,6 +125,7 @@ class Event:
         self.tags = self.extract_tags("tags")
         self.difficulty = self.extract_value("difficulty")
         self.detail = self.extract_value("detail")
+        # date time
         self.dtstart = component["dtstart"].dt
         self.dtend = component["dtend"].dt
         self.duration = (self.dtend - self.dtstart).total_seconds()
@@ -167,11 +169,61 @@ class Calendar:
     def __repr__(self):
         return f"Calendar({self.name})"
 
+    def check_overlaps(self):
+        """Check for overlapping events"""
+        from datetime import datetime, date
+        
+        # Filter only datetime events (not all-day date events)
+        datetime_events = [
+            e for e in self.events 
+            if isinstance(e.dtstart, datetime)
+        ]
+        
+        overlaps = []
+        events = sorted(datetime_events, key=lambda e: e.dtstart)
+        
+        for i, event1 in enumerate(events):
+            for event2 in events[i+1:]:
+                # Check if events overlap
+                if event1.dtstart < event2.dtend and event2.dtstart < event1.dtend:
+                    overlaps.append((event1.summary, event2.summary, event1.dtstart))
+        
+        return overlaps
+
+    def debug_duration(self):
+        """Debug duration calculation"""
+        from datetime import datetime
+        
+        total_seconds = 0
+        longest_events = []
+        
+        for event in self.events:
+            duration_hours = event.duration / SECONDS_PER_HOUR
+            longest_events.append((event.summary, event.dtstart, event.dtend, duration_hours))
+            total_seconds += event.duration
+        
+        # Sort by duration to find the longest events
+        longest_events.sort(key=lambda x: x[3], reverse=True)
+        
+        print(f"Total events: {len(self.events)}")
+        print(f"Total duration: {total_seconds / SECONDS_PER_HOUR:.2f} hours")
+        print(f"\nLongest 10 events:")
+        for summary, start, end, hours in longest_events[:10]:
+            print(f"  {summary}: {start} to {end} = {hours:.2f} hours")
+        
+        # Check for multi-day events
+        multi_day = [e for e in self.events if isinstance(e.dtstart, datetime) and 
+                     (e.dtend - e.dtstart).days >= 1]
+        print(f"\nMulti-day events: {len(multi_day)}")
+        if multi_day:
+            for event in multi_day[:5]:
+                print(f"  {event.summary}: {event.dtstart} to {event.dtend}")
+
     def _read(self):
         cal_path = CALENDARS_DIR / self.full_name
         return icalendar.Calendar.from_ical(cal_path.read_text())
 
-    def _create_events(self, year=2025, month=10):
+    def _create_events(self, year=2025, month=9, day=13):
         events = [
             Event(component)
             for component in self.calendar.walk()
@@ -181,6 +233,8 @@ class Calendar:
             event
             for event in events
             if event.dtstart.year == year 
+            and event.dtstart.month == month
+            and isinstance(event.dtstart, datetime)
         ]
 
     @property
@@ -200,8 +254,8 @@ class Calendar:
         return DifficultyManager(self.events)
 
     @property
-    def duration(self) -> float:
-        return sum(event.duration for event in self.events) // SECONDS_PER_HOUR
+    def duration(self):
+        return sum(event.duration for event in self.events) / SECONDS_PER_HOUR
 
     @property
     def count(self):
@@ -293,7 +347,7 @@ def make_data():
         data.append(row)
 
     # -- area --
-    for area in ["basic", "family"]:
+    for area in ["family", "mindless"]:
         data.append(area_data("Saeed.ics", area))
 
     for area in ["dev", "content", "teaching"]:
@@ -331,15 +385,25 @@ def data(field_type="calendar"):
 def main():
     d = data()
     # sample
-    growth = Calendar("Growth.ics")
-    # saeed = Calendar("Saeed.ics")
+    # growth = Calendar("Growth.ics")
+    saeed = Calendar("Saeed.ics")
     # work = Calendar("Work.ics")
     # study = Calendar("Study.ics")
     # print(study.name)
 
-    # print("Growth calendar duration:", growth.duration)
-    print(growth.projects["a fraction of the whole"].duration)
-    # print(saeed.areas.names)
+    # x  = 0
+    # for event in saeed.events:
+    #     # print(event.summary, ":", "start:", event.dtstart, "end:", event.dtend, "duration:", event.duration / SECONDS_PER_HOUR)
+    #
+    #     print(event.summary, ":", event.duration / 3600)
+    #     x += event.duration
+    #
+    # print(x / SECONDS_PER_HOUR)
+
+    # saeed.debug_duration()
+    print(saeed.duration)
+    
+
 
 
 if __name__ == "__main__":
