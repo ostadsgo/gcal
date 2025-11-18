@@ -159,8 +159,11 @@ class Event:
 
 
 class Calendar:
-    def __init__(self, name):
+    def __init__(self, name, year=2025, month=None, days=None):
         self.full_name = name
+        self.year = year
+        self.month = month
+        self.days = days
         self.calendar = self._read()
         self.name = str(self.calendar.calendar_name)
         self.color = str(self.calendar.get("color", "#FF0000"))
@@ -169,73 +172,23 @@ class Calendar:
     def __repr__(self):
         return f"Calendar({self.name})"
 
-    def check_overlaps(self):
-        """Check for overlapping events"""
-        from datetime import datetime, date
-        
-        # Filter only datetime events (not all-day date events)
-        datetime_events = [
-            e for e in self.events 
-            if isinstance(e.dtstart, datetime)
-        ]
-        
-        overlaps = []
-        events = sorted(datetime_events, key=lambda e: e.dtstart)
-        
-        for i, event1 in enumerate(events):
-            for event2 in events[i+1:]:
-                # Check if events overlap
-                if event1.dtstart < event2.dtend and event2.dtstart < event1.dtend:
-                    overlaps.append((event1.summary, event2.summary, event1.dtstart))
-        
-        return overlaps
-
-    def debug_duration(self):
-        """Debug duration calculation"""
-        from datetime import datetime
-        
-        total_seconds = 0
-        longest_events = []
-        
-        for event in self.events:
-            duration_hours = event.duration / SECONDS_PER_HOUR
-            longest_events.append((event.summary, event.dtstart, event.dtend, duration_hours))
-            total_seconds += event.duration
-        
-        # Sort by duration to find the longest events
-        longest_events.sort(key=lambda x: x[3], reverse=True)
-        
-        print(f"Total events: {len(self.events)}")
-        print(f"Total duration: {total_seconds / SECONDS_PER_HOUR:.2f} hours")
-        print(f"\nLongest 10 events:")
-        for summary, start, end, hours in longest_events[:10]:
-            print(f"  {summary}: {start} to {end} = {hours:.2f} hours")
-        
-        # Check for multi-day events
-        multi_day = [e for e in self.events if isinstance(e.dtstart, datetime) and 
-                     (e.dtend - e.dtstart).days >= 1]
-        print(f"\nMulti-day events: {len(multi_day)}")
-        if multi_day:
-            for event in multi_day[:5]:
-                print(f"  {event.summary}: {event.dtstart} to {event.dtend}")
-
     def _read(self):
         cal_path = CALENDARS_DIR / self.full_name
         return icalendar.Calendar.from_ical(cal_path.read_text())
 
-    def _create_events(self, year=2025, month=9, day=13):
-        events = [
-            Event(component)
-            for component in self.calendar.walk()
-            if component.name == "VEVENT"
-        ]
-        return [
-            event
-            for event in events
-            if event.dtstart.year == year 
-            and event.dtstart.month == month
-            and isinstance(event.dtstart, datetime)
-        ]
+    def _filter_events(self, events, year=None, month=None, days=None):
+        filtered_events = []
+
+        for event in events:
+            if event.dtstart.year == self.year and isinstance(event.dtstart, datetime):
+                filtered_events.append(event)
+        return filtered_events
+
+    def _create_events(self):
+        events = [ Event(comp) for comp in self.calendar.walk() if comp.name == "VEVENT" ]
+        return self._filter_events(events)
+
+
 
     @property
     def areas(self):
@@ -303,8 +256,8 @@ def load_data():
         return json.load(json_file)
 
 
-def calendar_data(name):
-    cal = Calendar(name)
+def calendar_data(name, year, month, days):
+    cal = Calendar(name, year, month, days)
     return {
         "calendar": cal.name,
         "name": cal.name,
@@ -339,11 +292,11 @@ def project_data(calendar_name, project):
     }
 
 
-def make_data():
+def make_data(year, month, days):
     data = []
     # make Calendar
     for name in os.listdir("calendars"):
-        row = calendar_data(name)
+        row = calendar_data(name, year, month, days)
         data.append(row)
 
     # -- area --
@@ -368,25 +321,25 @@ def make_data():
     return data
 
 
-def data(field_type="calendar"):
-    if is_calendar_folder_modified():
-        rows = make_data()
+def data(year=2025, month=None, days=None, field="calendar", force=False):
+    if is_calendar_folder_modified() or force:
+        rows = make_data(year, month, days)
         save_data(rows)
     else:
         rows = load_data()
 
     return sorted(
-        [row for row in rows if row.get("type") == field_type],
+        [row for row in rows if row.get("type") == field],
         key=lambda row: row["duration"],
         reverse=True,
     )
 
 
 def main():
-    d = data()
+    # d = data()
     # sample
     # growth = Calendar("Growth.ics")
-    saeed = Calendar("Saeed.ics")
+    saeed = Calendar("Saeed.ics", year=2024)
     # work = Calendar("Work.ics")
     # study = Calendar("Study.ics")
     # print(study.name)
@@ -401,7 +354,10 @@ def main():
     # print(x / SECONDS_PER_HOUR)
 
     # saeed.debug_duration()
-    print(saeed.duration)
+    x = []
+    for e in saeed.events:
+        x.append(e.dtstart.year)
+    print(set(x))
     
 
 

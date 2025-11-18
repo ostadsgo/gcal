@@ -7,6 +7,35 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import gcal
 
 
+
+# TODO: Use mutlti-tread to not block ui while making and fetching data from gcal.py
+
+class DateFrame(ttk.Frame):
+    """ Date selectbox to filter date by specific Year, Month, and daies range. """
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        year_var = tk.StringVar()
+        years = ["2023", "2024", "2025"]
+        self.year_combo = ttk.Combobox(self, textvariable=year_var, values=years)
+        self.year_combo.pack(expand=True, fill="both")
+        self.year_combo.set(years[0])
+
+        # bind
+        self.year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
+
+
+    def on_year_select(self, event):
+        selected_year = int(self.year_combo.get())
+        print(selected_year)
+        calendars = gcal.data(year=selected_year, force=True)
+        areas = gcal.data(year=selected_year, field="area", force=True)
+        projects = gcal.data(year=selected_year, field="project", force=True)
+        print(calendars)
+        print(areas)
+        print(projects)
+
+
+
 # Left frame
 class CalendarFrame(ttk.Frame):
     """Calendar insight including calendar color, name and duration."""
@@ -19,9 +48,11 @@ class CalendarFrame(ttk.Frame):
         self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=1)
 
-        self.insight(gcal.data("calendar"))
-        self.insight(gcal.data("area"))
-        self.insight(gcal.data("project"))
+        self.insight(gcal.data(field="calendar"))
+        self.insight(gcal.data(field="area"))
+        self.insight(gcal.data(field="project"))
+
+        self.data = []
 
     def insight(self, data):
         frame = ttk.Frame(self, relief="solid", padding=(5, 5))
@@ -31,23 +62,23 @@ class CalendarFrame(ttk.Frame):
         self.row_index += 1
 
         for index, row in enumerate(data, 1):
-            name = row.get("name")
-            color = row.get("color")
-            duration = row.get("duration")
+            name_var = tk.StringVar(value=row.get("name"))
+            color_var = tk.StringVar(value=row.get("color"))
+            duration_var  = tk.StringVar(value=row.get("duration"))
 
             row_frame = ttk.Frame(frame, padding=(5, 5))
-            square_dict = dict(width=2, height=1, bg=color, relief="solid", anchor="w")
+            square_dict = dict(width=2, height=1, bg=color_var.get(), relief="solid", anchor="w")
 
             # Calendar color
             tk.Label(row_frame, **square_dict).grid(
                 row=0, column=0, sticky="nw", padx=(0, 10), pady=5
             )
             # Calendar name
-            tk.Label(row_frame, text=name, anchor="w", justify="left").grid(
+            tk.Label(row_frame, text=name_var.get(), anchor="w", justify="left").grid(
                 row=0, column=1, padx=(0, 10), sticky="nw"
             )
             # Calendar duration
-            tk.Label(row_frame, text=f"{duration} hrs").grid(
+            tk.Label(row_frame, text=f"{duration_var.get()} hrs").grid(
                 row=0, column=2, sticky="ne"
             )
             row_frame.grid(row=index, sticky="wsen")
@@ -133,7 +164,7 @@ class VisualizeFrame(ttk.Frame):
 
     def draw(self):
         # self.pie_chart(gcal.data())
-        self.bar_chart(gcal.data("area"))
+        self.bar_chart(gcal.data(field="area"))
         # self.scatter_chart(gcal.data("area"))
 
 
@@ -141,12 +172,15 @@ class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
+        date_frame = DateFrame(self, relief="solid")
         cal_frame = CalendarFrame(self)
         vis_frame = VisualizeFrame(self)
-        cal_frame.grid(row=0, column=0, sticky="wsen")
-        vis_frame.grid(row=0, column=1, sticky="wsen")
+        date_frame.grid(row=0, column=0, sticky="wsen")
+        cal_frame.grid(row=1, column=0, sticky="wsen")
+        vis_frame.grid(row=0, column=1, sticky="wsen", rowspan=2)
 
         self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=10)
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=3)
 
