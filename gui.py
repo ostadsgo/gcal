@@ -12,27 +12,24 @@ import gcal
 
 class DateFrame(ttk.Frame):
     """ Date selectbox to filter date by specific Year, Month, and daies range. """
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, on_year_change, **kwargs):
         super().__init__(master, **kwargs)
-        year_var = tk.StringVar()
-        years = ["2023", "2024", "2025"]
-        self.year_combo = ttk.Combobox(self, textvariable=year_var, values=years)
-        self.year_combo.pack(expand=True, fill="both")
-        self.year_combo.set(years[0])
 
-        # bind
-        self.year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
+        self.on_year_change = on_year_change
+        self.year = tk.StringVar()
 
+        self._ui()
 
-    def on_year_select(self, event):
-        selected_year = int(self.year_combo.get())
+    def _ui(self):
+        year_combo = ttk.Combobox(self, textvariable=self.year, values=["2023", "2024", "2025"])
+        year_combo.pack(expand=True, fill="both")
+
+        # binds
+        year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
+
+    def _handle_year_selection(self, event):
+        selected_year = int(self.year.get())
         print(selected_year)
-        calendars = gcal.data(year=selected_year, force=True)
-        areas = gcal.data(year=selected_year, field="area", force=True)
-        projects = gcal.data(year=selected_year, field="project", force=True)
-        print(calendars)
-        print(areas)
-        print(projects)
 
 
 
@@ -62,23 +59,23 @@ class CalendarFrame(ttk.Frame):
         self.row_index += 1
 
         for index, row in enumerate(data, 1):
-            name_var = tk.StringVar(value=row.get("name"))
-            color_var = tk.StringVar(value=row.get("color"))
-            duration_var  = tk.StringVar(value=row.get("duration"))
+            name = tk.StringVar(value=row.get("name"))
+            color = tk.StringVar(value=row.get("color"))
+            duration  = tk.StringVar(value=row.get("duration"))
 
             row_frame = ttk.Frame(frame, padding=(5, 5))
-            square_dict = dict(width=2, height=1, bg=color_var.get(), relief="solid", anchor="w")
+            square_dict = dict(width=2, height=1, bg=color.get(), relief="solid", anchor="w")
 
             # Calendar color
             tk.Label(row_frame, **square_dict).grid(
                 row=0, column=0, sticky="nw", padx=(0, 10), pady=5
             )
             # Calendar name
-            tk.Label(row_frame, text=name_var.get(), anchor="w", justify="left").grid(
+            tk.Label(row_frame, text=name.get(), anchor="w", justify="left").grid(
                 row=0, column=1, padx=(0, 10), sticky="nw"
             )
             # Calendar duration
-            tk.Label(row_frame, text=f"{duration_var.get()} hrs").grid(
+            tk.Label(row_frame, text=f"{duration.get()} hrs").grid(
                 row=0, column=2, sticky="ne"
             )
             row_frame.grid(row=index, sticky="wsen")
