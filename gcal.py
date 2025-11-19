@@ -225,27 +225,6 @@ class DataManager:
         pass
 
 
-def save_last_mtime(current_mtime=""):
-    last_mtime = current_mtime or str(CALENDARS_DIR.stat().st_mtime)
-    with open("mtime", "w") as text_file:
-        text_file.write(str(last_mtime))
-
-
-def read_last_mtime():
-    with open("mtime") as text_file:
-        last_mtime = text_file.read()
-    return last_mtime
-
-
-def is_calendar_folder_modified():
-    last_mtime = read_last_mtime()
-    current_mtime = str(CALENDARS_DIR.stat().st_mtime)
-    if current_mtime != last_mtime:
-        save_last_mtime(current_mtime)
-        return True
-    return False
-
-
 def save_data(data):
     with open(BASE_DIR / "data.json", "w") as json_file:
         json.dump(data, json_file)
@@ -322,7 +301,7 @@ def make_data(year, month, days):
 
 
 def data(year=2025, month=None, days=None, field="calendar", force=False):
-    if is_calendar_folder_modified() or force:
+    if force:
         rows = make_data(year, month, days)
         save_data(rows)
     else:

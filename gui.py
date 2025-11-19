@@ -25,11 +25,11 @@ class DateFrame(ttk.Frame):
         year_combo.pack(expand=True, fill="both")
 
         # binds
-        year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
+        year_combo.bind("<<ComboboxSelected>>", self._handle_year_selection)
 
     def _handle_year_selection(self, event):
         selected_year = int(self.year.get())
-        print(selected_year)
+        self.on_year_change(selected_year)
 
 
 
@@ -45,13 +45,9 @@ class CalendarFrame(ttk.Frame):
         self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=1)
 
-        self.insight(gcal.data(field="calendar"))
-        self.insight(gcal.data(field="area"))
-        self.insight(gcal.data(field="project"))
-
-        self.data = []
 
     def insight(self, data):
+        print(self.row_index)
         frame = ttk.Frame(self, relief="solid", padding=(5, 5))
         frame.grid(row=self.row_index, column=0, pady=5, padx=(0, 5), sticky="wsen")
         frame.rowconfigure(0, weight=1)
@@ -169,17 +165,32 @@ class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        date_frame = DateFrame(self, relief="solid")
-        cal_frame = CalendarFrame(self)
-        vis_frame = VisualizeFrame(self)
-        date_frame.grid(row=0, column=0, sticky="wsen")
-        cal_frame.grid(row=1, column=0, sticky="wsen")
-        vis_frame.grid(row=0, column=1, sticky="wsen", rowspan=2)
+        self.date_frame = DateFrame(self, on_year_change=self.handle_year_change, relief="solid")
+        self.cal_frame = CalendarFrame(self)
+        self.vis_frame = VisualizeFrame(self)
+        self.date_frame.grid(row=0, column=0, sticky="wsen")
+        self.cal_frame.grid(row=1, column=0, sticky="wsen")
+        self.vis_frame.grid(row=0, column=1, sticky="wsen", rowspan=2)
 
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=10)
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=3)
+
+    def handle_year_change(self, year):
+        calendars = gcal.data(year=year, field="calendar", force=True)
+        areas = gcal.data(year=year, field="area", force=True)
+        projects = gcal.data(year=year, field="project", force=True)
+
+        # destroy old insights
+        for child in self.cal_frame.winfo_children():
+            child.destroy()
+            self.cal_frame.row_index = 0
+
+        self.cal_frame.insight(calendars)
+        self.cal_frame.insight(areas)
+        self.cal_frame.insight(projects)
+
 
 
 class App(tk.Tk):
@@ -188,7 +199,7 @@ class App(tk.Tk):
         self.title("Gcal Vis")
 
         # MainFrame
-        self.main_frame = MainFrame(self, padding=(5, 5))
+        self.main_frame = MainFrame(self,  padding=(5, 5))
         self.main_frame.grid(row=0, column=0, sticky="wsen")
 
         self.rowconfigure(0, weight=1)
@@ -199,6 +210,8 @@ class App(tk.Tk):
     def on_close(self):
         self.destroy()
         self.quit()
+
+        
 
 
 if __name__ == "__main__":
