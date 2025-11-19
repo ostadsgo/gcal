@@ -34,64 +34,61 @@ class DateFrame(ttk.Frame):
 
 
 # Left frame
-class InsightFrame(ttk.Frame):
+class InsightFrame(ttk.LabelFrame):
     """Calendar insight including calendar color, name and duration."""
 
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, data, **kwargs):
         super().__init__(master, **kwargs)
-        self.row_index = 0
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, weight=1)
+        self.data = data
+        self.vars = []
+        self.ui()
 
-        # First run
-        self._ui(gcal.data(year=2025, field="calendar", force=True))
-        self._ui(gcal.data(year=2025, field="area", force=True))
-        self._ui(gcal.data(year=2025, field="project", force=True))
-
-
-
-    def _ui(self, data):
-        frame = ttk.Frame(self, relief="solid", padding=(5, 5))
-        frame.grid(row=self.row_index, column=0, pady=5, padx=(0, 5), sticky="wsen")
-        frame.rowconfigure(0, weight=1)
-        frame.columnconfigure(0, weight=1)
-        self.row_index += 1
-
-        for index, row in enumerate(data, 1):
+    def ui(self):
+        for index, row in enumerate(self.data, 1):
+            # vars
             name = tk.StringVar(value=row.get("name"))
-            color = tk.StringVar(value=row.get("color"))
-            duration  = tk.StringVar(value=row.get("duration"))
+            duration = tk.StringVar(value=str(row.get("duration")) + " hrs")
 
-            row_frame = ttk.Frame(frame, padding=(5, 5))
-            square_dict = dict(width=2, height=1, bg=color.get(), relief="solid", anchor="w")
+            # Frame that contain an insight
+            row_frame = ttk.Frame(self, padding=(5, 5))
 
             # Calendar color
-            tk.Label(row_frame, **square_dict).grid(
+            tk.Label(row_frame, width=2, height=1, bg=row["color"], relief="solid", anchor="w").grid(
                 row=0, column=0, sticky="nw", padx=(0, 10), pady=5
             )
             # Calendar name
-            tk.Label(row_frame, text=name.get(), anchor="w", justify="left").grid(
+            tk.Label(row_frame, textvariable=name, anchor="w", justify="left").grid(
                 row=0, column=1, padx=(0, 10), sticky="nw"
             )
             # Calendar duration
-            tk.Label(row_frame, text=f"{duration.get()} hrs").grid(
-                row=0, column=2, sticky="ne"
-            )
+            tk.Label(row_frame, textvariable=duration).grid( row=0, column=2, sticky="ne")
+
             row_frame.grid(row=index, sticky="wsen")
 
-            # color, name, time size
-            row_frame.columnconfigure(0, weight=1)
-            row_frame.columnconfigure(1, weight=1)
-            row_frame.columnconfigure(2, weight=1)
-            row_frame.rowconfigure(0, weight=1)
+            self.vars.append({"name": name, "duration": duration})
 
-            frame.rowconfigure(index, weight=1)
-            frame.columnconfigure(0, weight=1)
 
-    def update_insight(self, data):
-        print(data)
+    def update(self, data):
+        self.data = data
+
+        for i, row in enumerate(self.data):
+            print(i)
+            # get variables or the current row
+            ui_vars = self.vars[i]
+
+            # values
+            name = row.get("name")
+            duration = row.get("duration")
+
+            # variables
+            name_var = ui_vars.get("name")
+            duration_var = ui_vars.get("duration")
+
+            row.update({
+                "name": name_var.set(name),
+                "duration": duration_var.set(duration),
+        })
+        # self.name.set('sdsd')
 
 
 
@@ -174,31 +171,49 @@ class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.date_frame = DateFrame(self, on_year_change=self.handle_year_change, relief="solid")
-        self.cal_frame = InsightFrame(self)
-        self.vis_frame = VisualizeFrame(self)
-        self.date_frame.grid(row=0, column=0, sticky="wsen")
-        self.cal_frame.grid(row=1, column=0, sticky="wsen")
-        self.vis_frame.grid(row=0, column=1, sticky="wsen", rowspan=2)
+        # -- Date filter -- 
+        date_continer = ttk.Frame(self)
+        date_frame = DateFrame(date_continer, on_year_change=self.handle_year_change)
+        date_frame.grid(row=0, column=0, sticky="wsen")
+        date_continer.grid(row=0, column=0, sticky="wsen")
 
-        self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=10)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=3)
+        # -- Insight -- 
+        calendars = gcal.data(year=2025, field="calendar", force=False)
+        areas = gcal.data(year=2025, field="area", force=False)
+        projects = gcal.data(year=2025, field="project", force=False)
+
+        # Insight continer to hold different insights
+        insight_container = ttk.Frame(self)
+        insight_container.grid(row=1, column=0, sticky="wsen")
+
+        # insights
+        self.calendar = InsightFrame(insight_container, data=calendars,text="Calendars")
+        self.area = InsightFrame(insight_container, data=areas, text="Areas")
+        self.project = InsightFrame(insight_container, data=projects, text="Projects")
+
+        self.calendar.grid(row=0, column=0, sticky="wsen")
+        self.area.grid(row=1, column=0, sticky="wsen")
+        self.project.grid(row=2, column=0, sticky="wsen")
+
+        # -- Dashboard --
+
+        # self.vis_frame = VisualizeFrame(self)
+        # self.date_frame.grid(row=0, column=0, sticky="wsen")
+        # self.vis_frame.grid(row=0, column=1, sticky="wsen", rowspan=2)
+
+        # self.rowconfigure(0, weight=1)
+        # self.rowconfigure(1, weight=10)
+        # self.columnconfigure(0, weight=1)
+        # self.columnconfigure(1, weight=3)
 
     def handle_year_change(self, year):
         calendars = gcal.data(year=year, field="calendar", force=True)
         areas = gcal.data(year=year, field="area", force=True)
-        projects = gcal.data(year=year, field="project", force=True)
+        # projects = gcal.data(year=year, field="project", force=True)
 
-        # # destroy old insights
-        # for child in self.cal_frame.winfo_children():
-        #     child.destroy()
-        #     self.cal_frame.row_index = 0
-
-        self.cal_frame.update_insight(calendars)
-        self.cal_frame.update_insight(areas)
-        self.cal_frame.update_insight(projects)
+        self.calendar.update(calendars)
+        self.area.update(areas)
+        self.project.update(projects)
 
 
 

@@ -321,7 +321,7 @@ def data(year=2025, month=None, days=None, field="calendar", force=False):
 
 
 def main():
-    d = data(year=2024, force=True)
+    d = data(year=2025, force=True)
 
     
 
