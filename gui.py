@@ -34,7 +34,7 @@ class DateFrame(ttk.Frame):
 
 
 # Left frame
-class CalendarFrame(ttk.Frame):
+class InsightFrame(ttk.Frame):
     """Calendar insight including calendar color, name and duration."""
 
     def __init__(self, master, **kwargs):
@@ -45,9 +45,14 @@ class CalendarFrame(ttk.Frame):
         self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=1)
 
+        # First run
+        self._ui(gcal.data(year=2025, field="calendar", force=True))
+        self._ui(gcal.data(year=2025, field="area", force=True))
+        self._ui(gcal.data(year=2025, field="project", force=True))
 
-    def insight(self, data):
-        print(self.row_index)
+
+
+    def _ui(self, data):
         frame = ttk.Frame(self, relief="solid", padding=(5, 5))
         frame.grid(row=self.row_index, column=0, pady=5, padx=(0, 5), sticky="wsen")
         frame.rowconfigure(0, weight=1)
@@ -84,6 +89,10 @@ class CalendarFrame(ttk.Frame):
 
             frame.rowconfigure(index, weight=1)
             frame.columnconfigure(0, weight=1)
+
+    def update_insight(self, data):
+        print(data)
+
 
 
 # Right frame
@@ -166,7 +175,7 @@ class MainFrame(ttk.Frame):
         super().__init__(master, **kwargs)
 
         self.date_frame = DateFrame(self, on_year_change=self.handle_year_change, relief="solid")
-        self.cal_frame = CalendarFrame(self)
+        self.cal_frame = InsightFrame(self)
         self.vis_frame = VisualizeFrame(self)
         self.date_frame.grid(row=0, column=0, sticky="wsen")
         self.cal_frame.grid(row=1, column=0, sticky="wsen")
@@ -182,14 +191,14 @@ class MainFrame(ttk.Frame):
         areas = gcal.data(year=year, field="area", force=True)
         projects = gcal.data(year=year, field="project", force=True)
 
-        # destroy old insights
-        for child in self.cal_frame.winfo_children():
-            child.destroy()
-            self.cal_frame.row_index = 0
+        # # destroy old insights
+        # for child in self.cal_frame.winfo_children():
+        #     child.destroy()
+        #     self.cal_frame.row_index = 0
 
-        self.cal_frame.insight(calendars)
-        self.cal_frame.insight(areas)
-        self.cal_frame.insight(projects)
+        self.cal_frame.update_insight(calendars)
+        self.cal_frame.update_insight(areas)
+        self.cal_frame.update_insight(projects)
 
 
 

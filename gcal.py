@@ -235,68 +235,74 @@ def load_data():
         return json.load(json_file)
 
 
-def calendar_data(name, year, month, days):
-    cal = Calendar(name, year, month, days)
+def calendar_data(calendar, year, month, days):
     return {
-        "calendar": cal.name,
-        "name": cal.name,
-        "duration": cal.duration,
-        "color": cal.color,
+        "calendar": calendar.name,
+        "name": calendar.name,
+        "duration": calendar.duration,
+        "color": calendar.color,
         "type": "calendar",
-        "count": cal.count,
+        "count": calendar.count,
+        "year": calendar.year,
     }
 
 
-def area_data(calendar_name, area):
-    cal = Calendar(calendar_name)
+def area_data(calendar, area):
     return {
-        "calendar": cal.name,
+        "calendar": calendar.name,
         "name": area,
-        "duration": cal.areas[area].duration,
-        "color": cal.color,
+        "duration": calendar.areas[area].duration,
+        "color": calendar.color,
         "type": "area",
-        "count": cal.areas[area].count,
+        "count": calendar.areas[area].count,
+        "year": calendar.year,
     }
 
 
-def project_data(calendar_name, project):
-    cal = Calendar(calendar_name)
+def project_data(calendar, project):
     return {
-        "calendar": cal.name,
+        "calendar": calendar.name,
         "name": project,
-        "duration": cal.projects[project].duration,
-        "color": cal.color,
+        "duration": calendar.projects[project].duration,
+        "color": calendar.color,
         "type": "project",
-        "count": cal.projects[project].count,
+        "count": calendar.projects[project].count,
+        "year": calendar.year,
     }
 
 
 def make_data(year, month, days):
     data = []
-    # make Calendar
-    for name in os.listdir("calendars"):
-        row = calendar_data(name, year, month, days)
-        data.append(row)
+
+    saeed = Calendar("Saeed.ics", year, month, days)
+    work = Calendar("Work.ics", year, month, days)
+    growth = Calendar("Growth.ics", year, month, days)
+    study = Calendar("Study.ics", year, month, days)
+
+    data.append(calendar_data(saeed, year, month, days))
+    data.append(calendar_data(work, year, month, days))
+    data.append(calendar_data(growth, year, month, days))
+    data.append(calendar_data(study, year, month, days))
 
     # -- area --
     for area in ["family", "mindless"]:
-        data.append(area_data("Saeed.ics", area))
+        data.append(area_data(saeed, area))
 
     for area in ["dev", "content", "teaching"]:
-        data.append(area_data("Work.ics", area))
+        data.append(area_data(work, area))
 
     for area in ["reading"]:
-        data.append(area_data("Growth.ics", area))
+        data.append(area_data(growth, area))
 
     for area in ["cs"]:
-        data.append(area_data("Study.ics", area))
+        data.append(area_data(study, area))
 
     # -- project --
     for project in ["gcal", "pyquiz"]:
-        data.append(project_data("Work.ics", project))
+        data.append(project_data(work, project))
 
     for project in ["crime and punishment", "a fraction of the whole"]:
-        data.append(project_data("Growth.ics", project))
+        data.append(project_data(growth, project))
     return data
 
 
@@ -315,28 +321,8 @@ def data(year=2025, month=None, days=None, field="calendar", force=False):
 
 
 def main():
-    # d = data()
-    # sample
-    # growth = Calendar("Growth.ics")
-    saeed = Calendar("Saeed.ics", year=2024)
-    # work = Calendar("Work.ics")
-    # study = Calendar("Study.ics")
-    # print(study.name)
+    d = data(year=2024, force=True)
 
-    # x  = 0
-    # for event in saeed.events:
-    #     # print(event.summary, ":", "start:", event.dtstart, "end:", event.dtend, "duration:", event.duration / SECONDS_PER_HOUR)
-    #
-    #     print(event.summary, ":", event.duration / 3600)
-    #     x += event.duration
-    #
-    # print(x / SECONDS_PER_HOUR)
-
-    # saeed.debug_duration()
-    x = []
-    for e in saeed.events:
-        x.append(e.dtstart.year)
-    print(set(x))
     
 
 
