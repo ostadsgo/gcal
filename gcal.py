@@ -307,12 +307,7 @@ def make_data(year, month, days):
 
 
 def data(year=2025, month=None, days=None, field="calendar", force=False):
-    if force:
-        rows = make_data(year, month, days)
-        save_data(rows)
-    else:
-        rows = load_data()
-
+    rows = make_data(year, month, days)
     return sorted(
         [row for row in rows if row.get("type") == field],
         key=lambda row: row["duration"],
