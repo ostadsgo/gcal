@@ -9,6 +9,25 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "data.db"
 
+class Calendar:
+    def __init__(self, db, name, color="#FF0000"):
+        self.db = db
+        self.name = name
+        self.color = color
+        self._create()
+
+    def _create(self):
+        sql = """
+        CREATE TABLE IF NOT EXISTS calendars (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            color text default '#FF0000'
+        )
+        """
+        self.db.execute(sql)
+        print("calendars table created")
+
+
 
 class CalendarDB:
     def __init__(self):
@@ -77,9 +96,18 @@ class CalendarDB:
         self.cursor.execute(query, params)
         self.conn.commit()
 
+    def fetch_one(self, query, params=()):
+        self.cursor.execute(query, params)
+        self.execute(query, params)
+        return self.cursor.fetchone()
+
+    def fetch_all(self, query, params=()):
+        self.cursor.execute(query, params)
+        self.execute(query, params)
+        return self.cursor.fetchall()
 
 if __name__ == "__main__":
     db = CalendarDB()
-    print(f"Database created at: {db.db_path}")
-    print("Tables and indexes created successfully.")
+    calendar = Calendar(db, "Saeed", "#7c7c7c")
+
     db.close()
