@@ -9,6 +9,10 @@ from datetime import datetime, timezone, timedelta
 import icalendar
 from zoneinfo import ZoneInfo
 
+
+import db
+
+# [] TODO: if calendar folder or .ics files didn't modied not need for make calendars objects
 # [] TODO: feat: Find top3 areas, projects, tags by duration
 
 
@@ -315,12 +319,34 @@ def data(year=2025, month=None, days=None, field="calendar", force=False):
     )
 
 
-def main():
-    d = data(year=2025, force=True)
+
+class CalendarManager:
+    def __init__(self):
+        pass
+
+    def read(self, filename):
+        calendar = None
+        with open(CALENDARS_DIR / filename, "rb") as f:
+            calendar = icalendar.Calendar.from_ical(f.read())
+        return calendar
+
+
+
+    def read_all(self, folder_path):
+        ...
+
+
+class Calendar:
+    def __init__(self, filename):
+        manager = CalendarManager()
+        self.calendar = manager.read(filename)
 
     
 
 
 
 if __name__ == "__main__":
-    main()
+    saeed = Calendar("Saeed.ics")
+    work = Calendar("Work.ics")
+    growth = Calendar("Growth.ics")
+    study = Calendar("Study.ics")

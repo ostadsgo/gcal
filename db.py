@@ -9,23 +9,102 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "data.db"
 
-class Calendar:
-    def __init__(self, db, name, color="#FF0000"):
+class CalendarTable:
+    def __init__(self, db):
         self.db = db
-        self.name = name
-        self.color = color
+        self._create()
+
+    def _create(self):
+        sql = """ CREATE TABLE IF NOT EXISTS calendars (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT UNIQUE NOT NULL,
+            color text default '#FF0000'
+        );
+        """
+        self.db.execute(sql)
+        print("calendars table created")
+
+    def insert(self, name, color):
+        sql = """ 
+            INSERT INTO calendars (name, color)
+            VALUES (?, ?);
+        """
+        self.db.execute(sql, (name, color))
+
+    def update(self):
+        pass
+
+    def delete(self):
+        pass
+
+    def read(self):
+        pass
+
+
+class EventTable:
+    def __init__(self, db):
+        self.db = db
+        self._create()
+
+    def _create(self):
+        sql = """ CREATE TABLE IF NOT EXISTS events (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            calendar_id TEXT NOT NULL,
+            summary TEXT NOT NULL,
+            dtstart TEXT NOT NULL,
+            dtend TEXT NOT NULL,
+            duration REAL NOT NULL,
+            area TEXT,
+            project TEXT,
+            difficulty TEXT,
+            detail TEXT,
+            FOREIGN KEY (calendar_id) REFERENCES calendars(id) ON DELETE CASCADE
+        );
+        """
+        self.db.execute(sql)
+        print("`events` table created.")
+
+    def insert(self):
+        pass
+
+    def update(self):
+        pass
+
+    def get(self):
+        pass
+
+    def getall(self):
+        pass
+
+
+
+class TagTable:
+    def __init__(self, db):
+        self.db = db
         self._create()
 
     def _create(self):
         sql = """
-        CREATE TABLE IF NOT EXISTS calendars (
+        CREATE TABLE IF NOT EXISTS tags (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            color text default '#FF0000'
+            name TEXT UNIQUE NOT NULL
         )
         """
         self.db.execute(sql)
-        print("calendars table created")
+        
+        sql = """
+        CREATE TABLE IF NOT EXISTS event_tags (
+            event_id INTEGER NOT NULL,
+            tag_id INTEGER NOT NULL,
+            PRIMARY KEY (event_id, tag_id),
+            FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
+            FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+        )
+        """
+        self.db.execute(sql)
+
+        print("Tables `tags` and `event_tags` created.")
+
 
 
 
@@ -39,53 +118,6 @@ class CalendarDB:
         self.conn = sqlite3.connect(self.db_path)
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
-        self._create_tables()
-
-    def _create_tables(self):
-        # calendar table
-        calendar_table_sql = """
-        CREATE TABLE IF NOT EXISTS calendars (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT NOT NULL,
-            color text default '#FF0000'
-        )
-        """
-        event_table_sql = """
-        CREATE TABLE IF NOT EXISTS events (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            calendar_id TEXT NOT NULL,
-            summary TEXT NOT NULL,
-            dtstart TEXT NOT NULL,
-            dtend TEXT NOT NULL,
-            duration REAL NOT NULL,
-            area TEXT,
-            project TEXT,
-            difficulty TEXT,
-            detail TEXT,
-            FOREIGN KEY (calendar_id) REFERENCES calendars(id) ON DELETE CASCADE
-
-        )
-        """
-        tags_table_sql = """
-        CREATE TABLE IF NOT EXISTS tags (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL
-        )
-        """
-        
-        event_tags_table_sql = """
-        CREATE TABLE IF NOT EXISTS event_tags (
-            event_id INTEGER NOT NULL,
-            tag_id INTEGER NOT NULL,
-            PRIMARY KEY (event_id, tag_id),
-            FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
-            FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
-        )
-        """
-        self.execute(calendar_table_sql)
-        self.execute(event_table_sql)
-        self.execute(tags_table_sql)
-        self.execute(event_tags_table_sql)
 
 
     def close(self):
@@ -108,6 +140,14 @@ class CalendarDB:
 
 if __name__ == "__main__":
     db = CalendarDB()
-    calendar = Calendar(db, "Saeed", "#7c7c7c")
+
+    calendar = CalendarTable(db)
+    event = EventTable(db)
+    tag = TagTable(db)
+
+
+    calendar.insert("Saeed", "#7c7c7c")
+    
+
 
     db.close()

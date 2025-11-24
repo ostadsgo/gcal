@@ -198,23 +198,23 @@ def modify():
 def main():
 
     # extract to get calendars file --
-    # unzip_to_calendars("/home/saeed/dwl/saeed.ghollami@gmail.com.ical.zip") 
+    unzip_to_calendars("saeed.ghollami@gmail.com.ical(2).zip") 
 
     # -- rename calendars file -- 
-    # rename_calendars()
+    rename_calendars()
 
 
     # -- calendars
-    # growth = read_calendar("Growth.ics")
-    # work = read_calendar("Work.ics")
-    # saeed = read_calendar("Saeed.ics")
-    # study = read_calendar("Study.ics")
+    growth = read_calendar("Growth.ics")
+    work = read_calendar("Work.ics")
+    saeed = read_calendar("Saeed.ics")
+    study = read_calendar("Study.ics")
 
     # -- delete span and br *MUST FIRST*
-    # delete_span_br("Work.ics", "Work.ics")
-    # delete_span_br("Saeed.ics", "Saeed.ics")
-    # delete_span_br("Growth.ics", "Growth.ics")
-    # delete_span_br("Study.ics", "Study.ics")
+    delete_span_br("Work.ics", "Work.ics")
+    delete_span_br("Saeed.ics", "Saeed.ics")
+    delete_span_br("Growth.ics", "Growth.ics")
+    delete_span_br("Study.ics", "Study.ics")
 
     # -- fix time zone --
     fix_timezone_in_ics("Growth.ics", "Growth.ics")
@@ -223,16 +223,16 @@ def main():
     fix_timezone_in_ics("Study.ics", "Study.ics")
 
     # -- Add extra fields ---
-    # add_calendar_name(growth, "Growth")
-    # add_calendar_name(work, "Work")
-    # add_calendar_name(study, "Study")
-    # add_calendar_name(saeed, "Saeed")
+    add_calendar_name(growth, "Growth")
+    add_calendar_name(work, "Work")
+    add_calendar_name(study, "Study")
+    add_calendar_name(saeed, "Saeed")
 
     # -- add colors
-    # add_calendar_color(growth, "#A479B1")
-    # add_calendar_color(work, "#489160")
-    # add_calendar_color(study, "#4B99D2")
-    # add_calendar_color(saeed, "#7C7C7C")
+    add_calendar_color(growth, "#A479B1")
+    add_calendar_color(work, "#489160")
+    add_calendar_color(study, "#4B99D2")
+    add_calendar_color(saeed, "#7C7C7C")
 
 
 
