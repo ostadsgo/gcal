@@ -10,7 +10,7 @@ import icalendar
 from zoneinfo import ZoneInfo
 
 
-import db
+from database import CalendarDB
 
 # [] TODO: if calendar folder or .ics files didn't modied not need for make calendars objects
 # [] TODO: feat: Find top3 areas, projects, tags by duration
@@ -320,14 +320,18 @@ def data(year=2025, month=None, days=None, field="calendar", force=False):
 
 
 
-class CalendarManager:
-    def __init__(self):
-        pass
+class FileManager:
+    def __init__(self, filename):
+        self.filename = filename
 
-    def read(self, filename):
+    def read(self):
         calendar = None
-        with open(CALENDARS_DIR / filename, "rb") as f:
-            calendar = icalendar.Calendar.from_ical(f.read())
+        try:
+            with open(CALENDARS_DIR / self.filename, "rb") as f:
+                calendar = icalendar.Calendar.from_ical(f.read())
+        except FileNotFoundError as e:
+            print(f"Error: file `{filename}` not found in `{CALENDARS_DIR}`")
+        
         return calendar
 
 
@@ -338,11 +342,21 @@ class CalendarManager:
 
 class Calendar:
     def __init__(self, filename):
-        manager = CalendarManager()
-        self.calendar = manager.read(filename)
+        file_manager = FileManager(filename)
+        self.calendar = file_manager.read()
+        self.name = self.calendar.calendar_name
+        self.color = self.calendar.color
+        self.events = []
+        self.add()
 
-    
-
+    def add(self):
+        with CalendarDB() as db:
+            calendar_id = db.calendar.get_id_by_name(self.name)
+            if calendar_id is None: # calendar doesn't exist
+                db.calendar.insert(self.name, self.color)
+                print(f"Insert the {self.name} and {self.color}")
+            else:
+                print(f"Calendar `{self.name}` already exist.")
 
 
 if __name__ == "__main__":
@@ -350,3 +364,4 @@ if __name__ == "__main__":
     work = Calendar("Work.ics")
     growth = Calendar("Growth.ics")
     study = Calendar("Study.ics")
+
