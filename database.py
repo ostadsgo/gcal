@@ -75,9 +75,8 @@ class EventTable:
     def get(self):
         pass
 
-    def getall(self):
+    def get_all(self):
         pass
-
 
 
 class TagTable:
@@ -110,7 +109,7 @@ class TagTable:
 
 
 class CalendarDB:
-    is_table_created = False
+    is_table_created = True
 
     def __init__(self):
         self.db_path = Path(DB_PATH)

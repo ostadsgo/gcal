@@ -339,6 +339,9 @@ class FileManager:
     def read_all(self, folder_path):
         ...
 
+class Event:
+    def __init__(self, calendar):
+        pass
 
 class Calendar:
     def __init__(self, filename):
@@ -346,10 +349,10 @@ class Calendar:
         self.calendar = file_manager.read()
         self.name = self.calendar.calendar_name
         self.color = self.calendar.color
-        self.events = []
-        self.add()
+        self.events = [component for component in self.calendar.walk() if component.name == "VEVENT"]
+        self.create_events()
 
-    def add(self):
+    def create_calendar(self):
         with CalendarDB() as db:
             calendar_id = db.calendar.get_id_by_name(self.name)
             if calendar_id is None: # calendar doesn't exist
@@ -358,10 +361,59 @@ class Calendar:
             else:
                 print(f"Calendar `{self.name}` already exist.")
 
+    def create_events(self):
+        for event in self.events:
+            summary = event.get("summary", "no summary")
+            description = event.get("description", "no description")
+            area = self.extract_value(description, "area")
+            project = self.extract_value(description, "project")
+            tags = self.extract_tags(description, "tags")
+            difficulty = self.extract_value(description, "difficulty")
+            detail = self.extract_value(description, "detail")
+
+            print("-------------")
+            print(summary)
+            print("-------------")
+            print(area)
+            print(project)
+            print(tags)
+            print(difficulty)
+            print(detail)
+            print("-------------")
+
+
+    def chop_description(self, description):
+        if not description:
+            return []
+
+        return [
+            line.strip().lower()
+            for line in description.splitlines()
+            if line.strip().lower()
+        ]
+
+    def extract_value(self, description, keyword):
+        for line in self.chop_description(description):
+            if keyword in line and ":" in line:
+                *_, value = line.partition(":")
+                return value.strip() if value.strip() else ""
+        return ""
+
+    def extract_tags(self, description, keyword):
+        for line in self.chop_description(description):
+            if keyword in line and ":" in line:
+                *_, value = line.partition(":")
+                return [tag.strip() for tag in value.split(",") if tag.strip()]
+        return []
+
+
+
+
+
 
 if __name__ == "__main__":
     saeed = Calendar("Saeed.ics")
-    work = Calendar("Work.ics")
-    growth = Calendar("Growth.ics")
-    study = Calendar("Study.ics")
+    # work = Calendar("Work.ics")
+    # growth = Calendar("Growth.ics")
+    # study = Calendar("Study.ics")
 
