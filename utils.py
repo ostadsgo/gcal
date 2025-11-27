@@ -2,6 +2,7 @@
 
 from pathlib import Path
 from icalendar import Calendar
+from model import DatabaseManager
 
 BASE_DIR = Path(__file__).resolve().parent
 CALENDARS_DIR = BASE_DIR / "calendars"
@@ -123,4 +124,89 @@ class ICSParser:
         
         return events
     
+
+class ICSImporter:
+    """Import .ics files into database - replaces all existing data"""
+    
+    def __init__(self, db):
+        self.db = db
+        self.parser = ICSParser()
+    
+    def import_fresh(self):
+        """Clear database and import all .ics files fresh"""
+        print("Clearing existing data...")
+        self.clear_all_data()
+        
+        print("Importing calendars...")
+        self.populate_calendars()
+        
+        print("Importing events...")
+        self.populate_events()
+        
+        print("Import complete!")
+    
+    def clear_all_data(self):
+        """Delete all data from database"""
+        self.db.execute("DELETE FROM event_tags")
+        self.db.execute("DELETE FROM events")
+        self.db.execute("DELETE FROM tags")
+        self.db.execute("DELETE FROM calendars")
+    
+    def populate_calendars(self):
+        """Import calendars from .ics files"""
+        ics_files = get_ics_files()
+        
+        for ics_file in ics_files:
+            cal_data = self.parser.parse_file(ics_file)
+            calendar_id = self.db.calendar.insert(
+                cal_data["name"],
+                cal_data["color"]
+            )
+            print(f"Calendar '{cal_data['name']}' imported")
+    
+    def populate_events(self):
+        """Import events from .ics files"""
+        ics_files = get_ics_files()
+        
+        for ics_file in ics_files:
+            cal_data = self.parser.parse_file(ics_file)
+            calendar_id = self.db.calendar.get_id_by_name(cal_data['name'])
+            
+            if not calendar_id:
+                print(f"Calendar '{cal_data['name']}' not found, skipping events")
+                continue
+            
+            events = self.parser.parse_events(ics_file)
+            
+            for event in events:
+                event_id = self.db.event.insert(
+                    calendar_id=calendar_id,
+                    summary=event['summary'],
+                    dtstart=event['dtstart'],
+                    dtend=event['dtend'],
+                    duration=event['duration'],
+                    area=event['area'],
+                    project=event['project'],
+                    difficulty=event['difficulty'],
+                    detail=event['detail']
+                )
+                
+                for tag_name in event['tags']:
+                    tag_id = self.db.tag.get_or_create(tag_name)
+                    self.db.tag.link_event_tag(event_id, tag_id)
+            
+            print(f"{len(events)} events from '{cal_data['name']}' imported")
+
+
+if __name__ == "__main__":
+    print("=" * 50)
+    print("Calendar Data Import")
+    print("=" * 50)
+    
+    with DatabaseManager() as db:
+        importer = ICSImporter(db)
+        importer.import_fresh()
+    
+    print("=" * 50)
+    print("Done! You can now run your app.")
 
