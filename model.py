@@ -42,14 +42,6 @@ class CalendarModel:
     def exists(self, name):
         return self.get_id_by_name(name) is not None
 
-    def update(self):
-        pass
-
-    def delete(self):
-        pass
-
-    def read(self):
-        pass
 
 
 class EventModel:
@@ -74,17 +66,14 @@ class EventModel:
         print("Table :: events")
         self.db.execute(sql)
 
-    def insert(self):
-        pass
 
-    def update(self):
-        pass
-
-    def get(self):
-        pass
-
-    def get_all(self):
-        pass
+    def insert(self, calendar_id, summary, dtstart, dtend, duration, area, project, difficulty, detail):
+        sql = """
+            INSERT INTO events (calendar_id, summary, dtstart, dtend, duration, area, project, difficulty, detail)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """
+        self.db.execute(sql, (calendar_id, summary, dtstart, dtend, duration, area, project, difficulty, detail))
+        return self.db.cursor.lastrowid
 
 
 class TagModel:
@@ -113,6 +102,24 @@ class TagModel:
         self.db.execute(sql)
         print("Table :: event_tags")
 
+    def get_or_create(self, tag_name):
+        """Get tag ID if exists, otherwise create it"""
+        # Check if exists
+        sql = "SELECT id FROM tags WHERE name = ?"
+        result = self.db.fetch_one(sql, (tag_name,))
+        
+        if result:
+            return result['id']
+        
+        # Create new tag
+        sql = "INSERT INTO tags (name) VALUES (?)"
+        self.db.execute(sql, (tag_name,))
+        return self.db.cursor.lastrowid
+
+    def link_event_tag(self, event_id, tag_id):
+        """Link an event to a tag"""
+        sql = "INSERT OR IGNORE INTO event_tags (event_id, tag_id) VALUES (?, ?)"
+        self.db.execute(sql, (event_id, tag_id))
 
 
 class DatabaseManager:
