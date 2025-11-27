@@ -5,7 +5,7 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALDESC:Anything I have to do: Sleep\, Eat\, Shower\, Family\, ..\nTh
  inks I HAVE to do
-NAME:Saeed
+NAME:saeed
 COLOR:#7C7C7C
 X-WR-TIMEZONE:Asia/Tehran
 BEGIN:VTIMEZONE

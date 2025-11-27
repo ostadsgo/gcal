@@ -17,11 +17,11 @@ from icalendar import Calendar
 # clear span , bar
 
 BASE_DIR = Path(__file__).resolve().parent
-CALENDARS_DIR = BASE_DIR / "calendars"
+CALENDARS_DIR = Path(BASE_DIR / "calendars")
 SECONDS_PER_HOUR = 3600
 
 
-def unzip_to_calendars(zip_path, extract_to="calendars"):
+def unzip_to_calendars(zip_path, extract_to=CALENDARS_DIR):
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(extract_to)
     print("extracted")
@@ -31,7 +31,7 @@ def rename_calendars():
     for cal_name in os.listdir(CALENDARS_DIR):
         if '_' in cal_name:
             name, *_ = cal_name.split("_")
-            os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{name}.ics")
+            os.rename(CALENDARS_DIR / cal_name, CALENDARS_DIR / f"{name.lower()}.ics")
 
 def read_calendar(filename):
     cal_path = CALENDARS_DIR / filename
@@ -198,42 +198,41 @@ def modify():
 def main():
 
     # extract to get calendars file --
-    unzip_to_calendars("saeed.ghollami@gmail.com.ical(2).zip") 
+    unzip_to_calendars("/home/saeed//dwl/saeed.ghollami@gmail.com.ical.zip") 
 
     # -- rename calendars file -- 
     rename_calendars()
+    #
+    #
+    # # -- calendars
+    growth = read_calendar("growth.ics")
+    work = read_calendar("work.ics")
+    saeed = read_calendar("saeed.ics")
+    study = read_calendar("study.ics")
+    # #
+    # # # -- delete span and br *MUST FIRST*
+    delete_span_br("work.ics", "work.ics")
+    delete_span_br("saeed.ics", "saeed.ics")
+    delete_span_br("growth.ics", "growth.ics")
+    delete_span_br("study.ics", "study.ics")
+    # #
+    # # -- fix time zone --
+    fix_timezone_in_ics("growth.ics", "growth.ics")
+    fix_timezone_in_ics("work.ics", "work.ics")
+    fix_timezone_in_ics("saeed.ics", "saeed.ics")
+    fix_timezone_in_ics("study.ics", "study.ics")
+    #
+    # # -- Add extra fields ---
+    add_calendar_name(growth, "growth")
+    add_calendar_name(work, "work")
+    add_calendar_name(study, "study")
+    add_calendar_name(saeed, "saeed")
 
-
-    # -- calendars
-    growth = read_calendar("Growth.ics")
-    work = read_calendar("Work.ics")
-    saeed = read_calendar("Saeed.ics")
-    study = read_calendar("Study.ics")
-
-    # -- delete span and br *MUST FIRST*
-    delete_span_br("Work.ics", "Work.ics")
-    delete_span_br("Saeed.ics", "Saeed.ics")
-    delete_span_br("Growth.ics", "Growth.ics")
-    delete_span_br("Study.ics", "Study.ics")
-
-    # -- fix time zone --
-    fix_timezone_in_ics("Growth.ics", "Growth.ics")
-    fix_timezone_in_ics("Work.ics", "Work.ics")
-    fix_timezone_in_ics("Saeed.ics", "Saeed.ics")
-    fix_timezone_in_ics("Study.ics", "Study.ics")
-
-    # -- Add extra fields ---
-    add_calendar_name(growth, "Growth")
-    add_calendar_name(work, "Work")
-    add_calendar_name(study, "Study")
-    add_calendar_name(saeed, "Saeed")
-
-    # -- add colors
+    # # # # -- add colors
     add_calendar_color(growth, "#A479B1")
     add_calendar_color(work, "#489160")
     add_calendar_color(study, "#4B99D2")
     add_calendar_color(saeed, "#7C7C7C")
-
 
 
 

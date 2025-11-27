@@ -1,13 +1,18 @@
-""" module for CRUD operation on the data of the app."""
+""" `model.py` - modules for CRUD operation on the data of the app."""
 
 import sqlite3
+import os
 from pathlib import Path
 
+import icalendar
 
 BASE_DIR = Path(__file__).resolve().parent
+CALENDARS_DIR = BASE_DIR / "calendars"
 DB_PATH = BASE_DIR / "data.db"
 
-class CalendarTable:
+SECONDS_PER_HOUR = 3600
+
+class CalendarModel:
     def __init__(self, db):
         self.db = db
 
@@ -34,6 +39,9 @@ class CalendarTable:
         result = self.db.fetch_one(sql, (name,))
         return result['id'] if result else None
 
+    def exists(self, name):
+        return self.get_id_by_name(name) is not None
+
     def update(self):
         pass
 
@@ -44,7 +52,7 @@ class CalendarTable:
         pass
 
 
-class EventTable:
+class EventModel:
     def __init__(self, db):
         self.db = db
 
@@ -79,7 +87,7 @@ class EventTable:
         pass
 
 
-class TagTable:
+class TagModel:
     def __init__(self, db):
         self.db = db
 
@@ -107,9 +115,8 @@ class TagTable:
 
 
 
-
-class CalendarDB:
-    is_table_created = True
+class DatabaseManager:
+    is_table_created = False
 
     def __init__(self):
         self.db_path = Path(DB_PATH)
@@ -125,13 +132,13 @@ class CalendarDB:
         self.cursor = self.conn.cursor()
         self.conn.execute("PRAGMA foreign_keys = ON")
 
-        self.calendar = CalendarTable(self)
-        self.event = EventTable(self)
-        self.tag = TagTable(self)
+        self.calendar = CalendarModel(self)
+        self.event = EventModel(self)
+        self.tag = TagModel(self)
 
-        if not CalendarDB.is_table_created:
+        if not DatabaseManager.is_table_created:
             self.create_tables()
-            CalendarDB.is_table_created = True
+            DatabaseManager.is_table_created = True
 
     def create_tables(self):
         self.calendar.create()
@@ -145,8 +152,13 @@ class CalendarDB:
             self.conn.close()
 
     def execute(self, query, params=()):
-        self.cursor.execute(query, params)
-        self.conn.commit()
+        try:
+            self.cursor.execute(query, params)
+            self.conn.commit()
+        except sqlite3.Error as e:
+            print(f"Data base error {e}")
+            self.conn.rollback()
+            raise
 
     def fetch_one(self, query, params=()):
         self.cursor.execute(query, params)
@@ -162,3 +174,49 @@ class CalendarDB:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
 
+
+class FileManager:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def read(self):
+        """ create calendar from a `ics` file."""
+        calendar = None
+        try:
+            with open(CALENDARS_DIR / self.filename, "rb") as f:
+                calendar = icalendar.Calendar.from_ical(f.read())
+        except FileNotFoundError as e:
+            print(f"Error: file `{self.filename}` not found in `{CALENDARS_DIR}`")
+        
+        return calendar
+
+
+
+class Calendar:
+    def __init__(self):
+        self.calendar_name = None
+        self.color = None
+
+    def create(self, calendar):
+        """Call db operation to insert a calendar with name and color."""
+
+        self.calendar_name = calendar.calendar_name
+        self.color = calendar.color
+
+        with DatabaseManager() as db:
+            calendar_id = db.calendar.get_id_by_name(self.calendar_name)
+            if calendar_id is None: # calendar doesn't exist
+                db.calendar.insert(self.calendar_name, self.color)
+                print(f"Insert the {self.calendar_name} and {self.color}")
+            else:
+                print(f"Calendar `{self.calendar_name}` already exist.")
+
+    def create_all(self):
+        calendars = FileManager.read_all()
+        for calendar in calendars:
+            self.create(calendar)
+
+
+if __name__ == "__main__":
+    calendar = Calendar()
+    calendar.create_all()
