@@ -46,6 +46,7 @@ def save_calendar(name: str, calendar):
 def create_calendar(filename, calendar):
     with open(CALENDARS_DIR / filename, "wb") as f:
         f.write(calendar.to_ical())
+    print(f"calendar {filename} created.")
 
 def print_summary(filename):
     summeries = []
@@ -110,12 +111,13 @@ def calendar_modify(cal, keywords, data, filename):
 
     for component in cal.walk():
         if component.name == "VEVENT":
-            summary = component.get("summary").lower()
-            if any(keyword.lower() in summary for keyword in keywords):
+            summary = component.get("summary").lower().strip()
+            if any(keyword.lower().strip() in summary for keyword in keywords):
                 new_event = copy.deepcopy(component)
                 for key, value in data.items():
                     new_event[key] = value
                 print(summary, "-->", new_event["summary"])
+                print(new_event["description"])
                 new_cal.add_component(new_event)
                 count += 1
             else:
@@ -146,7 +148,8 @@ def delete_span_br(cal_name, filename):
     print("Description Changed:", count)
 
 
-def all_unique_events(cal):
+def print_all_unique_events(cal):
+    print("--------- Unique events -------------")
     events = {}
 
     for component in cal.walk():
@@ -160,8 +163,8 @@ def all_unique_events(cal):
     for summary, count in events.items():
         print(summary, count)
 
-def print_description(cal_file_name, summary):
-    cal = read_calendar(cal_file_name)
+def print_description(cal, summary):
+    print("--------- Event Description -------------")
     for component in cal.walk():
         if component.name == "VEVENT":
             event_summary = component["summary"]
@@ -178,22 +181,26 @@ def modify_description(cal):
 
 def modify_by_summary(cal):
     description = [
-        "Area: Fitness",
-        "Type: Workout",
-        "Difficulty: 4",
+        "Area: Reading",
+        "Type: Novel",
+        "Project: Brave New World",
+        "Difficulty: 2",
+        "Tags: sci-fi",
     ]
     data = {
-        "summary": "PT 10",
+        "summary": "Brave new world",
         "description": "\n".join(description),
     }
 
-    keywords = ["pt 10"]
+    keywords = ["brave new world"]
 
-    # new_cal_file_name = "growth.ics"
-    # new_cal = calendar_modify(cal, keywords, data, new_cal_file_name)
-    # create_calendar(new_cal_file_name, new_cal)
-    # print_description(new_cal_file_name, data.get("summary"))
-    all_unique_events(cal)
+    new_cal = calendar_modify(cal, keywords, data, "growth.ics")
+
+    print_description(new_cal, data.get("summary"))
+
+    # create_calendar("growth.ics", new_cal)
+
+    print_all_unique_events(cal)
 
 
 

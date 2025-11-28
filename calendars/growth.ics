@@ -46,8 +46,8 @@ DTSTAMP:20251128T185211Z
 UID:7bimjpbc40ql8vsu9tvs2fit8l@google.com
 SEQUENCE:0
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -73,8 +73,8 @@ DTSTAMP:20251128T185211Z
 UID:5g58pnkrggg9p6m2i3gbuf7232@google.com
 SEQUENCE:6
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -106,15 +106,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20251013T123000Z
 DTEND:20251013T133000Z
 DTSTAMP:20251128T185211Z
 UID:c9i6ccj261hmcb9i6dhjgb9k6krjib9oclim2b9kc4q64dr3ckojecr3cc@google.com
 SEQUENCE:15
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -140,8 +140,8 @@ DTSTAMP:20251128T185211Z
 UID:65hm6cpic9j3abb375ijeb9kcgojeb9pcgqj2b9m6gs32pj570p62c9jck@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -174,15 +174,14 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Walk
+SUMMARY:Walking
 DTSTART:20251103T123000Z
 DTEND:20251103T133000Z
 DTSTAMP:20251128T185211Z
 UID:ckrjeohkc4sjebb66lj6ab9k68o3ab9o74o36b9gc8p66dhp68p3adr4cc@google.com
 SEQUENCE:0
 CREATED:20251117T204014Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -221,8 +220,8 @@ DTSTAMP:20251128T185211Z
 UID:54slr3j06qsn2kk0c0d6br9boo@google.com
 SEQUENCE:5
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: novel\ndifficul
- ty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T205501Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -235,8 +234,8 @@ DTSTAMP:20251128T185211Z
 UID:cli64p9o6ks3gbb2cpij0b9k6sq64b9pc9hjib9ocoo3copg6srj2e9j6s@google.com
 SEQUENCE:3
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -249,22 +248,21 @@ DTSTAMP:20251128T185211Z
 UID:1bagpeflrkst6bdf34gk1qhbv0@google.com
 SEQUENCE:2
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Walk
+SUMMARY:Walking
 DTSTART:20250904T183000Z
 DTEND:20250904T203000Z
 DTSTAMP:20251128T185211Z
 UID:697bl3h0d9tcqavrdt12kib2nf@google.com
 SEQUENCE:7
 CREATED:20251117T204014Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -283,15 +281,14 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Walk
+SUMMARY:Walking
 DTSTART:20250831T123000Z
 DTEND:20250831T143000Z
 DTSTAMP:20251128T185211Z
 UID:69i6ceb464sj0b9kc4pjib9kcli34b9o64rjgbb26gr62e1gccs38d1i68@google.com
 SEQUENCE:0
 CREATED:20251117T204014Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -317,22 +314,22 @@ DTSTAMP:20251128T185211Z
 UID:3tskibc4jjdpi0l8r5s5gl4sbh@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250330T193000Z
 DTEND:20250330T203000Z
 DTSTAMP:20251128T185211Z
 UID:6sp576c3m7jfjbacjrrcesgb3l@google.com
 SEQUENCE:10
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -393,15 +390,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250906T133000Z
 DTEND:20250906T153000Z
 DTSTAMP:20251128T185211Z
 UID:75gm4d9l6pgmab9l6gp30b9k70qj0b9p6lj36bb168pj6ohic8oj6or4c8@google.com
 SEQUENCE:0
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -414,8 +411,8 @@ DTSTAMP:20251128T185211Z
 UID:50n08f0am9bv1sd8c145k1usv1@google.com
 SEQUENCE:1
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -462,29 +459,29 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250830T113000Z
 DTEND:20250830T133000Z
 DTSTAMP:20251128T185211Z
 UID:0q96nojevkuaurfdeelkntc168@google.com
 SEQUENCE:2
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250914T103000Z
 DTEND:20250914T113000Z
 DTSTAMP:20251128T185211Z
 UID:2kk40oqnj52lriki24j0qbi5gd@google.com
 SEQUENCE:1
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -550,36 +547,35 @@ DTSTAMP:20251128T185211Z
 UID:70pj6or16sojibb36sr62b9kcoqj8bb26tgj6b9h75i30eb371i3ccr3c8@google.com
 SEQUENCE:3
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250818T103000Z
 DTEND:20250818T113000Z
 DTSTAMP:20251128T185211Z
 UID:cpijgo9gchhj0bb56hgmcb9k6srm6b9pc8q3ebb664rj2e1gcopmcopo6s@google.com
 SEQUENCE:4
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Walk
+SUMMARY:Walking
 DTSTART:20250905T183000Z
 DTEND:20250905T203000Z
 DTSTAMP:20251128T185211Z
 UID:ckrj4phncoq3ibb670sj2b9k6csj2bb16gs38b9l6pijapb16sp30e1mck@google.com
 SEQUENCE:2
 CREATED:20251117T204014Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -592,8 +588,8 @@ DTSTAMP:20251128T185211Z
 UID:49jo9ejnqgprn2dlpfq5elbtj8@google.com
 SEQUENCE:7
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -606,8 +602,8 @@ DTSTAMP:20251128T185211Z
 UID:5lmlqrsv5fiafh0drsug0u91dj@google.com
 SEQUENCE:6
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -728,8 +724,8 @@ DTSTAMP:20251128T185211Z
 UID:71h62dplcopjeb9i6cr68b9kc5h36bb260rmab9pcopmcd9ocgqj2cj374@google.com
 SEQUENCE:0
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -770,8 +766,8 @@ DTSTAMP:20251128T185211Z
 UID:4tue0vh2ogpjjdsurpafpq9l7m@google.com
 SEQUENCE:11
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -838,8 +834,8 @@ DTSTAMP:20251128T185211Z
 UID:69ea6po3joevv1bhlj7btg38k5@google.com
 SEQUENCE:3
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -880,8 +876,8 @@ DTSTAMP:20251128T185211Z
 UID:102soej08vvdv21kia0bddo4v6@google.com
 SEQUENCE:3
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -921,22 +917,21 @@ DTSTAMP:20251128T185211Z
 UID:6or34c9jcgq68b9hcop3ab9k68r68b9o6or64b9m6di3ge9m6hh3cob56k@google.com
 SEQUENCE:35
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:pushup
+SUMMARY:PT 10
 DTSTART:20251107T144500Z
 DTEND:20251107T151500Z
 DTSTAMP:20251128T185211Z
 UID:4nq4om9k8bjed0hjnskq3ruvfp@google.com
 SEQUENCE:4
 CREATED:20251117T204013Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1002,8 +997,8 @@ DTSTAMP:20251128T185211Z
 UID:cdi3eeb5ccrjcbb261h3ib9k74sj4b9oc4sm8bb561ij6opm6kqjedr360@google.com
 SEQUENCE:7
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1075,15 +1070,14 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Walk
+SUMMARY:Walking
 DTSTART:20251020T163000Z
 DTEND:20251020T183000Z
 DTSTAMP:20251128T185211Z
 UID:1j0ghucl8b09evtkfa8nbcbobk@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1096,8 +1090,8 @@ DTSTAMP:20251128T185211Z
 UID:3pge3a45985lnbvpbottv8qrjs@google.com
 SEQUENCE:1
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1117,15 +1111,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20251019T093000Z
 DTEND:20251019T103000Z
 DTSTAMP:20251128T185211Z
 UID:2omd785md2udb7ju76tspoa855@google.com
 SEQUENCE:3
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1158,15 +1152,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250809T123000Z
 DTEND:20250809T133000Z
 DTSTAMP:20251128T185211Z
 UID:3fdvscvftu6a5jsucjda4o4tto@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1193,8 +1187,8 @@ DTSTAMP:20251128T185211Z
 UID:1h0a76rva2l97u6npbb9qlqloc@google.com
 SEQUENCE:3
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1213,15 +1207,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250819T103000Z
 DTEND:20250819T113000Z
 DTSTAMP:20251128T185211Z
 UID:3u4bm36g00buhlm9ge3lkmfe4q@google.com
 SEQUENCE:42
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1282,15 +1276,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250812T123000Z
 DTEND:20250812T133000Z
 DTSTAMP:20251128T185211Z
 UID:0tq4c20iknireeeu2j1mof4gtu@google.com
 SEQUENCE:1
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1303,8 +1297,8 @@ DTSTAMP:20251128T185211Z
 UID:75fk885djj2aqroalbm1k1n9cs@google.com
 SEQUENCE:2
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1344,8 +1338,8 @@ DTSTAMP:20251128T185211Z
 UID:5keh7k2vac5hqotc8ksgt4t1e3@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1358,8 +1352,8 @@ DTSTAMP:20251128T185211Z
 UID:3mlm7dbp14t38h7cv8268nqnt8@google.com
 SEQUENCE:3
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1442,8 +1436,8 @@ DTSTAMP:20251128T185211Z
 UID:25ajt7dse9jhvp269msrn9gdg3@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1530,15 +1524,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250811T164500Z
 DTEND:20250811T174500Z
 DTSTAMP:20251128T185211Z
 UID:4onov2ri5ta5a888jjfmqo6k29@google.com
 SEQUENCE:0
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1571,15 +1565,15 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Brave New World
+SUMMARY:Brave new world
 DTSTART:20250810T123000Z
 DTEND:20250810T133000Z
 DTSTAMP:20251128T185211Z
 UID:0qm8a40g83ob63q0r4j7m21rt8@google.com
 SEQUENCE:1
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: brave new world\ntags: book\, novel\nd
- ifficulty: 2\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
+ ty: 2\nTags: sci-fi
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1625,15 +1619,14 @@ STATUS:CONFIRMED
 TRANSP:OPAQUE
 END:VEVENT
 BEGIN:VEVENT
-SUMMARY:Walk
+SUMMARY:Walking
 DTSTART:20250904T113000Z
 DTEND:20250904T133000Z
 DTSTAMP:20251128T185211Z
 UID:7hj1et3ofb02hrkvb07tjvd62f@google.com
 SEQUENCE:7
 CREATED:20251117T204014Z
-DESCRIPTION:area: workout\nproject: \ntags: workout\ndifficulty: 2\ndetail
- :
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1673,8 +1666,8 @@ DTSTAMP:20251128T185211Z
 UID:3mf3al20u369v29is19vsf4spj@google.com
 SEQUENCE:1
 CREATED:20251117T204013Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1687,8 +1680,8 @@ DTSTAMP:20251128T185211Z
 UID:6hh62dj3ccsjib9o6di62b9kcop64b9p6or3ibb460rmadj4cgsj8cpn6k@google.com
 SEQUENCE:16
 CREATED:20251117T204014Z
-DESCRIPTION:area: reading\nproject: a fraction of the whole\ntags: book\, 
- novel\ndifficulty: 3\ndetail:
+DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
+ Difficulty: 2
 LAST-MODIFIED:20251117T204015Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
