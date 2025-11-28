@@ -57,6 +57,7 @@ class EventModel:
             dtend TEXT NOT NULL,
             duration REAL NOT NULL,
             area TEXT,
+            type TEXT,
             project TEXT,
             difficulty TEXT,
             detail TEXT,
@@ -67,12 +68,12 @@ class EventModel:
         self.db.execute(sql)
 
 
-    def insert(self, calendar_id, summary, dtstart, dtend, duration, area, project, difficulty, detail):
+    def insert(self, calendar_id, summary, dtstart, dtend, duration, area, type, project, difficulty, detail):
         sql = """
-            INSERT INTO events (calendar_id, summary, dtstart, dtend, duration, area, project, difficulty, detail)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO events (calendar_id, summary, dtstart, dtend, duration, area, type, project, difficulty, detail)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """
-        self.db.execute(sql, (calendar_id, summary, dtstart, dtend, duration, area, project, difficulty, detail))
+        self.db.execute(sql, (calendar_id, summary, dtstart, dtend, duration, area, type, project, difficulty, detail))
         return self.db.cursor.lastrowid
 
 

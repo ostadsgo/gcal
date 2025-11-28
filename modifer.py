@@ -103,33 +103,8 @@ def calendar_meta_data(cal, new_cal):
             new_cal.add(prop_name, prop_value)
     return new_cal
 
-def add_description(cal_name, filename):
-    cal = read_calendar(cal_name)
-    new_cal = Calendar()
-    description = [
-        "Area:",
-        "Project:",
-        "Tags:",
-        "Difficulty:",
-        "Detail:",
 
-    ]
-    description = "\n".join(description)
-
-    x = []
-    for component in cal.walk():
-        if component.name == "VEVENT":
-            new_event = copy.deepcopy(component)
-            if component.get("description") is None:
-                print(component.get("summary"))
-
-            # new_event["description"] = description
-            # new_cal.add_component(new_event)
-
-    # create_calendar(filename, new_cal)
-
-def calendar_walk(cal_name, keywords, data, filename):
-    cal = read_calendar(cal_name)
+def calendar_modify(cal, keywords, data, filename):
     new_cal = Calendar()
     count = 0
 
@@ -147,13 +122,12 @@ def calendar_walk(cal_name, keywords, data, filename):
                 new_cal.add_component(component)
 
     print(f"Changed: {count}")
-    # create_calendar(filename, new_cal)
+    return new_cal
 
 
 def delete_span_br(cal_name, filename):
     cal = read_calendar(cal_name)
     new_cal = Calendar()
-    # new_cal = calendar_meta_data(cal, new_cal)
     count = 0
 
     for component in cal.walk():
@@ -161,7 +135,7 @@ def delete_span_br(cal_name, filename):
             description = component.get("description")
             new_event = copy.deepcopy(component)
             if description:
-                clean_description = description.lower().replace("<span>", "").replace("</span>", "").replace("<br>", "\n").replace("br>", "\n").replace("none", "").strip()
+                clean_description = description.lower().replace("<span>", "").replace("</span>", "").replace("<br>", "\\n").replace("br>", "\\n").replace("none", "").strip()
                 new_event["description"] = clean_description
                 new_cal.add_component(new_event)
                 count += 1
@@ -172,33 +146,61 @@ def delete_span_br(cal_name, filename):
     print("Description Changed:", count)
 
 
-def modify():
-    description = [
-        "Area: Reading",
-        "Project: Crime and Punishment",
-        "Tags: pt10",
-        "Difficulty: 1",
-        "Detail:",
+def all_unique_events(cal):
+    events = {}
 
+    for component in cal.walk():
+        if component.name == "VEVENT":
+            summary = component["summary"]
+            if summary in events:
+                events[summary] += 1
+            else:
+                events[summary] = 1
+
+    for summary, count in events.items():
+        print(summary, count)
+
+def print_description(cal_file_name, summary):
+    cal = read_calendar(cal_file_name)
+    for component in cal.walk():
+        if component.name == "VEVENT":
+            event_summary = component["summary"]
+            if event_summary.lower() == summary.lower():
+                print(component.get("description", "no description"))
+                break
+
+
+
+
+def modify_description(cal):
+    pass
+
+
+def modify_by_summary(cal):
+    description = [
+        "Area: Fitness",
+        "Type: Workout",
+        "Difficulty: 4",
     ]
     data = {
         "summary": "PT 10",
         "description": "\n".join(description),
     }
 
-    keywords = ["workout"]
+    keywords = ["pt 10"]
 
-    # add_description("Saeed.ics", "temp.ics")
-    # calendar_walk("Growth.ics", keywords, data, "temp.ics")
-    # print_summary("temp.ics")
-
+    # new_cal_file_name = "growth.ics"
+    # new_cal = calendar_modify(cal, keywords, data, new_cal_file_name)
+    # create_calendar(new_cal_file_name, new_cal)
+    # print_description(new_cal_file_name, data.get("summary"))
+    all_unique_events(cal)
 
 
 
 def main():
 
     # extract to get calendars file --
-    unzip_to_calendars("/home/saeed//dwl/saeed.ghollami@gmail.com.ical.zip") 
+    # unzip_to_calendars("/home/saeed//dwl/saeed.ghollami@gmail.com.ical.zip") 
 
     # -- rename calendars file -- 
     rename_calendars()
@@ -206,33 +208,34 @@ def main():
     #
     # # -- calendars
     growth = read_calendar("growth.ics")
-    work = read_calendar("work.ics")
-    saeed = read_calendar("saeed.ics")
-    study = read_calendar("study.ics")
+    modify_by_summary(growth)
+    # work = read_calendar("work.ics")
+    # saeed = read_calendar("saeed.ics")
+    # study = read_calendar("study.ics")
     # #
     # # # -- delete span and br *MUST FIRST*
-    delete_span_br("work.ics", "work.ics")
-    delete_span_br("saeed.ics", "saeed.ics")
-    delete_span_br("growth.ics", "growth.ics")
-    delete_span_br("study.ics", "study.ics")
+    # delete_span_br("work.ics", "work.ics")
+    # delete_span_br("saeed.ics", "saeed.ics")
+    # delete_span_br("growth.ics", "growth.ics")
+    # delete_span_br("study.ics", "study.ics")
     # #
     # # -- fix time zone --
-    fix_timezone_in_ics("growth.ics", "growth.ics")
-    fix_timezone_in_ics("work.ics", "work.ics")
-    fix_timezone_in_ics("saeed.ics", "saeed.ics")
-    fix_timezone_in_ics("study.ics", "study.ics")
+    # fix_timezone_in_ics("growth.ics", "growth.ics")
+    # fix_timezone_in_ics("work.ics", "work.ics")
+    # fix_timezone_in_ics("saeed.ics", "saeed.ics")
+    # fix_timezone_in_ics("study.ics", "study.ics")
+    # #
+    # # # -- Add extra fields ---
+    # add_calendar_name(growth, "growth")
+    # add_calendar_name(work, "work")
+    # add_calendar_name(study, "study")
+    # add_calendar_name(saeed, "saeed")
     #
-    # # -- Add extra fields ---
-    add_calendar_name(growth, "growth")
-    add_calendar_name(work, "work")
-    add_calendar_name(study, "study")
-    add_calendar_name(saeed, "saeed")
-
-    # # # # -- add colors
-    add_calendar_color(growth, "#A479B1")
-    add_calendar_color(work, "#489160")
-    add_calendar_color(study, "#4B99D2")
-    add_calendar_color(saeed, "#7C7C7C")
+    # # # # # -- add colors
+    # add_calendar_color(growth, "#A479B1")
+    # add_calendar_color(work, "#489160")
+    # add_calendar_color(study, "#4B99D2")
+    # add_calendar_color(saeed, "#7C7C7C")
 
 
 

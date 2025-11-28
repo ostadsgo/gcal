@@ -29,8 +29,8 @@ def check_file_path(file_path):
 
 
 def parse_event_metadata(description):
-    keys = ['area', 'project', 'tags', 'difficulty', 'detail']
-    values = [None, None, [], None, None]
+    keys = ['area', "type", 'project', 'tags', 'difficulty', 'detail']
+    values = [None, None, None, [], None, None]
     metadata = dict(zip(keys, values))
 
     if not description:
@@ -53,6 +53,8 @@ def parse_event_metadata(description):
         
         if key == 'area':
             metadata['area'] = value
+        elif key == 'type':
+            metadata['type'] = value
         elif key == 'project':
             metadata['project'] = value
         elif key == 'tags':
@@ -114,6 +116,7 @@ class ICSParser:
                     'dtend': dtend.isoformat(),
                     'duration': duration,
                     'area': metadata['area'],
+                    'type': metadata['type'],
                     'project': metadata['project'],
                     'tags': metadata['tags'],
                     'difficulty': metadata['difficulty'],
@@ -186,6 +189,7 @@ class ICSImporter:
                     dtend=event['dtend'],
                     duration=event['duration'],
                     area=event['area'],
+                    type=event['type'],
                     project=event['project'],
                     difficulty=event['difficulty'],
                     detail=event['detail']
