@@ -1,6 +1,4 @@
 BEGIN:VCALENDAR
-NAME:growth
-COLOR:#A479B1
 BEGIN:VEVENT
 SUMMARY:A fraction of the whole
 DTSTART:20250129T150000
@@ -10,7 +8,7 @@ UID:49jo9ejnqgprn2dlpfq5elbtj8@google.com
 SEQUENCE:7
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -23,7 +21,7 @@ DTSTAMP:20251129T010134Z
 UID:6gr3acpo6koj0b9i6cpj4b9kcopj0bb16osm8bb2c9h62e1o6co6cdpg68@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Leisure\nTags: phone\ndifficulty: 2\
+DESCRIPTION:Area: Leisure\nTags: phone\ndifficulty: 2\\\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
@@ -36,7 +34,7 @@ DTSTAMP:20251129T010134Z
 UID:24a82ihl9865fregcfcqd96pgd@google.com
 SEQUENCE:5
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -50,7 +48,7 @@ UID:0tq4c20iknireeeu2j1mof4gtu@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -64,7 +62,7 @@ UID:69ea6po3joevv1bhlj7btg38k5@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -78,7 +76,7 @@ UID:2ijd1jroqh8q41ft3klkiolt4u@google.com
 SEQUENCE:5
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -92,7 +90,7 @@ UID:3tskibc4jjdpi0l8r5s5gl4sbh@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -106,7 +104,7 @@ UID:6sp576c3m7jfjbacjrrcesgb3l@google.com
 SEQUENCE:10
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -119,7 +117,7 @@ DTSTAMP:20251129T010134Z
 UID:5qd4v6s33qib4tmj3eta6lm0c7@google.com
 SEQUENCE:9
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -133,7 +131,7 @@ UID:3j20plfajapp241a51vm8k6dna@google.com
 SEQUENCE:0
 CREATED:20251129T002557Z
 DESCRIPTION:Area: Learning\nType: Documentary\nTags: science\nDifficulty: 
- 3
+ 3\n
 LAST-MODIFIED:20251129T010018Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -146,7 +144,7 @@ DTSTAMP:20251129T010134Z
 UID:5jcjd9rj4j695ivu51h61q1sqh@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -160,7 +158,7 @@ UID:6gb6p21c1fjcbfh26q5vkvrj5t@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -174,7 +172,7 @@ UID:0tlqusa26om5h4d7a8pjjgu3lk@google.com
 SEQUENCE:2
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -188,7 +186,7 @@ UID:3rgi3d4cuf12qmvkqsp6855jko@google.com
 SEQUENCE:0
 CREATED:20251129T002557Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A fraction of the whole\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T005744Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -202,7 +200,7 @@ UID:5lmlqrsv5fiafh0drsug0u91dj@google.com
 SEQUENCE:6
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -215,7 +213,7 @@ DTSTAMP:20251129T010134Z
 UID:3qujcbj1ou5do6umugfraq8ml2@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -229,7 +227,7 @@ UID:4onov2ri5ta5a888jjfmqo6k29@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -243,7 +241,7 @@ UID:c9i6ccj261hmcb9i6dhjgb9k6krjib9oclim2b9kc4q64dr3ckojecr3cc@google.com
 SEQUENCE:15
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -257,7 +255,7 @@ UID:ckoj2cb16oo3gb9j69j3ab9k64p30b9ocph6cbb2cdj32phj6tij6or56c@google.com
 SEQUENCE:4
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -271,7 +269,7 @@ UID:3u4bm36g00buhlm9ge3lkmfe4q@google.com
 SEQUENCE:42
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -284,7 +282,7 @@ DTSTAMP:20251129T010134Z
 UID:7gf638iq35q0cbf61cotllpp43@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -297,7 +295,7 @@ DTSTAMP:20251129T010134Z
 UID:cdi6adpmcgs6cbb26kqmcb9k74s6cbb1cdi3cb9gc9hj2eb36dj38cpo6k@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Reading\nType: Article\nDifficulty: 3\nTags: fp
+DESCRIPTION:Area: Reading\nType: Article\nDifficulty: 3\nTags: fp\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -310,7 +308,7 @@ DTSTAMP:20251129T010134Z
 UID:2k644esplfd1mhjftouihj5phf@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -323,7 +321,7 @@ DTSTAMP:20251129T010134Z
 UID:57m4u6qr7pllc9dbh7dbj6mv4r@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -336,7 +334,7 @@ DTSTAMP:20251129T010134Z
 UID:ckrjeohkc4sjebb66lj6ab9k68o3ab9o74o36b9gc8p66dhp68p3adr4cc@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -350,7 +348,7 @@ UID:25ajt7dse9jhvp269msrn9gdg3@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -364,7 +362,7 @@ UID:0nsaibnlh9uooqg960eag272fn@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -378,7 +376,7 @@ UID:3mlm7dbp14t38h7cv8268nqnt8@google.com
 SEQUENCE:3
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -392,7 +390,7 @@ UID:3pge3a45985lnbvpbottv8qrjs@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -406,7 +404,7 @@ UID:4atd7n6bleeuvih2qf8fvc8jhc@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -419,7 +417,7 @@ DTSTAMP:20251129T010134Z
 UID:cks64cpjc4ojibb5ckrm8b9k75gm8bb1c4s3ibb5chijcd1l6dh38cr3cc@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -432,7 +430,7 @@ DTSTAMP:20251129T010134Z
 UID:1fuoafpt8hdt66cke299obm9v0@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Personal\nType: Journaling\nDifficulty: 1
+DESCRIPTION:Area: Personal\nType: Journaling\nDifficulty: 1\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -446,7 +444,7 @@ UID:cli3ce33cosm4b9h71j3ib9k65i6abb274pj4b9oc8o30dj2c5i32e9jc4@google.com
 SEQUENCE:7
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -460,7 +458,7 @@ UID:c8p3achn6op62b9lc5j3ab9k6so38b9ochhj8b9m6kq68p1mckqm4phgco@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Poem\nProject: Robayyat Khayyam\nDifficul
- ty: 3
+ ty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -473,7 +471,7 @@ DTSTAMP:20251129T010134Z
 UID:1mdsoo87oer0666mcire6g2r44@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -487,7 +485,7 @@ UID:54slr3j06qsn2kk0c0d6br9boo@google.com
 SEQUENCE:5
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -500,7 +498,7 @@ DTSTAMP:20251129T010134Z
 UID:71s9hdpg5vera01ric1mv3nap3@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -514,7 +512,7 @@ UID:6hh62dj3ccsjib9o6di62b9kcop64b9p6or3ibb460rmadj4cgsj8cpn6k@google.com
 SEQUENCE:16
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -528,7 +526,7 @@ UID:37afmb2c3g17cdk2r9gp68g5nb@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -541,7 +539,7 @@ DTSTAMP:20251129T010134Z
 UID:3nd3ujkv2nqvq5ceqmu12j0e0g@google.com
 SEQUENCE:2
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -554,7 +552,7 @@ DTSTAMP:20251129T010134Z
 UID:697bl3h0d9tcqavrdt12kib2nf@google.com
 SEQUENCE:7
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -567,7 +565,7 @@ DTSTAMP:20251129T010134Z
 UID:2d63auhfupfaqg7a8tp7r1v4lv@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -581,7 +579,7 @@ UID:7bimjpbc40ql8vsu9tvs2fit8l@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -595,7 +593,7 @@ UID:0q96nojevkuaurfdeelkntc168@google.com
 SEQUENCE:2
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -609,7 +607,7 @@ UID:5keh7k2vac5hqotc8ksgt4t1e3@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -623,7 +621,7 @@ UID:370hau8g40sigeqetg29seldit@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -636,7 +634,7 @@ DTSTAMP:20251129T010134Z
 UID:6hh68cb36kq3eb9ickpjcb9k6gq30bb274sj2b9g69ij4d9mclh3aohj6g@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -649,7 +647,7 @@ DTSTAMP:20251129T010134Z
 UID:1j0ghucl8b09evtkfa8nbcbobk@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -662,7 +660,7 @@ DTSTAMP:20251129T010134Z
 UID:ckrj4phncoq3ibb670sj2b9k6csj2bb16gs38b9l6pijapb16sp30e1mck@google.com
 SEQUENCE:2
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -676,7 +674,7 @@ UID:2qs467ccr0o87e7ru0n4jccipo@google.com
 SEQUENCE:6
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -690,7 +688,7 @@ UID:70pj6or16sojibb36sr62b9kcoqj8bb26tgj6b9h75i30eb371i3ccr3c8@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -704,7 +702,7 @@ UID:0qm8a40g83ob63q0r4j7m21rt8@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -718,7 +716,7 @@ UID:6pimccpocco6abb570sm4b9k6os62bb174s34b9o74q6ad1ic8sjgeb36k@google.com
 SEQUENCE:2
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -732,7 +730,7 @@ UID:3mf3al20u369v29is19vsf4spj@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -746,7 +744,7 @@ UID:cdi3eeb5ccrjcbb261h3ib9k74sj4b9oc4sm8bb561ij6opm6kqjedr360@google.com
 SEQUENCE:7
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -760,7 +758,7 @@ UID:75gm4d9l6pgmab9l6gp30b9k70qj0b9p6lj36bb168pj6ohic8oj6or4c8@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -773,7 +771,7 @@ DTSTAMP:20251129T010134Z
 UID:6616thlmqn3o3qtri40ul40f4a@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -787,7 +785,7 @@ UID:c4r32c1i6ks34b9mc4s64b9kc8om4b9p6co64b9o6kq38pj66sojgo9m64@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -800,7 +798,7 @@ DTSTAMP:20251129T010134Z
 UID:259lrd5vcmlg24bc8j5ndeoqfi@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -814,7 +812,7 @@ UID:05i622mu0mb1i1v8hjca2scfjq@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -827,7 +825,7 @@ DTSTAMP:20251129T010134Z
 UID:7hj1et3ofb02hrkvb07tjvd62f@google.com
 SEQUENCE:7
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -841,7 +839,7 @@ UID:4jn1d8ebtjgih1ha8atoinsi8c@google.com
 SEQUENCE:9
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -854,7 +852,7 @@ DTSTAMP:20251129T010134Z
 UID:57u16kqbkt74kf1dh5d13vauc4@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -868,7 +866,7 @@ UID:7to9f92o60aje8qs08emlktna0@google.com
 SEQUENCE:2
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -881,7 +879,7 @@ DTSTAMP:20251129T010134Z
 UID:4vefrthe96pucd71001rrk9l8u@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -895,7 +893,7 @@ UID:cli64p9o6ks3gbb2cpij0b9k6sq64b9pc9hjib9ocoo3copg6srj2e9j6s@google.com
 SEQUENCE:3
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -908,7 +906,7 @@ DTSTAMP:20251129T010134Z
 UID:4nq4om9k8bjed0hjnskq3ruvfp@google.com
 SEQUENCE:4
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -922,7 +920,7 @@ UID:6th3ieb26lh6cbb16gs3eb9k6ks3eb9o6pi36bb16hhmcd1g74rjior264@google.com
 SEQUENCE:7
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -935,7 +933,7 @@ DTSTAMP:20251129T010134Z
 UID:75abkn6njslimjg5j6va3nl5vu@google.com
 SEQUENCE:29
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -948,7 +946,7 @@ DTSTAMP:20251129T010134Z
 UID:42ffglrcfekmi7qov01fultguv@google.com
 SEQUENCE:5
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -961,7 +959,7 @@ DTSTAMP:20251129T010134Z
 UID:7959lvqtjl45at97sh988sce7q@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -975,7 +973,7 @@ UID:6oom6cr574oj0b9o74r3gb9kccpjgb9pccojab9k60r66c9kc8oj6cpocg@google.com
 SEQUENCE:16
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -989,7 +987,7 @@ UID:c5h30c1j74sj0bb660r62b9k6ssm2bb270sjab9p64qm2opl6pi3aohp74@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Poem\nProject: Heydar Baba\nDifficulty: 1
- \nTags: audio-book
+ \nTags: audio-book\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1002,7 +1000,7 @@ DTSTAMP:20251129T010134Z
 UID:69i6ceb464sj0b9kc4pjib9kcli34b9o64rjgbb26gr62e1gccs38d1i68@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2
+DESCRIPTION:Area: Fitness\nType: Walking\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1015,7 +1013,7 @@ DTSTAMP:20251129T010134Z
 UID:3mpkggit64vej4m8kttcl1k38s@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1029,7 +1027,7 @@ UID:6orjip1oc8p30bb269i34b9kckrmabb2c9im4bb36sp38ohl69hjeob16k@google.com
 SEQUENCE:5
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1043,7 +1041,7 @@ UID:ccsjce1o68r6ab9occqj6b9k64om2bb1cph36bb36sr6aob56lj38p9p74@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Poem\nProject: Robayyat Khayyam\nDifficul
- ty: 3
+ ty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1056,7 +1054,7 @@ DTSTAMP:20251129T010134Z
 UID:cdi3ip356kojab9nccsm2b9kc4pjabb1c9j62b9n71gjiob56pgjce9o6o@google.com
 SEQUENCE:8
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1070,7 +1068,7 @@ UID:65ijidhgcks38b9hcpgjib9k69ijebb271i30b9h6so3ge1icgojge9j6c@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1083,7 +1081,7 @@ DTSTAMP:20251129T010134Z
 UID:6mvvmfkbsk18plno4k45gvb6jm@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1096,7 +1094,7 @@ DTSTAMP:20251129T010134Z
 UID:2ejcpke6ho6irsg934ma6jhiv7@google.com
 SEQUENCE:9
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1109,7 +1107,7 @@ DTSTAMP:20251129T010134Z
 UID:6hpmq6uglhljsia0c80nfb6jhe@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1122,7 +1120,7 @@ DTSTAMP:20251129T010134Z
 UID:1dq6mglfqlflaa6ehg956h58kq@google.com
 SEQUENCE:9
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1136,7 +1134,7 @@ UID:71h62dplcopjeb9i6cr68b9kc5h36bb260rmab9pcopmcd9ocgqj2cj374@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1149,7 +1147,7 @@ DTSTAMP:20251129T010134Z
 UID:74q3id336crj2b9g6lijcb9kc9gm2b9p6tim4bb46grmcc1h6cp3icr174@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1163,7 +1161,7 @@ UID:608idg1iffn3ivqd7nr4mbq0p3@google.com
 SEQUENCE:5
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1176,7 +1174,7 @@ DTSTAMP:20251129T010134Z
 UID:6tj64dpicoo64bb66cqj0b9kc4rj2bb261h30b9l6gsjcc1gcgsm4d3168@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Chore\nType: Car\nDifficulty: 3
+DESCRIPTION:Area: Chore\nType: Car\nDifficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1190,7 +1188,7 @@ UID:75fk885djj2aqroalbm1k1n9cs@google.com
 SEQUENCE:2
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1204,7 +1202,7 @@ UID:76v6jmf5b1onosavuvtr3mk6rg@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Poem\nProject: Robayyat Khayyam\nDifficul
- ty: 3
+ ty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1217,7 +1215,7 @@ DTSTAMP:20251129T010134Z
 UID:2oi6bgbuch770phuepcapn3gjq@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1230,7 +1228,7 @@ DTSTAMP:20251129T010134Z
 UID:4djf2qbma0e4l0m3p32n6v5dmf@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1243,7 +1241,7 @@ DTSTAMP:20251129T010134Z
 UID:5efjqodj6ec54uekk3iq123aqq@google.com
 SEQUENCE:3
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Chore\nType: Car\nDifficulty: 3
+DESCRIPTION:Area: Chore\nType: Car\nDifficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1256,7 +1254,7 @@ DTSTAMP:20251129T010134Z
 UID:3bkl8t3gkacis5e0ag5rs43bb5@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1270,7 +1268,7 @@ UID:6spj4e326gq64b9o6lgjgb9k74sm2b9pc8sj6b9j70pjcp9k6ko6acb474@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1284,7 +1282,7 @@ UID:50n08f0am9bv1sd8c145k1usv1@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1298,7 +1296,7 @@ UID:5g58pnkrggg9p6m2i3gbuf7232@google.com
 SEQUENCE:6
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1312,7 +1310,7 @@ UID:60o34cb2ccr36b9icksjgb9k6kojib9ocgp6ab9m69j3cob4cos68cpm6k@google.com
 SEQUENCE:2
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1325,7 +1323,7 @@ DTSTAMP:20251129T010134Z
 UID:68ojcphjc5gj6bb1corm6b9kc4o3gbb16gq62b9g68o62o9m60p32or174@google.com
 SEQUENCE:12
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1339,7 +1337,7 @@ UID:2omd785md2udb7ju76tspoa855@google.com
 SEQUENCE:3
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1352,7 +1350,7 @@ DTSTAMP:20251129T010134Z
 UID:5qjrmrqbbur04n7imrp6pr4ae0@google.com
 SEQUENCE:2
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1365,7 +1363,7 @@ DTSTAMP:20251129T010134Z
 UID:36g7chjri9kciaue5ftfv7lf5t@google.com
 SEQUENCE:3
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1378,7 +1376,7 @@ DTSTAMP:20251129T010134Z
 UID:4b4bsoftdaq4sgpplgrvqvlqui@google.com
 SEQUENCE:5
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1392,7 +1390,7 @@ UID:4tue0vh2ogpjjdsurpafpq9l7m@google.com
 SEQUENCE:11
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1406,7 +1404,7 @@ UID:3fdvscvftu6a5jsucjda4o4tto@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1420,7 +1418,7 @@ UID:69j68c9n74ojib9k60pmab9k71j62bb274o3ebb670p32e1gchj68phn6s@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1433,7 +1431,7 @@ DTSTAMP:20251129T010134Z
 UID:52pgckp4ktlo2qrmire5v98mh3@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Chore\nType: Car\nDifficulty: 3
+DESCRIPTION:Area: Chore\nType: Car\nDifficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1447,7 +1445,7 @@ UID:64om8eb261j38b9o68qj6b9k6gs6cbb2c4o64b9o61i66dj461hjed1l6o@google.com
 SEQUENCE:11
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1460,7 +1458,7 @@ DTSTAMP:20251129T010134Z
 UID:7ab4j0qggcg2o4se1nsk8pg7ol@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1473,7 +1471,7 @@ DTSTAMP:20251129T010134Z
 UID:32m5t9fmrqbpvugsjqtcu0a1v9@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Documentary\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1486,7 +1484,7 @@ DTSTAMP:20251129T010134Z
 UID:41painm5f3l6rnrnh4n5fll5oe@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1500,7 +1498,7 @@ UID:6sa6bsd84ghhmbbhofp7q482u0@google.com
 SEQUENCE:4
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Crime and Punishment\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1513,7 +1511,7 @@ DTSTAMP:20251129T010134Z
 UID:5ml7cebt2fcuejh8bp9tbih7mn@google.com
 SEQUENCE:17
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Running\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Running\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1527,7 +1525,7 @@ UID:5sbui4l5qh4fkj1j0me1fjnmp6@google.com
 SEQUENCE:19
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1541,7 +1539,7 @@ UID:1g64gqltvg5sv08l8rt3mccq78@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1554,7 +1552,7 @@ DTSTAMP:20251129T010134Z
 UID:6hvok5bjle3ldnklc98892m4kv@google.com
 SEQUENCE:1
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1568,7 +1566,7 @@ UID:65hm6cpic9j3abb375ijeb9kcgojeb9pcgqj2b9m6gs32pj570p62c9jck@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1582,7 +1580,7 @@ UID:105iaptd59vm7c6qllloijgrse@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1595,7 +1593,7 @@ DTSTAMP:20251129T010134Z
 UID:64d5kpigp2mconp0m818c7hn1j@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Personal\nType: Journaling\nDifficulty: 1
+DESCRIPTION:Area: Personal\nType: Journaling\nDifficulty: 1\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1608,7 +1606,7 @@ DTSTAMP:20251129T010134Z
 UID:6gqj2dpi6hhjab9l6cs66b9k6sr68bb264o62b9h6ssjge32c8rjgo9gco@google.com
 SEQUENCE:0
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Learning\nType: Podcast\nDifficulty: 2
+DESCRIPTION:Area: Learning\nType: Podcast\nDifficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1621,7 +1619,7 @@ DTSTAMP:20251129T010134Z
 UID:1pihkhasaurd0e3ni0kkhmedgb@google.com
 SEQUENCE:5
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224835Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1635,7 +1633,7 @@ UID:01bqkqgndcn88jibjrd079f2ga@google.com
 SEQUENCE:4
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Leisure\nType: Music\nDifficulty: 2\nTags: symphony\, cl
- assical
+ assical\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1648,7 +1646,7 @@ DTSTAMP:20251129T010134Z
 UID:7jonk6o0go0lgnq4eg6numpq5l@google.com
 SEQUENCE:0
 CREATED:20251128T224732Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1661,7 +1659,7 @@ DTSTAMP:20251129T010134Z
 UID:6cpj4db16krj8bb5chj3eb9k6gpj8bb2cko3ab9mchim8dpkcgqjgcpk68@google.com
 SEQUENCE:2
 CREATED:20251128T224731Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1675,7 +1673,7 @@ UID:2kk40oqnj52lriki24j0qbi5gd@google.com
 SEQUENCE:1
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1689,7 +1687,7 @@ UID:6or34c9jcgq68b9hcop3ab9k68r68b9o6or64b9m6di3ge9m6hh3cob56k@google.com
 SEQUENCE:35
 CREATED:20251128T224731Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1702,7 +1700,7 @@ DTSTAMP:20251129T010134Z
 UID:1ulqvb41elhg25lcjs9ctbnvjj@google.com
 SEQUENCE:8
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Running\nDifficulty: 3
+DESCRIPTION:Area: Fitness\nType: Running\nDifficulty: 3\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1715,7 +1713,7 @@ DTSTAMP:20251129T010134Z
 UID:2g30vhh4t4pe34g9q5arkqophu@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1728,7 +1726,7 @@ DTSTAMP:20251129T010134Z
 UID:34khe6rhvpaj9kiqo3g0fj9uj4@google.com
 SEQUENCE:0
 CREATED:20251128T224730Z
-DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4
+DESCRIPTION:Area: Fitness\nType: Workout\nDifficulty: 4\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1742,7 +1740,7 @@ UID:1bagpeflrkst6bdf34gk1qhbv0@google.com
 SEQUENCE:2
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1756,7 +1754,7 @@ UID:102soej08vvdv21kia0bddo4v6@google.com
 SEQUENCE:3
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1770,7 +1768,7 @@ UID:cpijgo9gchhj0bb56hgmcb9k6srm6b9pc8q3ebb664rj2e1gcopmcopo6s@google.com
 SEQUENCE:4
 CREATED:20251128T224732Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: Brave New World\nDifficul
- ty: 2\nTags: sci-fi
+ ty: 2\nTags: sci-fi\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1784,7 +1782,7 @@ UID:1h0a76rva2l97u6npbb9qlqloc@google.com
 SEQUENCE:3
 CREATED:20251128T224730Z
 DESCRIPTION:Area: Reading\nType: Novel\nProject: A Fraction of the Whole\n
- Difficulty: 2
+ Difficulty: 2\n
 LAST-MODIFIED:20251128T224733Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE

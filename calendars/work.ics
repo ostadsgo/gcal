@@ -7,7 +7,7 @@ DTSTAMP:20251129T010134Z
 UID:3oe97klfjsptih20kbmgq42pno@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -21,7 +21,7 @@ UID:6m4p3fl2nlk6eni7re0upltj0n@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -34,7 +34,7 @@ DTSTAMP:20251129T010134Z
 UID:0q5ltvvarj8lbgnqd65uk6a8ok@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -48,7 +48,7 @@ UID:4jtiniejtek4lettvg2k34cnq3@google.com
 SEQUENCE:2
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -61,7 +61,7 @@ DTSTAMP:20251129T010134Z
 UID:1ke7bvhs7d3k89pvs4crvht1av@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -74,7 +74,7 @@ DTSTAMP:20251129T010134Z
 UID:0jpsr8ffcjc5olbohbsul5l30v@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -87,7 +87,7 @@ DTSTAMP:20251129T010134Z
 UID:04q4pu7nimd7fv2h60ttsmv1t4@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -101,7 +101,7 @@ UID:ccr6acr260sj8bb46hgm8b9k70r3ab9ockq64bb2chij0d1p68o36c3674@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -114,7 +114,7 @@ DTSTAMP:20251129T010134Z
 UID:0mu4gpgloqlo0nhnm1fejb4skl@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -127,8 +127,8 @@ DTSTAMP:20251129T010134Z
 UID:3mpagtjfs0dl62pnob9o8b2kb2@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
-DESCRIPTION:\n\n\nArea: Dev\nProject: Django Ecom\nTags: python\, django\n
- Difficulty: 3\nDetail:Â
+DESCRIPTION:Area: Dev\nProject: Django Ecom\nTags: python\, django\nDiffic
+ ulty: 3\nDetail: Â\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -142,7 +142,7 @@ UID:74s62ob56gqj8b9gc8pm8b9k6csm2b9p68p3ib9n70r34dhi71gm8cpp6k@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -156,7 +156,7 @@ UID:7v5pgd1jh06stpe05i90lh95s1@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -169,7 +169,7 @@ DTSTAMP:20251129T010134Z
 UID:6soj8c9ocor3gb9j74p66b9kcko6abb26lhmabb270rj8d1lcpijed9l6k@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -183,7 +183,7 @@ UID:c8sj8p9k6ks3abb16com2b9k68q6ab9o74s3gb9g68p62cpi75gmac356s@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -197,7 +197,7 @@ UID:2m4a74kmi9o6prquje3esoo7ok@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -210,7 +210,7 @@ DTSTAMP:20251129T010134Z
 UID:445rfenvccpu7hbd5hh2d4k6l4@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -223,7 +223,7 @@ DTSTAMP:20251129T010134Z
 UID:5r15gse192fbngk4406tp2rbo7@google.com
 SEQUENCE:10
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -237,7 +237,7 @@ UID:7b9al68l2i4a6aac7r1j2er4ko@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -250,8 +250,8 @@ DTSTAMP:20251129T010134Z
 UID:1uim4hrj140ql4idkitmu9mshb@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nProject:\nTags: telegramÂ \nDifficulty: 2\nDe
- tail:Â  Â \n
+DESCRIPTION:Area: Content\nTags: telegramÂ\nDifficulty: 2\nDetail: Â  
+ Â\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -265,7 +265,7 @@ UID:1qr3oda8ihjo90392g12co6fok@google.com
 SEQUENCE:0
 RRULE:FREQ=WEEKLY;UNTIL=20211208T075959Z;BYDAY=MO,WE;WKST=SU
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 LOCATION:https://join.skype.com/0x7ve6PhLTbO
 STATUS:CONFIRMED
@@ -281,7 +281,7 @@ UID:2s5lp1d0qtkr66k32gntlu3rnq@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -295,7 +295,7 @@ UID:65q6gj0ed3djpqrr40n65poeva@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -309,7 +309,7 @@ UID:1oergfm237ctf7e16iqindarlm@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -323,7 +323,7 @@ UID:26bg518kto57p050afegda0boe@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -336,7 +336,7 @@ DTSTAMP:20251129T010134Z
 UID:3btr4ojhboic8bjirb8apv1a91@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -349,7 +349,7 @@ DTSTAMP:20251129T010134Z
 UID:6tgjiohk6crjabb56orjcb9k61hmab9p74p30bb370rjipb6ccpmadb66k@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -362,7 +362,7 @@ DTSTAMP:20251129T010134Z
 UID:75i3gc1n74q30b9mckp3ab9kc4qm6b9o6dhjgb9lccojge1n70r68dr6cc@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -381,7 +381,7 @@ UID:4kq13ljped26eavhvff171gjve@google.com
 SEQUENCE:2
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -394,7 +394,7 @@ DTSTAMP:20251129T010134Z
 UID:733gbeu46tj47j112nl1429iub@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Dev\nTags: flet\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: flet\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -407,7 +407,7 @@ DTSTAMP:20251129T010134Z
 UID:3hoj02njnkinmio7qdqn0ljscv@google.com
 SEQUENCE:13
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -420,7 +420,7 @@ DTSTAMP:20251129T010134Z
 UID:ckq3ap9ocgr34b9kc5h62b9k64qj6bb2cpi64b9p6csjie1p6ph66cr36s@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -433,7 +433,7 @@ DTSTAMP:20251129T010134Z
 UID:6gqjgc1hc8om8bb56gr6ab9k6or6abb16sq64b9k68om8d9icoomcp346s@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -447,7 +447,7 @@ UID:3dspfiji26bhhk5ug10fnlt9ba@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -461,7 +461,7 @@ UID:7qlf6krietqud9ivkjbpo3vcml@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -474,7 +474,7 @@ DTSTAMP:20251129T010134Z
 UID:77s8mkk01tsr42v5fobnit7bh2@google.com
 SEQUENCE:6
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -488,7 +488,7 @@ UID:15ed4gsprahenpccv2p47eoje9@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -501,7 +501,7 @@ DTSTAMP:20251129T010134Z
 UID:1l4j666hr7n0h08eq2ucribav9@google.com
 SEQUENCE:2
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -514,7 +514,7 @@ DTSTAMP:20251129T010134Z
 UID:71j3go9gcdh3gb9oc4p3gb9kc4q34bb2chgjgbb3cop6cdpi6ks64p9m6c@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -528,7 +528,7 @@ UID:176csch9st0eams40kcabfo6cr@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -541,7 +541,7 @@ DTSTAMP:20251129T010134Z
 UID:7nhns1amovncvspubkaetf7o7k@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -555,7 +555,7 @@ UID:4740hbc02t82kbu227ch100emj@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -569,7 +569,7 @@ UID:coo6cdb3cop34bb168pm6b9k6pgm6b9pc4oj0b9hclj66d36c8p34db2ck@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -583,7 +583,7 @@ UID:305qef4o9udhhogdn395a4gea8@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -597,7 +597,7 @@ UID:2s767168skd5utbl7p9fgg62jf@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -610,7 +610,7 @@ DTSTAMP:20251129T010134Z
 UID:6d8996tkv9ku04t3vqess7lj5f@google.com
 SEQUENCE:3
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -624,7 +624,7 @@ UID:cph36d31ccqm8b9j6dhjgb9k6krm2bb2cdh3ib9k60o30c9h6tj36cpn74@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -638,7 +638,7 @@ UID:10hc41h5egb4t617c4a7c19757@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -652,7 +652,7 @@ UID:4e69i1jnokc9updc4i4fu020fe@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -666,7 +666,7 @@ UID:24ltn30gilj278cedsatq9i0d2@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -680,7 +680,7 @@ UID:6483ghg6fmnmrf1730geqbv7hm@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -694,7 +694,7 @@ UID:7gknovh30rot8ojb92vusoqbuj@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -708,7 +708,7 @@ UID:5kcmubsshb2c8u5hb7df3lamn1@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -722,7 +722,7 @@ UID:2ld7ortlpfst56ov5v7or5nq15@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -735,7 +735,7 @@ DTSTAMP:20251129T010134Z
 UID:57fjlh6jsj82jgbdgbf6hkfpgm@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -749,7 +749,7 @@ UID:70sjaor568rjab9m6hgm4b9kc5j38b9pcos6cb9ncdi3gcb66lgj4c9j68@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -762,7 +762,7 @@ DTSTAMP:20251129T010134Z
 UID:28o14rn84907fcnodvdv4620ci@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -777,7 +777,7 @@ SEQUENCE:0
 RRULE:FREQ=DAILY;COUNT=7
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -791,7 +791,7 @@ UID:08nt1pfonaq1j18ktgu9h0dpmq@google.com
 SEQUENCE:2
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -805,7 +805,7 @@ UID:c4pj6eb6coo66b9m60s66b9k6gsm8b9pc4q36bb361ijcdr6cpj64opi6g@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -818,7 +818,7 @@ DTSTAMP:20251129T010134Z
 UID:6os62d1p64s68b9h6gq62b9kc4pm6bb16ko3gb9k69i62o9o68s3cob46c@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -832,7 +832,7 @@ UID:50kn4qqbev31j9rl9j16jf5fvj@google.com
 SEQUENCE:10
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -846,7 +846,7 @@ UID:6lgj8d1ockpj2b9j74o38b9kc8qm2bb26limcbb16di66p9ncgq66d9ncg@google.com
 SEQUENCE:6
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -859,7 +859,7 @@ DTSTAMP:20251129T010134Z
 UID:6kpj4p1l6lim2b9h6kq6ab9k60s3cb9p68s6cbb16or6cp36c5im8dr26k@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -873,7 +873,7 @@ UID:6msrfcncojnpimrqt7rdrcl1uc@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -887,7 +887,7 @@ UID:7415detq37ojg24ck9ms5e85p2@google.com
 SEQUENCE:4
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -901,7 +901,7 @@ UID:4npf27e2bepb6spb2nh07n2hcn@google.com
 SEQUENCE:3
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -915,7 +915,7 @@ UID:c9gjae366pij6b9hckrjgb9k6tj36b9pc5ij8b9n74rm2dhi68s3cpb26c@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -929,7 +929,7 @@ UID:1kq2rv24oir6ptsa3au8rtvg0m@google.com
 SEQUENCE:3
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -943,7 +943,7 @@ UID:6tijeohk60s3ab9mchh3ib9k6lh6abb16cp38b9m70q3ior1c8p64dpi70@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -956,7 +956,7 @@ DTSTAMP:20251129T010134Z
 UID:731ht40gd87g8an3p8lm7h0cgd@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -969,7 +969,7 @@ DTSTAMP:20251129T010134Z
 UID:2lqjgoqm74emgp5hqb0i87444m@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -982,7 +982,7 @@ DTSTAMP:20251129T010134Z
 UID:6vhd0m5odrcs4fj9cgjdk7k8ia@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -996,7 +996,7 @@ UID:29ebbi9lj3bm1fgo84vo9ejvnf@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1009,7 +1009,7 @@ DTSTAMP:20251129T010134Z
 UID:c5hjephgcph3abb26pi3gb9kcgq3cbb269i30b9o60r3ge9lc9j3gd1p6g@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1022,7 +1022,7 @@ DTSTAMP:20251129T010134Z
 UID:74qm8e35cdhm2b9hckp6cb9k74rmabb169hjabb4cgqj6c346ksm2dpo70@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Dev\nProject: tmuxer\nTags: flet\nDifficulty: 2
+DESCRIPTION:Area: Dev\nProject: tmuxer\nTags: flet\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1036,7 +1036,7 @@ UID:6kom8d9g65gjcb9p6kqm6b9k6ti3ebb2c4r66b9pclgm8e3474sjachl68@google.com
 SEQUENCE:8
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1050,7 +1050,7 @@ UID:1j5mapmlm5cmlau12voif069t5@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1063,7 +1063,7 @@ DTSTAMP:20251129T010134Z
 UID:5edo9foggo35eh83r7j2mpopis@google.com
 SEQUENCE:4
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1076,7 +1076,7 @@ DTSTAMP:20251129T010134Z
 UID:7ru8vrfk61k87tsfahrd8rdqrh@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1090,7 +1090,7 @@ UID:1qr3oda8ihjo90392g12co6fok@google.com
 RECURRENCE-ID;TZID=America/Los_Angeles:20211206T220000
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 LOCATION:https://join.skype.com/0x7ve6PhLTbO
 STATUS:CONFIRMED
@@ -1104,7 +1104,7 @@ DTSTAMP:20251129T010134Z
 UID:6dhmcdphc8qjgbb1chi36b9k68sj0b9o60s68b9m71hjgc9j68sjic33cc@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1118,7 +1118,7 @@ UID:6os3ad9jc5i38bb36kr30b9kccrm6bb168s64b9lcgrj2cpg6ko3ie9n6c@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1132,7 +1132,7 @@ UID:c9h66dhhcdij4b9o70qm6b9kcdgjcbb2c4qjgb9m60rj8p9h6op6ce9hc4@google.com
 SEQUENCE:3
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1146,7 +1146,7 @@ UID:5h66urbsc0ele5du7p60pr8t6v@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1159,7 +1159,7 @@ DTSTAMP:20251129T010134Z
 UID:6sp3edj260s3ebb5cgp3ib9k6co6cbb16kqm4b9k6gsjicpnc9j62c9n6o@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1173,7 +1173,7 @@ UID:2oroljj9o7i0l669v05roe4bku@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1187,7 +1187,7 @@ UID:4roulkjetf94530abggfmidu5t@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1200,7 +1200,7 @@ DTSTAMP:20251129T010134Z
 UID:6tn9lfh2ei1it3cu29j9pgjtb0@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1214,7 +1214,7 @@ UID:69n7qrl03pnqn2bipb2vn3vqsi@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1227,7 +1227,7 @@ DTSTAMP:20251129T010134Z
 UID:6qnnn7ec6l6us2tt3qiqs9jp2g@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Dev\nProject: CSV Viewer\nTags: python\nDifficulty: 2
+DESCRIPTION:Area: Dev\nProject: CSV Viewer\nTags: python\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1241,7 +1241,7 @@ UID:6dcctf4o57lgolnr3rlr84lseh@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1255,7 +1255,7 @@ UID:1csdnpg2eg0hnsinic8c418edu@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1269,7 +1269,7 @@ UID:0rfgvgng3abiedb11fa8s57vh4@google.com
 SEQUENCE:27
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1283,7 +1283,7 @@ UID:6ks6cd9j6gp3eb9j6crm2b9kcgp32bb2c8rm6bb56cs3ipj5cgpm6d35cc@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1296,8 +1296,7 @@ DTSTAMP:20251129T010134Z
 UID:56iua3lk340ic6taqariqoo77d@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:\n\nArea: Dev\nProject:\nTags: docker\, tool\nDifficulty: 4\nD
- etail:Â
+DESCRIPTION:Area: Dev\nTags: docker\, tool\nDifficulty: 4\nDetail: Â\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1311,7 +1310,7 @@ UID:52o506u67v7q808uaq3993nq4s@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1325,7 +1324,7 @@ UID:15m4k07o5kufspn46nfejb8ak8@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1339,7 +1338,7 @@ UID:4gnno39bf8sk6hjpvahgj6j5u7@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1353,7 +1352,7 @@ UID:2f8nsdc4kaal03q4hkio32hqes@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1367,7 +1366,7 @@ UID:61gj4o9kccs64b9j74rjab9kc9h62bb174oj2b9j6coj6or1ccs34e9k6k@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1381,7 +1380,7 @@ UID:3295pb4vr9hs3jjj524ec1qgi1@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1395,7 +1394,7 @@ UID:3ahoegor463rfuuvisfrlpis8t@google.com
 SEQUENCE:5
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1408,7 +1407,7 @@ DTSTAMP:20251129T010134Z
 UID:1lngmuosdqsu3j9ce0cm46p6fj@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1422,7 +1421,7 @@ UID:74sm2p9g6hhj0bb2c8qm2b9kclh3gbb170sjibb36gq6ad9n6oq6ae1o6g@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1436,7 +1435,7 @@ UID:5brha6lrla6ntc4uf1ld6r8lho@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nProject: Brain stretch\nTags: python\, tkinter\nDif
- ficulty: 2
+ ficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1449,7 +1448,7 @@ DTSTAMP:20251129T010134Z
 UID:chhj6opo60rj6b9nclj30b9kcdgm2b9pccp34b9h6hijioj568r3cdb36c@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1462,7 +1461,7 @@ DTSTAMP:20251129T010134Z
 UID:6pij0cj375ij6b9l6lgm2b9k6oq38b9o68oj8b9oc8s68e1ncosjipj66k@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1475,7 +1474,7 @@ DTSTAMP:20251129T010134Z
 UID:222ve3o2moeurqctekqh4nsu20@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nProject: afofcs\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Dev\nProject: afofcs\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1489,7 +1488,7 @@ UID:61gjcd9m64rmab9n6cr38b9k75gj4b9ocopj8bb56gr34e9mcopm4o9n74@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1502,7 +1501,7 @@ DTSTAMP:20251129T010134Z
 UID:03riquuop8mrbmu1kt44n4pt6q@google.com
 SEQUENCE:8
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1515,7 +1514,7 @@ DTSTAMP:20251129T010134Z
 UID:64q3epho6thj6bb5chi3eb9k68q6ab9p6thm2b9o6tgm6e1jcdgm2e336s@google.com
 SEQUENCE:13
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1529,7 +1528,7 @@ UID:71tgsb3tfq8eb3hes9lkpd72qt@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1542,7 +1541,7 @@ DTSTAMP:20251129T010134Z
 UID:3tnb35uc22qh8f6ebnbu5t81g5@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1556,7 +1555,7 @@ UID:0b8lj50otm4recfsk0ekn27ss0@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1569,7 +1568,7 @@ DTSTAMP:20251129T010134Z
 UID:7isiitr8l75fs7lak489v8499v@google.com
 SEQUENCE:19
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1582,7 +1581,7 @@ DTSTAMP:20251129T010134Z
 UID:cosjacpicgo38b9p6hgjcb9k61i34b9o6os36b9kcgr6cchm6thjgeb3cc@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Dev\nTags: conferencea\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: conferencea\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1596,7 +1595,7 @@ UID:6di36p1k68qm8bb371h6cb9k6him8b9oc5gm4b9k6hi64p9ockrj0e3264@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1609,7 +1608,7 @@ DTSTAMP:20251129T010134Z
 UID:42of930gmh24b2oea88b5368g6@google.com
 SEQUENCE:8
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1623,7 +1622,7 @@ UID:2al5d870qs8f4bcq98u90dpfk3@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1637,7 +1636,7 @@ UID:1crtahinbk0jcudbl0vd017eu9@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1651,7 +1650,7 @@ UID:0hn3668a0d6petqp7m0l9d05bl@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1665,7 +1664,7 @@ UID:61h62d1p6cr3eb9n61j30b9kc4qmabb2cdj34bb468ojgcr26gom8phoc8@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1679,7 +1678,7 @@ UID:6csj4db36srjabb660qjib9k6hj36b9p75i64b9p74pmadppckq6aohh60@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1693,7 +1692,7 @@ UID:4lv7rm0bh0oe8t8r5o61r3lb8o@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1706,7 +1705,7 @@ DTSTAMP:20251129T010134Z
 UID:6er1ptui6dl6qh2hom22ur96mg@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1720,7 +1719,7 @@ UID:6soj8pj669hjeb9g71hjeb9k74smcb9o70qm2b9p60pm2dpg61gj0cr464@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1734,7 +1733,7 @@ UID:7ovmu8q3osahtpdqo3lr27rtnj@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1748,7 +1747,7 @@ UID:1ktdmg6d31n7joufdi8cnhch3s@google.com
 SEQUENCE:5
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1762,7 +1761,7 @@ UID:600r15an48si11i0609cri026r@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1776,7 +1775,7 @@ UID:7hj3adj07sdikhj2k1r22o3ml9@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1790,7 +1789,7 @@ UID:hi95rnvhgb4e633fkg0rj1lp6e@google.com
 SEQUENCE:1
 RRULE:FREQ=WEEKLY;COUNT=2;BYDAY=MO,WE;WKST=SU
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 LOCATION:https://join.skype.com/0x7ve6PhLTbO
 STATUS:CONFIRMED
@@ -1806,7 +1805,7 @@ UID:54tc3uhbg597bqu9fj4b6177lc@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1819,7 +1818,7 @@ DTSTAMP:20251129T010134Z
 UID:3biada17b6j5ifd6dbkj53p6e4@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1832,7 +1831,7 @@ DTSTAMP:20251129T010134Z
 UID:4arokk5s6tren4468aumam6a50@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1846,7 +1845,7 @@ UID:39t05haidffnp3isg2edvat1a5@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Mehrdad\nTags: python\, data-sci\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1860,7 +1859,7 @@ UID:1frk2vbphmsea1pmbdjfvbbt92@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1874,7 +1873,7 @@ UID:0c4m7rrmnkrag8935e2sbh4trh@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1888,7 +1887,7 @@ UID:2q5ptg18d94n7tlao95l60jtrl@google.com
 SEQUENCE:33
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: Django 3 by Example\nTags: python\, django
- \nDifficulty: 3
+ \nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1902,7 +1901,7 @@ UID:47bt7lu9u788kdeiph6cjs6g6g@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1916,7 +1915,7 @@ UID:ckrm6cho6lh32bb368qjab9kchh34b9o60rj6b9mccrjic9j6phm4cr66c@google.com
 SEQUENCE:2
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1930,7 +1929,7 @@ UID:7okkrr9al936rj54p7g85hm91u@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1943,7 +1942,8 @@ DTSTAMP:20251129T010134Z
 UID:09vlv82374mek49njakn3f3gig@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Dev\nProject: Think Python\nTags: python\nDifficulty: 2
+DESCRIPTION:Area: Dev\nProject: Think Python\nTags: python\nDifficulty: 2\
+ n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1957,7 +1957,7 @@ UID:6jg79qkjhof4am9k66je174416@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1971,7 +1971,7 @@ UID:4trbj9irs5kh1qq9fonkv0q8qf@google.com
 SEQUENCE:2
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1985,7 +1985,7 @@ UID:6njc0192vqv11tgfeo8c3l9vka@google.com
 SEQUENCE:3
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -1999,7 +1999,7 @@ UID:33lkj8n8d6itrktkf3st85tu4k@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2013,7 +2013,7 @@ UID:74sj0p9gc9i38b9k61gj0b9kc9ijgb9pccq62b9iclhmcc1l74s6ac9pcg@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2026,7 +2026,7 @@ DTSTAMP:20251129T010134Z
 UID:1risb2elgbv78boageieubdddr@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2040,7 +2040,7 @@ UID:5gjsumv5d0u3ibtt86mo7j7ht9@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2053,7 +2053,7 @@ DTSTAMP:20251129T010134Z
 UID:3fdj54gl08rnh28nii75jeq3r5@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2067,7 +2067,7 @@ UID:6sqm4eb56gs3ib9j61h3cb9kc9h30b9o6krj2b9o60s64cr6c5j3iohgck@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2081,7 +2081,7 @@ UID:0ilmfm1q5fnjb380pvv5c447ef@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2095,7 +2095,7 @@ UID:ccpj6dpic9j36b9iclj3cb9k65h6abb164pm6b9pchijedb4cksm4db6c8@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2109,7 +2109,7 @@ UID:0ficf2qhukb99jeun1o1pn4csd@google.com
 SEQUENCE:2
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2122,7 +2122,7 @@ DTSTAMP:20251129T010134Z
 UID:3jo75j45a24njtnsrtl0v779f1@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2135,7 +2135,7 @@ DTSTAMP:20251129T010134Z
 UID:3qvc9eqolfmjp0h8qg9h76nqkg@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2149,7 +2149,7 @@ UID:18b6i5c22ujtb57rni7v5mr4qb@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2163,7 +2163,7 @@ UID:0vllr7ucimsipd6at1u4feo2p0@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2177,7 +2177,7 @@ UID:0m72qqu60onfob8i9mi6nd2047@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Mehrdad\nTags: python\, data-sci\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2190,7 +2190,7 @@ DTSTAMP:20251129T010134Z
 UID:5brt5h6pc5re0317q3engkqu6k@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2203,7 +2203,7 @@ DTSTAMP:20251129T010134Z
 UID:cdj34ob6c5ij6b9g6kp68b9k6dgj8bb269gj6b9pc5i3ge9lcosm2or674@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2217,7 +2217,7 @@ UID:6tijcohh6cs3gbb66lhj4b9k6pim2b9p75hm6b9pc8r38p1o6sojee356s@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2231,7 +2231,7 @@ UID:74jfk9mi6ibkcabbduknv0em46@google.com
 SEQUENCE:5
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2245,7 +2245,7 @@ UID:2mqo5pn61otbtofsuged0okmc4@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2259,7 +2259,7 @@ UID:3men4se5gpnnlgba965sor2bfh@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2273,7 +2273,7 @@ UID:44fg77imu46g8pi6c89cc76q14@google.com
 SEQUENCE:7
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2286,7 +2286,7 @@ DTSTAMP:20251129T010134Z
 UID:4tbq7p6en2mb330uv3ik5b0opr@google.com
 SEQUENCE:0
 CREATED:20251129T002557Z
-DESCRIPTION:Area: Dev\nTags: vim\, tools\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: vim\, tools\nDifficulty: 2\n
 LAST-MODIFIED:20251129T005806Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2299,7 +2299,7 @@ DTSTAMP:20251129T010134Z
 UID:4ia4lbo62t1dia69c9cjh9bane@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2313,7 +2313,7 @@ UID:2juip30h4m6c1ar2uk97ggevsm@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2327,7 +2327,7 @@ UID:1h04l6nicsnvfhk04u1bmkro5h@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2341,7 +2341,7 @@ UID:6udnq9kicnea06oog9st67mjoi@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2355,7 +2355,7 @@ UID:6p0mdj4of8b6vo74pfc3et0e7e@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2369,7 +2369,7 @@ UID:6ehf5a0fqimud40lg5vmg9ajn5@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2383,7 +2383,7 @@ UID:6oo6achicor6cbb3coq68b9kccr32bb26limcbb6ccr3ap1g60om8p1g6c@google.com
 SEQUENCE:8
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2396,7 +2396,7 @@ DTSTAMP:20251129T010134Z
 UID:1tirqqmi0kf5nd37plo0v954qp@google.com
 SEQUENCE:3
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2410,7 +2410,7 @@ UID:5a56ui2seh8n3krftm7tbu4j2s@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2424,7 +2424,7 @@ UID:c8rjcdr46gojgbb4c4ojgb9kc8s38b9pckpj0b9lchgjgeb261i32p9l6o@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2438,7 +2438,7 @@ UID:5o4nmgr2ihvrq5ea7m0m9ea8d5@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2451,7 +2451,7 @@ DTSTAMP:20251129T010134Z
 UID:1dp0sprpqa14abivdk7m96inn2@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2465,7 +2465,7 @@ UID:7j36erdu0h5pi3d0batign0tmh@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2479,7 +2479,7 @@ UID:2mv5dr2visumbuejlmjm5fgf8s@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2493,7 +2493,7 @@ UID:543mlne60lmd5vsb8m18k1hr76@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2507,7 +2507,7 @@ UID:0dlhhc9ois2vlk20nsgn460vli@google.com
 SEQUENCE:8
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2521,7 +2521,7 @@ UID:5re0t4j2k8ikjkr47r28hp93ol@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2534,7 +2534,7 @@ DTSTAMP:20251129T010134Z
 UID:60o62chk6krjab9l6gq38b9k74p36b9p6pi64bb2cdhjaphic9im8pj66g@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2547,7 +2547,7 @@ DTSTAMP:20251129T010134Z
 UID:0t7omggmrmmfjoh48aonr6s63r@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2560,7 +2560,7 @@ DTSTAMP:20251129T010134Z
 UID:c4qj2c34cgpjabb671hm2b9kc9gj2b9o75i32b9j6go34oj2cdh66d9n6s@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2574,7 +2574,7 @@ UID:7tiesjbrvm60poju8ms82h0gln@google.com
 SEQUENCE:2
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2588,7 +2588,7 @@ UID:2fhujktckrhh76lasl0n0figsm@google.com
 SEQUENCE:5
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2602,7 +2602,7 @@ UID:5hrho964nu1pkd86pss52pl6s6@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2616,7 +2616,7 @@ UID:6kcuds3ndf002p9e5n17mdr8s2@google.com
 SEQUENCE:3
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2629,7 +2629,7 @@ DTSTAMP:20251129T010134Z
 UID:4f985eundso2u19ggmmlm9p1mf@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2643,7 +2643,7 @@ UID:6qu64o2g5k945a7k0of9i7gmni@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2657,7 +2657,7 @@ UID:7fkt5e9v30fht13mrkcga4bn4f@google.com
 SEQUENCE:7
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2670,8 +2670,8 @@ DTSTAMP:20251129T010134Z
 UID:2e5mt46262tv4gvf80fq5clm8l@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nProject:Â \nTags: telegramÂ \nDifficulty: 2
- \nDetail:Â
+DESCRIPTION:Area: Content\nProject: Â\nTags: telegramÂ\nDifficulty: 2\nD
+ etail: Â\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2685,7 +2685,7 @@ UID:0h317nb8tvsikd8fjs0vdp0rtj@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2699,7 +2699,7 @@ UID:50vkqosrloqg416jhhj3eu7c83@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2713,7 +2713,7 @@ UID:6gl03v3i9cql7dvn3ro92skov5@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2727,7 +2727,7 @@ UID:6or3cc326lj6cb9m60sjab9k6cs34bb2cgqjibb3cph3eophchh68e1m64@google.com
 SEQUENCE:3
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2741,7 +2741,7 @@ UID:6v1ouurj94ar48qbc1iqvo4jp2@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2755,7 +2755,7 @@ UID:7pts8s055gblk8t5v86k15unhr@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2769,7 +2769,7 @@ UID:4agvtqa9l28d45r3ho9p4vfktd@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2783,7 +2783,7 @@ UID:0ueuuccb0pllc9k84klh3a0g3p@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2796,7 +2796,7 @@ DTSTAMP:20251129T010134Z
 UID:647sas61213aec0evscbdb21c4@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2810,7 +2810,7 @@ UID:7k1pvo0fcemk4s91ooclk4mubq@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2824,7 +2824,7 @@ UID:c8s64cb261h36b9j60sj8b9k6cp32b9p64rmab9p6oo3icj6clgj4phi6k@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2838,7 +2838,7 @@ UID:ckrmap9hc4r38bb675im4b9kcdj6cbb2cgsjib9oc5ij2c34chij2chocg@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2852,7 +2852,7 @@ UID:02epdufbm3u25ok3b9su1obde3@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2865,7 +2865,7 @@ DTSTAMP:20251129T010134Z
 UID:57fcu8s31lrd3du1bkok7kjn62@google.com
 SEQUENCE:5
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2880,7 +2880,7 @@ SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: gcal\nTags: tool\nDifficulty: 0\nDetail: I
   was considering to use notion calendar but it is not free and not work in
-  my country
+  my country\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2894,7 +2894,7 @@ UID:2f2k0odsp9u02fe62mcc68bg8q@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2908,7 +2908,7 @@ UID:74jske23umffrrkvt4bd4jfm61@google.com
 SEQUENCE:13
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nProject: Farnaz\nTags: python\, data-sci\nDifficult
- y: 3
+ y: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2922,7 +2922,7 @@ UID:0jk4q4oc0ohmvsk1j6rlasbsto@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2936,7 +2936,7 @@ UID:417hbcbhvpr03cc4r05r8vi0vr@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2949,7 +2949,7 @@ DTSTAMP:20251129T010134Z
 UID:cgs36ohg64p3eb9p6ph66b9k75hjab9ocdhm4b9hckp32c3264pjeohkco@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2962,7 +2962,7 @@ DTSTAMP:20251129T010134Z
 UID:6tvlg4sear2naupjprl8efnh9v@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2976,7 +2976,7 @@ UID:6lg1ibqsiibo2mfqkbkq8484ha@google.com
 SEQUENCE:5
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -2990,7 +2990,7 @@ UID:1s597v2nipdjnutf66a7itait4@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3004,7 +3004,7 @@ UID:65hj4c9nc5gjeb9nc8rj4b9kcko64bb2c5j64b9n64rj0c9n6kpm8or6cc@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3018,7 +3018,7 @@ UID:11m0mllbr25vimv978rub0l5n1@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3031,7 +3031,7 @@ DTSTAMP:20251129T010134Z
 UID:23ufr5em5hl16kqgffteuvcqk2@google.com
 SEQUENCE:3
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3045,7 +3045,7 @@ UID:36932afdsvnleesk42com73k0q@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3059,7 +3059,7 @@ UID:5o035ttj2cfmr8te05a7dbi112@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3073,7 +3073,7 @@ UID:6np77ilr3ov699i0tf4hq4tb2c@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Mehrdad\nTags: python\, data-sci\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3087,7 +3087,7 @@ UID:6ss3ap9o71i62b9p69im6b9k61hjgb9o6gp3abb3c4rj4php70r3ic9gck@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Client Project\nProject: cbm\nDifficulty: 3\n
- Tags: python\, data-sci
+ Tags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3101,7 +3101,7 @@ UID:4jbcb0hm1jd0n9hirr6o4kdfo6@google.com
 SEQUENCE:2
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3115,7 +3115,7 @@ UID:38ohuujcfv8agdfibb7phum629@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3129,7 +3129,7 @@ UID:484esho4ops495fah02630cqt2@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3142,7 +3142,7 @@ DTSTAMP:20251129T010134Z
 UID:08artc20e44tuhantuj359pq6q@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3155,7 +3155,7 @@ DTSTAMP:20251129T010134Z
 UID:6i8d6kcnj0v1vmoopgaf9iv5dm@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3169,7 +3169,7 @@ UID:0ujmbt4otf9t9s20hcrfb4rdts@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3183,7 +3183,7 @@ UID:60rj0chic4qjcb9h6spm8b9kchhmab9pcgpj4b9lc9j3ec1p6op36o9mcc@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3197,7 +3197,7 @@ UID:6ktd45hu2ftnr4ohoh0kec341g@google.com
 SEQUENCE:6
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3211,7 +3211,7 @@ UID:3i7khudp6rdugs499pr87k60pp@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3225,7 +3225,7 @@ UID:2rf758glv4ib4qn2gqs80f0qcm@google.com
 SEQUENCE:5
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3238,7 +3238,7 @@ DTSTAMP:20251129T010134Z
 UID:4p1rfbmup35mh9n96atooigjup@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3251,8 +3251,7 @@ DTSTAMP:20251129T010134Z
 UID:53ppemk7jqeap6b03u19m6cnqa@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:\n\nArea: Dev\nProject:\nTags: linux\, emacs\nDifficulty: 2\nD
- etail:Â
+DESCRIPTION:Area: Dev\nTags: linux\, emacs\nDifficulty: 2\nDetail: Â\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3265,7 +3264,7 @@ DTSTAMP:20251129T010134Z
 UID:42c64bhsamce3vnj3ro697suon@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3279,7 +3278,7 @@ UID:6sp3gp1hcdi6ab9m6dh36b9kckr36b9o68rjcb9m74p32dpi6dijiopnc4@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3293,7 +3292,7 @@ UID:1ufi3n4gsto59cl3fkil63s2lo@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3307,7 +3306,7 @@ UID:3d1etenfq48g2r7veu725o1d94@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3321,7 +3320,7 @@ UID:7eb25dpnd1niqsnl2fjup8iqe1@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3335,7 +3334,7 @@ UID:5ruo0e4nvmiq31v2s12nhnm7o3@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nProject: Farnaz\nTags: python\, data-sci\nDifficult
- y: 3
+ y: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3348,7 +3347,7 @@ DTSTAMP:20251129T010134Z
 UID:2ldioop4igfon20k1g6tdgdr82@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3362,7 +3361,7 @@ UID:34lk7dhejll3l0lbb6ka99l2r9@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3375,7 +3374,7 @@ DTSTAMP:20251129T010134Z
 UID:0dv56lan5b28u3aliuaj4fd8rv@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3388,7 +3387,7 @@ DTSTAMP:20251129T010134Z
 UID:1g3iv8jcln4brhn9snf75206h5@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3402,7 +3401,7 @@ UID:68rj4ohk6ormab9mc9im8b9k74q68bb2cgo36b9m6lhjed9m6dgjidhhck@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3416,7 +3415,7 @@ UID:4k37rgjjbhpnt0d223a48boqme@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3430,7 +3429,7 @@ UID:77ln386htod095gfr7c6lmi4lr@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3443,7 +3442,7 @@ DTSTAMP:20251129T010134Z
 UID:64sj2c1pcop6cbb560rj6b9k6or3ab9ocoq3ebb16hhm2opi6oom6opgcc@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3457,7 +3456,7 @@ UID:6256og30m7umqajas263vh59cq@google.com
 SEQUENCE:3
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3471,7 +3470,7 @@ UID:74rm8pho65gjcb9jcor30b9kccrm8bb174sjgb9n6kp30cj664s64e1oc8@google.com
 SEQUENCE:3
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3485,7 +3484,7 @@ UID:clhj2e9n75j3cb9g70s3eb9kckp3gbb1c8qm6b9o60s62ob56os3cpb56c@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Mehrdad\nTags: python\, data-sci\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3499,7 +3498,7 @@ UID:4r02k8ttcesnojme8uddmc1i2p@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3513,7 +3512,7 @@ UID:0vqurv0sh9qbsq6c90fppttar9@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3526,7 +3525,7 @@ DTSTAMP:20251129T010134Z
 UID:2bsareakd4lbaksiuc8kmsrm5j@google.com
 SEQUENCE:3
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3540,7 +3539,7 @@ UID:6os6achlccqj0bb66soj4b9kc8rj8b9oc5j66b9gccqmcc9i60s66o9hco@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3554,7 +3553,7 @@ UID:48bhsbd3bmcm8aoklcqlir59k1@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3568,7 +3567,7 @@ UID:2sirh0n14gdb62r24emaufvm86@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3581,7 +3580,7 @@ DTSTAMP:20251129T010134Z
 UID:2vt5o8bke2k4t078n0bom8rmv2@google.com
 SEQUENCE:2
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3595,7 +3594,7 @@ UID:coq3iohl6hh3ib9pchi66b9kcgs34b9pchi32b9i64p38eb1c4om4phm70@google.com
 SEQUENCE:2
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3608,7 +3607,7 @@ DTSTAMP:20251129T010134Z
 UID:4bup0ekjbet1afqjtdv1e9qp8q@google.com
 SEQUENCE:15
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3622,7 +3621,7 @@ UID:64q3co9i70q64bb1cos36b9k6gr64bb160qm8b9l6oq3ip1j60rm2dhpco@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Mehrdad\nTags: python\, data-sci\nDif
- ficulty: 3
+ ficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3635,7 +3634,7 @@ DTSTAMP:20251129T010134Z
 UID:70oj4oj26spjebb1cdj6cb9k68qjeb9pclj6cb9p61h3ae9k6gsmadb16o@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3649,7 +3648,7 @@ UID:c4p38p9m6oq64b9kcko34b9k6hj3ib9pc4r30bb664ojcor470p3go9pco@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3662,7 +3661,7 @@ DTSTAMP:20251129T010134Z
 UID:58np509oh5chqh64akignugd6g@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3675,7 +3674,7 @@ DTSTAMP:20251129T010134Z
 UID:49a57nk3icn4s7sdg05qo8dep3@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3688,7 +3687,7 @@ DTSTAMP:20251129T010134Z
 UID:2t5d702dth72ktma155i9vos6g@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3701,7 +3700,7 @@ DTSTAMP:20251129T010134Z
 UID:69h36o9mcdhj6b9i6ss6ab9k6oom2b9pcphj6bb274pmad9ocli32cr46s@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3715,7 +3714,7 @@ UID:1d4ads58e679bbtj7gaml318lt@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3729,7 +3728,7 @@ UID:0p6157kmr5ctc2hj78f7tk2gjj@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3743,7 +3742,7 @@ UID:2m0uimvqtdg59m22ou13f5af7l@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: simpl\nTags: python\nDifficulty: 3\nDetail
- : Simple programming language
+ : Simple programming language\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3757,7 +3756,7 @@ UID:5g2kguurnqfn8uqpboc4fumahh@google.com
 SEQUENCE:13
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3770,7 +3769,7 @@ DTSTAMP:20251129T010134Z
 UID:0g5a0d1vnu64r9dalre69d7kmv@google.com
 SEQUENCE:2
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3784,7 +3783,7 @@ UID:6kpm6dj3c8o36b9gc8rjeb9kclh68b9p69j64bb3coq3eo9o71i68phh6o@google.com
 SEQUENCE:6
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3798,7 +3797,7 @@ UID:clij6cpp60r68b9g65hm8b9k6grm6bb1ckoj2bb3c8o3acpkcoq68c3474@google.com
 SEQUENCE:2
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3811,7 +3810,7 @@ DTSTAMP:20251129T010134Z
 UID:3mr0fhgg1bju7e59tnriqcr5o2@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3825,7 +3824,7 @@ UID:6qh0an3miof8kkmvagoofo74tt@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nProject: Django 3 by Example\nTags: python\, django
- \nDifficulty: 3
+ \nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3838,7 +3837,7 @@ DTSTAMP:20251129T010134Z
 UID:00kslkb5uap4bseul6f1i7notf@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3851,7 +3850,7 @@ DTSTAMP:20251129T010134Z
 UID:3dl1l65ocai5osd7glsoe8u35m@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3865,7 +3864,7 @@ UID:6kqjichnc5gj4bb5chh3cb9k6sp30bb264s6ab9h6sqj8pj26orj8dhk6k@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3879,7 +3878,7 @@ UID:24rble2tv8sib7d5aaral1v3is@google.com
 SEQUENCE:8
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: Django 3 by Example\nTags: python\, django
- \nDifficulty: 3
+ \nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3893,7 +3892,7 @@ UID:32fajb044s3fjangq1q6h57jh9@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3907,7 +3906,7 @@ UID:4tqsrhnafhdn96oee2qqsbj6ai@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3921,7 +3920,7 @@ UID:65vcucuanvan39265i1celrtb9@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: sgo\nDifficulty: 3\nTa
- gs: python\, web
+ gs: python\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3935,7 +3934,7 @@ UID:chgmcc1p61i3cbb46sr66b9k70sjibb264ojabb175h3ccj26sq6ac9oc4@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3949,7 +3948,7 @@ UID:70geuskhqadhl57mieb6l01ddv@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3963,7 +3962,7 @@ UID:2tsbp9rv6mchbdp8t4qbjc3719@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3977,7 +3976,7 @@ UID:3hr4qeki7t1c8pjc9gp4ngck5e@google.com
 SEQUENCE:5
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -3991,7 +3990,7 @@ UID:16vgmv52gm4itmmrbuf2vc0a3n@google.com
 SEQUENCE:4
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4005,7 +4004,7 @@ UID:515djsloifpa9lhu3vo0voq98s@google.com
 SEQUENCE:2
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4019,7 +4018,7 @@ UID:0tbtpv6sm3894hpcd86kr87h4v@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4033,7 +4032,7 @@ UID:6lj3ic366gr3abb475j3gb9k6gqmcb9ocoq6cb9jckpmcd1j6so6ae1g60@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nProject: pmo\nTags: python\nDifficulty: 2\nDetail: 
- Pomodo timer
+ Pomodo timer\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4047,7 +4046,7 @@ UID:243isup3i13o7j78seqmnms057@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4060,7 +4059,7 @@ DTSTAMP:20251129T010134Z
 UID:2nvg46lrdcthklpbqc8hclrnhn@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4074,7 +4073,7 @@ UID:chj3ioph6oq3ab9k65im6b9kcgo66b9o6go32b9g68ojacr5cos30eb270@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4088,7 +4087,7 @@ UID:6gs36chlcks6cbb46kpj2b9k68p6cbb16lhm8b9oclj62o9kcgpjcd9i6c@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4102,7 +4101,7 @@ UID:357bkscmo0rqq5m8k9ldh9l4qp@google.com
 SEQUENCE:15
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4116,7 +4115,7 @@ UID:1ihkujpci4v0u82aq2lgld81vp@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4129,7 +4128,7 @@ DTSTAMP:20251129T010134Z
 UID:6ti66d1h70p32bb265j3cb9kc5h64bb1cpi3ib9lc5j64e9l64q3ic9kc8@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4143,7 +4142,7 @@ UID:1c6c1s7c4g0s2qio6nggvn40ng@google.com
 SEQUENCE:5
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nProject: Farnaz\nTags: python\, data-sci\nDifficult
- y: 3
+ y: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4157,7 +4156,7 @@ UID:6th38p1n6dhmcbb675h3ib9k75hjib9p64q66bb5ckpj0opo69im8cj2cc@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4171,7 +4170,7 @@ UID:6egck5maq49bb9hkbpo3tr2dik@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4185,7 +4184,7 @@ UID:0hi27hbdemlapplh9d1n30f39o@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nProject: simpl\nTags: python\nDifficulty: 3\nDetail
- : Simple programming language
+ : Simple programming language\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4198,7 +4197,7 @@ DTSTAMP:20251129T010134Z
 UID:1j45gkp2k669pji6nojp463h3e@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4212,7 +4211,7 @@ UID:2ds00qq9jncsjdi1522gghevlv@google.com
 SEQUENCE:3
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4225,7 +4224,7 @@ DTSTAMP:20251129T010134Z
 UID:c8sj4chh60p6ab9lc4rj0b9kccqjebb16ks64bb371hj6c366grjac9nco@google.com
 SEQUENCE:19
 CREATED:20251129T001509Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4239,7 +4238,7 @@ UID:3nkdf9peonau344ac9nechft1q@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nProject: c-tj\nTags: c\nDifficulty: 4\nDetail: Memo
- ry management with c
+ ry management with c\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4252,7 +4251,7 @@ DTSTAMP:20251129T010134Z
 UID:6u7f97312bdq7n7rknn6gek60g@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4266,7 +4265,7 @@ UID:3j3ter127bj1msc2hhnda3182j@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4280,7 +4279,7 @@ UID:28n7t26fgtm2q1qq3jrj187thr@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4294,7 +4293,7 @@ UID:65i38d9m6gsj4bb1coo3gb9k6hi6cb9p6tijib9l61j3edpgcdim2p346o@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4307,7 +4306,7 @@ DTSTAMP:20251129T010134Z
 UID:0c0o0rlk65gdpatg14qtaju63m@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4321,7 +4320,7 @@ UID:7j5o8krnnm3eu0v6hjioe89fg1@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4334,7 +4333,7 @@ DTSTAMP:20251129T010134Z
 UID:164smsav7k7nfnum534ocsml7r@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Dev\nProject: CSV viewer\nTags: python\nDifficulty: 2
+DESCRIPTION:Area: Dev\nProject: CSV viewer\nTags: python\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4347,7 +4346,7 @@ DTSTAMP:20251129T010134Z
 UID:74om4cphc8q30b9icor34b9k6cqmcb9o6dij2b9jchi3ephj69i32p9l6s@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4360,7 +4359,7 @@ DTSTAMP:20251129T010134Z
 UID:3o9bo4c0fvlehn3vvqco7a390f@google.com
 SEQUENCE:23
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4374,7 +4373,7 @@ UID:0444vonqr2spc7e28tp7u4ae10@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4388,7 +4387,7 @@ UID:551nbijpm9ksoplhrmi9bk4qct@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4401,7 +4400,7 @@ DTSTAMP:20251129T010134Z
 UID:2kmrg5bdtc4cqvvtda1301vtao@google.com
 SEQUENCE:7
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4414,7 +4413,7 @@ DTSTAMP:20251129T010134Z
 UID:2c5g4dpullgpkqrn7its1m1l36@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nTags: flet\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: flet\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4427,7 +4426,7 @@ DTSTAMP:20251129T010134Z
 UID:3c95ho4js559tbirpfut5nfitl@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4441,7 +4440,7 @@ UID:3bkd4sviaba1ol09ehrapkuiqg@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4454,7 +4453,7 @@ DTSTAMP:20251129T010134Z
 UID:68p6ae1j6cr6ab9o64r3ab9k74pm2b9o6cr3gbb3cksj8cpm61h3gdr3cg@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4467,7 +4466,7 @@ DTSTAMP:20251129T010134Z
 UID:6dj32opg6soj4b9m60p62b9kcpgjeb9o6krj2b9m65hm4c1mc5gj8e9h74@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4481,7 +4480,7 @@ UID:6tnukfqu546gjc5cnah6bjko4l@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4495,7 +4494,7 @@ UID:2daplh78c1p17vtvevmuj5fbfu@google.com
 SEQUENCE:5
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4509,7 +4508,7 @@ UID:57de55r7r4b52jsu0mom3ik0t9@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4523,7 +4522,7 @@ UID:5hvfvvk95vfq55hvqbbds1kecd@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4536,7 +4535,7 @@ DTSTAMP:20251129T010134Z
 UID:39cbmhtlcpqn36nl3k3f07c1lh@google.com
 SEQUENCE:5
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4550,7 +4549,7 @@ UID:5k4eighue1atc30qgov47cqq87@google.com
 SEQUENCE:2
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4564,7 +4563,7 @@ UID:7m6m8rusd292tqv25c1a2rhqkg@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4578,7 +4577,7 @@ UID:c5gmaor5c4r66b9gcdhj0b9k69h62bb2cdijab9mccoj0opp6pgjecj36g@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Client Project\nProject: cbm\nDifficulty: 3\n
- Tags: python\, data-sci
+ Tags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4592,7 +4591,7 @@ UID:ccs3gcj160p32b9jc4q3gb9k6tgjgb9oc8qj8b9g6csjcp3370pmae35cg@google.com
 SEQUENCE:1
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4606,7 +4605,7 @@ UID:6dh62p9l65ij4bb26lh3cb9kcop34b9o68p3cbb66hi32dpj60o3ce9p6o@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Motlag\nTags: python\, django\, web\n
- Difficulty: 3
+ Difficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4620,7 +4619,7 @@ UID:53k61b6cca7k2q70d5evigrbua@google.com
 SEQUENCE:4
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4633,7 +4632,7 @@ DTSTAMP:20251129T010134Z
 UID:30983r55v8koo4u6dkbg81hgr9@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4647,7 +4646,7 @@ UID:5tu38b22htm7se820cg29ofi1f@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4660,7 +4659,7 @@ DTSTAMP:20251129T010134Z
 UID:1s2f02e7alsrj45l4v56kp78v8@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4673,7 +4672,7 @@ DTSTAMP:20251129T010134Z
 UID:295hnsora5utkvbqh0e58rr4td@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4687,7 +4686,7 @@ UID:05evritvbhikvfaf8vrfgmu2go@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4700,7 +4699,7 @@ DTSTAMP:20251129T010134Z
 UID:242658v830h6ki9ppo68359ufd@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: python\, tkinter\, gui\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4714,7 +4713,7 @@ UID:0o27umpq0o560ltp29qupnqt53@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4728,7 +4727,7 @@ UID:68ien1gsu3jetqpqminp5b1ap3@google.com
 SEQUENCE:5
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4741,7 +4740,7 @@ DTSTAMP:20251129T010134Z
 UID:64qj8p1h68qm6bb4c9j34b9kcpi3ib9o6pi30bb66sp32dhjcorm8c9gcg@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4754,7 +4753,7 @@ DTSTAMP:20251129T010134Z
 UID:1tkm9rt4vhvacnf3fg8hqvqu89@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4767,7 +4766,7 @@ DTSTAMP:20251129T010134Z
 UID:0el5t5j7iihvir5k56gjlhn3b8@google.com
 SEQUENCE:1
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4780,8 +4779,8 @@ DTSTAMP:20251129T010134Z
 UID:0tvvi81slb0hhjgncdesk9k92p@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:\n\nArea: Dev\nProject: Django Ecom\nTags: python\, django\nDi
- fficulty: 3\nDetail:Â
+DESCRIPTION:Area: Dev\nProject: Django Ecom\nTags: python\, django\nDiffic
+ ulty: 3\nDetail: Â\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4795,7 +4794,7 @@ UID:6c2aasmt5kgtieaci28o0ijf3i@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4809,7 +4808,7 @@ UID:ckr30c1l60r32b9m64ojab9k6srmcbb16dgm4b9pcgq3cphkchijaoj5c8@google.com
 SEQUENCE:3
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4823,7 +4822,7 @@ UID:37lnq75s46rq7clgmuo6tbr6lp@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4837,7 +4836,7 @@ UID:6crj2opjcgqjebb66kpj2b9k71ijeb9ocgo62b9o69gjadpj6lij4p1k6k@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4851,7 +4850,7 @@ UID:ckq30e1oc8qm8bb268ojcb9k70o6cb9p6cr38bb174pmadpic8s64e3674@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4865,7 +4864,7 @@ UID:4ddblf12c7jmoobku4m2cd5pvr@google.com
 SEQUENCE:7
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4878,7 +4877,7 @@ DTSTAMP:20251129T010134Z
 UID:15qi31aiqc35rhq1ibbu6bpqsc@google.com
 SEQUENCE:11
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4892,7 +4891,7 @@ UID:0b4blrdc8inieinen7c0t229ec@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4906,7 +4905,7 @@ UID:4lv4vs01b1p919dehs8866mfp9@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4920,7 +4919,7 @@ UID:5ekfvsm72t8qff9q6tl4lsrjkp@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4933,7 +4932,7 @@ DTSTAMP:20251129T010134Z
 UID:74hi3sjk471h8jjs25sju03v7v@google.com
 SEQUENCE:2
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4946,7 +4945,7 @@ DTSTAMP:20251129T010134Z
 UID:2afd2mdcn8t0ii75aelbfv7dcv@google.com
 SEQUENCE:0
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4960,7 +4959,7 @@ UID:75gj4e9k6osmcb9oc4s32b9kcksjcbb16tij8bb464pm8d1l64p3eeb3cg@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: pyquiz\nDifficulty: 3\
- nTags: javascript\, web
+ nTags: javascript\, web\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4974,7 +4973,7 @@ UID:0jqhur965m7ct1mlhpjeesqvjd@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -4987,7 +4986,7 @@ DTSTAMP:20251129T010134Z
 UID:6oda62vch2mu7o9fnkqhpqhp21@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Dev\nProject: CSV Viewer\nTags: python\nDifficulty: 2
+DESCRIPTION:Area: Dev\nProject: CSV Viewer\nTags: python\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5000,7 +4999,7 @@ DTSTAMP:20251129T010134Z
 UID:5fbknks8rkqrthdq83ffpo9t4t@google.com
 SEQUENCE:3
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Dev\nProject: CSV Viewer\nTags: python\nDifficulty: 2
+DESCRIPTION:Area: Dev\nProject: CSV Viewer\nTags: python\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5014,7 +5013,7 @@ UID:2bsa98kv3c6qdrbft55kducde7@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: linux\, too
- l
+ l\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5027,7 +5026,7 @@ DTSTAMP:20251129T010134Z
 UID:5124skvjrq4g33258sjvc1pgjm@google.com
 SEQUENCE:1
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Ourshop\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5040,7 +5039,7 @@ DTSTAMP:20251129T010134Z
 UID:68o3gcb674pm2b9o6lj30b9k71gm6b9p60oj4b9j71ijgdj2cgp68p1jck@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Amin\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5053,7 +5052,7 @@ DTSTAMP:20251129T010134Z
 UID:7msnepebi0mu4gqkato4e0thj8@google.com
 SEQUENCE:0
 CREATED:20251129T001508Z
-DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: Arad\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5066,7 +5065,7 @@ DTSTAMP:20251129T010134Z
 UID:4a5uch7u5uvch4u6lpn8es106g@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5080,7 +5079,7 @@ UID:5a3vpsch1hqicm9nmqqelcsil6@google.com
 SEQUENCE:0
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5094,7 +5093,7 @@ UID:05h3ovucmeidprg1udkjvvuvis@google.com
 SEQUENCE:2
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: gcal\nDifficulty: 3\nT
- ags: python\, data-sci
+ ags: python\, data-sci\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5108,7 +5107,7 @@ UID:1ee6fjokpfqahd3a53msstqahq@google.com
 SEQUENCE:2
 CREATED:20251129T001505Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5121,7 +5120,7 @@ DTSTAMP:20251129T010134Z
 UID:3v0bdm5bi17n5fkfu90rsjr5gu@google.com
 SEQUENCE:6
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4
+DESCRIPTION:Area: Labor\nType: Snapp\nDifficulty: 4\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5134,7 +5133,7 @@ DTSTAMP:20251129T010134Z
 UID:1evh726a1712ivor7j3i28nqn0@google.com
 SEQUENCE:1
 CREATED:20251129T001505Z
-DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3
+DESCRIPTION:Area: Teaching\nProject: saeed\nTags: python\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5148,7 +5147,7 @@ UID:7kpm83k4sbbm8t76fc985ls8h8@google.com
 SEQUENCE:1
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5162,7 +5161,7 @@ UID:41iona9ucjme6d5k4tj2lkips7@google.com
 SEQUENCE:7
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Tool Config\nDifficulty: 1\nTags: neovim\, to
- ol
+ ol\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5175,7 +5174,7 @@ DTSTAMP:20251129T010134Z
 UID:6a3dru0s1a7egkb0m8jpcr5jn0@google.com
 SEQUENCE:1
 CREATED:20251129T001507Z
-DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3
+DESCRIPTION:Area: Content\nType: Instagram\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5189,7 +5188,7 @@ UID:70sjaopo74ojcb9o6gq68b9k6sp3ebb1coqjabb1clj3ep1gcdj32cpm64@google.com
 SEQUENCE:7
 CREATED:20251129T001508Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5202,7 +5201,7 @@ DTSTAMP:20251129T010134Z
 UID:10m2n02oip3s82mam9mftbjoid@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
-DESCRIPTION:Area: Dev\nTags: flet\nDifficulty: 2
+DESCRIPTION:Area: Dev\nTags: flet\nDifficulty: 2\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5215,7 +5214,7 @@ DTSTAMP:20251129T010134Z
 UID:48363ubf139ilgpqfrqhv85tke@google.com
 SEQUENCE:0
 CREATED:20251129T001506Z
-DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3
+DESCRIPTION:Area: Learning\nType: Problem Solving\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5229,7 +5228,7 @@ UID:43mr10e72bcfiiv0qglt3pf4td@google.com
 SEQUENCE:10
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nProject: Coding Game with Python\nTags: python\, py
- game\nDifficulty: 3
+ game\nDifficulty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5243,7 +5242,7 @@ UID:7s4967qr05pkijdmp9uo0672tc@google.com
 SEQUENCE:0
 CREATED:20251129T001509Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5257,7 +5256,7 @@ UID:5g3ltuqgdk7pdu4235p2k1sqri@google.com
 SEQUENCE:3
 CREATED:20251129T001507Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5273,7 +5272,7 @@ RRULE:FREQ=DAILY;COUNT=7
 EXDATE;TZID=Asia/Tehran:20250507T200000
 CREATED:20251129T001506Z
 DESCRIPTION:Area: Dev\nType: Side Project\nProject: Random Project\nDiffic
- ulty: 2\nTags: python
+ ulty: 2\nTags: python\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE
@@ -5287,7 +5286,7 @@ UID:1a3vecl80g1v7q0up9jbonpc6i@google.com
 SEQUENCE:0
 CREATED:20251129T001504Z
 DESCRIPTION:Area: Teaching\nProject: Farnaz\nTags: python\, data-sci\nDiff
- iculty: 3
+ iculty: 3\n
 LAST-MODIFIED:20251129T001514Z
 STATUS:CONFIRMED
 TRANSP:OPAQUE

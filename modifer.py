@@ -220,18 +220,18 @@ def print_summary_with_no_description(cal):
 
 def modify_by_summary(cal, filename):
     description = [
-        "Area: Dev",
-        "Type: Client Project",
-        "Project: cbm",
+        "Area: Computer Science",
+        "Type: Programming Fundamentals",
+        "Project: Introduction to Computation and Programming Using Python",
         "Difficulty: 3",
-        "Tags: python, data-sci",
+        "Tags: cs, book",
     ]
     data = {
-        "summary": "cbm",
+        "summary": "guttag",
         "description": "\n".join(description),
     }
 
-    keywords = ["cbm"]
+    keywords = ["guttag", "study: cb", "overview", "level", "cs101", ]
 
     new_cal = calendar_modify(cal, keywords, data, filename)
 
@@ -240,13 +240,34 @@ def modify_by_summary(cal, filename):
     create_calendar(filename, new_cal)
 
     changed_events = [
+        "Learn Linux",
+         "Python official tutorial",
+         "Fluent Python",
+         "Think Python",
+         "guttag",
 
-     
+
+
+         
     ]
 
     print_all_unique_events(cal, changed_events)
 
 
+def shrink_ics_file(cal):
+    new_cal = Calendar()
+    count = 0
+
+    for component in cal.walk():
+        new_description = ""
+        if component.name == "VEVENT":
+            dtstart = component.get('dtstart')
+            if dtstart.dt.year >= 2025:
+                count += 1
+                new_cal.add_component(component)
+
+    create_calendar("saeed2.ics", new_cal)
+    print(count)
 
 def main():
 
@@ -258,20 +279,21 @@ def main():
     #
     #
     # # -- calendars
-    # growth = read_calendar("growth.ics")
-    # work = read_calendar("work.ics")
-    # saeed = read_calendar("saeed.ics")
-    # study = read_calendar("study.ics")
+    growth = read_calendar("growth.ics")
+    work = read_calendar("work.ics")
+    saeed = read_calendar("saeed.ics")
+    study = read_calendar("study.ics")
 
 
     
-    modify_by_summary(work, "work.ics")
+    # modify_by_summary(study, "study.ics")
     # print_summary_with_no_description(study)
+    # shrink_ics_file(saeed)
 
-    # clear_empty_filed_from_description(study, "study.ics")
-    # clear_empty_filed_from_description(saeed, "saeed.ics")
-    # clear_empty_filed_from_description(work, "work.ics")
-    # clear_empty_filed_from_description(growth, "growth.ics")
+    clear_empty_filed_from_description(study, "study.ics")
+    clear_empty_filed_from_description(saeed, "saeed.ics")
+    clear_empty_filed_from_description(work, "work.ics")
+    clear_empty_filed_from_description(growth, "growth.ics")
 
     # #
     # # # -- delete span and br *MUST FIRST*
