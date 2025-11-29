@@ -117,7 +117,6 @@ def calendar_modify(cal, keywords, data, filename):
                 for key, value in data.items():
                     new_event[key] = value
                 print(summary, "-->", new_event["summary"])
-                print(new_event["description"])
                 new_cal.add_component(new_event)
                 count += 1
             else:
@@ -137,7 +136,7 @@ def delete_span_br(cal_name, filename):
             description = component.get("description")
             new_event = copy.deepcopy(component)
             if description:
-                clean_description = description.lower().replace("<span>", "").replace("</span>", "").replace("<br>", "\\n").replace("br>", "\\n").replace("none", "").strip()
+                clean_description = description.replace("<span>", "").replace("</span>", "").replace("<br>", "\\n").replace("br>", "\\n").replace("none", "").strip()
                 new_event["description"] = clean_description
                 new_cal.add_component(new_event)
                 count += 1
@@ -148,8 +147,9 @@ def delete_span_br(cal_name, filename):
     print("Description Changed:", count)
 
 
-def print_all_unique_events(cal):
+def print_all_unique_events(cal, changed_events):
     print("--------- Unique events -------------")
+    changed_events = [summary.lower() for summary in changed_events]
     events = {}
 
     for component in cal.walk():
@@ -161,7 +161,8 @@ def print_all_unique_events(cal):
                 events[summary] = 1
 
     for summary, count in events.items():
-        print(summary, count)
+        if summary.lower() not in changed_events:
+            print(summary, count)
 
 def print_description(cal, summary):
     print("--------- Event Description -------------")
@@ -179,28 +180,61 @@ def modify_description(cal):
     pass
 
 
+def clear_empty_filed_from_description(cal):
+    new_cal = Calendar()
+    count = 0
+
+    for component in cal.walk():
+        new_description = ""
+        if component.name == "VEVENT":
+            new_event = copy.deepcopy(component)
+            description = component.get("description")
+            lines = description.split('\n')
+            lines = [line for line in lines if line.strip()]
+            for line in lines:
+                field, value = line.split(':', 1)
+                value = value.strip()
+                if value:
+                    new_description += f"{field}: {value}\n"
+            new_event["description"] = new_description
+            new_cal.add_component(new_event)
+            print(new_description)
+    
+    # create_calendar("saeed.ics", new_cal)
+                
+
+
+
 def modify_by_summary(cal):
     description = [
-        "Area: Reading",
-        "Type: Novel",
-        "Project: Brave New World",
-        "Difficulty: 2",
-        "Tags: sci-fi",
+        "Area: Content",
+        "Type: Instagram",
+        "Difficulty: 3",
     ]
     data = {
-        "summary": "Brave new world",
+        "summary": "Instagram post",
         "description": "\n".join(description),
     }
 
-    keywords = ["brave new world"]
+    keywords = ["instagram"]
 
-    new_cal = calendar_modify(cal, keywords, data, "growth.ics")
+    new_cal = calendar_modify(cal, keywords, data, "study.ics")
 
     print_description(new_cal, data.get("summary"))
 
-    # create_calendar("growth.ics", new_cal)
+    # create_calendar("study.ics", new_cal)
 
-    print_all_unique_events(cal)
+    changed_events = [
+        "Farnaz",
+        "Dr Saeed",
+        "Arad",
+        "Motlag",
+        "Mehrdad", 
+        "Amin",
+        "Instagram post",
+    ]
+
+    print_all_unique_events(cal, changed_events)
 
 
 
@@ -215,34 +249,35 @@ def main():
     #
     # # -- calendars
     growth = read_calendar("growth.ics")
-    modify_by_summary(growth)
-    # work = read_calendar("work.ics")
-    # saeed = read_calendar("saeed.ics")
-    # study = read_calendar("study.ics")
+    work = read_calendar("work.ics")
+    saeed = read_calendar("saeed.ics")
+    study = read_calendar("study.ics")
+    modify_by_summary(saeed)
+    clear_empty_filed_from_description(saeed)
     # #
     # # # -- delete span and br *MUST FIRST*
-    # delete_span_br("work.ics", "work.ics")
-    # delete_span_br("saeed.ics", "saeed.ics")
-    # delete_span_br("growth.ics", "growth.ics")
-    # delete_span_br("study.ics", "study.ics")
+    delete_span_br("work.ics", "work.ics")
+    delete_span_br("saeed.ics", "saeed.ics")
+    delete_span_br("growth.ics", "growth.ics")
+    delete_span_br("study.ics", "study.ics")
     # #
     # # -- fix time zone --
-    # fix_timezone_in_ics("growth.ics", "growth.ics")
-    # fix_timezone_in_ics("work.ics", "work.ics")
-    # fix_timezone_in_ics("saeed.ics", "saeed.ics")
-    # fix_timezone_in_ics("study.ics", "study.ics")
+    fix_timezone_in_ics("growth.ics", "growth.ics")
+    fix_timezone_in_ics("work.ics", "work.ics")
+    fix_timezone_in_ics("saeed.ics", "saeed.ics")
+    fix_timezone_in_ics("study.ics", "study.ics")
     # #
     # # # -- Add extra fields ---
-    # add_calendar_name(growth, "growth")
-    # add_calendar_name(work, "work")
-    # add_calendar_name(study, "study")
-    # add_calendar_name(saeed, "saeed")
+    add_calendar_name(growth, "growth")
+    add_calendar_name(work, "work")
+    add_calendar_name(study, "study")
+    add_calendar_name(saeed, "saeed")
     #
     # # # # # -- add colors
-    # add_calendar_color(growth, "#A479B1")
-    # add_calendar_color(work, "#489160")
-    # add_calendar_color(study, "#4B99D2")
-    # add_calendar_color(saeed, "#7C7C7C")
+    add_calendar_color(growth, "#A479B1")
+    add_calendar_color(work, "#489160")
+    add_calendar_color(study, "#4B99D2")
+    add_calendar_color(saeed, "#7C7C7C")
 
 
 
