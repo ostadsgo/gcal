@@ -22,6 +22,7 @@ from icalendar import Calendar, Event
 from datetime import datetime
 import pytz
 from pathlib import Path
+import shutil
 
 BASE_DIR = Path(__file__).resolve().parent
 ICS_DIR = BASE_DIR / "ics"
@@ -93,7 +94,6 @@ class IcsToDb:
             """
             CREATE TABLE IF NOT EXISTS difficulties (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                level INTEGER UNIQUE NOT NULL,
                 label TEXT UNIQUE NOT NULL,
                 description TEXT
             )
@@ -115,6 +115,7 @@ class IcsToDb:
                 type_id INTEGER,
                 difficulty_id INTEGER,
                 detail TEXT,
+                is_all_day INTEGER DEFAULT 0,
                 FOREIGN KEY (calendar_id) REFERENCES calendars(id) ON DELETE CASCADE,
                 FOREIGN KEY (area_id) REFERENCES areas(id),
                 FOREIGN KEY (project_id) REFERENCES projects(id),
@@ -173,20 +174,20 @@ class IcsToDb:
     def _insert_default_difficulties(self, cursor):
         """Insert default difficulty levels if they don't exist"""
         difficulties = [
-            (1, "Very Easy", "Minimal effort required"),
-            (2, "Easy", "Straightforward task"),
-            (3, "Medium", "Moderate effort required"),
-            (4, "Hard", "Challenging task"),
-            (5, "Very Hard", "Complex, requires significant effort"),
+            ("Very Easy", "Minimal effort required"),
+            ("Easy", "Straightforward task"),
+            ("Medium", "Moderate effort required"),
+            ("Hard", "Challenging task"),
+            ("Very Hard", "Complex, requires significant effort"),
         ]
 
-        for level, label, description in difficulties:
+        for label, description in difficulties:
             cursor.execute(
                 """
-                INSERT OR IGNORE INTO difficulties (level, label, description)
-                VALUES (?, ?, ?)
+                INSERT OR IGNORE INTO difficulties (label, description)
+                VALUES (?, ?)
             """,
-                (level, label, description),
+                (label, description),
             )
 
     def get_or_create_lookup_id(self, cursor, table_name, field_name, value):
@@ -230,17 +231,26 @@ class IcsToDb:
             return cursor.lastrowid
 
     def get_difficulty_id(self, cursor, difficulty_value):
-        """Get difficulty ID from level number"""
+        """Get difficulty ID from difficulty value (now uses label matching)"""
         if not difficulty_value:
             return None
 
         try:
-            difficulty_level = int(difficulty_value)
+            # Try to find by exact label match first
             cursor.execute(
-                "SELECT id FROM difficulties WHERE level = ?", (difficulty_level,)
+                "SELECT id FROM difficulties WHERE label = ?", (difficulty_value,)
             )
             row = cursor.fetchone()
-            return row[0] if row else None
+            if row:
+                return row[0]
+            
+            # If not found by label, try to parse as number and find by order
+            difficulty_level = int(difficulty_value)
+            cursor.execute("SELECT id FROM difficulties ORDER BY id")
+            rows = cursor.fetchall()
+            if 1 <= difficulty_level <= len(rows):
+                return rows[difficulty_level - 1][0]
+            return None
         except (ValueError, TypeError):
             return None
 
@@ -383,15 +393,10 @@ class IcsToDb:
                     self.calendar_timezone if not is_all_day else None,
                 )
 
-                # Calculate duration in hours
+                # Calculate duration in hours (0 for all-day events)
                 duration = 0
-                if (
-                    dtstart
-                    and dtend
-                    and hasattr(dtstart.dt, "__sub__")
-                    and hasattr(dtend.dt, "__sub__")
-                ):
-                    duration = (dtend.dt - dtstart.dt).total_seconds() / 3600
+                if not is_all_day and dtstart and dtend:
+                    duration = (dtend.dt - dtstart.dt).total_seconds() / SECONDS_PER_HOUR
 
                 # Get foreign key IDs for normalized fields
                 area_id = self.get_or_create_lookup_id(
@@ -412,9 +417,9 @@ class IcsToDb:
                         """
                         INSERT INTO events (
                             calendar_id, summary, dtstart, dtend, duration,
-                            area_id, project_id, type_id, difficulty_id, detail
-                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
+                            area_id, project_id, type_id, difficulty_id, detail, is_all_day
+                        ) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        """,
                         (
                             calendar_id,
                             str(component.get("summary", "")),
@@ -426,6 +431,7 @@ class IcsToDb:
                             type_id,
                             difficulty_id,
                             desc_fields["detail"],
+                            is_all_day
                         ),
                     )
 
@@ -602,19 +608,69 @@ class DbToIcs:
         print(f"Exported {len(events)} events to {ics_file}")
         return len(events)
 
+def setup_dirs():
+    """Ensure necessary directories exist."""
+    ICS_DIR.mkdir(exist_ok=True)
+    DB_DIR.mkdir(exist_ok=True)
+    print(f"ICS Directory: {ICS_DIR}")
+    print(f"DB Directory: {DB_DIR}")
 
-if __name__ == "__main__":
+def merge_to_one_db(output_db_file="data.db"):
+    """
+    Imports all ICS files from the ICS_DIR into a single SQLite database file.
+    It deletes the existing output_db_file first to ensure a fresh start.
+    """
+    setup_dirs()
+    
+    output_db_path = DB_DIR / output_db_file
+    
+    # Optional: Remove old database file for a clean start
+    if output_db_path.exists():
+        output_db_path.unlink()
+        print(f"Removed existing database: {output_db_file}")
+
+    colors = {"work": "#489160", "saeed": "#7C7C7C", "study": "#4B99D2", "growth": "#A479B1"}
+    
+    # Initialize the importer with the *single* desired database file name
+    importer = IcsToDb(output_db_path)
+    
+    # Initialize the DB structure once
+    importer.init_db()
+    
+    total_events_imported = 0
+    
+    # Iterate through all ICS files and import them into the single DB
+    for ics_file_path in ICS_DIR.glob("*.ics"):
+        color = colors.get(ics_file_path.stem)
+        print(f"\nImporting {ics_file_path.name} into {output_db_file}...")
+        
+        # Import the calendar using the already initialized importer
+        # The import_calendar method handles the connection internally.
+        total_events_imported += importer.import_calendar(ics_file_path, color)
+
+    # Note: IcsToDb.import_calendar commits and closes the connection itself, 
+    # so we rely on that behavior for the final result.
+    
+    print(f"\n✅ All ICS files imported successfully.")
+    print(f"Total events imported: **{total_events_imported}**")
+    print(f"Database created at: **{output_db_path}**")
+
+
+def to_db():
     colors = {"work": "#489160", "saeed": "#7C7C7C", "study": "#4B99D2", "growth":"#A479B1"}
-    # convert all .ics files to db 
-    # for ics_file_path in ICS_DIR.glob("*.ics"):
-    #     db_file_name = ics_file_path.stem + ".db"
-    #     color = colors.get(ics_file_path.stem)
-    #     importer = IcsToDb(Path(DB_DIR / db_file_name))
-    #     importer.import_calendar(ics_file_path, color)
-    #     print(f"Create database file for {db_file_name}")
+    for ics_file_path in ICS_DIR.glob("*.ics"):
+        db_file_name = ics_file_path.stem + ".db"
+        color = colors.get(ics_file_path.stem)
+        importer = IcsToDb(Path(DB_DIR / db_file_name))
+        importer.import_calendar(ics_file_path, color)
 
-
+def to_ics():
     for db_file_path in DB_DIR.glob("*.db"):
         ics_file_name = db_file_path.stem + ".ics"
         exporter = DbToIcs(Path(db_file_path))
         exporter.export_calendar(ICS_DIR / ics_file_name)
+
+
+if __name__ == "__main__":
+    merge_to_one_db()
+

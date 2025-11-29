@@ -16,23 +16,6 @@ class CalendarModel:
     def __init__(self, db):
         self.db = db
 
-    def create(self):
-        sql = """ CREATE TABLE IF NOT EXISTS calendars (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL,
-            color text default '#FF0000'
-        );
-        """
-        print("Table :: calendar")
-        self.db.execute(sql)
-
-    def insert(self, name, color):
-        sql = """ 
-            INSERT INTO calendars (name, color)
-            VALUES (?, ?);
-        """
-        self.db.execute(sql, (name, color))
-        return self.get_id_by_name(name)
 
     def get_id_by_name(self, name):
         sql = "SELECT id FROM calendars WHERE name = ?"
@@ -47,80 +30,14 @@ class CalendarModel:
 class EventModel:
     def __init__(self, db):
         self.db = db
-
-    def create(self):
-        sql = """ CREATE TABLE IF NOT EXISTS events (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            calendar_id TEXT NOT NULL,
-            summary TEXT NOT NULL,
-            dtstart TEXT NOT NULL,
-            dtend TEXT NOT NULL,
-            duration REAL NOT NULL,
-            area TEXT,
-            type TEXT,
-            project TEXT,
-            difficulty TEXT,
-            detail TEXT,
-            FOREIGN KEY (calendar_id) REFERENCES calendars(id) ON DELETE CASCADE
-        );
-        """
-        print("Table :: events")
-        self.db.execute(sql)
-
-
-    def insert(self, calendar_id, summary, dtstart, dtend, duration, area, type, project, difficulty, detail):
-        sql = """
-            INSERT INTO events (calendar_id, summary, dtstart, dtend, duration, area, type, project, difficulty, detail)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """
-        self.db.execute(sql, (calendar_id, summary, dtstart, dtend, duration, area, type, project, difficulty, detail))
-        return self.db.cursor.lastrowid
+   
 
 
 class TagModel:
     def __init__(self, db):
         self.db = db
 
-    def create(self):
-        sql = """
-        CREATE TABLE IF NOT EXISTS tags (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT UNIQUE NOT NULL
-        )
-        """
-        self.db.execute(sql)
-        print("Table :: tags")
-        
-        sql = """
-        CREATE TABLE IF NOT EXISTS event_tags (
-            event_id INTEGER NOT NULL,
-            tag_id INTEGER NOT NULL,
-            PRIMARY KEY (event_id, tag_id),
-            FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
-            FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
-        )
-        """
-        self.db.execute(sql)
-        print("Table :: event_tags")
-
-    def get_or_create(self, tag_name):
-        """Get tag ID if exists, otherwise create it"""
-        # Check if exists
-        sql = "SELECT id FROM tags WHERE name = ?"
-        result = self.db.fetch_one(sql, (tag_name,))
-        
-        if result:
-            return result['id']
-        
-        # Create new tag
-        sql = "INSERT INTO tags (name) VALUES (?)"
-        self.db.execute(sql, (tag_name,))
-        return self.db.cursor.lastrowid
-
-    def link_event_tag(self, event_id, tag_id):
-        """Link an event to a tag"""
-        sql = "INSERT OR IGNORE INTO event_tags (event_id, tag_id) VALUES (?, ?)"
-        self.db.execute(sql, (event_id, tag_id))
+    
 
 
 class DatabaseManager:
