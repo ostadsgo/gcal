@@ -673,4 +673,5 @@ def to_ics():
 
 if __name__ == "__main__":
     merge_to_one_db()
+    # to_ics()
 
