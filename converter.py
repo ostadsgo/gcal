@@ -624,34 +624,23 @@ def merge_to_one_db(output_db_file="data.db"):
     
     output_db_path = DB_DIR / output_db_file
     
-    # Optional: Remove old database file for a clean start
     if output_db_path.exists():
         output_db_path.unlink()
         print(f"Removed existing database: {output_db_file}")
 
     colors = {"work": "#489160", "saeed": "#7C7C7C", "study": "#4B99D2", "growth": "#A479B1"}
     
-    # Initialize the importer with the *single* desired database file name
     importer = IcsToDb(output_db_path)
-    
-    # Initialize the DB structure once
     importer.init_db()
-    
+
     total_events_imported = 0
-    
-    # Iterate through all ICS files and import them into the single DB
     for ics_file_path in ICS_DIR.glob("*.ics"):
         color = colors.get(ics_file_path.stem)
         print(f"\nImporting {ics_file_path.name} into {output_db_file}...")
         
-        # Import the calendar using the already initialized importer
-        # The import_calendar method handles the connection internally.
         total_events_imported += importer.import_calendar(ics_file_path, color)
 
-    # Note: IcsToDb.import_calendar commits and closes the connection itself, 
-    # so we rely on that behavior for the final result.
-    
-    print(f"\n✅ All ICS files imported successfully.")
+    print(f"\nAll ICS files imported successfully.")
     print(f"Total events imported: **{total_events_imported}**")
     print(f"Database created at: **{output_db_path}**")
 
@@ -673,5 +662,4 @@ def to_ics():
 
 if __name__ == "__main__":
     merge_to_one_db()
-    # to_ics()
-
+    # to_db()
