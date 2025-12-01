@@ -23,7 +23,8 @@ class CalendarModel:
             SELECT 
                 c.id AS calendar_id,
                 c.name AS calendar_name,
-                COALESCE(SUM(e.duration), 0) AS total_duration
+                COALESCE(SUM(e.duration), 0) AS total_duration, 
+                COUNT(e.id) AS total_events
             FROM calendars c
             LEFT JOIN events e ON e.calendar_id = c.id
             GROUP BY c.id, c.name
@@ -34,6 +35,7 @@ class CalendarModel:
             {
                 "calendar_name": row["calendar_name"],
                 "total_duration": row["total_duration"],
+                "total_events": row["total_events"],
             }
             for row in rows
         ]
