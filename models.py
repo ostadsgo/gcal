@@ -1,8 +1,7 @@
-""" `model.py` - modules for CRUD operation on the data of the app."""
+"""`model.py` - modules for CRUD operation on the data of the app."""
 
 import sqlite3
 from pathlib import Path
-
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -14,17 +13,38 @@ class CalendarModel:
     def __init__(self, db):
         self.db = db
 
-    def get_calendars(self):
-        sql_cmd = """ SELECT id, name FROM calendars;"""
-        rows = self.db.fetch_all(sql_cmd)
-        return rows
+    def calendar_names(self):
+        query = """ SELECT name FROM calendars; """
+        rows = self.db.fetch_all(query)
+        return [row["name"] for row in rows]
 
-    
+    def calendars_total_duration(self):
+        query = """
+            SELECT 
+                c.id AS calendar_id,
+                c.name AS calendar_name,
+                COALESCE(SUM(e.duration), 0) AS total_duration
+            FROM calendars c
+            LEFT JOIN events e ON e.calendar_id = c.id
+            GROUP BY c.id, c.name
+            ORDER BY c.name
+        """
+        rows = self.db.fetch_all(query)
+        return [
+            {
+                "calendar_name": row["calendar_name"],
+                "total_duration": row["total_duration"],
+            }
+            for row in rows
+        ]
+
+
 class DatabaseManager:
 
     def __init__(self):
         self.db_path = Path(DB_FILE)
         self.conn = None
+        self.calendar_model = None
         self._init_db()
 
     def _init_db(self):
@@ -32,6 +52,9 @@ class DatabaseManager:
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
         self.conn.execute("PRAGMA foreign_keys = ON")
+
+        # Model objects to access in app.py to send to controllers.
+        self.calendar_model = CalendarModel(self)
 
     def close(self):
         if self.conn:

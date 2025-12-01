@@ -1,27 +1,20 @@
-
-
-from views import App, CalendarView
+from views import App
+from models import DatabaseManager
 from controllers import CalendarController
-from models import DatabaseManager, CalendarModel
+
 
 def main():
     app = App()
-
     db = DatabaseManager()
-    model = CalendarModel(db)
-    
-    view = CalendarView()
 
-    controller = CalendarController(model, view)
+    calendar_model = db.calendar_model
+    calendar_view = app.mainframe.calendar_view
 
+    calendar_controller = CalendarController(calendar_model, calendar_view)
+    calendar_controller.initialize()
 
-
-
-
-
-    db.close()
     app.run()
-
+    db.close()
 
 
 if __name__ == "__main__":

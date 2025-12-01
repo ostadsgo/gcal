@@ -1,28 +1,8 @@
-"""
-Calendar Sync - Convert between ICS files and SQLite database with normalized schema
-
-Dependencies:
-    - icalendar: pip install icalendar
-    - pytz: pip install pytz
-
-Usage:
-    from converter import IcsToDb, DbToIcs
-
-    # Import ICS to database
-    importer = IcsToDb('calendar.db')
-    importer.import_calendar('calendar.ics')
-
-    # Export database to ICS
-    exporter = DbToIcs('calendar.db')
-    exporter.export_calendar('output.ics')
-"""
-
 import sqlite3
 from icalendar import Calendar, Event
 from datetime import datetime
 import pytz
 from pathlib import Path
-import shutil
 
 BASE_DIR = Path(__file__).resolve().parent
 ICS_DIR = BASE_DIR / "ics"
@@ -243,7 +223,7 @@ class IcsToDb:
             row = cursor.fetchone()
             if row:
                 return row[0]
-            
+
             # If not found by label, try to parse as number and find by order
             difficulty_level = int(difficulty_value)
             cursor.execute("SELECT id FROM difficulties ORDER BY id")
@@ -396,7 +376,9 @@ class IcsToDb:
                 # Calculate duration in hours (0 for all-day events)
                 duration = 0
                 if not is_all_day and dtstart and dtend:
-                    duration = (dtend.dt - dtstart.dt).total_seconds() / SECONDS_PER_HOUR
+                    duration = (
+                        dtend.dt - dtstart.dt
+                    ).total_seconds() / SECONDS_PER_HOUR
 
                 # Get foreign key IDs for normalized fields
                 area_id = self.get_or_create_lookup_id(
@@ -431,7 +413,7 @@ class IcsToDb:
                             type_id,
                             difficulty_id,
                             desc_fields["detail"],
-                            is_all_day
+                            is_all_day,
                         ),
                     )
 
@@ -608,6 +590,7 @@ class DbToIcs:
         print(f"Exported {len(events)} events to {ics_file}")
         return len(events)
 
+
 def setup_dirs():
     """Ensure necessary directories exist."""
     ICS_DIR.mkdir(exist_ok=True)
@@ -615,21 +598,27 @@ def setup_dirs():
     print(f"ICS Directory: {ICS_DIR}")
     print(f"DB Directory: {DB_DIR}")
 
+
 def merge_to_one_db(output_db_file="data.db"):
     """
     Imports all ICS files from the ICS_DIR into a single SQLite database file.
     It deletes the existing output_db_file first to ensure a fresh start.
     """
     setup_dirs()
-    
+
     output_db_path = DB_DIR / output_db_file
-    
+
     if output_db_path.exists():
         output_db_path.unlink()
         print(f"Removed existing database: {output_db_file}")
 
-    colors = {"work": "#489160", "saeed": "#7C7C7C", "study": "#4B99D2", "growth": "#A479B1"}
-    
+    colors = {
+        "work": "#489160",
+        "saeed": "#7C7C7C",
+        "study": "#4B99D2",
+        "growth": "#A479B1",
+    }
+
     importer = IcsToDb(output_db_path)
     importer.init_db()
 
@@ -637,7 +626,7 @@ def merge_to_one_db(output_db_file="data.db"):
     for ics_file_path in ICS_DIR.glob("*.ics"):
         color = colors.get(ics_file_path.stem)
         print(f"\nImporting {ics_file_path.name} into {output_db_file}...")
-        
+
         total_events_imported += importer.import_calendar(ics_file_path, color)
 
     print(f"\nAll ICS files imported successfully.")
@@ -646,12 +635,18 @@ def merge_to_one_db(output_db_file="data.db"):
 
 
 def to_db():
-    colors = {"work": "#489160", "saeed": "#7C7C7C", "study": "#4B99D2", "growth":"#A479B1"}
+    colors = {
+        "work": "#489160",
+        "saeed": "#7C7C7C",
+        "study": "#4B99D2",
+        "growth": "#A479B1",
+    }
     for ics_file_path in ICS_DIR.glob("*.ics"):
         db_file_name = ics_file_path.stem + ".db"
         color = colors.get(ics_file_path.stem)
         importer = IcsToDb(Path(DB_DIR / db_file_name))
         importer.import_calendar(ics_file_path, color)
+
 
 def to_ics():
     for db_file_path in DB_DIR.glob("*.db"):
