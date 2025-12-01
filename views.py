@@ -10,7 +10,31 @@ class ChartView(ttk.Frame):
 class ProjectView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        ttk.Label(self, text="Project Frame").grid(row=0, column=0)
+
+        self.cards = {}
+        self.columnconfigure(0, weight=1)
+
+    def create_cards(self, project_names):
+        for i, project_name in enumerate(project_names):
+            card = ttk.Frame(self, relief="solid", padding=10)
+
+            # widgets
+            card.project_name = ttk.Label(card, text="")
+            card.total_hours = ttk.Label(card, text="")
+
+            # grid
+            card.project_name.grid(row=0, column=1, sticky="ew")
+            card.total_hours.grid(row=0, column=2, sticky="ew")
+
+            card.grid(row=i, column=0, sticky="nsew", pady=5)
+            self.rowconfigure(i, weight=1)
+            self.cards[project_name] = card
+    
+    def update_card(self, project):
+        area_card = self.cards.get(project["project_name"])
+
+        area_card.project_name["text"] = project["project_name"]
+        area_card.total_hours["text"] = project["total_hours"]
 
 # Side
 class AreaView(ttk.Frame):

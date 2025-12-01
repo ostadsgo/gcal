@@ -66,6 +66,35 @@ class AreaModel:
         ]
 
 
+class ProjectModel:
+    def __init__(self, db):
+        self.db = db
+
+    def get_projects(self):
+        query = """
+            SELECT 
+                c.name as calendar_name,
+                p.name as project_name,
+                a.name as area_name,
+                COUNT(e.id) as event_count,
+                SUM(e.duration) as total_hours
+            FROM calendars c
+            JOIN events e ON c.id = e.calendar_id
+            JOIN projects p ON e.project_id = p.id
+            LEFT JOIN areas a ON p.area_id = a.id
+            GROUP BY c.name, p.name, a.name
+            ORDER BY total_hours DESC;
+        """
+        rows = self.db.fetch_all(query)
+        return [
+            {
+                "calendar_name": row["calendar_name"],
+                "project_name": row["project_name"],
+                "event_count": row["event_count"],
+                "total_hours": row["total_hours"],
+            }
+            for row in rows
+        ]
 
 class DatabaseManager:
 
@@ -84,6 +113,7 @@ class DatabaseManager:
         # Model objects to access in app.py to send to controllers.
         self.calendar_model = CalendarModel(self)
         self.area_model = AreaModel(self)
+        self.project_model = ProjectModel(self)
 
     def close(self):
         if self.conn:

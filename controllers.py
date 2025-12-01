@@ -46,7 +46,28 @@ class AreaController:
         areas = self.model.get_areas()
         areas.sort(key=lambda row: row["total_hours"], reverse=True)
         for area in areas[:5]:
-            print(area)
             self.view.update_card(area)
+
+
+class ProjectController:
+    def __init__(self, model, view):
+        self.model = model
+        self.view = view
+
+    def initialize(self):
+        self.create_cards()
+        self.update_cards()
+
+    def create_cards(self):
+        rows = self.model.get_projects()
+        rows.sort(key=lambda row: row["total_hours"], reverse=True)
+        project_names = [row["project_name"] for row in rows]
+        self.view.create_cards(project_names[:5])
+
+    def update_cards(self):
+        projects = self.model.get_projects()
+        projects.sort(key=lambda row: row["total_hours"], reverse=True)
+        for project in projects[:5]:
+            self.view.update_card(project)
 
 
