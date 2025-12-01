@@ -2,9 +2,15 @@ import tkinter as tk
 from tkinter import ttk
 
 
+class ChartView(ttk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        ttk.Label(self, text="chart Frame").grid(row=0, column=0)
+
 class ProjectView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        ttk.Label(self, text="Project Frame").grid(row=0, column=0)
 
 # Side
 class AreaView(ttk.Frame):
@@ -12,6 +18,7 @@ class AreaView(ttk.Frame):
         super().__init__(master, **kwargs)
         # members area area
         # every area is frame with color 
+        ttk.Label(self, text="Area Frame").grid(row=0, column=0)
 
 # Top Frame
 class CalendarView(ttk.Frame):
@@ -27,17 +34,21 @@ class CalendarView(ttk.Frame):
 
     def create_calendar_cards(self, calendar_names):
         for i, calendar_name in enumerate(calendar_names):
-            card = ttk.Frame(self, relief="solid", padding=(10, 5))
+            card = ttk.Frame(self, relief="solid", padding=10)
 
+            # widgets
             card.calendar_name = ttk.Label(card, text="")
             card.total_duration = ttk.Label(card, text="")
             card.total_events = ttk.Label(card, text="")
+
+            # grid
             card.calendar_name.grid(row=0, column=0, sticky="ew")
             card.total_duration.grid(row=1, column=0, sticky="ew")
             card.total_events.grid(row=2, column=0, sticky="ew")
 
-            card.grid(row=0, column=i, sticky="ew", padx=10)
+            card.grid(row=0, column=i, sticky="nsew", padx=5)
             self.columnconfigure(i, weight=1)
+
 
             self.cards[calendar_name] = card
 
@@ -56,11 +67,33 @@ class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.calendar_view = CalendarView(self, relief="solid", padding=(5, 10))
-        self.calendar_view.grid(row=0, column=0, sticky="ew")
+        # Top Frame
+        self.calendar_view = CalendarView(self)
+        self.calendar_view.grid(row=0, column=0, columnspan=2)
+
+        # Right frame
+        self.chartView = ProjectView(self)
+        self.chartView.grid(row=1, column=1, rowspan=3)
+
+        # Left frame (1)
+        self.area_view = AreaView(self)
+        self.area_view.grid(row=1, column=0)
+
+        # Left fram (2)
+        self.project_view = ProjectView(self)
+        self.project_view.grid(row=2, column=0)
+
+        for child in self.winfo_children():
+            child.config(padding=5, relief="solid")
+            child.grid_configure(pady=5, padx=5, sticky="nswe")
+        
+
 
         self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=10)
+        self.rowconfigure(2, weight=10)
         self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=10)
 
 
 class App(tk.Tk):
