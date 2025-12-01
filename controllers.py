@@ -9,20 +9,44 @@ class CalendarController:
         # self.view.register_event_handler("button_clicked", None)
 
     def initialize(self):
-        self.calendar_names()
-        self.update_calendars_data()
+        self.create_cards()
+        self.update_cards()
 
-    def calendar_names(self):
-        rows = self.model.calendars_total_duration()
+    def create_cards(self):
+        rows = self.model.get_calendars()
         rows.sort(key=lambda row: row["total_duration"], reverse=True)
 
         # Extract each calendar name which already sorted by duration.
         calendar_names = [row["calendar_name"] for row in rows]
-        self.view.create_calendar_cards(calendar_names)
+        self.view.create_cards(calendar_names)
 
-    def update_calendars_data(self):
-        rows = self.model.calendars_total_duration()
+    def update_cards(self):
+        rows = self.model.get_calendars()
         rows.sort(key=lambda row: row["total_duration"], reverse=True)
 
         for calendar in rows:
-            self.view.update_calendar_card(calendar) 
+            self.view.update_card(calendar) 
+
+class AreaController:
+    def __init__(self, model, view):
+        self.model = model
+        self.view = view
+
+    def initialize(self):
+        self.create_cards()
+        self.update_cards()
+
+    def create_cards(self):
+        rows = self.model.get_areas()
+        rows.sort(key=lambda row: row["total_hours"], reverse=True)
+        area_names = [row["area_name"] for row in rows]
+        self.view.create_cards(area_names[:5])
+
+    def update_cards(self):
+        areas = self.model.get_areas()
+        areas.sort(key=lambda row: row["total_hours"], reverse=True)
+        for area in areas[:5]:
+            print(area)
+            self.view.update_card(area)
+
+

@@ -16,9 +16,31 @@ class ProjectView(ttk.Frame):
 class AreaView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        # members area area
-        # every area is frame with color 
-        ttk.Label(self, text="Area Frame").grid(row=0, column=0)
+
+        self.cards = {}
+        self.columnconfigure(0, weight=1)
+
+    def create_cards(self, area_names):
+        for i, area_name in enumerate(area_names):
+            card = ttk.Frame(self, relief="solid", padding=10)
+
+            # widgets
+            card.area_name = ttk.Label(card, text="")
+            card.total_hours = ttk.Label(card, text="")
+
+            # grid
+            card.area_name.grid(row=0, column=1, sticky="ew")
+            card.total_hours.grid(row=0, column=2, sticky="ew")
+
+            card.grid(row=i, column=0, sticky="nsew", pady=5)
+            self.rowconfigure(i, weight=1)
+            self.cards[area_name] = card
+    
+    def update_card(self, area):
+        area_card = self.cards.get(area["area_name"])
+
+        area_card.area_name["text"] = area["area_name"]
+        area_card.total_hours["text"] = area["total_hours"]
 
 # Top Frame
 class CalendarView(ttk.Frame):
@@ -32,7 +54,7 @@ class CalendarView(ttk.Frame):
     def register_event_handler(self, event_name, handler):
         self.event_handlers[event_name] = handler
 
-    def create_calendar_cards(self, calendar_names):
+    def create_cards(self, calendar_names):
         for i, calendar_name in enumerate(calendar_names):
             card = ttk.Frame(self, relief="solid", padding=10)
 
@@ -49,10 +71,9 @@ class CalendarView(ttk.Frame):
             card.grid(row=0, column=i, sticky="nsew", padx=5)
             self.columnconfigure(i, weight=1)
 
-
             self.cards[calendar_name] = card
 
-    def update_calendar_card(self, calendar):
+    def update_card(self, calendar):
         calendar_name = calendar.get("calendar_name")
         total_duration = calendar.get("total_duration")
         total_events = calendar.get("total_events")

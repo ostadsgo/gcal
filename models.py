@@ -13,16 +13,12 @@ class CalendarModel:
     def __init__(self, db):
         self.db = db
 
-    def calendar_names(self):
-        query = """ SELECT name FROM calendars; """
-        rows = self.db.fetch_all(query)
-        return [row["name"] for row in rows]
-
-    def calendars_total_duration(self):
+    def get_calendars(self):
         query = """
             SELECT 
                 c.id AS calendar_id,
                 c.name AS calendar_name,
+                c.color AS calendar_color,
                 COALESCE(SUM(e.duration), 0) AS total_duration, 
                 COUNT(e.id) AS total_events
             FROM calendars c
@@ -34,11 +30,41 @@ class CalendarModel:
         return [
             {
                 "calendar_name": row["calendar_name"],
+                "calendar_color": row["calendar_color"],
                 "total_duration": row["total_duration"],
                 "total_events": row["total_events"],
             }
             for row in rows
         ]
+
+class AreaModel:
+    def __init__(self, db):
+        self.db = db
+
+    def get_areas(self):
+        query = """
+            SELECT 
+                c.name as calendar_name,
+                a.name as area_name,
+                COUNT(e.id) as event_count,
+                SUM(e.duration) as total_hours
+            FROM calendars c
+            JOIN events e ON c.id = e.calendar_id
+            JOIN areas a ON e.area_id = a.id
+            GROUP BY c.name, a.name
+            ORDER BY c.name, total_hours DESC;
+        """
+        rows = self.db.fetch_all(query)
+        return [
+            {
+                "calendar_name": row["calendar_name"],
+                "area_name": row["area_name"],
+                "event_count": row["event_count"],
+                "total_hours": row["total_hours"],
+            }
+            for row in rows
+        ]
+
 
 
 class DatabaseManager:
@@ -57,6 +83,7 @@ class DatabaseManager:
 
         # Model objects to access in app.py to send to controllers.
         self.calendar_model = CalendarModel(self)
+        self.area_model = AreaModel(self)
 
     def close(self):
         if self.conn:
