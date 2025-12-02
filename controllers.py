@@ -9,23 +9,12 @@ class CalendarController:
         # self.view.register_event_handler("button_clicked", None)
 
     def initialize(self):
-        self.create_cards()
-        self.update_cards()
+        calendars = self.model.get_calendars_by_usage()
+        self.view.create_cards(calendars)
 
-    def create_cards(self):
-        rows = self.model.get_calendars()
-        rows.sort(key=lambda row: row["total_duration"], reverse=True)
-
-        # Extract each calendar name which already sorted by duration.
-        calendar_names = [row["calendar_name"] for row in rows]
-        self.view.create_cards(calendar_names)
-
-    def update_cards(self):
-        rows = self.model.get_calendars()
-        rows.sort(key=lambda row: row["total_duration"], reverse=True)
-
-        for calendar in rows:
-            self.view.update_card(calendar) 
+        # update calendar cards
+        for calendar in calendars:
+            self.view.update_card(calendar)
 
 class AreaController:
     def __init__(self, model, view):
@@ -33,41 +22,43 @@ class AreaController:
         self.view = view
 
     def initialize(self):
-        self.create_cards()
-        self.update_cards()
+        areas = self.model.get_top_areas(limit=5)
+        self.view.create_cards(areas)
 
-    def create_cards(self):
-        rows = self.model.get_areas()
-        rows.sort(key=lambda row: row["total_hours"], reverse=True)
-        area_names = [row["area_name"] for row in rows]
-        self.view.create_cards(area_names[:5])
-
-    def update_cards(self):
-        areas = self.model.get_areas()
-        areas.sort(key=lambda row: row["total_hours"], reverse=True)
-        for area in areas[:5]:
+        # update calendar cards
+        for area in areas:
             self.view.update_card(area)
 
-
+#
+#
 class ProjectController:
     def __init__(self, model, view):
         self.model = model
         self.view = view
 
     def initialize(self):
-        self.create_cards()
-        self.update_cards()
+        projects = self.model.get_top_projects(limit=5)
+        self.view.create_cards(projects)
 
-    def create_cards(self):
-        rows = self.model.get_projects()
-        rows.sort(key=lambda row: row["total_hours"], reverse=True)
-        project_names = [row["project_name"] for row in rows]
-        self.view.create_cards(project_names[:5])
-
-    def update_cards(self):
-        projects = self.model.get_projects()
-        projects.sort(key=lambda row: row["total_hours"], reverse=True)
-        for project in projects[:5]:
+        # update calendar cards
+        for project in projects:
             self.view.update_card(project)
+#
+#
+class ChartController:
+    def __init__(self, calendar_model, area_model, project_model, view):
+        self.calendar_model = calendar_model
+        self.area_model = area_model
+        self.project_model = project_model
+        self.view = view
 
+    def initialize(self):
+        self.view.setup_ui()
+        self.update_pie_chart()
 
+    def update_pie_chart(self):
+        calendars = self.calendar_model.get_calendars_by_usage()
+        self.view.update_pie_chart(calendars)
+
+#
+#
