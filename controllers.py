@@ -16,6 +16,7 @@ class CalendarController:
         for calendar in calendars:
             self.view.update_card(calendar)
 
+
 class AreaController:
     def __init__(self, model, view):
         self.model = model
@@ -29,8 +30,7 @@ class AreaController:
         for area in areas:
             self.view.update_card(area)
 
-#
-#
+
 class ProjectController:
     def __init__(self, model, view):
         self.model = model
@@ -43,8 +43,8 @@ class ProjectController:
         # update calendar cards
         for project in projects:
             self.view.update_card(project)
-#
-#
+
+
 class ChartController:
     def __init__(self, calendar_model, area_model, project_model, view):
         self.calendar_model = calendar_model
@@ -54,11 +54,18 @@ class ChartController:
 
     def initialize(self):
         self.view.setup_ui()
-        self.update_pie_chart()
+        self.update_calendar_chart()
+        self.update_area_chart()
+        self.update_project_chart()
 
-    def update_pie_chart(self):
+    def update_calendar_chart(self):
         calendars = self.calendar_model.get_calendars_by_usage()
-        self.view.update_pie_chart(calendars)
+        self.view.update_calendar_chart(calendars)
 
-#
-#
+    def update_area_chart(self):
+        areas = self.area_model.get_top_areas(limit=5)
+        self.view.update_area_chart(areas)
+
+    def update_project_chart(self):
+        projects = self.project_model.get_top_projects(limit=5)
+        self.view.update_project_chart(projects)

@@ -1,6 +1,11 @@
 from views import App
 from models import DatabaseManager
-from controllers import CalendarController, AreaController, ProjectController, ChartController
+from controllers import (
+    CalendarController,
+    AreaController,
+    ProjectController,
+    ChartController,
+)
 
 
 def main():
@@ -23,10 +28,7 @@ def main():
     area_controller = AreaController(area_model, area_view)
     project_controller = ProjectController(project_model, project_view)
     chart_controller = ChartController(
-        calendar_model, 
-        area_model, 
-        project_model, 
-        chart_view
+        calendar_model, area_model, project_model, chart_view
     )
 
     # initializers

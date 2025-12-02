@@ -13,11 +13,12 @@ DB_FILE = DB_PATH / "data.db"
 @dataclass
 class Calendar:
     """Calendar with statistics."""
+
     name: str
     color: str
     total_duration: float
     total_events: int
-    
+
     def format_duration(self) -> str:
         """Format duration as human-readable string."""
         hours = int(self.total_duration)
@@ -25,10 +26,10 @@ class Calendar:
         return f"{hours}h {minutes}m"
 
 
-
 @dataclass
 class Area:
     """Area with statistics."""
+
     calendar_name: str
     name: str
     event_count: int
@@ -38,6 +39,7 @@ class Area:
 @dataclass
 class Project:
     """Project with statistics."""
+
     calendar_name: str
     name: str
     area_name: str
@@ -105,6 +107,7 @@ class AreaModel:
         """
         rows = self.db.fetch_all(query, (limit,))
         return [Area(**row) for row in rows]
+
 
 class ProjectModel:
     def __init__(self, db):
