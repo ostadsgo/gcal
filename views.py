@@ -91,7 +91,7 @@ class AreaView(ttk.Labelframe):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.cards = {}
+        self.cards = []
         self.columnconfigure(0, weight=1)
 
     def create_cards(self, areas):
@@ -109,11 +109,10 @@ class AreaView(ttk.Labelframe):
 
             card.grid(row=i, column=0, sticky="nsew", pady=5)
             self.rowconfigure(i, weight=1)
-            self.cards[area.area_name] = card
+            self.cards.append(card)
 
-    def update_card(self, area):
-        """Update area frame with the area data."""
-        area_card = self.cards.get(area.area_name)
+    def update_card(self, index, area):
+        area_card = self.cards[index]
 
         area_card.area_name_label.config(text=area.area_name)
         area_card.total_hours_label.config(text=area.total_hours)
@@ -133,8 +132,8 @@ class CalendarView(ttk.Frame):
     def on_calendar_hover(self, event):
         pass
 
-    def on_calendar_click(self, event):
-        handler = self.handlers["calendar_click"]
+    def on_calendar_select(self, event):
+        handler = self.handlers["calendar_select"]
         handler(event.widget.calendar_id)
 
 
@@ -155,7 +154,7 @@ class CalendarView(ttk.Frame):
             card.duration_label.grid(row=1, column=0, sticky="ew")
             card.events_label.grid(row=2, column=0, sticky="ew")
 
-            card.bind("<Button-1>", self.on_calendar_click)
+            card.bind("<Button-1>", self.on_calendar_select)
             card.grid(row=0, column=i, sticky="nsew", padx=5)
             self.columnconfigure(i, weight=1)
 

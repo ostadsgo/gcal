@@ -7,30 +7,45 @@ from controllers import (
     ChartController,
 )
 
+class AppContext:
+    def __init__(self, app):
+        self.app = app
+        self.model = db.model
+        self.controllers = {}
+        self.views = {}
+    
+    def setup(self):
+        # views
+        self.views['calendar'] = self.app.mainframe.calendar_view
+        self.views['area'] = self.app.mainframe.area_view
+        self.views['project'] = self.app.mainframe.project_view
+        self.views['chart'] = self.app.mainframe.chart_view
+        
+        # controllers
+        self.controllers['calendar'] = CalendarController(self)
+        self.controllers['area'] = AreaController(self)
+        self.controllers['project'] = ProjectController(self)
+        self.controllers['chart'] = ChartController(self)
+
+        # initialize controllers
+        self.controllers['calendar'].initialize()
+        self.controllers['area'].initialize()
+        self.controllers['project'].initialize()
+        self.controllers['chart'].initialize()
+        
+        return self
+    
+    def get_controller(self, name):
+        return self.controllers.get(name)
+    
+    def get_view(self, name):
+        return self.views.get(name)
 
 def main():
     app = App()
 
-    # models
-    model = db.calendar_model
-
-    # views
-    calendar_view = app.mainframe.calendar_view
-    area_view = app.mainframe.area_view
-    project_view = app.mainframe.project_view
-    chart_view = app.mainframe.chart_view
-
-    # controllers
-    calendar_controller = CalendarController(model, calendar_view)
-    area_controller = AreaController(model, area_view)
-    project_controller = ProjectController(model, project_view)
-    chart_controller = ChartController( model, chart_view)
-
-    # initializers
-    calendar_controller.initialize()
-    area_controller.initialize()
-    project_controller.initialize()
-    chart_controller.initialize()
+    context = AppContext(app)
+    context.setup()
 
     app.run()
     db.close()

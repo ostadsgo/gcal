@@ -63,7 +63,7 @@ class CalendarModel:
         rows = self.db.fetch_all(query)
         return [Record(row) for row in rows]
     
-    def get_top_areas(self, limit: int = 10) -> list[Record]:
+    def get_top_areas(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
         """Get top areas by total hours."""
         query = """
             SELECT 
@@ -75,11 +75,12 @@ class CalendarModel:
             FROM calendars c
             JOIN events e ON c.id = e.calendar_id
             JOIN areas a ON e.area_id = a.id
+            WHERE c.id = ?
             GROUP BY c.name, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (limit,))
+        rows = self.db.fetch_all(query, (calendar_id, limit))
         return [Record(row) for row in rows]
 
     def get_top_projects(self, limit: int = 10) -> list[Record]:
@@ -126,7 +127,7 @@ class DatabaseManager:
         self.cursor = self.conn.cursor()
         self.conn.execute("PRAGMA foreign_keys = ON")
 
-        self.calendar_model = CalendarModel(self)
+        self.model = CalendarModel(self)
 
     def close(self):
         if self.conn:
