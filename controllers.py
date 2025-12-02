@@ -6,7 +6,7 @@ class CalendarController:
         self.model = model
         self.view = view
 
-        # self.view.register_event_handler("button_clicked", None)
+        self.view.register_event_handler("calendar_click", self.handle_calendar_click)
 
     def initialize(self):
         calendars = self.model.get_calendars_by_usage()
@@ -15,6 +15,9 @@ class CalendarController:
         # update calendar cards
         for calendar in calendars:
             self.view.update_card(calendar)
+
+    def handle_calendar_click(self, calendar_id: int):
+        print(f"Calendar with id of {calendar_id} clicked.")
 
 
 class AreaController:
@@ -46,10 +49,8 @@ class ProjectController:
 
 
 class ChartController:
-    def __init__(self, calendar_model, area_model, project_model, view):
-        self.calendar_model = calendar_model
-        self.area_model = area_model
-        self.project_model = project_model
+    def __init__(self, model, view):
+        self.model = model
         self.view = view
 
     def initialize(self):
@@ -59,13 +60,13 @@ class ChartController:
         self.update_project_chart()
 
     def update_calendar_chart(self):
-        calendars = self.calendar_model.get_calendars_by_usage()
+        calendars = self.model.get_calendars_by_usage()
         self.view.update_calendar_chart(calendars)
 
     def update_area_chart(self):
-        areas = self.area_model.get_top_areas(limit=5)
+        areas = self.model.get_top_areas(limit=5)
         self.view.update_area_chart(areas)
 
     def update_project_chart(self):
-        projects = self.project_model.get_top_projects(limit=5)
+        projects = self.model.get_top_projects(limit=5)
         self.view.update_project_chart(projects)

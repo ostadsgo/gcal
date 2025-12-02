@@ -1,5 +1,5 @@
 from views import App
-from models import DatabaseManager
+from models import db
 from controllers import (
     CalendarController,
     AreaController,
@@ -10,12 +10,9 @@ from controllers import (
 
 def main():
     app = App()
-    db = DatabaseManager()
 
     # models
-    calendar_model = db.calendar_model
-    area_model = db.area_model
-    project_model = db.project_model
+    model = db.calendar_model
 
     # views
     calendar_view = app.mainframe.calendar_view
@@ -24,12 +21,10 @@ def main():
     chart_view = app.mainframe.chart_view
 
     # controllers
-    calendar_controller = CalendarController(calendar_model, calendar_view)
-    area_controller = AreaController(area_model, area_view)
-    project_controller = ProjectController(project_model, project_view)
-    chart_controller = ChartController(
-        calendar_model, area_model, project_model, chart_view
-    )
+    calendar_controller = CalendarController(model, calendar_view)
+    area_controller = AreaController(model, area_view)
+    project_controller = ProjectController(model, project_view)
+    chart_controller = ChartController( model, chart_view)
 
     # initializers
     calendar_controller.initialize()

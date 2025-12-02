@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
+# BUG: calendar click triggered only only frame not when clicked on widgets in the frame
 
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -19,7 +20,7 @@ class ChartView(ttk.Frame):
         gs = self.figure.add_gridspec(2, 2, width_ratios=[1, 1.5], height_ratios=[1, 1])
 
         self.axes["areas_chart"] = self.figure.add_subplot(gs[0, 0])
-        self.axes["calendars_chart"] = self.figure.add_subplot(gs[0, 1])  # TODO: 0,0
+        self.axes["calendars_chart"] = self.figure.add_subplot(gs[0, 1])
         self.axes["projects_chart"] = self.figure.add_subplot(gs[1, :])
 
         self.canvas = FigureCanvasTkAgg(self.figure, self)
@@ -31,9 +32,9 @@ class ChartView(ttk.Frame):
         """Create a pie chart."""
         self.axes["calendars_chart"].clear()
 
-        names = [calendar.name for calendar in calendars]
+        names = [calendar.calendar_name for calendar in calendars]
         durations = [calendar.total_duration for calendar in calendars]
-        colors = [calendar.color for calendar in calendars]
+        colors = [calendar.calendar_color for calendar in calendars]
 
         self.axes["calendars_chart"].pie(
             durations, labels=names, colors=colors, autopct="%1.1f%%", startangle=90
@@ -43,13 +44,13 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
     def update_area_chart(self, areas):
-        names = [area.name for area in areas]
+        names = [area.area_name for area in areas]
         durations = [area.total_hours for area in areas]
         self.axes["areas_chart"].bar(names, durations)
         self.canvas.draw()
 
     def update_project_chart(self, projects):
-        names = [project.name for project in projects]
+        names = [project.project_name for project in projects]
         durations = [project.total_hours for project in projects]
         self.axes["projects_chart"].bar(names, durations)
         self.canvas.draw()
@@ -67,21 +68,21 @@ class ProjectView(ttk.Labelframe):
             card = ttk.Frame(self, relief="solid", padding=10)
 
             # widgets
-            card.name_label = ttk.Label(card, text="")
+            card.project_name_label = ttk.Label(card, text="")
             card.total_hours_label = ttk.Label(card, text="")
 
             # grid
-            card.name_label.grid(row=0, column=1, sticky="ew")
+            card.project_name_label.grid(row=0, column=1, sticky="ew")
             card.total_hours_label.grid(row=0, column=2, sticky="ew")
 
             card.grid(row=i, column=0, sticky="nsew", pady=5)
             self.rowconfigure(i, weight=1)
-            self.cards[project.name] = card
+            self.cards[project.project_name] = card
 
     def update_card(self, project):
-        area_card = self.cards.get(project.name)
+        area_card = self.cards.get(project.project_name)
 
-        area_card.name_label.config(text=project.name)
+        area_card.project_name_label.config(text=project.project_name)
         area_card.total_hours_label.config(text=project.total_hours)
 
 
@@ -99,22 +100,22 @@ class AreaView(ttk.Labelframe):
             card = ttk.Frame(self, relief="solid", padding=10)
 
             # widgets
-            card.name_label = ttk.Label(card, text="")
+            card.area_name_label = ttk.Label(card, text="")
             card.total_hours_label = ttk.Label(card, text="")
 
             # grid
-            card.name_label.grid(row=0, column=1, sticky="ew")
+            card.area_name_label.grid(row=0, column=1, sticky="ew")
             card.total_hours_label.grid(row=0, column=2, sticky="ew")
 
             card.grid(row=i, column=0, sticky="nsew", pady=5)
             self.rowconfigure(i, weight=1)
-            self.cards[area.name] = card
+            self.cards[area.area_name] = card
 
     def update_card(self, area):
         """Update area frame with the area data."""
-        area_card = self.cards.get(area.name)
+        area_card = self.cards.get(area.area_name)
 
-        area_card.name_label.config(text=area.name)
+        area_card.area_name_label.config(text=area.area_name)
         area_card.total_hours_label.config(text=area.total_hours)
 
 
@@ -123,35 +124,46 @@ class CalendarView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.cards = {}
-        self.event_handlers = {}
+        self.handlers = {}
         self.rowconfigure(0, weight=1)
 
-    # designed to called from controller part.
-    def register_event_handler(self, event_name, handler):
-        self.event_handlers[event_name] = handler
+    def register_event_handler(self, event_name: str, handler):
+        self.handlers[event_name] = handler
+
+    def on_calendar_hover(self, event):
+        pass
+
+    def on_calendar_click(self, event):
+        handler = self.handlers["calendar_click"]
+        handler(event.widget.calendar_id)
+
 
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
             card = ttk.Frame(self, relief="solid", padding=10)
 
+            # reference to calendar id to use in event 
+            card.calendar_id = calendar.calendar_id
+
             # widgets
-            card.name_label = ttk.Label(card, text="")
+            card.calendar_name_label = ttk.Label(card, text="")
             card.duration_label = ttk.Label(card, text="")
             card.events_label = ttk.Label(card, text="")
 
             # grid
-            card.name_label.grid(row=0, column=0, sticky="ew")
+            card.calendar_name_label.grid(row=0, column=0, sticky="ew")
             card.duration_label.grid(row=1, column=0, sticky="ew")
             card.events_label.grid(row=2, column=0, sticky="ew")
 
+            card.bind("<Button-1>", self.on_calendar_click)
             card.grid(row=0, column=i, sticky="nsew", padx=5)
             self.columnconfigure(i, weight=1)
 
-            self.cards[calendar.name] = card
+            self.cards[calendar.calendar_name] = card
 
     def update_card(self, calendar):
-        card = self.cards.get(calendar.name)
-        card.name_label.config(text=calendar.name.title())
+        card = self.cards.get(calendar.calendar_name)
+        card.calendar_name_label.config(text=calendar.calendar_name.title())
         card.duration_label.config(text=f"{calendar.total_duration} hrs")
         card.events_label.config(text=f"{calendar.total_events} events")
 
@@ -191,7 +203,7 @@ class App(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Gcal")
-        self.minsize(640 // 2, 480)
+        self.minsize(640, 480)
         self.update_idletasks()
 
         self.mainframe = MainFrame(self)
