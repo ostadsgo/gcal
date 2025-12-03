@@ -8,6 +8,7 @@ from matplotlib.figure import Figure
 
 # BUG: calendar click triggered only only frame not when clicked on widgets in the frame
 
+
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
@@ -56,65 +57,49 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
 
-class ProjectView(ttk.Labelframe):
+class ReportView(ttk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        ttk.Label(self, text="Report view")
+
+
+class FilterView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.cards = []
-        self.columnconfigure(0, weight=1)
-
-    def create_cards(self, projects):
-        for i, project in enumerate(projects):
-            card = ttk.Frame(self, relief="solid", padding=10)
-
-            # widgets
-            card.project_name_label = ttk.Label(card, text="")
-            card.total_hours_label = ttk.Label(card, text="")
-
-            # grid
-            card.project_name_label.grid(row=0, column=1, sticky="ew")
-            card.total_hours_label.grid(row=0, column=2, sticky="ew")
-
-            card.grid(row=i, column=0, sticky="nsew", pady=5)
-            self.rowconfigure(i, weight=1)
-            self.cards.append(card)
-
-    def update_card(self, index, project):
-        area_card = self.cards[index]
-        area_card.project_name_label.config(text=project.project_name)
-        area_card.total_hours_label.config(text=project.total_hours)
+        # Date
+        date_values = ["This Year", "This Month", "This Week"]
+        self.date_var = tk.StringVar(value=date_values[0])
+        ttk.Label(self, text="Date").grid(row=0, column=0)
+        date_combo = ttk.Combobox(self, values=date_values, textvariable=self.date_var)
+        date_combo.grid(row=1, column=0)
 
 
-# Side
-class AreaView(ttk.Labelframe):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+        # Filters: Area, Type, Project, ...
+        filter_values = ["Areas", "Types", "Projects"]
+        self.filter_var = tk.StringVar(value=filter_values[0])
+        ttk.Label(self, text="Filter").grid(row=0, column=1)
+        filters_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
+        filters_combo.grid(row=1, column=1)
+        
+        # Items: items of selected filter
+        item_var = tk.StringVar()
+        item_values = None  # from db
+        ttk.Label(self, text="Items").grid(row=0, column=2)
+        items_combo = ttk.Combobox(self, textvariable=item_var)
+        items_combo.grid(row=1, column=2)
 
-        self.cards = []
-        self.columnconfigure(0, weight=1)
+        for child in self.winfo_children():
+            child.grid_configure(padx=10, sticky="nswe")
 
-    def create_cards(self, areas):
-        """Create frame to update with area's data."""
-        for i, area in enumerate(areas):
-            card = ttk.Frame(self, relief="solid", padding=10)
+    def on_date_select(self):
+        pass
 
-            # widgets
-            card.area_name_label = ttk.Label(card, text="")
-            card.total_hours_label = ttk.Label(card, text="")
+    def on_filter_select(self):
+        pass
 
-            # grid
-            card.area_name_label.grid(row=0, column=1, sticky="ew")
-            card.total_hours_label.grid(row=0, column=2, sticky="ew")
-
-            card.grid(row=i, column=0, sticky="nsew", pady=5)
-            self.rowconfigure(i, weight=1)
-            self.cards.append(card)
-
-    def update_card(self, index, area):
-        area_card = self.cards[index]
-
-        area_card.area_name_label.config(text=area.area_name)
-        area_card.total_hours_label.config(text=area.total_hours)
+    def on_item_select(self):
+        pass
 
 
 # Top Frame
@@ -135,12 +120,11 @@ class CalendarView(ttk.Frame):
         handler = self.handlers["calendar_select"]
         handler(event.widget.calendar_id)
 
-
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
             card = ttk.Frame(self, relief="solid", padding=10)
 
-            # reference to calendar id to use in event 
+            # reference to calendar id to use in event
             card.calendar_id = calendar.calendar_id
 
             # widgets
@@ -178,29 +162,29 @@ class MainFrame(ttk.Frame):
 
         # Top Frame
         self.calendar_view = CalendarView(self)
-        self.calendar_view.grid(row=0, column=0, columnspan=2)
+        self.calendar_view.grid(row=0, column=0)
 
-        # Right frame
+        # Filter frame
+        self.filter_view = FilterView(self)
+        self.filter_view.grid(row=1, column=0)
+
+        # Chart and insight
         self.chart_view = ChartView(self)
-        self.chart_view.grid(row=1, column=1, rowspan=3)
+        self.chart_view.grid(row=2, column=0)
 
-        # Left frame (1)
-        self.area_view = AreaView(self, text="Areas")
-        self.area_view.grid(row=1, column=0)
-
-        # Left fram (2)
-        self.project_view = ProjectView(self, text="Projects")
-        self.project_view.grid(row=2, column=0)
+        # Chart and insight
+        self.report_view = ReportView(self)
+        self.chart_view.grid(row=3, column=0)
 
         for child in self.winfo_children():
-            child.config(padding=5)
+            child.config(padding=5, relief="solid")
             child.grid_configure(pady=5, padx=5, sticky="nswe")
 
         self.rowconfigure(0, weight=1)
-        self.rowconfigure(1, weight=10)
-        self.rowconfigure(2, weight=10)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=10)
         self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=10)
 
 
 class App(tk.Tk):

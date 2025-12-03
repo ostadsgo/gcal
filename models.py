@@ -11,19 +11,21 @@ DB_FILE = DB_PATH / "data.db"
 
 class Record:
     """Proxy object that makes dict keys accessible as attributes."""
+
     def __init__(self, data: dict):
         self._data = data
-    
+
     def __getattr__(self, name):
         if name in self._data:
             return self._data[name]
         raise AttributeError(f"No attribute '{name}'")
-    
+
     def __repr__(self):
         return f"Record({self._data})"
-    
+
     def to_dict(self):
         return self._data.copy()
+
 
 class CalendarModel:
     def __init__(self, db):
@@ -68,7 +70,7 @@ class CalendarModel:
         """
         rows = self.db.fetch_all(query)
         return [Record(row) for row in rows]
-    
+
     def get_top_areas(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
         """Get top areas by total hours."""
         query = """
@@ -109,17 +111,20 @@ class CalendarModel:
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, limit,))
+        rows = self.db.fetch_all(
+            query,
+            (
+                calendar_id,
+                limit,
+            ),
+        )
         return [Record(row) for row in rows]
 
-    def get_calendar_areas(self, calendar_id):
-        ...
+    def get_calendar_areas(self, calendar_id): ...
 
-    def get_calendar_types(self, calendar_id):
-        ...
+    def get_calendar_types(self, calendar_id): ...
 
-    def get_calendar_projects(self, calendar_id):
-        ...
+    def get_calendar_projects(self, calendar_id): ...
 
 
 class DatabaseManager:
@@ -166,5 +171,6 @@ class DatabaseManager:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
+
 
 db = DatabaseManager()
