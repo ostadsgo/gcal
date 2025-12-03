@@ -17,10 +17,17 @@ class CalendarController:
             self.view.update_card(calendar)
 
     def handle_calendar_select(self, calendar_id: int):
+        # Update areas
         areas = self.model.get_top_areas(calendar_id, limit=5)
         area_view = self.context.get_view("area")
         for index, area in enumerate(areas):
             area_view.update_card(index, area)
+
+        # Update Projects
+        projects = self.model.get_top_projects(calendar_id, limit=5)
+        project_view = self.context.get_view("project")
+        for index, project in enumerate(projects):
+            project_view.update_card(index, project)
 
 
 class AreaController:
@@ -47,8 +54,8 @@ class ProjectController:
         self.view.create_cards(projects)
 
         # update calendar cards
-        for project in projects:
-            self.view.update_card(project)
+        for index, project in enumerate(projects):
+            self.view.update_card(index, project)
 
 
 class ChartController:

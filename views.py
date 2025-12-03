@@ -60,7 +60,7 @@ class ProjectView(ttk.Labelframe):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        self.cards = {}
+        self.cards = []
         self.columnconfigure(0, weight=1)
 
     def create_cards(self, projects):
@@ -77,11 +77,10 @@ class ProjectView(ttk.Labelframe):
 
             card.grid(row=i, column=0, sticky="nsew", pady=5)
             self.rowconfigure(i, weight=1)
-            self.cards[project.project_name] = card
+            self.cards.append(card)
 
-    def update_card(self, project):
-        area_card = self.cards.get(project.project_name)
-
+    def update_card(self, index, project):
+        area_card = self.cards[index]
         area_card.project_name_label.config(text=project.project_name)
         area_card.total_hours_label.config(text=project.total_hours)
 
@@ -146,13 +145,17 @@ class CalendarView(ttk.Frame):
 
             # widgets
             card.calendar_name_label = ttk.Label(card, text="")
-            card.duration_label = ttk.Label(card, text="")
-            card.events_label = ttk.Label(card, text="")
+            card.duration_label = ttk.Label(card, text="n hrs")
+            card.events_label = ttk.Label(card, text="n events")
+            card.areas_label = ttk.Label(card, text="n areas")
+            card.projects_label = ttk.Label(card, text="n types")
 
             # grid
             card.calendar_name_label.grid(row=0, column=0, sticky="ew")
             card.duration_label.grid(row=1, column=0, sticky="ew")
             card.events_label.grid(row=2, column=0, sticky="ew")
+            card.areas_label.grid(row=3, column=0, sticky="ew")
+            card.projects_label.grid(row=4, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
             card.grid(row=0, column=i, sticky="nsew", padx=5)
@@ -165,6 +168,8 @@ class CalendarView(ttk.Frame):
         card.calendar_name_label.config(text=calendar.calendar_name.title())
         card.duration_label.config(text=f"{calendar.total_duration} hrs")
         card.events_label.config(text=f"{calendar.total_events} events")
+        card.areas_label.config(text=f"{calendar.distinct_areas} areas")
+        card.projects_label.config(text=f"{calendar.distinct_projects} projects")
 
 
 class MainFrame(ttk.Frame):

@@ -37,11 +37,17 @@ class CalendarModel:
                 c.name AS calendar_name,  
                 c.color AS calendar_color,  
                 COALESCE(SUM(e.duration), 0) AS total_duration, 
-                COUNT(e.id) AS total_events
+                COUNT(e.id) AS total_events,
+                COUNT(DISTINCT a.id) AS distinct_areas,
+                COUNT(DISTINCT t.id) AS distinct_types,
+                COUNT(DISTINCT p.id) AS distinct_projects
             FROM calendars c
             LEFT JOIN events e ON e.calendar_id = c.id
+            LEFT JOIN areas a ON a.id = e.area_id
+            LEFT JOIN types t ON t.id = e.type_id
+            LEFT JOIN projects p ON p.id = e.project_id
             GROUP BY c.id, c.name, c.color
-            ORDER BY total_duration DESC 
+            ORDER BY total_duration DESC;
             """
         rows = self.db.fetch_all(query)
         return [Record(row) for row in rows]
@@ -83,10 +89,11 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, limit))
         return [Record(row) for row in rows]
 
-    def get_top_projects(self, limit: int = 10) -> list[Record]:
+    def get_top_projects(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
         """Get top projects by total hours."""
         query = """
             SELECT 
+                c.id as calendar_id, 
                 c.name as calendar_name,
                 p.id AS project_id,
                 p.name as project_name,
@@ -97,11 +104,12 @@ class CalendarModel:
             JOIN events e ON c.id = e.calendar_id
             JOIN projects p ON e.project_id = p.id
             LEFT JOIN areas a ON p.area_id = a.id
+            WHERE c.id = ?
             GROUP BY c.name, p.name, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (limit,))
+        rows = self.db.fetch_all(query, (calendar_id, limit,))
         return [Record(row) for row in rows]
 
     def get_calendar_areas(self, calendar_id):
