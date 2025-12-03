@@ -91,6 +91,29 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, limit))
         return [Record(row) for row in rows]
 
+    def get_top_types(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
+        """Get top projects by total hours."""
+        query = """
+            SELECT 
+                c.id as calendar_id, 
+                c.name as calendar_name,
+                t.id AS type_id,
+                t.name as type_name,
+                a.name as area_name,
+                COUNT(e.id) as event_count,
+                SUM(e.duration) as total_hours
+            FROM calendars c
+            JOIN events e ON c.id = e.calendar_id
+            JOIN types t ON e.id = t.typjjjjjjjjjj
+            LEFT JOIN areas a ON p.area_id = a.id
+            WHERE c.id = ?
+            GROUP BY c.name, p.name, a.name
+            ORDER BY total_hours DESC
+            LIMIT ?
+        """
+        rows = self.db.fetch_all(query, (calendar_id, limit))
+        return [Record(row) for row in rows]
+
     def get_top_projects(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
         """Get top projects by total hours."""
         query = """
@@ -111,20 +134,41 @@ class CalendarModel:
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(
-            query,
-            (
-                calendar_id,
-                limit,
-            ),
-        )
+        rows = self.db.fetch_all(query, (calendar_id, limit))
         return [Record(row) for row in rows]
 
-    def get_calendar_areas(self, calendar_id): ...
+    def distinct_area(self, calendar_id):
+        query = """
+            SELECT DISTINCT t.name
+            FROM events e
+            JOIN areas t ON e.area_id = t.id
+            WHERE e.calendar_id = ?
+            ORDER BY t.name;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, ))
+        return [Record(row) for row in rows]
 
-    def get_calendar_types(self, calendar_id): ...
+    def distinct_types(self, calendar_id):
+        query = """
+            SELECT DISTINCT t.name
+            FROM events e
+            JOIN types t ON e.type_id = t.id
+            WHERE e.calendar_id = ?
+            ORDER BY t.name;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, ))
+        return [Record(row) for row in rows]
 
-    def get_calendar_projects(self, calendar_id): ...
+    def distinct_projects(self, calendar_id):
+        query = """
+            SELECT DISTINCT t.name
+            FROM events e
+            JOIN projects t ON e.project_id = t.id
+            WHERE e.calendar_id = ?
+            ORDER BY t.name;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, ))
+        return [Record(row) for row in rows]
 
 
 class DatabaseManager:

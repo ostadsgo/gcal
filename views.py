@@ -66,6 +66,7 @@ class ReportView(ttk.Frame):
 class FilterView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.handlers = {}
 
         # Date
         date_values = ["This Year", "This Month", "This Week"]
@@ -79,27 +80,47 @@ class FilterView(ttk.Frame):
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
         ttk.Label(self, text="Filter").grid(row=0, column=1)
-        filters_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
-        filters_combo.grid(row=1, column=1)
+        filter_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
+        filter_combo.grid(row=1, column=1)
         
         # Items: items of selected filter
-        item_var = tk.StringVar()
-        item_values = None  # from db
+        self.item_var = tk.StringVar()
         ttk.Label(self, text="Items").grid(row=0, column=2)
-        items_combo = ttk.Combobox(self, textvariable=item_var)
-        items_combo.grid(row=1, column=2)
+        self.item_combo = ttk.Combobox(self, textvariable=self.item_var)
+        self.item_combo.grid(row=1, column=2)
 
         for child in self.winfo_children():
             child.grid_configure(padx=10, sticky="nswe")
 
-    def on_date_select(self):
-        pass
+        # Bind
+        date_combo.bind("<<ComboboxSelected>>", self.on_date_select)
+        filter_combo.bind("<<ComboboxSelected>>", self.on_filter_select)
 
-    def on_filter_select(self):
-        pass
+        # row/columnconfigure
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+
+    def register_event_handler(self, event_name: str, handler):
+        self.handlers[event_name] = handler
+
+    def on_date_select(self, event):
+        handler = self.handlers["date_select"]
+        selected_date = self.date_var.get()
+        handler(selected_date)
+
+    def on_filter_select(self, event):
+        handler = self.handlers["filter_select"]
+        selected_filter = self.filter_var.get()
+        handler(selected_filter)
 
     def on_item_select(self):
         pass
+
+    def update_item_combo_values(self, values):
+        self.item_var.set(values[0])
+        self.item_combo["values"] = values
+
 
 
 # Top Frame
@@ -108,6 +129,8 @@ class CalendarView(ttk.Frame):
         super().__init__(master, **kwargs)
         self.cards = {}
         self.handlers = {}
+        self.selected_calendar_id = 1
+
         self.rowconfigure(0, weight=1)
 
     def register_event_handler(self, event_name: str, handler):
@@ -118,6 +141,7 @@ class CalendarView(ttk.Frame):
 
     def on_calendar_select(self, event):
         handler = self.handlers["calendar_select"]
+        self.selected_calendar_id = calendar_id
         handler(event.widget.calendar_id)
 
     def create_cards(self, calendars):
