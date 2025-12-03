@@ -137,7 +137,7 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, limit))
         return [Record(row) for row in rows]
 
-    def distinct_area(self, calendar_id):
+    def distinct_areas(self, calendar_id):
         query = """
             SELECT DISTINCT t.name
             FROM events e
@@ -166,6 +166,21 @@ class CalendarModel:
             JOIN projects t ON e.project_id = t.id
             WHERE e.calendar_id = ?
             ORDER BY t.name;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, ))
+        return [Record(row) for row in rows]
+
+    def distinct_years_months(self, calendar_id):
+        query = """
+            SELECT DISTINCT 
+                SUBSTR(dtstart, 1, 4) AS year,
+                SUBSTR(dtstart, 5, 2) AS month
+            FROM events e
+            JOIN calendars c ON c.id = e.calendar_id
+            WHERE dtstart IS NOT NULL
+              AND LENGTH(dtstart) >= 6 
+              AND c.id = ?
+            ORDER BY year DESC, month ASC;
         """
         rows = self.db.fetch_all(query, (calendar_id, ))
         return [Record(row) for row in rows]

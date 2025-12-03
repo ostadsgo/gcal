@@ -20,9 +20,9 @@ class ChartView(ttk.Frame):
         self.figure = Figure(figsize=(8, 4), dpi=100)
         gs = self.figure.add_gridspec(2, 2, width_ratios=[1, 1.5], height_ratios=[1, 1])
 
-        self.axes["areas_chart"] = self.figure.add_subplot(gs[0, 0])
-        self.axes["calendars_chart"] = self.figure.add_subplot(gs[0, 1])
-        self.axes["projects_chart"] = self.figure.add_subplot(gs[1, :])
+        self.axes["stack"] = self.figure.add_subplot(gs[0, :])
+        # self.axes["pie"] = self.figure.add_subplot(gs[1, 0])
+        # self.axes["bar"] = self.figure.add_subplot(gs[1, 1])
 
         self.canvas = FigureCanvasTkAgg(self.figure, self)
         self.canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
@@ -56,6 +56,13 @@ class ChartView(ttk.Frame):
         self.axes["projects_chart"].bar(names, durations)
         self.canvas.draw()
 
+    def update_stack_chart(self, data=None):
+        x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        y = [10, 5, 10, 5, 10, 5, 10, 5, 10]
+        self.axes["stack"].stackplot(x, y)
+        # self.axes["stack"].set(xlim=(0, 8), xticks=np.arange(1, 8), ylim=(0, 8), yticks=np.arange(1, 8))
+        self.canvas.draw()
+
 
 class ReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -68,46 +75,58 @@ class FilterView(ttk.Frame):
         super().__init__(master, **kwargs)
         self.handlers = {}
 
-        # Date
-        date_values = ["This Year", "This Month", "This Week"]
-        self.date_var = tk.StringVar(value=date_values[0])
-        ttk.Label(self, text="Date").grid(row=0, column=0)
-        date_combo = ttk.Combobox(self, values=date_values, textvariable=self.date_var)
-        date_combo.grid(row=1, column=0)
+        # Year
+        self.year_var = tk.StringVar()
+        ttk.Label(self, text="Year").grid(row=0, column=0)
+        self.year_combo = ttk.Combobox(self, textvariable=self.year_var)
+        self.year_combo.grid(row=1, column=0)
 
+        # Month
+        self.month_var = tk.StringVar()
+        ttk.Label(self, text="Month").grid(row=0, column=1)
+        self.month_combo = ttk.Combobox(self, textvariable=self.month_var)
+        self.month_combo.grid(row=1, column=1)
 
         # Filters: Area, Type, Project, ...
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
-        ttk.Label(self, text="Filter").grid(row=0, column=1)
-        filter_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
-        filter_combo.grid(row=1, column=1)
+        ttk.Label(self, text="Filter").grid(row=0, column=2)
+        self.filter_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
+        self.filter_combo.grid(row=1, column=2)
         
         # Items: items of selected filter
         self.item_var = tk.StringVar()
-        ttk.Label(self, text="Items").grid(row=0, column=2)
+        ttk.Label(self, text="Items").grid(row=0, column=3)
         self.item_combo = ttk.Combobox(self, textvariable=self.item_var)
-        self.item_combo.grid(row=1, column=2)
+        self.item_combo.grid(row=1, column=3)
 
         for child in self.winfo_children():
             child.grid_configure(padx=10, sticky="nswe")
 
         # Bind
-        date_combo.bind("<<ComboboxSelected>>", self.on_date_select)
-        filter_combo.bind("<<ComboboxSelected>>", self.on_filter_select)
+        self.year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
+        self.month_combo.bind("<<ComboboxSelected>>", self.on_month_select)
+        self.filter_combo.bind("<<ComboboxSelected>>", self.on_filter_select)
+        self.item_combo.bind("<<ComboboxSelected>>", self.on_item_select)
 
         # row/columnconfigure
         self.columnconfigure(0, weight=1)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
 
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
 
-    def on_date_select(self, event):
-        handler = self.handlers["date_select"]
-        selected_date = self.date_var.get()
-        handler(selected_date)
+    def on_year_select(self, event):
+        handler = self.handlers["year_select"]
+        selected_year = self.year_var.get()
+        handler(selected_year)
+
+    def on_month_select(self, event):
+        handler = self.handlers["month_select"]
+        selected_month = self.month_var.get()
+        handler(selected_month)
 
     def on_filter_select(self, event):
         handler = self.handlers["filter_select"]
@@ -117,11 +136,17 @@ class FilterView(ttk.Frame):
     def on_item_select(self):
         pass
 
+    def update_year_combo_values(self, values):
+        self.year_var.set(values[0])
+        self.year_combo["values"] = values
+
+    def update_month_combo_values(self, values):
+        self.month_var.set(values[0])
+        self.month_combo["values"] = values
+
     def update_item_combo_values(self, values):
         self.item_var.set(values[0])
         self.item_combo["values"] = values
-
-
 
 # Top Frame
 class CalendarView(ttk.Frame):
@@ -141,7 +166,7 @@ class CalendarView(ttk.Frame):
 
     def on_calendar_select(self, event):
         handler = self.handlers["calendar_select"]
-        self.selected_calendar_id = calendar_id
+        self.selected_calendar_id = event.widget.calendar_id
         handler(event.widget.calendar_id)
 
     def create_cards(self, calendars):

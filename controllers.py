@@ -6,15 +6,36 @@ class Controller:
         self.context = context
         self.calendar_view = context.get_view("calendar")
         self.filter_view = context.get_view("filter")
+        self.chart_view = context.get_view("chart")
         self.model = context.model
 
         self.calendar_view.register_event_handler("calendar_select", self.handle_calendar_select)
-        self.filter_view.register_event_handler("date_select", self.handle_date_select)
+        self.filter_view.register_event_handler("year_select", self.handle_year_select)
+        self.filter_view.register_event_handler("month_select", self.handle_month_select)
         self.filter_view.register_event_handler("filter_select", self.handle_filter_select)
+        self.filter_view.register_event_handler("item_select", self.handle_item_select)
 
     def initialize(self):
         calendars = self.model.get_calendars_by_usage()
         self.calendar_view.create_cards(calendars)
+        self.chart_view.update_stack_chart()
+
+        # populate area for selected calendar for item combo
+        rows = self.model.distinct_areas(self.calendar_view.selected_calendar_id)
+        values = [row.name for row in rows]
+        self.filter_view.item_combo.set(values)
+        self.filter_view.item_var.set(values[0])
+
+        # Get years and month for selected calendar
+        rows = self.model.distinct_years_months(self.calendar_view.selected_calendar_id)
+        # set years
+        year_values = [row.year for row in rows]
+        self.filter_view.year_combo.set(year_values)
+        self.filter_view.year_var.set(year_values[0])
+        # set months
+        month_values = [row.month for row in rows]
+        self.filter_view.month_combo.set(month_values)
+        self.filter_view.month_var.set(month_values[0])
 
         # update calendar cards
         for calendar in calendars:
@@ -28,8 +49,9 @@ class Controller:
 
     def handle_filter_select(self, filter_value):
         items = []
+
         if filter_value == "Areas":
-            items = self.model.distinct_area(self.calendar_view.selected_calendar_id)
+            items = self.model.distinct_areas(self.calendar_view.selected_calendar_id)
         elif filter_value == "Types":
             items = self.model.distinct_types(self.calendar_view.selected_calendar_id)
         elif filter_value == "Projects":
@@ -39,3 +61,12 @@ class Controller:
 
         values = [item.name for item in items] 
         self.filter_view.update_item_combo_values(values)
+
+    def handle_year_select(self):
+        pass
+
+    def handle_month_select(self):
+        pass
+
+    def handle_item_select(self):
+        pass
