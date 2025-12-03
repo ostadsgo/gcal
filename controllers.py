@@ -26,15 +26,16 @@ class Controller:
         self.filter_view.item_combo.set(values)
         self.filter_view.item_var.set(values[0])
 
-        # Get years and month for selected calendar
-        rows = self.model.distinct_years_months(self.calendar_view.selected_calendar_id)
         # set years
+        rows = self.model.distinct_years(self.calendar_view.selected_calendar_id)
         year_values = [row.year for row in rows]
-        self.filter_view.year_combo.set(year_values)
+        self.filter_view.year_combo["values"] = year_values
         self.filter_view.year_var.set(year_values[0])
+
         # set months
+        rows = self.model.distinct_months(self.calendar_view.selected_calendar_id)
         month_values = [row.month for row in rows]
-        self.filter_view.month_combo.set(month_values)
+        self.filter_view.month_combo["values"] = month_values
         self.filter_view.month_var.set(month_values[0])
 
         # update calendar cards
@@ -42,7 +43,21 @@ class Controller:
             self.calendar_view.update_card(calendar)
 
     def handle_calendar_select(self, calendar_id: int):
-        print(f"calendar_id is : {calendar_id}")
+        # set years
+        rows = self.model.distinct_years(self.calendar_view.selected_calendar_id)
+        year_values = [row.year for row in rows]
+        self.filter_view.year_combo["values"] = year_values
+        self.filter_view.year_var.set(year_values[0])
+
+        # set months
+        rows = self.model.distinct_months(self.calendar_view.selected_calendar_id)
+        month_values = [row.month for row in rows]
+        self.filter_view.month_combo["values"] = month_values
+        self.filter_view.month_var.set(month_values[0])
+
+        print(f"Calendar id: {calendar_id}")
+        print(year_values)
+        print(month_values)
 
     def handle_date_select(self, date_value):
         print(f"You select date_value {date_value}")

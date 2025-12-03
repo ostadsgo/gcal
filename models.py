@@ -170,21 +170,33 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, ))
         return [Record(row) for row in rows]
 
-    def distinct_years_months(self, calendar_id):
+    def distinct_years(self, calendar_id):
         query = """
             SELECT DISTINCT 
-                SUBSTR(dtstart, 1, 4) AS year,
+                SUBSTR(dtstart, 1, 4) AS year
+            FROM events e
+            JOIN calendars c ON c.id = e.calendar_id
+            WHERE dtstart IS NOT NULL
+              AND LENGTH(dtstart) >= 4 
+              AND c.id = ?
+            ORDER BY year DESC;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, ))
+        return [Record(row) for row in rows]
+
+    def distinct_months(self, calendar_id):
+        query = """
+            SELECT DISTINCT 
                 SUBSTR(dtstart, 5, 2) AS month
             FROM events e
             JOIN calendars c ON c.id = e.calendar_id
             WHERE dtstart IS NOT NULL
               AND LENGTH(dtstart) >= 6 
               AND c.id = ?
-            ORDER BY year DESC, month ASC;
+            ORDER BY month ASC;
         """
         rows = self.db.fetch_all(query, (calendar_id, ))
         return [Record(row) for row in rows]
-
 
 class DatabaseManager:
     def __init__(self):
