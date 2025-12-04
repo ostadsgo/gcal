@@ -58,9 +58,29 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
     def update_stack_chart(self, days, hrs):
+        colors = ['#2E86AB', '#A23B72', '#F18F01', '#C73E1D', '#6B8F71']
         self.axes["stack"].clear()
-        self.axes["stack"].stackplot(days, hrs)
+        self.axes["stack"].stackplot(days, hrs, colors=colors)
+        self.axes["stack"].grid(True, linestyle='--', alpha=0.3, color='gray')
+        self.axes["stack"].spines['top'].set_visible(False)
+        self.axes["stack"].spines['right'].set_visible(False)
+        # Add subtle border
+        self.axes["stack"].spines['left'].set_color('#DDDDDD')
+        self.axes["stack"].spines['bottom'].set_color('#DDDDDD')
+        # Format x-axis ticks
+        self.axes["stack"].set_xticks(days)
+        self.axes["stack"].tick_params(axis='both', which='major', labelsize=10)
+        # Add value labels on each segment
+        total_hours = sum(hrs)
+        if total_hours > 0:
+            # Add text annotation for total hours
+            self.axes["stack"].text(0.02, 0.98, f'Total: {total_hours:.1f}h', 
+                                   transform=self.axes["stack"].transAxes,
+                                   fontsize=10, verticalalignment='top',
+                                   bbox=dict(boxstyle='round', facecolor='white', alpha=0.8)) 
+        self.figure.tight_layout()
         self.canvas.draw()
+
 
 
 class ReportView(ttk.Frame):
