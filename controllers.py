@@ -18,7 +18,6 @@ class Controller:
     def initialize(self):
         calendars = self.model.get_calendars_by_usage()
         self.calendar_view.create_cards(calendars)
-        self.chart_view.update_stack_chart()
 
         self.update_item_widget()
         self.update_year_widget()
@@ -29,6 +28,9 @@ class Controller:
         # must be after (create_cards)
         self.calendar_view.set_card_selection()
 
+        # Draw chart
+        self.update_chart()
+
     def update_calendar_card(self, calendars):
         for calendar in calendars:
             self.calendar_view.update_card(calendar)
@@ -37,7 +39,7 @@ class Controller:
         calendar_id = self.calendar_view.selected_calendar_id
         rows = self.model.distinct_areas(calendar_id)
         items = [row.name for row in rows]
-        self.filter_view.item_combo.set(items)
+        self.filter_view.item_combo["values"] = items
         self.filter_view.item_var.set(items[0])
 
     def update_year_widget(self):
@@ -57,7 +59,8 @@ class Controller:
     def handle_calendar_select(self):
         self.update_year_widget()
         self.update_month_widget()
-        print(f"Calendar with id {self.calendar_view.selected_calendar_id} selected")
+        self.update_item_widget()
+        self.update_chart()
 
 
     def handle_filter_select(self): 
@@ -76,6 +79,7 @@ class Controller:
 
         values = [item.name for item in items] 
         self.filter_view.update_item_combo_values(values)
+        self.update_chart()
 
     def handle_year_select(self):
         # Update month combo values by year
@@ -85,9 +89,40 @@ class Controller:
         months = [row.month for row in rows]
         self.filter_view.month_var.set(months[0])
         self.filter_view.month_combo["values"] = months
+        self.update_chart()
 
     def handle_month_select(self):
-        pass
+        self.update_chart()
 
     def handle_item_select(self):
-        pass
+        self.update_chart()
+
+    def update_chart(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        year = self.filter_view.year_var.get()
+        month = self.filter_view.month_var.get()
+        filter_val = self.filter_view.filter_var.get()
+        item = self.filter_view.item_var.get()
+        rows = None
+        print(year, month, filter_val, item)
+
+        if filter_val == "Areas":
+            rows = self.model.area_daily_duration(calendar_id, year, month, item)
+        elif filter_val == "Types":
+            rows = self.model.type_daily_duration(calendar_id, year, month, item)
+        elif filter_val == "Projects":
+            rows = self.model.project_daily_duration(calendar_id, year, month, item)
+        else:
+            print(f"Unknow filter. {filter_val}.")
+
+        days = [row.day for row in rows]
+        hrs = [row.total_duration for row in rows]
+        print(days, hrs)
+        self.chart_view.update_stack_chart(days, hrs)
+
+        print(rows)
+
+
+
+        
+

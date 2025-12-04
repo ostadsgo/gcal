@@ -56,10 +56,8 @@ class ChartView(ttk.Frame):
         self.axes["projects_chart"].bar(names, durations)
         self.canvas.draw()
 
-    def update_stack_chart(self, data=None):
-        x = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        y = [10, 5, 10, 5, 10, 5, 10, 5, 10]
-        self.axes["stack"].stackplot(x, y)
+    def update_stack_chart(self, days, hrs):
+        self.axes["stack"].stackplot(days, hrs)
         # self.axes["stack"].set(xlim=(0, 8), xticks=np.arange(1, 8), ylim=(0, 8), yticks=np.arange(1, 8))
         self.canvas.draw()
 

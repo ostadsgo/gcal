@@ -104,7 +104,7 @@ class CalendarModel:
                 SUM(e.duration) as total_hours
             FROM calendars c
             JOIN events e ON c.id = e.calendar_id
-            JOIN types t ON e.id = t.typjjjjjjjjjj
+            JOIN types t ON e.id = t.type_id
             LEFT JOIN areas a ON p.area_id = a.id
             WHERE c.id = ?
             GROUP BY c.name, p.name, a.name
@@ -212,6 +212,61 @@ class CalendarModel:
         """
         rows = self.db.fetch_all(query, (calendar_id, year))
         return [Record(row) for row in rows]
+    
+    def area_daily_duration(self, calendar_id, year, month, area_name):
+        query = """
+            SELECT 
+                SUBSTR(e.dtstart, 7, 2) as day,
+                SUM(e.duration) as total_duration,
+                COUNT(*) as event_count
+            FROM events e
+            JOIN areas a ON e.area_id = a.id
+            WHERE e.calendar_id = ?
+              AND SUBSTR(e.dtstart, 1, 4) = ?
+              AND SUBSTR(e.dtstart, 5, 2) = ?
+              AND a.name = ?
+            GROUP BY day
+            ORDER BY CAST(day AS INTEGER);
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year, month, area_name))
+        return [Record(row) for row in rows]
+
+    def type_daily_duration(self, calendar_id, year, month, type_name):
+        query = """
+            SELECT 
+                SUBSTR(e.dtstart, 7, 2) as day,
+                SUM(e.duration) as total_duration,
+                COUNT(*) as event_count
+            FROM events e
+            JOIN types t ON e.type_id = t.id
+            WHERE e.calendar_id = ?
+              AND SUBSTR(e.dtstart, 1, 4) = ? 
+              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND t.name = ?
+            GROUP BY day
+            ORDER BY CAST(day AS INTEGER);
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year, month, type_name))
+        return [Record(row) for row in rows]
+
+    def project_daily_duration(self, calendar_id, year, month, project_name):
+        query = """
+            SELECT 
+                SUBSTR(e.dtstart, 7, 2) as day,
+                SUM(e.duration) as total_duration,
+                COUNT(*) as event_count
+            FROM events e
+            JOIN projects p ON e.project_id = p.id
+            WHERE e.calendar_id = ?
+              AND SUBSTR(e.dtstart, 1, 4) = ?  
+              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND p.name = ?
+            GROUP BY day
+            ORDER BY CAST(day AS INTEGER);
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year, month, project_name))
+        return [Record(row) for row in rows]
+
 
 class DatabaseManager:
     def __init__(self):
