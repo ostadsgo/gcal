@@ -212,7 +212,57 @@ class CalendarModel:
         """
         rows = self.db.fetch_all(query, (calendar_id, year))
         return [Record(row) for row in rows]
+
+    def distinct_areas_by_year_month(self, calendar_id, year, month):
+        query = """
+            SELECT DISTINCT 
+                a.id AS area_id,
+                a.name AS name
+            FROM events e
+            JOIN areas a ON e.area_id = a.id
+            JOIN calendars c ON e.calendar_id = c.id
+            WHERE e.calendar_id = ?
+              AND SUBSTR(e.dtstart, 1, 4) = ?  -- Year filter
+              AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
+              AND a.name IS NOT NULL
+            ORDER BY a.name ASC;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year, month))
+        return [Record(row) for row in rows]
+
+    def distinct_types_by_year_month(self, calendar_id, year, month):
+        query = """
+            SELECT DISTINCT 
+                t.id AS type_id,
+                t.name AS name
+            FROM events e
+            JOIN types t ON e.type_id = t.id
+            JOIN calendars c ON e.calendar_id = c.id
+            WHERE e.calendar_id = ?
+              AND SUBSTR(e.dtstart, 1, 4) = ? -- Year filter
+              AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
+              AND t.name IS NOT NULL
+            ORDER BY t.name ASC;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year, month))
+        return [Record(row) for row in rows]
     
+    def distinct_projects_by_year_month(self, calendar_id, year, month):
+        query = """
+            SELECT DISTINCT 
+                p.id AS project_id,
+                p.name AS name
+            FROM events e
+            JOIN projects p ON e.project_id = p.id
+            JOIN calendars c ON e.calendar_id = c.id
+            WHERE e.calendar_id = ?
+              AND SUBSTR(e.dtstart, 1, 4) = ? -- Year filter
+              AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
+              AND p.name IS NOT NULL
+            ORDER BY p.name ASC;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year, month))
+        return [Record(row) for row in rows]
     def area_daily_duration(self, calendar_id, year, month, area_name):
         query = """
             SELECT 

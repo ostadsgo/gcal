@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 # matplotlib
+import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
@@ -57,8 +58,8 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
     def update_stack_chart(self, days, hrs):
+        self.axes["stack"].clear()
         self.axes["stack"].stackplot(days, hrs)
-        # self.axes["stack"].set(xlim=(0, 8), xticks=np.arange(1, 8), ylim=(0, 8), yticks=np.arange(1, 8))
         self.canvas.draw()
 
 
@@ -129,7 +130,7 @@ class FilterView(ttk.Frame):
         handler()
 
     def on_item_select(self, events):
-        handler = self.handlers["filter_select"]
+        handler = self.handlers["item_select"]
         handler()
 
     def update_year_combo_values(self, values):
