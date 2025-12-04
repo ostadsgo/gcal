@@ -198,6 +198,21 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, ))
         return [Record(row) for row in rows]
 
+    def distinct_months_by_year(self, calendar_id, year: str):
+        query = """
+            SELECT DISTINCT 
+                SUBSTR(dtstart, 5, 2) AS month
+            FROM events e
+            JOIN calendars c ON c.id = e.calendar_id
+            WHERE dtstart IS NOT NULL
+              AND LENGTH(dtstart) >= 6 
+              AND c.id = ?
+              AND SUBSTR(dtstart, 1, 4) = ?
+            ORDER BY month ASC;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, year))
+        return [Record(row) for row in rows]
+
 class DatabaseManager:
     def __init__(self):
         self.db_path = Path(DB_FILE)

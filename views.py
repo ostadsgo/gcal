@@ -120,21 +120,19 @@ class FilterView(ttk.Frame):
 
     def on_year_select(self, event):
         handler = self.handlers["year_select"]
-        selected_year = self.year_var.get()
-        handler(selected_year)
+        handler()
 
     def on_month_select(self, event):
         handler = self.handlers["month_select"]
-        selected_month = self.month_var.get()
-        handler(selected_month)
+        handler()
 
     def on_filter_select(self, event):
         handler = self.handlers["filter_select"]
-        selected_filter = self.filter_var.get()
-        handler(selected_filter)
+        handler()
 
-    def on_item_select(self):
-        pass
+    def on_item_select(self, events):
+        handler = self.handlers["filter_select"]
+        handler()
 
     def update_year_combo_values(self, values):
         self.year_var.set(values[0])
@@ -155,19 +153,30 @@ class CalendarView(ttk.Frame):
         self.cards = {}
         self.handlers = {}
         self.selected_calendar_id = 1
+        self.previous_card = None
+        self.current_card = None
+
+        self.style = ttk.Style()
+        self.style.configure("Select.TFrame", background="gray")
+        self.style.configure("Normal.TFrame", background="lightgray")
 
         self.rowconfigure(0, weight=1)
 
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
 
-    def on_calendar_hover(self, event):
-        pass
-
     def on_calendar_select(self, event):
         handler = self.handlers["calendar_select"]
         self.selected_calendar_id = event.widget.calendar_id
-        handler(event.widget.calendar_id)
+        handler()
+        self.current_card.config(style="Normal.TFrame")
+        self.current_card = self.cards[self.selected_calendar_id]
+        self.current_card.config(style="Select.TFrame")
+
+    def set_card_selection(self):
+        self.current_card = self.cards[self.selected_calendar_id]
+        self.current_card.config(style="Select.TFrame")
+
 
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
@@ -194,10 +203,10 @@ class CalendarView(ttk.Frame):
             card.grid(row=0, column=i, sticky="nsew", padx=5)
             self.columnconfigure(i, weight=1)
 
-            self.cards[calendar.calendar_name] = card
+            self.cards[calendar.calendar_id] = card
 
     def update_card(self, calendar):
-        card = self.cards.get(calendar.calendar_name)
+        card = self.cards.get(calendar.calendar_id)
         card.calendar_name_label.config(text=calendar.calendar_name.title())
         card.duration_label.config(text=f"{calendar.total_duration} hrs")
         card.events_label.config(text=f"{calendar.total_events} events")

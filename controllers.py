@@ -20,57 +20,57 @@ class Controller:
         self.calendar_view.create_cards(calendars)
         self.chart_view.update_stack_chart()
 
-        # populate area for selected calendar for item combo
-        rows = self.model.distinct_areas(self.calendar_view.selected_calendar_id)
-        values = [row.name for row in rows]
-        self.filter_view.item_combo.set(values)
-        self.filter_view.item_var.set(values[0])
+        self.update_item_widget()
+        self.update_year_widget()
+        self.update_month_widget()
 
-        # set years
-        rows = self.model.distinct_years(self.calendar_view.selected_calendar_id)
-        year_values = [row.year for row in rows]
-        self.filter_view.year_combo["values"] = year_values
-        self.filter_view.year_var.set(year_values[0])
+        self.update_calendar_card(calendars)
 
-        # set months
-        rows = self.model.distinct_months(self.calendar_view.selected_calendar_id)
-        month_values = [row.month for row in rows]
-        self.filter_view.month_combo["values"] = month_values
-        self.filter_view.month_var.set(month_values[0])
+        # must be after (create_cards)
+        self.calendar_view.set_card_selection()
 
-        # update calendar cards
+    def update_calendar_card(self, calendars):
         for calendar in calendars:
             self.calendar_view.update_card(calendar)
 
-    def handle_calendar_select(self, calendar_id: int):
-        # set years
-        rows = self.model.distinct_years(self.calendar_view.selected_calendar_id)
-        year_values = [row.year for row in rows]
-        self.filter_view.year_combo["values"] = year_values
-        self.filter_view.year_var.set(year_values[0])
+    def update_item_widget(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        rows = self.model.distinct_areas(calendar_id)
+        items = [row.name for row in rows]
+        self.filter_view.item_combo.set(items)
+        self.filter_view.item_var.set(items[0])
 
-        # set months
-        rows = self.model.distinct_months(self.calendar_view.selected_calendar_id)
-        month_values = [row.month for row in rows]
-        self.filter_view.month_combo["values"] = month_values
-        self.filter_view.month_var.set(month_values[0])
+    def update_year_widget(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        rows = self.model.distinct_years(calendar_id)
+        years = [row.year for row in rows]
+        self.filter_view.year_combo["values"] = years
+        self.filter_view.year_var.set(years[0])
 
-        print(f"Calendar id: {calendar_id}")
-        print(year_values)
-        print(month_values)
+    def update_month_widget(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        rows = self.model.distinct_months(calendar_id)
+        months = [row.month for row in rows]
+        self.filter_view.month_combo["values"] = months
+        self.filter_view.month_var.set(months[0])
 
-    def handle_date_select(self, date_value):
-        print(f"You select date_value {date_value}")
+    def handle_calendar_select(self):
+        self.update_year_widget()
+        self.update_month_widget()
+        print(f"Calendar with id {self.calendar_view.selected_calendar_id} selected")
 
-    def handle_filter_select(self, filter_value):
+
+    def handle_filter_select(self): 
         items = []
+        calendar_id = self.calendar_view.selected_calendar_id
+        filter_value = self.filter_view.filter_var.get()
 
         if filter_value == "Areas":
-            items = self.model.distinct_areas(self.calendar_view.selected_calendar_id)
+            items = self.model.distinct_areas(calendar_id)
         elif filter_value == "Types":
-            items = self.model.distinct_types(self.calendar_view.selected_calendar_id)
+            items = self.model.distinct_types(calendar_id)
         elif filter_value == "Projects":
-            items = self.model.distinct_projects(self.calendar_view.selected_calendar_id)
+            items = self.model.distinct_projects(calendar_id)
         else:
             print(f"No query: Unknow filter value {filter_value}")
 
@@ -78,7 +78,13 @@ class Controller:
         self.filter_view.update_item_combo_values(values)
 
     def handle_year_select(self):
-        pass
+        # Update month combo values by year
+        calendar_id = self.calendar_view.selected_calendar_id
+        year = self.filter_view.year_var.get()
+        rows = self.model.distinct_months_by_year(calendar_id, year)
+        months = [row.month for row in rows]
+        self.filter_view.month_var.set(months[0])
+        self.filter_view.month_combo["values"] = months
 
     def handle_month_select(self):
         pass
