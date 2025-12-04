@@ -317,6 +317,37 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, year, month, project_name))
         return [Record(row) for row in rows]
 
+    def area_report(self, calendar_id, area_name):
+        query = """
+            SELECT 
+                -- Timeline with dashes
+                SUBSTR(MIN(dtstart), 1, 8) AS first_date_raw,
+                SUBSTR(MAX(dtstart), 1, 8) AS last_date_raw,
+                
+                SUBSTR(MIN(dtstart), 1, 4) || '-' || 
+                SUBSTR(MIN(dtstart), 5, 2) || '-' || 
+                SUBSTR(MIN(dtstart), 7, 2) AS first_date,
+                
+                SUBSTR(MAX(dtstart), 1, 4) || '-' || 
+                SUBSTR(MAX(dtstart), 5, 2) || '-' || 
+                SUBSTR(MAX(dtstart), 7, 2) AS last_date,
+                
+                -- Rest of your query...
+                COUNT(e.id) AS total_events,
+                COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)) AS total_days,
+                SUM(e.duration) AS total_hours,
+                ROUND(AVG(e.duration), 2) AS average_duration,
+                MAX(e.duration) AS max_duration,
+                MIN(e.duration) AS min_duration,
+                ROUND(SUM(e.duration) / COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)), 2) AS average_day
+            FROM events e
+            JOIN areas a ON e.area_id = a.id
+            WHERE e.calendar_id = ?
+              AND a.name = ?;
+        """
+        rows = self.db.fetch_all(query, (calendar_id, area_name))
+        return [Record(row) for row in rows]
+
 
 class DatabaseManager:
     def __init__(self):

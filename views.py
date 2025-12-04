@@ -86,7 +86,23 @@ class ChartView(ttk.Frame):
 class ReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        ttk.Label(self, text="Report view")
+        self.vars = {
+            "item_name": tk.StringVar(value="Report for: "),
+            "start_date": tk.StringVar(value="Start date: "),
+            "events": tk.StringVar(value="Events: "),
+            "total_hrs": tk.StringVar(value="Total hours:"),
+            "average": tk.StringVar(value="Average: "),
+            "mode": tk.StringVar(value="Mode"),
+            "max": tk.StringVar(value="Max: "),
+            "min": tk.StringVar(value="Min: "),
+        }
+
+
+        for index, (var_name, var) in enumerate(self.vars.items()):
+            ttk.Label(self, textvariable=var).grid(row=index, column=0)
+
+        for child in self.winfo_children():
+            child.grid_configure(stick="ew")
 
 
 class FilterView(ttk.Frame):
@@ -245,13 +261,13 @@ class MainFrame(ttk.Frame):
         self.filter_view = FilterView(self)
         self.filter_view.grid(row=1, column=0)
 
-        # Chart and insight
+        # Chart 
         self.chart_view = ChartView(self)
         self.chart_view.grid(row=2, column=0)
 
-        # Chart and insight
+        # Chart 
         self.report_view = ReportView(self)
-        self.chart_view.grid(row=3, column=0)
+        self.report_view.grid(row=3, column=0)
 
         for child in self.winfo_children():
             child.config(padding=5, relief="solid")

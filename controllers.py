@@ -7,6 +7,7 @@ class Controller:
         self.calendar_view = context.get_view("calendar")
         self.filter_view = context.get_view("filter")
         self.chart_view = context.get_view("chart")
+        self.report_view = context.get_view("report")
         self.model = context.model
 
         self.calendar_view.register_event_handler("calendar_select", self.handle_calendar_select)
@@ -80,6 +81,26 @@ class Controller:
             self.filter_view.item_var.set("")
 
 
+    def update_report(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        filter_val = self.filter_view.filter_var.get()
+        item = self.filter_view.item_var.get()
+
+        if filter_val == "Areas":
+            area_report = self.model.area_report(calendar_id, item)
+            print(area_report)
+        elif filter_val == "Types":
+            pass
+        elif filter_val == "Projects":
+            pass
+        else:
+            pass
+
+        self.report_view.vars["item_name"].set(f"Report for: {item}")
+        # self.report_view.vars["start_date"].set(f"Start date: {start_date}")
+        #
+
+
 
     # --------------
     # Handlers
@@ -89,6 +110,9 @@ class Controller:
         self.update_month_widget()
         self.update_item_widget()
         self.update_chart()
+        self.update_report()
+
+
     
 
     def handle_filter_select(self): 
