@@ -19,9 +19,9 @@ class ChartView(ttk.Frame):
     def setup_ui(self):
         """Set up the chart canvas."""
         self.figure = Figure(figsize=(8, 4), dpi=100)
-        gs = self.figure.add_gridspec(2, 2, width_ratios=[1, 1.5], height_ratios=[1, 1])
+        gs = self.figure.add_gridspec(1, 1)
 
-        self.axes["stack"] = self.figure.add_subplot(gs[0, :])
+        self.axes["stack"] = self.figure.add_subplot(gs[0, 0])
         # self.axes["pie"] = self.figure.add_subplot(gs[1, 0])
         # self.axes["bar"] = self.figure.add_subplot(gs[1, 1])
 
@@ -88,13 +88,15 @@ class ReportView(ttk.Frame):
         super().__init__(master, **kwargs)
         self.vars = {
             "item_name": tk.StringVar(value="Report for: "),
-            "start_date": tk.StringVar(value="Start date: "),
-            "events": tk.StringVar(value="Events: "),
-            "total_hrs": tk.StringVar(value="Total hours:"),
-            "average": tk.StringVar(value="Average: "),
-            "mode": tk.StringVar(value="Mode"),
-            "max": tk.StringVar(value="Max: "),
-            "min": tk.StringVar(value="Min: "),
+            "first_date": tk.StringVar(value="Start date: "),
+            "last_date": tk.StringVar(value="Last date: "),
+            "total_days": tk.StringVar(value="Total Days: "),
+            "average_day": tk.StringVar(value="Avg per day:"),
+            "total_events": tk.StringVar(value="Events: "),
+            "total_hours": tk.StringVar(value="Total hours:"),
+            "average_duration": tk.StringVar(value="Average: "),
+            "max_duration": tk.StringVar(value="Max: "),
+            "min_duration": tk.StringVar(value="Min: "),
         }
 
 
@@ -267,7 +269,7 @@ class MainFrame(ttk.Frame):
 
         # Chart 
         self.report_view = ReportView(self)
-        self.report_view.grid(row=3, column=0)
+        self.report_view.grid(row=2, column=1)
 
         for child in self.winfo_children():
             child.config(padding=5, relief="solid")
@@ -276,8 +278,9 @@ class MainFrame(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=10)
-        self.columnconfigure(0, weight=1)
+        self.rowconfigure(3, weight=3)
+        self.columnconfigure(0, weight=3)
+        self.columnconfigure(1, weight=1)
 
 
 class App(tk.Tk):

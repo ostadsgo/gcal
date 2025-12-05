@@ -27,6 +27,7 @@ class Controller:
         self.update_item_widget()
 
         self.update_chart()
+        self.update_report()
     
     def update_calendar_card(self, calendars):
         for calendar in calendars:
@@ -85,10 +86,10 @@ class Controller:
         calendar_id = self.calendar_view.selected_calendar_id
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
+        report = None
 
         if filter_val == "Areas":
-            area_report = self.model.area_report(calendar_id, item)
-            print(area_report)
+            report = self.model.area_report(calendar_id, item)
         elif filter_val == "Types":
             pass
         elif filter_val == "Projects":
@@ -97,8 +98,15 @@ class Controller:
             pass
 
         self.report_view.vars["item_name"].set(f"Report for: {item}")
-        # self.report_view.vars["start_date"].set(f"Start date: {start_date}")
-        #
+        self.report_view.vars["first_date"].set(f"First date: {report.first_date}")
+        self.report_view.vars["last_date"].set(f"Last date: {report.last_date}")
+        self.report_view.vars["total_days"].set(f"Total days: {report.total_days}")
+        self.report_view.vars["average_day"].set(f"Avg per day: {report.average_day}")
+        self.report_view.vars["total_events"].set(f"Events count: {report.total_events}")
+        self.report_view.vars["total_hours"].set(f"Total hrs: {report.total_hours}")
+        self.report_view.vars["average_duration"].set(f"Average: {report.average_duration}")
+        self.report_view.vars["max_duration"].set(f"Average: {report.max_duration}")
+        self.report_view.vars["min_duration"].set(f"Average: {report.min_duration}")
 
 
 
@@ -112,23 +120,25 @@ class Controller:
         self.update_chart()
         self.update_report()
 
-
-    
-
     def handle_filter_select(self): 
         self.update_item_widget()
         self.update_chart()
+        self.update_report()
+
     
     def handle_year_select(self):
         self.update_item_widget()
         self.update_chart()
+        self.update_report()
     
     def handle_month_select(self):
         self.update_item_widget()
         self.update_chart()
+        self.update_report()
 
     def handle_item_select(self):
         self.update_chart()
+        self.update_report()
     
     def update_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -137,11 +147,6 @@ class Controller:
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
         rows = None
-        print("-------------")
-        print("Widget value:")
-        print("-------------")
-        print(f"Years: {year}\nMonth: {month}\nFilter: {filter_val}\nItem: {item}\n")
-
         if item:
             if filter_val == "Areas":
                 rows = self.model.area_daily_duration(calendar_id, year, month, item)
@@ -152,8 +157,7 @@ class Controller:
             else:
                 print(f"Unknow filter. {filter_val}.")
 
+            # chart
             days = [row.day for row in rows]
             hrs = [row.total_duration for row in rows]
-
-            print(f"Days:{days}\nHrs:{hrs}")
             self.chart_view.update_stack_chart(days, hrs)

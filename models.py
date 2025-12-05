@@ -345,8 +345,8 @@ class CalendarModel:
             WHERE e.calendar_id = ?
               AND a.name = ?;
         """
-        rows = self.db.fetch_all(query, (calendar_id, area_name))
-        return [Record(row) for row in rows]
+        row = self.db.fetch_one(query, (calendar_id, area_name))
+        return Record(row)
 
 
 class DatabaseManager:
