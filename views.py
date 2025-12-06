@@ -17,57 +17,46 @@ from matplotlib.figure import Figure
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.axes = {}
         self.setup_ui()
 
     def setup_ui(self):
         """Set up the chart canvas."""
-        self.figure = Figure(figsize=(8, 4), dpi=100)
-        self.axes["chart"] = self.figure.add_subplot(111)
-
-        self.canvas = FigureCanvasTkAgg(self.figure, self)
+        self.fig = Figure(figsize=(5, 3), dpi=100)
+        self.ax = self.fig.add_subplot(111)
+        self.canvas = FigureCanvasTkAgg(self.fig, self)
         self.canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
+        self.fig.tight_layout()
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
     def update_pie_chart(self, calendars):
         """Create a pie chart."""
-        self.axes["chart"].clear()
+        self.ax.clear()
 
         names = [calendar.calendar_name for calendar in calendars]
         durations = [calendar.total_duration for calendar in calendars]
         colors = [calendar.calendar_color for calendar in calendars]
 
-        self.axes["chart"].pie(
+        self.ax.pie(
             durations, labels=names, colors=colors, autopct="%1.1f%%", startangle=90
         )
-        self.axes["chart"].set_title("Calendar Time Distribution")
-
-        self.figure.tight_layout()
+        self.ax.set_title("Calendar Time Distribution")
         self.canvas.draw()
 
 
     def update_stack_chart(self, days, hrs):
-        self.axes["chart"].clear()
-        self.axes["chart"].stackplot(days, hrs)
-        self.axes["chart"].grid(True, linestyle='--', alpha=0.3, color='gray')
-        self.axes["chart"].spines['top'].set_visible(False)
-        self.axes["chart"].spines['right'].set_visible(False)
-        # Add subtle border
-        self.axes["chart"].spines['left'].set_color('#DDDDDD')
-        self.axes["chart"].spines['bottom'].set_color('#DDDDDD')
-        # Format x-chartticks
-        self.axes["chart"].set_xticks(days)
-        self.axes["chart"].tick_params(axis='both', which='major', labelsize=10)
-        # Add value labels on each segment
-        total_hours = sum(hrs)
-        if total_hours > 0:
-            # Add text annotation for total hours
-            self.axes["chart"].text(0.02, 0.98, f'Total: {total_hours:.1f}h', 
-                                   transform=self.axes["chart"].transAxes,
-                                   fontsize=10, verticalalignment='top',
-                                   bbox=dict(boxstyle='round', facecolor='white', alpha=0.8)) 
-        self.figure.tight_layout()
+        self.ax.clear()
+        self.ax.stackplot(days, hrs)
+        self.ax.grid(True, linestyle='--', alpha=0.3, color='gray')
+        self.ax.spines['top'].set_visible(False)
+        self.ax.spines['right'].set_visible(False)
+
+        self.ax.spines['left'].set_color('#DDDDDD')
+        self.ax.spines['bottom'].set_color('#DDDDDD')
+
+        self.ax.set_xticks(days)
+        self.ax.tick_params(axis='both', which='major', labelsize=10)
+        
         self.canvas.draw()
 
 
@@ -288,8 +277,8 @@ class MainFrame(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, weight=1)
-        self.columnconfigure(1, weight=100)
+        self.columnconfigure(0, weight=3)
+        self.columnconfigure(1, weight=1)
 
 
 class App(tk.Tk):
