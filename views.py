@@ -8,6 +8,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
 # BUG: calendar click triggered only only frame not when clicked on widgets in the frame
+# TODO: previous data and selected data compare on stack chart
+# TODO: stack chart opacity
+# TODO: report of area, types, project top 3 for selected calendar
+# 
 
 
 class ChartView(ttk.Frame):
@@ -19,68 +23,62 @@ class ChartView(ttk.Frame):
     def setup_ui(self):
         """Set up the chart canvas."""
         self.figure = Figure(figsize=(8, 4), dpi=100)
-        gs = self.figure.add_gridspec(1, 1)
-
-        self.axes["stack"] = self.figure.add_subplot(gs[0, 0])
-        # self.axes["pie"] = self.figure.add_subplot(gs[1, 0])
-        # self.axes["bar"] = self.figure.add_subplot(gs[1, 1])
+        self.axes["chart"] = self.figure.add_subplot(111)
 
         self.canvas = FigureCanvasTkAgg(self.figure, self)
         self.canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
-    def update_calendar_chart(self, calendars):
+    def update_pie_chart(self, calendars):
         """Create a pie chart."""
-        self.axes["calendars_chart"].clear()
+        self.axes["chart"].clear()
 
         names = [calendar.calendar_name for calendar in calendars]
         durations = [calendar.total_duration for calendar in calendars]
         colors = [calendar.calendar_color for calendar in calendars]
 
-        self.axes["calendars_chart"].pie(
+        self.axes["chart"].pie(
             durations, labels=names, colors=colors, autopct="%1.1f%%", startangle=90
         )
-        self.axes["calendars_chart"].set_title("Calendar Time Distribution")
+        self.axes["chart"].set_title("Calendar Time Distribution")
 
+        self.figure.tight_layout()
         self.canvas.draw()
 
-    def update_area_chart(self, areas):
-        names = [area.area_name for area in areas]
-        durations = [area.total_hours for area in areas]
-        self.axes["areas_chart"].bar(names, durations)
-        self.canvas.draw()
-
-    def update_project_chart(self, projects):
-        names = [project.project_name for project in projects]
-        durations = [project.total_hours for project in projects]
-        self.axes["projects_chart"].bar(names, durations)
-        self.canvas.draw()
 
     def update_stack_chart(self, days, hrs):
-        colors = ['#2E86AB', '#A23B72', '#F18F01', '#C73E1D', '#6B8F71']
-        self.axes["stack"].clear()
-        self.axes["stack"].stackplot(days, hrs, colors=colors)
-        self.axes["stack"].grid(True, linestyle='--', alpha=0.3, color='gray')
-        self.axes["stack"].spines['top'].set_visible(False)
-        self.axes["stack"].spines['right'].set_visible(False)
+        self.axes["chart"].clear()
+        self.axes["chart"].stackplot(days, hrs)
+        self.axes["chart"].grid(True, linestyle='--', alpha=0.3, color='gray')
+        self.axes["chart"].spines['top'].set_visible(False)
+        self.axes["chart"].spines['right'].set_visible(False)
         # Add subtle border
-        self.axes["stack"].spines['left'].set_color('#DDDDDD')
-        self.axes["stack"].spines['bottom'].set_color('#DDDDDD')
-        # Format x-axis ticks
-        self.axes["stack"].set_xticks(days)
-        self.axes["stack"].tick_params(axis='both', which='major', labelsize=10)
+        self.axes["chart"].spines['left'].set_color('#DDDDDD')
+        self.axes["chart"].spines['bottom'].set_color('#DDDDDD')
+        # Format x-chartticks
+        self.axes["chart"].set_xticks(days)
+        self.axes["chart"].tick_params(axis='both', which='major', labelsize=10)
         # Add value labels on each segment
         total_hours = sum(hrs)
         if total_hours > 0:
             # Add text annotation for total hours
-            self.axes["stack"].text(0.02, 0.98, f'Total: {total_hours:.1f}h', 
-                                   transform=self.axes["stack"].transAxes,
+            self.axes["chart"].text(0.02, 0.98, f'Total: {total_hours:.1f}h', 
+                                   transform=self.axes["chart"].transAxes,
                                    fontsize=10, verticalalignment='top',
                                    bbox=dict(boxstyle='round', facecolor='white', alpha=0.8)) 
         self.figure.tight_layout()
         self.canvas.draw()
 
+
+class CalendarReportView(ttk.Frame):
+    """ Report for selected calendar.
+        Reports like top 3 areas with stat
+        Reports for top 3 projects with stat and etc
+    """
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        ttk.Label(self, text="Calendar report.")
 
 
 class ReportView(ttk.Frame):
@@ -105,6 +103,13 @@ class ReportView(ttk.Frame):
 
         for child in self.winfo_children():
             child.grid_configure(stick="ew")
+
+    def create_report_field(self, name, value):
+        self.vars["name"] = tk.StringVar(value=value)
+
+    def update_report_field(self, name, value):
+        pass
+
 
 
 class FilterView(ttk.Frame):
@@ -259,17 +264,22 @@ class MainFrame(ttk.Frame):
         self.calendar_view = CalendarView(self)
         self.calendar_view.grid(row=0, column=0)
 
+        # Report
+        self.report_view = ReportView(self)
+        self.report_view.grid(row=0, column=1)
+
         # Filter frame
         self.filter_view = FilterView(self)
         self.filter_view.grid(row=1, column=0)
 
-        # Chart 
-        self.chart_view = ChartView(self)
-        self.chart_view.grid(row=2, column=0)
+        # Stack 
+        self.stack_chart_view = ChartView(self)
+        self.stack_chart_view.grid(row=2, column=0)
 
-        # Chart 
-        self.report_view = ReportView(self)
-        self.report_view.grid(row=2, column=1)
+        # Pie
+        self.pie_chart_view = ChartView(self)
+        self.pie_chart_view.grid(row=2, column=1)
+
 
         for child in self.winfo_children():
             child.config(padding=5, relief="solid")
@@ -278,9 +288,8 @@ class MainFrame(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=3)
-        self.columnconfigure(0, weight=3)
-        self.columnconfigure(1, weight=1)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=100)
 
 
 class App(tk.Tk):

@@ -14,7 +14,8 @@ class AppContext:
         # views
         self.views["calendar"] = self.app.mainframe.calendar_view
         self.views["filter"] = self.app.mainframe.filter_view
-        self.views["chart"] = self.app.mainframe.chart_view
+        self.views["stack"] = self.app.mainframe.stack_chart_view
+        self.views["pie"] = self.app.mainframe.pie_chart_view
         self.views["report"] = self.app.mainframe.report_view
 
         # controllers

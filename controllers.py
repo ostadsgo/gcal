@@ -6,10 +6,12 @@ class Controller:
         self.context = context
         self.calendar_view = context.get_view("calendar")
         self.filter_view = context.get_view("filter")
-        self.chart_view = context.get_view("chart")
+        self.stack_chart_view = context.get_view("stack")
+        self.pie_chart_view= context.get_view("pie")
         self.report_view = context.get_view("report")
         self.model = context.model
 
+        # Register events
         self.calendar_view.register_event_handler("calendar_select", self.handle_calendar_select)
         self.filter_view.register_event_handler("year_select", self.handle_year_select)
         self.filter_view.register_event_handler("month_select", self.handle_month_select)
@@ -27,6 +29,8 @@ class Controller:
         self.update_item_widget()
 
         self.update_chart()
+        calendars = self.model.get_calendars_by_usage()
+        self.pie_chart_view.update_pie_chart(calendars)
         self.update_report()
     
     def update_calendar_card(self, calendars):
@@ -162,4 +166,4 @@ class Controller:
             # chart
             days = [row.day for row in rows]
             hrs = [row.total_duration for row in rows]
-            self.chart_view.update_stack_chart(days, hrs)
+            self.stack_chart_view.update_stack_chart(days, hrs)

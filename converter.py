@@ -26,7 +26,7 @@ class IcsToDb:
         # Enable foreign keys
         cursor.execute("PRAGMA foreign_keys = ON")
 
-        # Calendar table (existing)
+        # Calendar table
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS calendars (
@@ -37,7 +37,7 @@ class IcsToDb:
         """
         )
 
-        # New normalized tables
+        # Areas table
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS areas (
@@ -48,6 +48,7 @@ class IcsToDb:
         """
         )
 
+        # Projects table
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS projects (
@@ -60,27 +61,20 @@ class IcsToDb:
         """
         )
 
+        # Types table with area_id
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS types (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT UNIQUE NOT NULL,
-                description TEXT
+                description TEXT,
+                area_id INTEGER,
+                FOREIGN KEY (area_id) REFERENCES areas(id)
             )
         """
         )
 
-        cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS difficulties (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                label TEXT UNIQUE NOT NULL,
-                description TEXT
-            )
-        """
-        )
-
-        # Events table with foreign keys
+        # Events table (added year, month, day, hour, minute, second fields)
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS events (
@@ -90,38 +84,20 @@ class IcsToDb:
                 dtstart TEXT NOT NULL,
                 dtend TEXT NOT NULL,
                 duration REAL NOT NULL,
+                year INTEGER,
+                month INTEGER,
+                day INTEGER,
+                hour INTEGER,
+                minute INTEGER,
+                second INTEGER,
                 area_id INTEGER,
                 project_id INTEGER,
                 type_id INTEGER,
-                difficulty_id INTEGER,
-                detail TEXT,
                 is_all_day INTEGER DEFAULT 0,
                 FOREIGN KEY (calendar_id) REFERENCES calendars(id) ON DELETE CASCADE,
                 FOREIGN KEY (area_id) REFERENCES areas(id),
                 FOREIGN KEY (project_id) REFERENCES projects(id),
-                FOREIGN KEY (type_id) REFERENCES types(id),
-                FOREIGN KEY (difficulty_id) REFERENCES difficulties(id)
-            )
-        """
-        )
-
-        cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS tags (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT UNIQUE NOT NULL
-            )
-        """
-        )
-
-        cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS event_tags (
-                event_id INTEGER NOT NULL,
-                tag_id INTEGER NOT NULL,
-                PRIMARY KEY (event_id, tag_id),
-                FOREIGN KEY (event_id) REFERENCES events(id) ON DELETE CASCADE,
-                FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
+                FOREIGN KEY (type_id) REFERENCES types(id)
             )
         """
         )
@@ -143,35 +119,24 @@ class IcsToDb:
             "CREATE INDEX IF NOT EXISTS idx_events_type_id ON events(type_id)"
         )
         cursor.execute(
-            "CREATE INDEX IF NOT EXISTS idx_events_difficulty_id ON events(difficulty_id)"
+            "CREATE INDEX IF NOT EXISTS idx_types_area_id ON types(area_id)"
         )
-
-        # Insert default difficulty levels
-        self._insert_default_difficulties(cursor)
+        cursor.execute(
+            "CREATE INDEX IF NOT EXISTS idx_events_year ON events(year)"
+        )
+        cursor.execute(
+            "CREATE INDEX IF NOT EXISTS idx_events_year_month ON events(year, month)"
+        )
 
         self.conn.commit()
 
-    def _insert_default_difficulties(self, cursor):
-        """Insert default difficulty levels if they don't exist"""
-        difficulties = [
-            ("Very Easy", "Minimal effort required"),
-            ("Easy", "Straightforward task"),
-            ("Medium", "Moderate effort required"),
-            ("Hard", "Challenging task"),
-            ("Very Hard", "Complex, requires significant effort"),
-        ]
-
-        for label, description in difficulties:
-            cursor.execute(
-                """
-                INSERT OR IGNORE INTO difficulties (label, description)
-                VALUES (?, ?)
-            """,
-                (label, description),
-            )
-
     def get_or_create_lookup_id(self, cursor, table_name, field_name, value):
         """Get or create ID in a lookup table"""
+        if not value:
+            return None
+
+        # Normalize value: strip and lowercase
+        value = value.strip().lower()
         if not value:
             return None
 
@@ -188,6 +153,11 @@ class IcsToDb:
 
     def get_or_create_project_id(self, cursor, project_name, area_name=None):
         """Get or create project ID, optionally linked to area"""
+        if not project_name:
+            return None
+
+        # Normalize project_name: strip and lowercase
+        project_name = project_name.strip().lower()
         if not project_name:
             return None
 
@@ -210,92 +180,99 @@ class IcsToDb:
             )
             return cursor.lastrowid
 
-    def get_difficulty_id(self, cursor, difficulty_value):
-        """Get difficulty ID from difficulty value (now uses label matching)"""
-        if not difficulty_value:
+    def get_or_create_type_id(self, cursor, type_name, area_name=None):
+        """Get or create type ID, optionally linked to area"""
+        if not type_name:
             return None
 
-        try:
-            # Try to find by exact label match first
+        # Normalize type_name: strip and lowercase
+        type_name = type_name.strip().lower()
+        if not type_name:
+            return None
+
+        # First get area_id if provided
+        area_id = None
+        if area_name:
+            area_id = self.get_or_create_lookup_id(cursor, "areas", "name", area_name)
+
+        cursor.execute("SELECT id FROM types WHERE name = ?", (type_name,))
+        row = cursor.fetchone()
+
+        if row:
+            return row[0]
+        else:
             cursor.execute(
-                "SELECT id FROM difficulties WHERE label = ?", (difficulty_value,)
+                """
+                INSERT INTO types (name, area_id) VALUES (?, ?)
+            """,
+                (type_name, area_id),
             )
-            row = cursor.fetchone()
-            if row:
-                return row[0]
+            return cursor.lastrowid
 
-            # If not found by label, try to parse as number and find by order
-            difficulty_level = int(difficulty_value)
-            cursor.execute("SELECT id FROM difficulties ORDER BY id")
-            rows = cursor.fetchall()
-            if 1 <= difficulty_level <= len(rows):
-                return rows[difficulty_level - 1][0]
-            return None
-        except (ValueError, TypeError):
-            return None
+    def strip_html_tags(self, text):
+        """Remove HTML tags from text, replacing <br> with newlines"""
+        import re
+        if not text:
+            return text
+        
+        text = str(text)
+        # Replace <br> tags with newlines (case-insensitive, with or without /)
+        text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
+        # Remove all other HTML tags
+        text = re.sub(r'<[^>]+>', '', text)
+        return text
 
     def parse_description(self, desc):
-        """Parse structured description into fields"""
+        """Parse structured description into fields (only area, type, project)"""
         fields = {
             "area": None,
             "type": None,
             "project": None,
-            "difficulty": None,
-            "tags": None,
-            "detail": None,
         }
 
         if not desc:
             return fields
 
-        for line in str(desc).split("\n"):
+        # Remove HTML tags first
+        desc = self.strip_html_tags(desc)
+
+        for line in desc.split("\n"):
             if ":" in line:
                 key, value = line.split(":", 1)
                 key = key.strip().lower()
-                value = value.strip()
+                value = value.strip().lower()  # Convert to lowercase
 
                 if key in fields:
                     fields[key] = value
 
         return fields
 
-    def parse_tags(self, tags_str):
-        """Parse comma-separated tags into a list"""
-        if not tags_str:
-            return []
-
-        tags = [tag.strip() for tag in tags_str.split(",")]
-        return [tag for tag in tags if tag]
-
-    def get_or_create_tag(self, cursor, tag_name):
-        """Get tag_id for a tag, creating it if it doesn't exist"""
-        cursor.execute("SELECT id FROM tags WHERE name = ?", (tag_name,))
-        row = cursor.fetchone()
-
-        if row:
-            return row[0]
-        else:
-            cursor.execute("INSERT INTO tags (name) VALUES (?)", (tag_name,))
-            return cursor.lastrowid
-
-    def insert_tags(self, cursor, event_id, tags_str):
-        """Insert tags for an event using many-to-many relationship"""
-        tags = self.parse_tags(tags_str)
-
-        for tag_name in tags:
-            tag_id = self.get_or_create_tag(cursor, tag_name)
-
-            try:
-                cursor.execute(
-                    """
-                    INSERT INTO event_tags (event_id, tag_id)
-                    VALUES (?, ?)
-                """,
-                    (event_id, tag_id),
-                )
-            except sqlite3.IntegrityError:
-                # Relationship already exists
-                pass
+    def extract_datetime_components(self, dt_str):
+        """Extract year, month, day, hour, minute, second from datetime string"""
+        if not dt_str:
+            return None, None, None, None, None, None
+        
+        try:
+            # Parse YYYYMMDD format (all-day events)
+            if len(dt_str) == 8:
+                year = int(dt_str[0:4])
+                month = int(dt_str[4:6])
+                day = int(dt_str[6:8])
+                return year, month, day, 0, 0, 0
+            # Parse YYYYMMDDTHHMMSS format
+            elif "T" in dt_str:
+                dt_str = dt_str.rstrip("Z")
+                year = int(dt_str[0:4])
+                month = int(dt_str[4:6])
+                day = int(dt_str[6:8])
+                hour = int(dt_str[9:11])
+                minute = int(dt_str[11:13])
+                second = int(dt_str[13:15]) if len(dt_str) >= 15 else 0
+                return year, month, day, hour, minute, second
+        except (ValueError, IndexError):
+            pass
+        
+        return None, None, None, None, None, None
 
     def datetime_to_str(self, dt, target_tz=None):
         """Convert datetime object to string in target timezone"""
@@ -384,23 +361,24 @@ class IcsToDb:
                 area_id = self.get_or_create_lookup_id(
                     cursor, "areas", "name", desc_fields["area"]
                 )
-                type_id = self.get_or_create_lookup_id(
-                    cursor, "types", "name", desc_fields["type"]
+                type_id = self.get_or_create_type_id(
+                    cursor, desc_fields["type"], desc_fields["area"]
                 )
                 project_id = self.get_or_create_project_id(
                     cursor, desc_fields["project"], desc_fields["area"]
                 )
-                difficulty_id = self.get_difficulty_id(
-                    cursor, desc_fields["difficulty"]
-                )
+
+                # Extract datetime components from dtstart
+                year, month, day, hour, minute, second = self.extract_datetime_components(dtstart_str)
 
                 try:
                     cursor.execute(
                         """
                         INSERT INTO events (
                             calendar_id, summary, dtstart, dtend, duration,
-                            area_id, project_id, type_id, difficulty_id, detail, is_all_day
-                        ) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            year, month, day, hour, minute, second,
+                            area_id, project_id, type_id, is_all_day
+                        ) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
                         (
                             calendar_id,
@@ -408,20 +386,18 @@ class IcsToDb:
                             dtstart_str,
                             dtend_str,
                             duration,
+                            year,
+                            month,
+                            day,
+                            hour,
+                            minute,
+                            second,
                             area_id,
                             project_id,
                             type_id,
-                            difficulty_id,
-                            desc_fields["detail"],
                             is_all_day,
                         ),
                     )
-
-                    event_id = cursor.lastrowid
-
-                    # Insert tags if present
-                    if desc_fields["tags"]:
-                        self.insert_tags(cursor, event_id, desc_fields["tags"])
 
                     event_count += 1
                 except sqlite3.IntegrityError as e:
@@ -450,30 +426,6 @@ class DbToIcs:
         row = cursor.fetchone()
         return row[0] if row else None
 
-    def get_difficulty_label(self, cursor, difficulty_id):
-        """Get difficulty label by ID"""
-        if not difficulty_id:
-            return None
-
-        cursor.execute("SELECT label FROM difficulties WHERE id = ?", (difficulty_id,))
-        row = cursor.fetchone()
-        return row[0] if row else None
-
-    def get_event_tags(self, cursor, event_id):
-        """Get all tags for an event as comma-separated string"""
-        cursor.execute(
-            """
-            SELECT t.name 
-            FROM tags t
-            JOIN event_tags et ON t.id = et.tag_id
-            WHERE et.event_id = ?
-            ORDER BY t.name
-        """,
-            (event_id,),
-        )
-        tags = cursor.fetchall()
-        return ", ".join([tag[0] for tag in tags])
-
     def format_description(self, event_row, cursor):
         """Format event fields back to description from normalized tables"""
         parts = []
@@ -484,8 +436,6 @@ class DbToIcs:
         project_name = self.get_lookup_value(
             cursor, "projects", event_row["project_id"]
         )
-        difficulty_label = self.get_difficulty_label(cursor, event_row["difficulty_id"])
-        tags_str = self.get_event_tags(cursor, event_row["id"])
 
         if area_name:
             parts.append(f"Area: {area_name}")
@@ -493,12 +443,6 @@ class DbToIcs:
             parts.append(f"Type: {type_name}")
         if project_name:
             parts.append(f"Project: {project_name}")
-        if difficulty_label:
-            parts.append(f"Difficulty: {difficulty_label}")
-        if tags_str:
-            parts.append(f"Tags: {tags_str}")
-        if event_row["detail"]:
-            parts.append(f"Detail: {event_row['detail']}")
 
         return "\n".join(parts)
 
