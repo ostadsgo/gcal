@@ -8,7 +8,8 @@ class Controller:
         self.filter_view = context.get_view("filter")
         self.stack_chart_view = context.get_view("stack")
         self.pie_chart_view= context.get_view("pie")
-        self.report_view = context.get_view("report")
+        self.filter_report_view = context.get_view("calendar_report")
+        self.filter_report_view = context.get_view("filter_report")
         self.model = context.model
 
         # Register events
@@ -103,16 +104,7 @@ class Controller:
         else:
             print("Unkown filter value in update report.")
 
-        self.report_view.vars["item_name"].set(f"Report for: {item}")
-        self.report_view.vars["first_date"].set(f"First date: {report.first_date}")
-        self.report_view.vars["last_date"].set(f"Last date: {report.last_date}")
-        self.report_view.vars["total_days"].set(f"Total days: {report.total_days}")
-        self.report_view.vars["average_day"].set(f"Avg per day: {report.average_day}")
-        self.report_view.vars["total_events"].set(f"Events count: {report.total_events}")
-        self.report_view.vars["total_hours"].set(f"Total hrs: {report.total_hours}")
-        self.report_view.vars["average_duration"].set(f"Average duration: {report.average_duration}")
-        self.report_view.vars["max_duration"].set(f"Max duration: {report.max_duration}")
-        self.report_view.vars["min_duration"].set(f"Min duration: {report.min_duration}")
+        self.filter_report_view.update_rows(item, report)
 
 
 

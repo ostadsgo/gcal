@@ -73,6 +73,26 @@ class CalendarReportView(ttk.Frame):
 class ReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.is_rows_created = False
+        self.vars = {}
+
+
+    def update_variable(self, name, value=""):
+        self.vars.update({name: tk.StringVar(value=value)})
+
+    def create_rows(self):
+        """ Create label for self.vars dict. """
+        if not self.is_rows_created:
+            for index, (var_name, var) in enumerate(self.vars.items()):
+                ttk.Label(self, textvariable=var).grid(row=index, column=0)
+            self.is_rows_created = True
+
+            for child in self.winfo_children():
+                child.grid_configure(stick="ew")
+
+class FilterReportView(ttk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
         self.vars = {
             "item_name": tk.StringVar(value="Report for: "),
             "first_date": tk.StringVar(value="Start date: "),
@@ -86,18 +106,22 @@ class ReportView(ttk.Frame):
             "min_duration": tk.StringVar(value="Min: "),
         }
 
-
+        # create rows
         for index, (var_name, var) in enumerate(self.vars.items()):
             ttk.Label(self, textvariable=var).grid(row=index, column=0)
 
         for child in self.winfo_children():
             child.grid_configure(stick="ew")
 
-    def create_report_field(self, name, value):
-        self.vars["name"] = tk.StringVar(value=value)
 
-    def update_report_field(self, name, value):
-        pass
+    def update_rows(self, name, report):
+        self.vars["item_name"].set(f"Report for: {name}")
+
+        
+        for name, value in report.to_dict().items():
+            # print(name, value)
+            if self.vars.get(name) is not None:
+                self.vars[name].set(f"{name.title()}: {value}")
 
 
 
@@ -110,29 +134,29 @@ class FilterView(ttk.Frame):
         self.year_var = tk.StringVar()
         ttk.Label(self, text="Year").grid(row=0, column=0)
         self.year_combo = ttk.Combobox(self, textvariable=self.year_var)
-        self.year_combo.grid(row=1, column=0)
+        self.year_combo.grid(row=0, column=1)
 
         # Month
         self.month_var = tk.StringVar()
-        ttk.Label(self, text="Month").grid(row=0, column=1)
+        ttk.Label(self, text="Month").grid(row=1, column=0)
         self.month_combo = ttk.Combobox(self, textvariable=self.month_var)
         self.month_combo.grid(row=1, column=1)
 
         # Filters: Area, Type, Project, ...
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
-        ttk.Label(self, text="Filter").grid(row=0, column=2)
+        ttk.Label(self, text="Filter").grid(row=2, column=0)
         self.filter_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
-        self.filter_combo.grid(row=1, column=2)
+        self.filter_combo.grid(row=2, column=1)
         
         # Items: items of selected filter
         self.item_var = tk.StringVar()
-        ttk.Label(self, text="Items").grid(row=0, column=3)
+        ttk.Label(self, text="Items").grid(row=3, column=0)
         self.item_combo = ttk.Combobox(self, textvariable=self.item_var)
-        self.item_combo.grid(row=1, column=3)
+        self.item_combo.grid(row=3, column=1)
 
         for child in self.winfo_children():
-            child.grid_configure(padx=10, sticky="nswe")
+            child.grid_configure(padx=10, pady=5, sticky="nswe")
 
         # Bind
         self.year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
@@ -177,6 +201,12 @@ class FilterView(ttk.Frame):
         self.item_var.set(values[0])
         self.item_combo["values"] = values
 
+class CalendarReportView(ttk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        ttk.Label(self, text="Calendar detail").grid()
+    
+
 # Top Frame
 class CalendarView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -191,7 +221,9 @@ class CalendarView(ttk.Frame):
         self.style.configure("Select.TFrame", background="gray")
         self.style.configure("Normal.TFrame", background="lightgray")
 
-        self.rowconfigure(0, weight=1)
+        # self.rowconfigure(0, weight=1)
+        for child in self.winfo_children():
+            child.grid_configure(pady=5)
 
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
@@ -218,31 +250,31 @@ class CalendarView(ttk.Frame):
 
             # widgets
             card.calendar_name_label = ttk.Label(card, text="")
-            card.duration_label = ttk.Label(card, text="n hrs")
-            card.events_label = ttk.Label(card, text="n events")
-            card.areas_label = ttk.Label(card, text="n areas")
-            card.projects_label = ttk.Label(card, text="n types")
+            # card.duration_label = ttk.Label(card, text="n hrs")
+            # card.events_label = ttk.Label(card, text="n events")
+            # card.areas_label = ttk.Label(card, text="n areas")
+            # card.projects_label = ttk.Label(card, text="n types")
 
             # grid
             card.calendar_name_label.grid(row=0, column=0, sticky="ew")
-            card.duration_label.grid(row=1, column=0, sticky="ew")
-            card.events_label.grid(row=2, column=0, sticky="ew")
-            card.areas_label.grid(row=3, column=0, sticky="ew")
-            card.projects_label.grid(row=4, column=0, sticky="ew")
+            # card.duration_label.grid(row=1, column=0, sticky="ew")
+            # card.events_label.grid(row=2, column=0, sticky="ew")
+            # card.areas_label.grid(row=3, column=0, sticky="ew")
+            # card.projects_label.grid(row=4, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
-            card.grid(row=0, column=i, sticky="nsew", padx=5)
-            self.columnconfigure(i, weight=1)
-
+            card.grid(row=i, column=0, sticky="nsew", pady=5)
+            # self.columnconfigure(i, weight=1)
+            #
             self.cards[calendar.calendar_id] = card
 
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
         card.calendar_name_label.config(text=calendar.calendar_name.title())
-        card.duration_label.config(text=f"{calendar.total_duration} hrs")
-        card.events_label.config(text=f"{calendar.total_events} events")
-        card.areas_label.config(text=f"{calendar.distinct_areas} areas")
-        card.projects_label.config(text=f"{calendar.distinct_projects} projects")
+        # card.duration_label.config(text=f"{calendar.total_duration} hrs")
+        # card.events_label.config(text=f"{calendar.total_events} events")
+        # card.areas_label.config(text=f"{calendar.distinct_areas} areas")
+        # card.projects_label.config(text=f"{calendar.distinct_projects} projects")
 
 
 class MainFrame(ttk.Frame):
@@ -253,21 +285,25 @@ class MainFrame(ttk.Frame):
         self.calendar_view = CalendarView(self)
         self.calendar_view.grid(row=0, column=0)
 
-        # Report
-        self.report_view = ReportView(self)
-        self.report_view.grid(row=0, column=1)
+        # Report for calendar
+        self.calendar_report_view = ReportView(self)
+        self.calendar_report_view.grid(row=0, column=1)
 
         # Filter frame
         self.filter_view = FilterView(self)
-        self.filter_view.grid(row=1, column=0)
+        self.filter_view.grid(row=0, column=2)
+
+        # Report for filter
+        self.filter_report_view = FilterReportView(self)
+        self.filter_report_view.grid(row=0, column=3)
 
         # Stack 
         self.stack_chart_view = ChartView(self)
-        self.stack_chart_view.grid(row=2, column=0)
+        self.stack_chart_view.grid(row=2, column=0, columnspan=3)
 
         # Pie
         self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=2, column=1)
+        self.pie_chart_view.grid(row=2, column=3)
 
 
         for child in self.winfo_children():
@@ -279,6 +315,8 @@ class MainFrame(ttk.Frame):
         self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
 
 
 class App(tk.Tk):
