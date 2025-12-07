@@ -8,7 +8,7 @@ class Controller:
         self.filter_view = context.get_view("filter")
         self.stack_chart_view = context.get_view("stack")
         self.pie_chart_view= context.get_view("pie")
-        self.filter_report_view = context.get_view("calendar_report")
+        self.calendar_report_view = context.get_view("calendar_report")
         self.filter_report_view = context.get_view("filter_report")
         self.model = context.model
 
@@ -20,7 +20,10 @@ class Controller:
         self.filter_view.register_event_handler("item_select", self.handle_item_select)
 
     def initialize(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        calendar = self.model.get_calendar_by_usage(calendar_id)
         calendars = self.model.get_calendars_by_usage()
+        
         self.calendar_view.create_cards(calendars)
         self.update_calendar_card(calendars)
         self.calendar_view.set_card_selection()
@@ -32,7 +35,8 @@ class Controller:
         self.update_chart()
         calendars = self.model.get_calendars_by_usage()
         self.pie_chart_view.update_pie_chart(calendars)
-        self.update_report()
+        self.calendar_report_view.create_rows(calendar)
+        self.update_filter_report()
     
     def update_calendar_card(self, calendars):
         for calendar in calendars:
@@ -87,7 +91,13 @@ class Controller:
             self.filter_view.item_var.set("")
 
 
-    def update_report(self):
+    def update_calendar_report(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        calendars = self.model.get_calendar_by_usage(calendar_id)
+        self.calendar_report_view.update_values(calendars)
+
+
+    def update_filter_report(self):
         calendar_id = self.calendar_view.selected_calendar_id
         year = self.filter_view.year_var.get()
         month = self.filter_view.month_var.get()
@@ -112,31 +122,32 @@ class Controller:
     # Handlers
     # ---------------
     def handle_calendar_select(self):
+        self.update_calendar_report()
         self.update_year_widget()
         self.update_month_widget()
         self.update_item_widget()
         self.update_chart()
-        self.update_report()
+        self.update_filter_report()
 
     def handle_filter_select(self): 
         self.update_item_widget()
         self.update_chart()
-        self.update_report()
+        self.update_filter_report()
 
     
     def handle_year_select(self):
         self.update_item_widget()
         self.update_chart()
-        self.update_report()
+        self.update_filter_report()
     
     def handle_month_select(self):
         self.update_item_widget()
         self.update_chart()
-        self.update_report()
+        self.update_filter_report()
 
     def handle_item_select(self):
         self.update_chart()
-        self.update_report()
+        self.update_filter_report()
     
     def update_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id

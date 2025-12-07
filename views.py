@@ -60,14 +60,6 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
 
-class CalendarReportView(ttk.Frame):
-    """ Report for selected calendar.
-        Reports like top 3 areas with stat
-        Reports for top 3 projects with stat and etc
-    """
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
-        ttk.Label(self, text="Calendar report.")
 
 
 class ReportView(ttk.Frame):
@@ -205,6 +197,25 @@ class CalendarReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         ttk.Label(self, text="Calendar detail").grid()
+        self.vars = {}
+
+
+
+    def create_rows(self, calendar):
+        i = 0
+        for name, value in calendar.to_dict().items():
+            self.vars[name] = tk.StringVar(value=f"{name.title()}: {value}")
+            var = self.vars[name]
+            # print(name, var.get())
+            ttk.Label(self, textvariable=var).grid(row=i, column=0, sticky="ew")
+            i += 1
+
+    def update_values(self, calendar):
+        for name, value in calendar.to_dict().items():
+            self.vars[name].set(f"{name.title()}: {value}")
+
+        
+        
     
 
 # Top Frame
@@ -247,34 +258,18 @@ class CalendarView(ttk.Frame):
 
             # reference to calendar id to use in event
             card.calendar_id = calendar.calendar_id
-
-            # widgets
             card.calendar_name_label = ttk.Label(card, text="")
-            # card.duration_label = ttk.Label(card, text="n hrs")
-            # card.events_label = ttk.Label(card, text="n events")
-            # card.areas_label = ttk.Label(card, text="n areas")
-            # card.projects_label = ttk.Label(card, text="n types")
 
             # grid
             card.calendar_name_label.grid(row=0, column=0, sticky="ew")
-            # card.duration_label.grid(row=1, column=0, sticky="ew")
-            # card.events_label.grid(row=2, column=0, sticky="ew")
-            # card.areas_label.grid(row=3, column=0, sticky="ew")
-            # card.projects_label.grid(row=4, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
             card.grid(row=i, column=0, sticky="nsew", pady=5)
-            # self.columnconfigure(i, weight=1)
-            #
             self.cards[calendar.calendar_id] = card
 
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
         card.calendar_name_label.config(text=calendar.calendar_name.title())
-        # card.duration_label.config(text=f"{calendar.total_duration} hrs")
-        # card.events_label.config(text=f"{calendar.total_events} events")
-        # card.areas_label.config(text=f"{calendar.distinct_areas} areas")
-        # card.projects_label.config(text=f"{calendar.distinct_projects} projects")
 
 
 class MainFrame(ttk.Frame):
@@ -286,7 +281,7 @@ class MainFrame(ttk.Frame):
         self.calendar_view.grid(row=0, column=0)
 
         # Report for calendar
-        self.calendar_report_view = ReportView(self)
+        self.calendar_report_view = CalendarReportView(self)
         self.calendar_report_view.grid(row=0, column=1)
 
         # Filter frame
@@ -299,20 +294,19 @@ class MainFrame(ttk.Frame):
 
         # Stack 
         self.stack_chart_view = ChartView(self)
-        self.stack_chart_view.grid(row=2, column=0, columnspan=3)
+        self.stack_chart_view.grid(row=1, column=0, columnspan=3)
 
         # Pie
         self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=2, column=3)
+        self.pie_chart_view.grid(row=1, column=3)
 
 
         for child in self.winfo_children():
             child.config(padding=5, relief="solid")
             child.grid_configure(pady=5, padx=5, sticky="nswe")
 
-        self.rowconfigure(0, weight=1)
+        self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)

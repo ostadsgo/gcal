@@ -54,6 +54,29 @@ class CalendarModel:
         rows = self.db.fetch_all(query)
         return [Record(row) for row in rows]
 
+    def get_calendar_by_usage(self, calendar_id) -> list[Record]:
+        """Get calendars sorted by total duration (most used first)."""
+        query = """
+            SELECT 
+                c.id AS calendar_id,
+                c.name AS calendar_name,  
+                c.color AS calendar_color,  
+                COALESCE(SUM(e.duration), 0) AS total_duration, 
+                COUNT(e.id) AS total_events,
+                COUNT(DISTINCT a.id) AS distinct_areas,
+                COUNT(DISTINCT t.id) AS distinct_types,
+                COUNT(DISTINCT p.id) AS distinct_projects
+            FROM calendars c
+            LEFT JOIN events e ON e.calendar_id = c.id
+            LEFT JOIN areas a ON a.id = e.area_id
+            LEFT JOIN types t ON t.id = e.type_id
+            LEFT JOIN projects p ON p.id = e.project_id
+            WHERE c.id = ?
+            GROUP BY c.id, c.name, c.color
+            ORDER BY total_duration DESC;
+            """
+        row = self.db.fetch_one(query, (calendar_id,))
+        return Record(row)
     def get_calendars_alphabetically(self) -> list[Record]:
         """Get calendars sorted alphabetically by name."""
         query = """
