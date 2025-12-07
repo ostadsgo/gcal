@@ -34,7 +34,9 @@ class Controller:
 
         self.update_chart()
         calendars = self.model.get_calendars_by_usage()
-        self.pie_chart_view.update_pie_chart(calendars)
+        top_types = self.model.get_top_types(calendar_id)
+        self.pie_chart_view.update_bar_chart(top_types)
+        # self.bar_chart_view.update([1, 2, 3])
         self.calendar_report_view.create_rows(calendar)
         self.update_filter_report()
     

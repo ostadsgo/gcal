@@ -43,6 +43,38 @@ class ChartView(ttk.Frame):
         self.ax.set_title("Calendar Time Distribution")
         self.canvas.draw()
 
+    def update_bar_chart(self, data):
+        self.ax.clear()
+        types = [row.type_name for row in data]
+        durations = [row.total_hours for row in data]
+        
+        # Create bars with different colors
+        colors = plt.cm.Set3(np.linspace(0, 1, len(types)))
+        bars = self.ax.bar(range(len(types)), durations, color=colors)
+        
+        # Remove x-axis labels entirely
+        self.ax.set_xticks([])
+        self.ax.set_xlabel("")
+        
+        # Create legend with type names
+        self.ax.legend(bars, types, title="Types", 
+                       loc='upper right', bbox_to_anchor=(1.15, 1))
+        
+        # Add value labels on top of bars
+        for bar, duration in zip(bars, durations):
+            height = bar.get_height()
+            self.ax.text(bar.get_x() + bar.get_width()/2., height,
+                        f'{duration:.1f}h',
+                        ha='center', va='bottom', fontsize=9)
+        
+        self.ax.set_ylabel("Hours")
+        self.ax.set_title("Hours by Type")
+        
+        self.fig.tight_layout()
+        self.canvas.draw()
+
+
+
 
     def update_stack_chart(self, days, hrs):
         self.ax.clear()
@@ -107,7 +139,7 @@ class FilterReportView(ttk.Frame):
 
 
     def update_rows(self, name, report):
-        self.vars["item_name"].set(f"Report for: {name}")
+        self.vars["item_name"].set(f"Report For: {name}")
 
         
         for name, value in report.to_dict().items():
@@ -199,12 +231,10 @@ class CalendarReportView(ttk.Frame):
         ttk.Label(self, text="Calendar detail").grid()
         self.vars = {}
 
-
-
     def create_rows(self, calendar):
         i = 0
         for name, value in calendar.to_dict().items():
-            self.vars[name] = tk.StringVar(value=f"{name.title()}: {value}")
+            self.vars[name] = tk.StringVar(value=f"{name.title().replace('-', " ")}: {value}")
             var = self.vars[name]
             # print(name, var.get())
             ttk.Label(self, textvariable=var).grid(row=i, column=0, sticky="ew")
@@ -298,7 +328,7 @@ class MainFrame(ttk.Frame):
 
         # Pie
         self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=1, column=3)
+        self.pie_chart_view.grid(row=2, column=0, columnspan=3)
 
 
         for child in self.winfo_children():
@@ -307,6 +337,7 @@ class MainFrame(ttk.Frame):
 
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)

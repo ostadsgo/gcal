@@ -127,10 +127,10 @@ class CalendarModel:
                 SUM(e.duration) as total_hours
             FROM calendars c
             JOIN events e ON c.id = e.calendar_id
-            JOIN types t ON e.id = t.type_id
-            LEFT JOIN areas a ON p.area_id = a.id
+            JOIN types t ON e.type_id = t.id
+            LEFT JOIN areas a ON e.area_id = a.id
             WHERE c.id = ?
-            GROUP BY c.name, p.name, a.name
+            GROUP BY c.name, t.name, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
