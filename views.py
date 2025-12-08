@@ -11,7 +11,7 @@ from matplotlib.figure import Figure
 # TODO: previous data and selected data compare on stack chart
 # TODO: stack chart opacity
 # TODO: report of area, types, project top 3 for selected calendar
-# 
+#
 
 
 class ChartView(ttk.Frame):
@@ -47,29 +47,35 @@ class ChartView(ttk.Frame):
         self.ax.clear()
         types = [row.type_name for row in data]
         durations = [row.total_hours for row in data]
-        
+
         # Create bars with different colors
         colors = plt.cm.Set3(np.linspace(0, 1, len(types)))
         bars = self.ax.bar(range(len(types)), durations, color=colors)
-        
+
         # Remove x-axis labels entirely
         self.ax.set_xticks([])
         self.ax.set_xlabel("")
-        
+
         # Create legend with type names
-        self.ax.legend(bars, types, title="Types", 
-                       loc='upper right', bbox_to_anchor=(1.15, 1))
-        
+        self.ax.legend(
+            bars, types, title="Types", loc="upper right", bbox_to_anchor=(1.15, 1)
+        )
+
         # Add value labels on top of bars
         for bar, duration in zip(bars, durations):
             height = bar.get_height()
-            self.ax.text(bar.get_x() + bar.get_width()/2., height,
-                        f'{duration:.1f}h',
-                        ha='center', va='bottom', fontsize=9)
-        
+            self.ax.text(
+                bar.get_x() + bar.get_width() / 2.0,
+                height,
+                f"{duration:.1f}h",
+                ha="center",
+                va="bottom",
+                fontsize=9,
+            )
+
         self.ax.set_ylabel("Hours")
         self.ax.set_title("Hours by Type")
-        
+
         self.fig.tight_layout()
         self.canvas.draw()
 
@@ -84,22 +90,20 @@ class ChartView(ttk.Frame):
         self.fig.tight_layout()
         self.canvas.draw()
 
-    def update_stack_chart(self, days, hrs):
+    def update_stack_chart(self, days, hrs, color):
         self.ax.clear()
-        self.ax.stackplot(days, hrs)
-        self.ax.grid(True, linestyle='--', alpha=0.3, color='gray')
-        self.ax.spines['top'].set_visible(False)
-        self.ax.spines['right'].set_visible(False)
+        self.ax.stackplot(days, hrs, colors=[color])
+        self.ax.grid(True, linestyle="--", alpha=0.3, color="gray")
+        self.ax.spines["top"].set_visible(False)
+        self.ax.spines["right"].set_visible(False)
 
-        self.ax.spines['left'].set_color('#DDDDDD')
-        self.ax.spines['bottom'].set_color('#DDDDDD')
+        self.ax.spines["left"].set_color("#DDDDDD")
+        self.ax.spines["bottom"].set_color("#DDDDDD")
 
         self.ax.set_xticks(days)
-        self.ax.tick_params(axis='both', which='major', labelsize=10)
-        
+        self.ax.tick_params(axis="both", which="major", labelsize=10)
+
         self.canvas.draw()
-
-
 
 
 class ReportView(ttk.Frame):
@@ -108,12 +112,11 @@ class ReportView(ttk.Frame):
         self.is_rows_created = False
         self.vars = {}
 
-
     def update_variable(self, name, value=""):
         self.vars.update({name: tk.StringVar(value=value)})
 
     def create_rows(self):
-        """ Create label for self.vars dict. """
+        """Create label for self.vars dict."""
         if not self.is_rows_created:
             for index, (var_name, var) in enumerate(self.vars.items()):
                 ttk.Label(self, textvariable=var).grid(row=index, column=0)
@@ -121,6 +124,7 @@ class ReportView(ttk.Frame):
 
             for child in self.winfo_children():
                 child.grid_configure(stick="ew")
+
 
 class FilterReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -145,16 +149,13 @@ class FilterReportView(ttk.Frame):
         for child in self.winfo_children():
             child.grid_configure(stick="ew")
 
-
     def update_rows(self, name, report):
         self.vars["item_name"].set(f"Report For: {name}")
 
-        
         for name, value in report.to_dict().items():
             # print(name, value)
             if self.vars.get(name) is not None:
                 self.vars[name].set(f"{name.title()}: {value}")
-
 
 
 class FilterView(ttk.Frame):
@@ -178,9 +179,11 @@ class FilterView(ttk.Frame):
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
         ttk.Label(self, text="Filter").grid(row=2, column=0)
-        self.filter_combo = ttk.Combobox(self, values=filter_values, textvariable=self.filter_var)
+        self.filter_combo = ttk.Combobox(
+            self, values=filter_values, textvariable=self.filter_var
+        )
         self.filter_combo.grid(row=2, column=1)
-        
+
         # Items: items of selected filter
         self.item_var = tk.StringVar()
         ttk.Label(self, text="Items").grid(row=3, column=0)
@@ -233,6 +236,7 @@ class FilterView(ttk.Frame):
         self.item_var.set(values[0])
         self.item_combo["values"] = values
 
+
 class CalendarReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
@@ -241,20 +245,20 @@ class CalendarReportView(ttk.Frame):
 
     def create_rows(self, calendar):
         i = 0
-        for name, value in calendar.to_dict().items():
-            self.vars[name] = tk.StringVar(value=f"{name.title().replace('-', " ")}: {value}")
+        for i, (name, value) in enumerate(calendar.to_dict().items()):
+            self.vars[name] = tk.StringVar(
+                value=f"{name.title().replace('_', " ")}: {value}"
+            )
             var = self.vars[name]
-            # print(name, var.get())
-            ttk.Label(self, textvariable=var).grid(row=i, column=0, sticky="ew")
+            ttk.Label(self, textvariable=var, justify="left").grid(
+                row=i, column=0, sticky="ew"
+            )
             i += 1
 
     def update_values(self, calendar):
         for name, value in calendar.to_dict().items():
-            self.vars[name].set(f"{name.title()}: {value}")
+            self.vars[name].set(f"{name.title().replace('_', ' ')}: {value}")
 
-        
-        
-    
 
 # Top Frame
 class CalendarView(ttk.Frame):
@@ -288,7 +292,6 @@ class CalendarView(ttk.Frame):
     def set_card_selection(self):
         self.current_card = self.cards[self.selected_calendar_id]
         self.current_card.config(style="Select.TFrame")
-
 
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
@@ -343,7 +346,7 @@ class MainFrame(ttk.Frame):
         self.top_right_chart_view.grid(row=1, column=3)
 
         for child in self.winfo_children():
-            child.config(padding=5, relief="solid")
+            child.config(padding=5)
             child.grid_configure(pady=5, padx=5, sticky="nswe")
 
         self.rowconfigure(0, weight=0)

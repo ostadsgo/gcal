@@ -6,7 +6,7 @@ class Controller:
         self.context = context
         self.calendar_view = context.get_view("calendar")
         self.filter_view = context.get_view("filter")
-        self.stack_chart_view = context.get_view("top_chart")
+        self.top_chart_view = context.get_view("top_chart")
         self.bottom_chart_view= context.get_view("bottom_chart")
         self.top_right_chart = context.get_view("top_right_chart")
         self.calendar_report_view = context.get_view("calendar_report")
@@ -21,30 +21,47 @@ class Controller:
         self.filter_view.register_event_handler("item_select", self.handle_item_select)
 
     def initialize(self):
-        calendar_id = self.calendar_view.selected_calendar_id
-        calendar = self.model.get_calendar_by_usage(calendar_id)
-        calendars = self.model.get_calendars_by_usage()
+        """ First load +  methods must only run once. """
         
-        self.calendar_view.create_cards(calendars)
-        self.update_calendar_card(calendars)
-        self.calendar_view.set_card_selection()
+        # calendars
+        self.create_calendars_card()
+        self.update_calendars_card()
+        self.calendar_set_selection()
 
+        # widgets
         self.update_year_widget()
         self.update_month_widget()
         self.update_item_widget()
 
-        # Update charts
+        # Charts
         self.update_top_chart()
         self.update_top_right_chart()
         self.update_bottom_chart()
 
         # Reports
-        self.calendar_report_view.create_rows(calendar)
+        self.create_calendar_report()
+        self.update_calendar_report()
         self.update_filter_report()
+
     
-    def update_calendar_card(self, calendars):
+    def create_calendars_card(self):
+        calendars = self.model.get_calendars_by_usage()
+        self.calendar_view.create_cards(calendars)
+
+
+    def update_calendars_card(self):
+        calendars = self.model.get_calendars_by_usage()
         for calendar in calendars:
             self.calendar_view.update_card(calendar)
+
+    def calendar_set_selection(self):
+        self.calendar_view.set_card_selection()
+                
+
+    def create_calendar_report(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        calendars = self.model.get_calendar_by_usage(calendar_id)
+        self.calendar_report_view.create_rows(calendars)
 
     def update_year_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -92,11 +109,13 @@ class Controller:
         else:
             self.filter_view.item_var.set("")
 
-
+    # Reports
     def update_calendar_report(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        calendars = self.model.get_calendar_by_usage(calendar_id)
-        self.calendar_report_view.update_values(calendars)
+        calendar = self.model.get_calendar_by_usage(calendar_id)
+        # calendar = self.format_report_fields(calendar)
+        print(calendar)
+        self.calendar_report_view.update_values(calendar)
 
 
     def update_filter_report(self):
@@ -144,7 +163,9 @@ class Controller:
             # chart
             days = [row.day for row in rows]
             hrs = [row.total_duration for row in rows]
-            self.stack_chart_view.update_stack_chart(days, hrs)
+            calendar_id = self.calendar_view.selected_calendar_id
+            calendar = self.model.get_calendar_by_usage(calendar_id)
+            self.top_chart_view.update_stack_chart(days, hrs, calendar.calendar_color)
 
     def update_top_right_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
