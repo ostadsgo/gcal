@@ -6,8 +6,9 @@ class Controller:
         self.context = context
         self.calendar_view = context.get_view("calendar")
         self.filter_view = context.get_view("filter")
-        self.stack_chart_view = context.get_view("stack")
-        self.pie_chart_view= context.get_view("pie")
+        self.stack_chart_view = context.get_view("top_chart")
+        self.bottom_chart_view= context.get_view("bottom_chart")
+        self.top_right_chart = context.get_view("top_right_chart")
         self.calendar_report_view = context.get_view("calendar_report")
         self.filter_report_view = context.get_view("filter_report")
         self.model = context.model
@@ -32,18 +33,18 @@ class Controller:
         self.update_month_widget()
         self.update_item_widget()
 
-        self.update_chart()
-        calendars = self.model.get_calendars_by_usage()
-        top_types = self.model.get_top_types(calendar_id)
-        self.pie_chart_view.update_bar_chart(top_types)
-        # self.bar_chart_view.update([1, 2, 3])
+        # Update charts
+        self.update_top_chart()
+        self.update_top_right_chart()
+        self.update_bottom_chart()
+
+        # Reports
         self.calendar_report_view.create_rows(calendar)
         self.update_filter_report()
     
     def update_calendar_card(self, calendars):
         for calendar in calendars:
             self.calendar_view.update_card(calendar)
-    
 
     def update_year_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -56,7 +57,6 @@ class Controller:
             self.filter_view.year_var.set("")
 
 
-    
     def update_month_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
         rows = self.model.distinct_months(calendar_id)
@@ -119,39 +119,12 @@ class Controller:
         self.filter_report_view.update_rows(item, report)
 
 
+    def update_bottom_chart(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        top_types = self.model.get_top_types(calendar_id)
+        self.bottom_chart_view.update_bar_chart(top_types)
 
-    # --------------
-    # Handlers
-    # ---------------
-    def handle_calendar_select(self):
-        self.update_calendar_report()
-        self.update_year_widget()
-        self.update_month_widget()
-        self.update_item_widget()
-        self.update_chart()
-        self.update_filter_report()
-
-    def handle_filter_select(self): 
-        self.update_item_widget()
-        self.update_chart()
-        self.update_filter_report()
-
-    
-    def handle_year_select(self):
-        self.update_item_widget()
-        self.update_chart()
-        self.update_filter_report()
-    
-    def handle_month_select(self):
-        self.update_item_widget()
-        self.update_chart()
-        self.update_filter_report()
-
-    def handle_item_select(self):
-        self.update_chart()
-        self.update_filter_report()
-    
-    def update_chart(self):
+    def update_top_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
         year = self.filter_view.year_var.get()
         month = self.filter_view.month_var.get()
@@ -172,3 +145,43 @@ class Controller:
             days = [row.day for row in rows]
             hrs = [row.total_duration for row in rows]
             self.stack_chart_view.update_stack_chart(days, hrs)
+
+    def update_top_right_chart(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        top_areas = self.model.get_top_areas(calendar_id)
+        self.top_right_chart.update_hbar_chart(top_areas)
+
+
+    # --------------
+    # Handlers
+    # ---------------
+    def handle_calendar_select(self):
+        self.update_calendar_report()
+        self.update_year_widget()
+        self.update_month_widget()
+        self.update_item_widget()
+        self.update_top_chart()
+        self.update_top_right_chart()
+        self.update_bottom_chart()
+        self.update_filter_report()
+
+    def handle_filter_select(self): 
+        self.update_item_widget()
+        self.update_top_chart()
+        self.update_filter_report()
+
+    
+    def handle_year_select(self):
+        self.update_item_widget()
+        self.update_top_chart()
+        self.update_filter_report()
+    
+    def handle_month_select(self):
+        self.update_item_widget()
+        self.update_top_chart()
+        self.update_filter_report()
+
+    def handle_item_select(self):
+        self.update_top_chart()
+        self.update_filter_report()
+    

@@ -77,6 +77,7 @@ class CalendarModel:
             """
         row = self.db.fetch_one(query, (calendar_id,))
         return Record(row)
+
     def get_calendars_alphabetically(self) -> list[Record]:
         """Get calendars sorted alphabetically by name."""
         query = """

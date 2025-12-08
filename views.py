@@ -73,8 +73,16 @@ class ChartView(ttk.Frame):
         self.fig.tight_layout()
         self.canvas.draw()
 
+    def update_hbar_chart(self, data):
+        self.ax.clear()
 
+        areas = [row.area_name for row in data]
+        durations = [row.total_hours for row in data]
 
+        self.ax.barh(areas, durations)
+
+        self.fig.tight_layout()
+        self.canvas.draw()
 
     def update_stack_chart(self, days, hrs):
         self.ax.clear()
@@ -322,14 +330,17 @@ class MainFrame(ttk.Frame):
         self.filter_report_view = FilterReportView(self)
         self.filter_report_view.grid(row=0, column=3)
 
-        # Stack 
-        self.stack_chart_view = ChartView(self)
-        self.stack_chart_view.grid(row=1, column=0, columnspan=3)
+        # chart top
+        self.top_chart_view = ChartView(self)
+        self.top_chart_view.grid(row=1, column=0, columnspan=3)
 
-        # Pie
-        self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=2, column=0, columnspan=3)
+        # chart bottom
+        self.bottom_chart_view = ChartView(self)
+        self.bottom_chart_view.grid(row=2, column=0, columnspan=4)
 
+        # top_right chart
+        self.top_right_chart_view = ChartView(self)
+        self.top_right_chart_view.grid(row=1, column=3)
 
         for child in self.winfo_children():
             child.config(padding=5, relief="solid")
