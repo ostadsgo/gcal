@@ -7,11 +7,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
-# BUG: calendar click triggered only only frame not when clicked on widgets in the frame
 # TODO: previous data and selected data compare on stack chart
 # TODO: stack chart opacity
-# TODO: report of area, types, project top 3 for selected calendar
-#
 
 
 class ChartView(ttk.Frame):
@@ -305,7 +302,7 @@ class CalendarView(ttk.Frame):
             card.calendar_name_label.grid(row=0, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
-            card.grid(row=i, column=0, sticky="nsew", pady=5)
+            card.grid(row=0, column=i, sticky="nsew", pady=5)
             self.cards[calendar.calendar_id] = card
 
     def update_card(self, calendar):
@@ -323,7 +320,7 @@ class MainFrame(ttk.Frame):
 
         # Report for calendar
         self.calendar_report_view = CalendarReportView(self)
-        self.calendar_report_view.grid(row=0, column=1)
+        self.calendar_report_view.grid(row=0, column=0, pady=40)
 
         # Filter frame
         self.filter_view = FilterView(self)
