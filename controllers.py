@@ -114,7 +114,6 @@ class Controller:
         calendar_id = self.calendar_view.selected_calendar_id
         calendar = self.model.get_calendar_by_usage(calendar_id)
         # calendar = self.format_report_fields(calendar)
-        print(calendar)
         self.calendar_report_view.update_values(calendar)
 
 

@@ -268,7 +268,6 @@ class CalendarView(ttk.Frame):
         self.current_card = None
 
         self.style = ttk.Style()
-        self.style.configure("Select.TFrame", background="gray")
         self.style.configure("Normal.TFrame", background="lightgray")
 
         # self.rowconfigure(0, weight=1)
@@ -282,32 +281,99 @@ class CalendarView(ttk.Frame):
         handler = self.handlers["calendar_select"]
         self.selected_calendar_id = event.widget.calendar_id
         handler()
-        self.current_card.config(style="Normal.TFrame")
+        
+        # Reset previous card
+        if self.current_card:
+            self.current_card.config(style="Normal.TFrame")
+            for child in self.current_card.winfo_children():
+                child.config(style="Normal.TLabel")
+        
+        # Style new selected card
         self.current_card = self.cards[self.selected_calendar_id]
-        self.current_card.config(style="Select.TFrame")
+        
+        frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
+        label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
+        
+        self.current_card.config(style=frame_style_name)
+        for child in self.current_card.winfo_children():
+            child.config(style=label_style_name)
+
+    def on_label_select(self, event):
+        handler = self.handlers["calendar_select"]
+        self.selected_calendar_id = event.widget.master.calendar_id
+        handler()
+
+        # Reset previous card
+        if self.current_card:
+            self.current_card.config(style="Normal.TFrame")
+            for child in self.current_card.winfo_children():
+                child.config(style="Normal.TLabel")
+        
+        self.current_card = self.cards[self.selected_calendar_id]
+
+        frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
+        label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
+        
+        self.current_card.config(style=frame_style_name)
+        for child in self.current_card.winfo_children():
+            child.config(style=label_style_name)
+
 
     def set_card_selection(self):
         self.current_card = self.cards[self.selected_calendar_id]
-        self.current_card.config(style="Select.TFrame")
+
+        # Reset previous card
+        if self.current_card:
+            self.current_card.config(style="Normal.TFrame")
+            for child in self.current_card.winfo_children():
+                child.config(style="Normal.TLabel")
+        
+        self.current_card = self.cards[self.selected_calendar_id]
+
+        frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
+        label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
+        
+        self.current_card.config(style=frame_style_name)
+        for child in self.current_card.winfo_children():
+            child.config(style=label_style_name)
 
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
-            card = ttk.Frame(self, relief="solid", padding=10)
+            card = ttk.Frame(self, relief="sunken", padding=10)
+            self.style.configure(
+                f"CalendarColor{calendar.calendar_id}.TFrame",
+                background=f"{calendar.calendar_color}",
+            )
 
+            self.style.configure(
+                f"CalendarColor{calendar.calendar_id}.TLabel",
+                background=f"{calendar.calendar_color}",
+            )
             # reference to calendar id to use in event
             card.calendar_id = calendar.calendar_id
-            card.calendar_name_label = ttk.Label(card, text="")
+            card.name_label = ttk.Label(card, text="")
+            card.total_duration_label = ttk.Label(card, text="")
 
             # grid
-            card.calendar_name_label.grid(row=0, column=0, sticky="ew")
+            card.name_label.grid(row=0, column=0, sticky="ew")
+            card.total_duration_label.grid(row=1, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
-            card.grid(row=0, column=i, sticky="nsew", pady=5)
+            card.grid(row=i, column=0, sticky="nsew", pady=5)
             self.cards[calendar.calendar_id] = card
+
+            for child in card.winfo_children():
+                if child.widgetName == "ttk::label":
+                    child.bind("<Button-1>", self.on_label_select)
+
+
 
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
-        card.calendar_name_label.config(text=calendar.calendar_name.title())
+        card.name_label.config(text=calendar.calendar_name.title())
+        card.total_duration_label.config(
+            text=f"Total hours: {calendar.total_duration} hrs"
+        )
 
 
 class MainFrame(ttk.Frame):
@@ -320,7 +386,7 @@ class MainFrame(ttk.Frame):
 
         # Report for calendar
         self.calendar_report_view = CalendarReportView(self)
-        self.calendar_report_view.grid(row=0, column=0, pady=40)
+        self.calendar_report_view.grid(row=0, column=1, pady=40)
 
         # Filter frame
         self.filter_view = FilterView(self)
