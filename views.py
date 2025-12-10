@@ -164,31 +164,31 @@ class FilterView(ttk.Frame):
         self.year_var = tk.StringVar()
         ttk.Label(self, text="Year").grid(row=0, column=0)
         self.year_combo = ttk.Combobox(self, textvariable=self.year_var)
-        self.year_combo.grid(row=0, column=1)
+        self.year_combo.grid(row=1, column=0)
 
         # Month
         self.month_var = tk.StringVar()
-        ttk.Label(self, text="Month").grid(row=1, column=0)
+        ttk.Label(self, text="Month").grid(row=0, column=1)
         self.month_combo = ttk.Combobox(self, textvariable=self.month_var)
         self.month_combo.grid(row=1, column=1)
 
         # Filters: Area, Type, Project, ...
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
-        ttk.Label(self, text="Filter").grid(row=2, column=0)
+        ttk.Label(self, text="Filter").grid(row=0, column=2)
         self.filter_combo = ttk.Combobox(
             self, values=filter_values, textvariable=self.filter_var
         )
-        self.filter_combo.grid(row=2, column=1)
+        self.filter_combo.grid(row=1, column=2)
 
         # Items: items of selected filter
         self.item_var = tk.StringVar()
-        ttk.Label(self, text="Items").grid(row=3, column=0)
+        ttk.Label(self, text="Items").grid(row=0, column=3)
         self.item_combo = ttk.Combobox(self, textvariable=self.item_var)
-        self.item_combo.grid(row=3, column=1)
+        self.item_combo.grid(row=1, column=3)
 
         for child in self.winfo_children():
-            child.grid_configure(padx=10, pady=5, sticky="nswe")
+            child.grid_configure(padx=10, pady=2, sticky="nswe")
 
         # Bind
         self.year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
@@ -359,7 +359,7 @@ class CalendarView(ttk.Frame):
             card.total_duration_label.grid(row=1, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
-            card.grid(row=i, column=0, sticky="nsew", pady=5)
+            card.grid(row=0, column=i, sticky="nsew", padx=5)
             self.cards[calendar.calendar_id] = card
 
             for child in card.winfo_children():
@@ -382,43 +382,44 @@ class MainFrame(ttk.Frame):
 
         # Top Frame
         self.calendar_view = CalendarView(self)
-        self.calendar_view.grid(row=0, column=0)
-
-        # Report for calendar
-        self.calendar_report_view = CalendarReportView(self)
-        self.calendar_report_view.grid(row=0, column=1, pady=40)
+        self.calendar_view.grid(row=0, column=0, columnspan=2)
 
         # Filter frame
         self.filter_view = FilterView(self)
-        self.filter_view.grid(row=0, column=2)
-
-        # Report for filter
-        self.filter_report_view = FilterReportView(self)
-        self.filter_report_view.grid(row=0, column=3)
+        self.filter_view.grid(row=1, column=0, columnspan=2)
 
         # chart top
         self.top_chart_view = ChartView(self)
-        self.top_chart_view.grid(row=1, column=0, columnspan=3)
+        self.top_chart_view.grid(row=2, column=0, columnspan=3)
+
+        # Report for filter
+        self.filter_report_view = FilterReportView(self)
+        self.filter_report_view.grid(row=2, column=3)
 
         # chart bottom
         self.bottom_chart_view = ChartView(self)
-        self.bottom_chart_view.grid(row=2, column=0, columnspan=4)
+        self.bottom_chart_view.grid(row=3, column=0, columnspan=3)
 
         # top_right chart
         self.top_right_chart_view = ChartView(self)
-        self.top_right_chart_view.grid(row=1, column=3)
+        self.top_right_chart_view.grid(row=3, column=3)
+
+
+        # Report for calendar
+        self.calendar_report_view = CalendarReportView(self)
+        self.calendar_report_view.grid(row=0, column=3, rowspan=2)
 
         for child in self.winfo_children():
-            child.config(padding=5)
+            child.config(padding=5, relief="solid")
             child.grid_configure(pady=5, padx=5, sticky="nswe")
 
-        self.rowconfigure(0, weight=0)
+        self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=3)
-        self.columnconfigure(1, weight=1)
-        self.columnconfigure(2, weight=1)
-        self.columnconfigure(3, weight=1)
+        self.columnconfigure(1, weight=0)
+        self.columnconfigure(2, weight=0)
+        self.columnconfigure(3, weight=0)
 
 
 class App(tk.Tk):
