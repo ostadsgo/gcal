@@ -26,13 +26,13 @@ class ChartView(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
-    def update_pie_chart(self, calendars):
+    def update_pie_chart(self, data):
         """Create a pie chart."""
         self.ax.clear()
 
-        names = [calendar.calendar_name for calendar in calendars]
-        durations = [calendar.total_duration for calendar in calendars]
-        colors = [calendar.calendar_color for calendar in calendars]
+        names = [item.calendar_name for item in data]
+        durations = [item.total_duration for item in data]
+        colors = [item.calendar_color for item in data]
 
         self.ax.pie(
             durations, labels=names, colors=colors, autopct="%1.1f%%", startangle=90
@@ -380,34 +380,30 @@ class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        # Top Frame
+        # -- row 0 ---  
         self.calendar_view = CalendarView(self)
         self.calendar_view.grid(row=0, column=0, columnspan=2)
 
-        # Filter frame
+        self.filter_report_view = FilterReportView(self)
+        self.filter_report_view.grid(row=0, column=3, rowspan=2)
+
+        # -- row 1 ---  
         self.filter_view = FilterView(self)
         self.filter_view.grid(row=1, column=0, columnspan=2)
 
-        # chart top
-        self.top_chart_view = ChartView(self)
-        self.top_chart_view.grid(row=2, column=0, columnspan=3)
+        # -- row 2 ---  
+        self.stack_chart_view = ChartView(self)
+        self.stack_chart_view.grid(row=2, column=0, columnspan=3)
 
-        # Report for filter
-        self.filter_report_view = FilterReportView(self)
-        self.filter_report_view.grid(row=2, column=3)
+        self.pie_chart_view = ChartView(self)
+        self.pie_chart_view.grid(row=2, column=3)
 
-        # chart bottom
-        self.bottom_chart_view = ChartView(self)
-        self.bottom_chart_view.grid(row=3, column=0, columnspan=3)
+        # -- row 3 ---  
+        self.bar_chart_view = ChartView(self)
+        self.bar_chart_view.grid(row=3, column=0, columnspan=3)
 
-        # top_right chart
-        self.top_right_chart_view = ChartView(self)
-        self.top_right_chart_view.grid(row=3, column=3)
-
-
-        # Report for calendar
-        self.calendar_report_view = CalendarReportView(self)
-        self.calendar_report_view.grid(row=0, column=3, rowspan=2)
+        self.hbar_chart_view = ChartView(self)
+        self.hbar_chart_view.grid(row=3, column=3)
 
         for child in self.winfo_children():
             child.config(padding=5, relief="solid")
