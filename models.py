@@ -169,7 +169,7 @@ class CalendarModel:
             WHERE e.calendar_id = ?
             ORDER BY t.name;
         """
-        rows = self.db.fetch_all(query, (calendar_id, ))
+        rows = self.db.fetch_all(query, (calendar_id,))
         return [Record(row) for row in rows]
 
     def distinct_types(self, calendar_id):
@@ -180,7 +180,7 @@ class CalendarModel:
             WHERE e.calendar_id = ?
             ORDER BY t.name;
         """
-        rows = self.db.fetch_all(query, (calendar_id, ))
+        rows = self.db.fetch_all(query, (calendar_id,))
         return [Record(row) for row in rows]
 
     def distinct_projects(self, calendar_id):
@@ -191,7 +191,7 @@ class CalendarModel:
             WHERE e.calendar_id = ?
             ORDER BY t.name;
         """
-        rows = self.db.fetch_all(query, (calendar_id, ))
+        rows = self.db.fetch_all(query, (calendar_id,))
         return [Record(row) for row in rows]
 
     def distinct_years(self, calendar_id):
@@ -205,7 +205,7 @@ class CalendarModel:
               AND c.id = ?
             ORDER BY year DESC;
         """
-        rows = self.db.fetch_all(query, (calendar_id, ))
+        rows = self.db.fetch_all(query, (calendar_id,))
         return [Record(row) for row in rows]
 
     def distinct_months(self, calendar_id):
@@ -219,7 +219,7 @@ class CalendarModel:
               AND c.id = ?
             ORDER BY month ASC;
         """
-        rows = self.db.fetch_all(query, (calendar_id, ))
+        rows = self.db.fetch_all(query, (calendar_id,))
         return [Record(row) for row in rows]
 
     def distinct_months_by_year(self, calendar_id, year: str):
@@ -270,7 +270,7 @@ class CalendarModel:
         """
         rows = self.db.fetch_all(query, (calendar_id, year, month))
         return [Record(row) for row in rows]
-    
+
     def distinct_projects_by_year_month(self, calendar_id, year, month):
         query = """
             SELECT DISTINCT 
@@ -287,6 +287,7 @@ class CalendarModel:
         """
         rows = self.db.fetch_all(query, (calendar_id, year, month))
         return [Record(row) for row in rows]
+
     def area_daily_duration(self, calendar_id, year, month, area_name):
         query = """
             SELECT 
@@ -439,6 +440,7 @@ class CalendarModel:
         """
         row = self.db.fetch_one(query, (calendar_id, year, month, project_name))
         return Record(row)
+
 
 class DatabaseManager:
     def __init__(self):

@@ -15,14 +15,20 @@ class Controller:
         print(self.pie_chart_view)
 
         # Register events
-        self.calendar_view.register_event_handler("calendar_select", self.handle_calendar_select)
+        self.calendar_view.register_event_handler(
+            "calendar_select", self.handle_calendar_select
+        )
         self.filter_view.register_event_handler("year_select", self.handle_year_select)
-        self.filter_view.register_event_handler("month_select", self.handle_month_select)
-        self.filter_view.register_event_handler("filter_select", self.handle_filter_select)
+        self.filter_view.register_event_handler(
+            "month_select", self.handle_month_select
+        )
+        self.filter_view.register_event_handler(
+            "filter_select", self.handle_filter_select
+        )
         self.filter_view.register_event_handler("item_select", self.handle_item_select)
 
     def initialize(self):
-        """ First load +  methods must only run once. """
+        """First load +  methods must only run once."""
 
         # calendars
         self.create_calendars_card()
@@ -43,11 +49,9 @@ class Controller:
         # Reports
         self.update_filter_report()
 
-    
     def create_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
         self.calendar_view.create_cards(calendars)
-
 
     def update_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
@@ -56,7 +60,6 @@ class Controller:
 
     def calendar_set_selection(self):
         self.calendar_view.set_card_selection()
-                
 
     def update_year_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -68,7 +71,6 @@ class Controller:
         else:
             self.filter_view.year_var.set("")
 
-
     def update_month_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
         rows = self.model.distinct_months(calendar_id)
@@ -78,7 +80,7 @@ class Controller:
             self.filter_view.month_var.set(months[0])
         else:
             self.filter_view.month_var.set("")
-    
+
     def update_item_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
         year = self.filter_view.year_var.get()
@@ -91,7 +93,9 @@ class Controller:
             elif filter_val == "Types":
                 rows = self.model.distinct_types_by_year_month(calendar_id, year, month)
             elif filter_val == "Projects":
-                rows = self.model.distinct_projects_by_year_month(calendar_id, year, month)
+                rows = self.model.distinct_projects_by_year_month(
+                    calendar_id, year, month
+                )
             else:
                 print(f"Unknow filter. {filter_val}.")
 
@@ -103,8 +107,6 @@ class Controller:
                 self.filter_view.item_var.set("")
         else:
             self.filter_view.item_var.set("")
-
-
 
     def update_filter_report(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -124,7 +126,6 @@ class Controller:
             print("Unkown filter value in update report.")
 
         self.filter_report_view.update_rows(item, report)
-
 
     def update_bar_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -160,7 +161,6 @@ class Controller:
         top_areas = self.model.get_top_areas(calendar_id)
         self.hbar_chart_view.update_hbar_chart(top_areas)
 
-
     def update_pie_chart(self):
         calendars = self.model.get_calendars_by_usage()
         self.pie_chart_view.update_pie_chart(calendars)
@@ -178,17 +178,16 @@ class Controller:
         self.update_bar_chart()
         self.update_filter_report()
 
-    def handle_filter_select(self): 
+    def handle_filter_select(self):
         self.update_item_widget()
         self.update_stack_chart()
         self.update_filter_report()
 
-    
     def handle_year_select(self):
         self.update_item_widget()
         self.update_stack_chart()
         self.update_filter_report()
-    
+
     def handle_month_select(self):
         self.update_item_widget()
         self.update_stack_chart()
@@ -197,4 +196,3 @@ class Controller:
     def handle_item_select(self):
         self.update_stack_chart()
         self.update_filter_report()
-    

@@ -118,12 +118,8 @@ class IcsToDb:
         cursor.execute(
             "CREATE INDEX IF NOT EXISTS idx_events_type_id ON events(type_id)"
         )
-        cursor.execute(
-            "CREATE INDEX IF NOT EXISTS idx_types_area_id ON types(area_id)"
-        )
-        cursor.execute(
-            "CREATE INDEX IF NOT EXISTS idx_events_year ON events(year)"
-        )
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_types_area_id ON types(area_id)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_events_year ON events(year)")
         cursor.execute(
             "CREATE INDEX IF NOT EXISTS idx_events_year_month ON events(year, month)"
         )
@@ -212,14 +208,15 @@ class IcsToDb:
     def strip_html_tags(self, text):
         """Remove HTML tags from text, replacing <br> with newlines"""
         import re
+
         if not text:
             return text
-        
+
         text = str(text)
         # Replace <br> tags with newlines (case-insensitive, with or without /)
-        text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
+        text = re.sub(r"<br\s*/?>", "\n", text, flags=re.IGNORECASE)
         # Remove all other HTML tags
-        text = re.sub(r'<[^>]+>', '', text)
+        text = re.sub(r"<[^>]+>", "", text)
         return text
 
     def parse_description(self, desc):
@@ -251,7 +248,7 @@ class IcsToDb:
         """Extract year, month, day, hour, minute, second from datetime string"""
         if not dt_str:
             return None, None, None, None, None, None
-        
+
         try:
             # Parse YYYYMMDD format (all-day events)
             if len(dt_str) == 8:
@@ -271,7 +268,7 @@ class IcsToDb:
                 return year, month, day, hour, minute, second
         except (ValueError, IndexError):
             pass
-        
+
         return None, None, None, None, None, None
 
     def datetime_to_str(self, dt, target_tz=None):
@@ -369,7 +366,9 @@ class IcsToDb:
                 )
 
                 # Extract datetime components from dtstart
-                year, month, day, hour, minute, second = self.extract_datetime_components(dtstart_str)
+                year, month, day, hour, minute, second = (
+                    self.extract_datetime_components(dtstart_str)
+                )
 
                 try:
                     cursor.execute(

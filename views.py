@@ -33,11 +33,19 @@ class ChartView(ttk.Frame):
         names = [item.calendar_name for item in data]
         durations = [item.total_duration for item in data]
         colors = [item.calendar_color for item in data]
+        explode = (0, 0.1, 0, 0)
+        wedgeprops = {"edgecolor": "#121212"}
 
         self.ax.pie(
-            durations, labels=names, colors=colors, autopct="%1.1f%%", startangle=90
+            durations,
+            labels=names,
+            colors=colors,
+            explode=explode,
+            autopct="%1.1f%%",
+            startangle=45,
+            shadow=True,
+            wedgeprops=wedgeprops,
         )
-        self.ax.set_title("Calendar Time Distribution")
         self.canvas.draw()
 
     def update_bar_chart(self, data):
@@ -81,8 +89,20 @@ class ChartView(ttk.Frame):
 
         areas = [row.area_name for row in data]
         durations = [row.total_hours for row in data]
+        colors = plt.cm.Set3(np.linspace(0, 1, len(areas)))
 
-        self.ax.barh(areas, durations)
+        self.ax.barh(areas, durations, color=colors)
+
+        self.fig.tight_layout()
+        self.canvas.draw()
+
+    def update_scatter_chart(self, data):
+        self.ax.clear()
+
+        areas = [row.area_name for row in data]
+        durations = [row.total_hours for row in data]
+
+        self.ax.scatter(areas, durations)
 
         self.fig.tight_layout()
         self.canvas.draw()
@@ -281,19 +301,19 @@ class CalendarView(ttk.Frame):
         handler = self.handlers["calendar_select"]
         self.selected_calendar_id = event.widget.calendar_id
         handler()
-        
+
         # Reset previous card
         if self.current_card:
             self.current_card.config(style="Normal.TFrame")
             for child in self.current_card.winfo_children():
                 child.config(style="Normal.TLabel")
-        
+
         # Style new selected card
         self.current_card = self.cards[self.selected_calendar_id]
-        
+
         frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
         label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
-        
+
         self.current_card.config(style=frame_style_name)
         for child in self.current_card.winfo_children():
             child.config(style=label_style_name)
@@ -308,16 +328,15 @@ class CalendarView(ttk.Frame):
             self.current_card.config(style="Normal.TFrame")
             for child in self.current_card.winfo_children():
                 child.config(style="Normal.TLabel")
-        
+
         self.current_card = self.cards[self.selected_calendar_id]
 
         frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
         label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
-        
+
         self.current_card.config(style=frame_style_name)
         for child in self.current_card.winfo_children():
             child.config(style=label_style_name)
-
 
     def set_card_selection(self):
         self.current_card = self.cards[self.selected_calendar_id]
@@ -327,12 +346,12 @@ class CalendarView(ttk.Frame):
             self.current_card.config(style="Normal.TFrame")
             for child in self.current_card.winfo_children():
                 child.config(style="Normal.TLabel")
-        
+
         self.current_card = self.cards[self.selected_calendar_id]
 
         frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
         label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
-        
+
         self.current_card.config(style=frame_style_name)
         for child in self.current_card.winfo_children():
             child.config(style=label_style_name)
@@ -366,8 +385,6 @@ class CalendarView(ttk.Frame):
                 if child.widgetName == "ttk::label":
                     child.bind("<Button-1>", self.on_label_select)
 
-
-
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
         card.name_label.config(text=calendar.calendar_name.title())
@@ -380,25 +397,25 @@ class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-        # -- row 0 ---  
+        # -- row 0 ---
         self.calendar_view = CalendarView(self)
         self.calendar_view.grid(row=0, column=0, columnspan=2)
 
         self.filter_report_view = FilterReportView(self)
         self.filter_report_view.grid(row=0, column=3, rowspan=2)
 
-        # -- row 1 ---  
+        # -- row 1 ---
         self.filter_view = FilterView(self)
         self.filter_view.grid(row=1, column=0, columnspan=2)
 
-        # -- row 2 ---  
+        # -- row 2 ---
         self.stack_chart_view = ChartView(self)
         self.stack_chart_view.grid(row=2, column=0, columnspan=3)
 
         self.pie_chart_view = ChartView(self)
         self.pie_chart_view.grid(row=2, column=3)
 
-        # -- row 3 ---  
+        # -- row 3 ---
         self.bar_chart_view = ChartView(self)
         self.bar_chart_view.grid(row=3, column=0, columnspan=3)
 
