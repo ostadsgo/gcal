@@ -127,10 +127,13 @@ class Controller:
 
         self.filter_report_view.update_rows(item, report)
 
+    # -- update charts --
     def update_bar_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        top_types = self.model.get_top_types(calendar_id)
-        self.bar_chart_view.update_bar_chart(top_types)
+        year = self.filter_view.year_var.get()
+        month = self.filter_view.month_var.get()
+        filtred_types = self.model.distinct_types_by_year_month(calendar_id, year, month)
+        self.bar_chart_view.update_bar_chart(filtred_types)
 
     def update_stack_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -158,7 +161,9 @@ class Controller:
 
     def update_hbar_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        top_areas = self.model.get_top_areas(calendar_id)
+        year = self.filter_view.year_var.get()
+        month = self.filter_view.month_var.get()
+        top_areas = self.model.distinct_areas_by_year_month(calendar_id, year, month)
         self.hbar_chart_view.update_hbar_chart(top_areas)
 
     def update_pie_chart(self):
@@ -190,7 +195,12 @@ class Controller:
 
     def handle_month_select(self):
         self.update_item_widget()
+        # charts
         self.update_stack_chart()
+        self.update_bar_chart()
+        self.update_pie_chart()
+        self.update_hbar_chart()
+        # reports
         self.update_filter_report()
 
     def handle_item_select(self):

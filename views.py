@@ -50,7 +50,7 @@ class ChartView(ttk.Frame):
 
     def update_bar_chart(self, data):
         self.ax.clear()
-        types = [row.type_name for row in data]
+        types = [row.name for row in data]
         durations = [row.total_hours for row in data]
 
         # Create bars with different colors
@@ -87,7 +87,7 @@ class ChartView(ttk.Frame):
     def update_hbar_chart(self, data):
         self.ax.clear()
 
-        areas = [row.area_name for row in data]
+        areas = [row.name for row in data]
         durations = [row.total_hours for row in data]
         colors = plt.cm.Set3(np.linspace(0, 1, len(areas)))
 
@@ -120,6 +120,13 @@ class ChartView(ttk.Frame):
         self.ax.set_xticks(days)
         self.ax.tick_params(axis="both", which="major", labelsize=10)
 
+        # Total text annotation
+        total_hours = sum(hrs)
+        self.ax.text(0.02, 0.98, f'Total: {total_hours:.1f}h', 
+                    transform=self.ax.transAxes,
+                    fontsize=11, 
+                    verticalalignment='top',
+                    bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
         self.canvas.draw()
 
 

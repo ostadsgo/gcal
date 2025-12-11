@@ -241,7 +241,9 @@ class CalendarModel:
         query = """
             SELECT DISTINCT 
                 a.id AS area_id,
-                a.name AS name
+                a.name AS name,
+                SUM(e.duration) AS total_hours,
+                COUNT(e.id) AS event_count
             FROM events e
             JOIN areas a ON e.area_id = a.id
             JOIN calendars c ON e.calendar_id = c.id
@@ -249,24 +251,26 @@ class CalendarModel:
               AND SUBSTR(e.dtstart, 1, 4) = ?  -- Year filter
               AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
               AND a.name IS NOT NULL
-            ORDER BY a.name ASC;
+            GROUP BY a.id, a.name
+            ORDER BY total_hours DESC;
         """
         rows = self.db.fetch_all(query, (calendar_id, year, month))
         return [Record(row) for row in rows]
 
     def distinct_types_by_year_month(self, calendar_id, year, month):
         query = """
-            SELECT DISTINCT 
-                t.id AS type_id,
-                t.name AS name
+            SELECT 
+                t.name AS name,
+                SUM(e.duration) AS total_hours,
+                COUNT(e.id) AS event_count
             FROM events e
             JOIN types t ON e.type_id = t.id
-            JOIN calendars c ON e.calendar_id = c.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ? -- Year filter
-              AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
-              AND t.name IS NOT NULL
-            ORDER BY t.name ASC;
+              AND SUBSTR(e.dtstart, 1, 4) = ?
+              AND SUBSTR(e.dtstart, 5, 2) = ?
+              AND e.type_id IS NOT NULL
+            GROUP BY t.id, t.name
+            ORDER BY total_hours DESC;
         """
         rows = self.db.fetch_all(query, (calendar_id, year, month))
         return [Record(row) for row in rows]
