@@ -122,11 +122,15 @@ class ChartView(ttk.Frame):
 
         # Total text annotation
         total_hours = sum(hrs)
-        self.ax.text(0.02, 0.98, f'Total: {total_hours:.1f}h', 
-                    transform=self.ax.transAxes,
-                    fontsize=11, 
-                    verticalalignment='top',
-                    bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
+        self.ax.text(
+            0.02,
+            0.98,
+            f"Total: {total_hours:.1f}h",
+            transform=self.ax.transAxes,
+            fontsize=11,
+            verticalalignment="top",
+            bbox=dict(boxstyle="round", facecolor="white", alpha=0.8),
+        )
         self.canvas.draw()
 
 
@@ -153,33 +157,21 @@ class ReportView(ttk.Frame):
 class FilterReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.vars = {
-            "item_name": tk.StringVar(value="Report for: "),
-            "first_date": tk.StringVar(value="Start date: "),
-            "last_date": tk.StringVar(value="Last date: "),
-            "total_days": tk.StringVar(value="Total Days: "),
-            "average_day": tk.StringVar(value="Avg per day:"),
-            "total_events": tk.StringVar(value="Events: "),
-            "total_hours": tk.StringVar(value="Total hours:"),
-            "average_duration": tk.StringVar(value="Average: "),
-            "max_duration": tk.StringVar(value="Max: "),
-            "min_duration": tk.StringVar(value="Min: "),
-        }
+        self.vars = {}
 
-        # create rows
-        for index, (var_name, var) in enumerate(self.vars.items()):
-            ttk.Label(self, textvariable=var).grid(row=index, column=0)
+    def create_report_rows(self, report):
+        for i, (name, value) in enumerate(report.to_dict().items()):
+            fmt_name = name.replace('_', ' ').title()
+            self.vars[name] = tk.StringVar(value=f"{fmt_name}: {value}")
+            var = self.vars[name]
+            ttk.Label(self, textvariable=var, justify="left").grid(
+                row=i, column=0, sticky="ew"
+            )
 
-        for child in self.winfo_children():
-            child.grid_configure(stick="ew")
-
-    def update_rows(self, name, report):
-        self.vars["item_name"].set(f"Report For: {name}")
-
+    def update_rows(self,  report):
         for name, value in report.to_dict().items():
-            # print(name, value)
-            if self.vars.get(name) is not None:
-                self.vars[name].set(f"{name.title()}: {value}")
+            fmt_name = name.replace('_', ' ').title()
+            self.vars[name].set(f"{fmt_name}: {value}")
 
 
 class FilterView(ttk.Frame):
@@ -259,29 +251,6 @@ class FilterView(ttk.Frame):
     def update_item_combo_values(self, values):
         self.item_var.set(values[0])
         self.item_combo["values"] = values
-
-
-class CalendarReportView(ttk.Frame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
-        ttk.Label(self, text="Calendar detail").grid()
-        self.vars = {}
-
-    def create_rows(self, calendar):
-        i = 0
-        for i, (name, value) in enumerate(calendar.to_dict().items()):
-            self.vars[name] = tk.StringVar(
-                value=f"{name.title().replace('_', " ")}: {value}"
-            )
-            var = self.vars[name]
-            ttk.Label(self, textvariable=var, justify="left").grid(
-                row=i, column=0, sticky="ew"
-            )
-            i += 1
-
-    def update_values(self, calendar):
-        for name, value in calendar.to_dict().items():
-            self.vars[name].set(f"{name.title().replace('_', ' ')}: {value}")
 
 
 # Top Frame
@@ -430,16 +399,15 @@ class MainFrame(ttk.Frame):
         self.hbar_chart_view.grid(row=3, column=3)
 
         for child in self.winfo_children():
-            child.config(padding=5, relief="solid")
+            child.config(padding=5)
             child.grid_configure(pady=5, padx=5, sticky="nswe")
 
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
         self.columnconfigure(0, weight=3)
-        self.columnconfigure(1, weight=0)
-        self.columnconfigure(2, weight=0)
-        self.columnconfigure(3, weight=0)
+        self.columnconfigure(3, weight=1)
 
 
 class App(tk.Tk):

@@ -12,7 +12,6 @@ class Controller:
         self.bar_chart_view = context.get_view("bar_chart")
         self.hbar_chart_view = context.get_view("hbar_chart")
         self.pie_chart_view = context.get_view("pie_chart")
-        print(self.pie_chart_view)
 
         # Register events
         self.calendar_view.register_event_handler(
@@ -47,11 +46,31 @@ class Controller:
         self.update_pie_chart()
 
         # Reports
+        self.create_report_rows()
         self.update_filter_report()
 
     def create_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
         self.calendar_view.create_cards(calendars)
+
+    def create_report_rows(self):
+        calendar_id = self.calendar_view.selected_calendar_id
+        year = self.filter_view.year_var.get()
+        month = self.filter_view.month_var.get()
+        filter_val = self.filter_view.filter_var.get()
+        item = self.filter_view.item_var.get()
+        report = None
+
+        if filter_val == "Areas":
+            report = self.model.area_report(calendar_id, year, month, item)
+        elif filter_val == "Types":
+            report = self.model.type_report(calendar_id, year, month, item)
+        elif filter_val == "Projects":
+            report = self.model.project_report(calendar_id, year, month, item)
+        else:
+            print("Unkown filter value in update report.")
+
+        self.filter_report_view.create_report_rows(report)
 
     def update_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
@@ -125,7 +144,7 @@ class Controller:
         else:
             print("Unkown filter value in update report.")
 
-        self.filter_report_view.update_rows(item, report)
+        self.filter_report_view.update_rows(report)
 
     # -- update charts --
     def update_bar_chart(self):
