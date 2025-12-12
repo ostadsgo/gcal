@@ -12,11 +12,7 @@ from matplotlib.patheffects import withStroke
 
 plt.style.use("dark_background")
 
-# TODO: previous data and selected data compare on stack chart
-# TODO: stack chart opacity
-
-# Globals
-IS_DARK = True
+# TODO: 
 
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -253,13 +249,13 @@ class FilterView(ttk.Frame):
         # Year
         self.year_var = tk.StringVar()
         ttk.Label(self, text="Year").grid(row=0, column=0)
-        self.year_combo = ttk.Combobox(self, textvariable=self.year_var)
+        self.year_combo = ttk.Combobox(self, textvariable=self.year_var, state="readonly")
         self.year_combo.grid(row=0, column=1)
 
         # Month
         self.month_var = tk.StringVar()
         ttk.Label(self, text="Month").grid(row=1, column=0)
-        self.month_combo = ttk.Combobox(self, textvariable=self.month_var)
+        self.month_combo = ttk.Combobox(self, textvariable=self.month_var, state="readonly")
         self.month_combo.grid(row=1, column=1)
 
         # Filters: Area, Type, Project, ...
@@ -267,24 +263,28 @@ class FilterView(ttk.Frame):
         self.filter_var = tk.StringVar(value=filter_values[0])
         ttk.Label(self, text="Filter").grid(row=2, column=0)
         self.filter_combo = ttk.Combobox(
-            self, values=filter_values, textvariable=self.filter_var
+            self, values=filter_values, textvariable=self.filter_var, state="readonly"
         )
         self.filter_combo.grid(row=2, column=1)
 
         # Items: items of selected filter
         self.item_var = tk.StringVar()
         ttk.Label(self, text="Items").grid(row=3, column=0)
-        self.item_combo = ttk.Combobox(self, textvariable=self.item_var)
+        self.item_combo = ttk.Combobox(self, textvariable=self.item_var, state="readonly")
         self.item_combo.grid(row=3, column=1)
+
+
+        # handlers name
+        self.year_combo.handler_name = "year_select"
+        self.month_combo.handler_name = "month_select"
+        self.filter_combo.handler_name = "filter_select"
+        self.item_combo.handler_name = "item_select"
 
         for child in self.winfo_children():
             child.grid_configure(padx=10, pady=2, sticky="nswe")
-
-        # Bind
-        self.year_combo.bind("<<ComboboxSelected>>", self.on_year_select)
-        self.month_combo.bind("<<ComboboxSelected>>", self.on_month_select)
-        self.filter_combo.bind("<<ComboboxSelected>>", self.on_filter_select)
-        self.item_combo.bind("<<ComboboxSelected>>", self.on_item_select)
+            # bind event to each combo
+            if child.widgetName == "ttk::combobox":
+                child.bind("<<ComboboxSelected>>", self.on_combo_select)
 
         # row/columnconfigure
         self.columnconfigure(0, weight=1)
@@ -295,34 +295,15 @@ class FilterView(ttk.Frame):
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
 
-    def on_year_select(self, event):
-        handler = self.handlers["year_select"]
+
+    def on_combo_select(self, event):
+        handler_name = event.widget.handler_name
+        handler = self.handlers[handler_name]
         handler()
 
-    def on_month_select(self, event):
-        handler = self.handlers["month_select"]
-        handler()
-
-    def on_filter_select(self, event):
-        handler = self.handlers["filter_select"]
-        handler()
-
-    def on_item_select(self, events):
-        handler = self.handlers["item_select"]
-        handler()
-
-    def update_year_combo_values(self, values):
-        self.year_var.set(values[0])
-        self.year_combo["values"] = values
-
-    def update_month_combo_values(self, values):
-        self.month_var.set(values[0])
-        self.month_combo["values"] = values
-
-    def update_item_combo_values(self, values):
-        self.item_var.set(values[0])
-        self.item_combo["values"] = values
-
+    def update_combo_values(self, var, combo, values):
+        var.set(values[0] if values else "")
+        combo["values"] = values
 
 # Top Frame
 class CalendarView(ttk.Frame):
@@ -431,10 +412,6 @@ class ActionView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.root = self.master.master
-        self.style = ttk.Style()
-        self.style.configure(
-            "DarkMode.TFrame", background="#212121", foreground="#fafafa"
-        )
         self.theme_check_var = tk.BooleanVar(value=True)
         self.theme_text_var = tk.StringVar(value="Dark Mode")
         theme_checkbutton = ttk.Checkbutton(
@@ -452,22 +429,21 @@ class ActionView(ttk.Frame):
             self.activate_dark_theme()
         else:
             self.activate_light_theme()
+        self.root.update()
 
     def activate_dark_theme(self):
+        global counter
         self.root.style = ttk.Style("darkly")
         plt.style.use("dark_background")
         self.refresh_all_charts()
-        self.root.update()
-        IS_DARK = True
 
     def activate_light_theme(self):
         self.root.style = ttk.Style("flatly")
         plt.style.use("seaborn-v0_8-white")
         self.refresh_all_charts()
-        self.root.update()
-        IS_DARK = False
 
     def refresh_all_charts(self):
+        """ refresh chart to apply the theme(dark or light)."""
         self.master.stack_chart_view.refresh_chart()
         self.master.pie_chart_view.refresh_chart()
         self.master.bar_chart_view.refresh_chart()

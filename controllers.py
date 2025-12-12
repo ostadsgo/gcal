@@ -83,22 +83,18 @@ class Controller:
     def update_year_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
         rows = self.model.distinct_years(calendar_id)
-        years = [row.year for row in rows]
-        self.filter_view.year_combo["values"] = years
-        if years:
-            self.filter_view.year_var.set(years[0])
-        else:
-            self.filter_view.year_var.set("")
+        values = [row.year for row in rows]
+        var = self.filter_view.year_var 
+        combo = self.filter_view.year_combo
+        self.filter_view.update_combo_values(var, combo, values)
 
     def update_month_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
         rows = self.model.distinct_months(calendar_id)
-        months = [row.month for row in rows]
-        self.filter_view.month_combo["values"] = months
-        if months:
-            self.filter_view.month_var.set(months[0])
-        else:
-            self.filter_view.month_var.set("")
+        values = [row.month for row in rows]
+        var = self.filter_view.month_var 
+        combo = self.filter_view.month_combo
+        self.filter_view.update_combo_values(var, combo, values)
 
     def update_item_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -118,12 +114,10 @@ class Controller:
             else:
                 print(f"Unknow filter. {filter_val}.")
 
-            items = [row.name for row in rows]
-            self.filter_view.item_combo["values"] = items
-            if items:
-                self.filter_view.item_var.set(items[0])
-            else:
-                self.filter_view.item_var.set("")
+            values = [row.name for row in rows]
+            combo = self.filter_view.item_combo
+            var = self.filter_view.item_var
+            self.filter_view.update_combo_values(var, combo, values)
         else:
             self.filter_view.item_var.set("")
 
