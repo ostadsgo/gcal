@@ -1,19 +1,28 @@
 import tkinter as tk
-from tkinter import ttk
+
+# from tkinter import ttk
+import ttkbootstrap as ttk
 
 # matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
+from matplotlib.patheffects import withStroke
+
+plt.style.use("dark_background")
 
 # TODO: previous data and selected data compare on stack chart
 # TODO: stack chart opacity
 
+# Globals
+IS_DARK = True
 
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.current_data = None
+        self.chart_type = None
         self.setup_ui()
 
     def setup_ui(self):
@@ -26,9 +35,29 @@ class ChartView(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
+    def refresh_chart(self):
+        if self.current_data is None or self.chart_type is None:
+            return
+        
+        if self.chart_type == 'pie':
+            self.update_pie_chart(self.current_data)
+        elif self.chart_type == 'bar':
+            self.update_bar_chart(self.current_data)
+        elif self.chart_type == 'hbar':
+            self.update_hbar_chart(self.current_data)
+        elif self.chart_type == 'scatter':
+            self.update_scatter_chart(self.current_data)
+        elif self.chart_type == 'stack':
+            days, hrs, color = self.current_data
+            self.update_stack_chart(days, hrs, color)
+
     def update_pie_chart(self, data):
-        """Create a pie chart."""
+        self.current_data = data
+        self.chart_type = 'pie'
+
         self.ax.clear()
+        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
+        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
 
         # data
         names = [
@@ -61,24 +90,47 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
     def update_bar_chart(self, data):
+        self.current_data = data
+        self.chart_type = 'bar'
         self.ax.clear()
+        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
+        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
+        
         types = [row.name for row in data]
         durations = [row.total_hours for row in data]
-
-        # Create bars with different colors
+        
+        # Create bars with different colors and enhancements
         colors = plt.cm.Set3(np.linspace(0, 1, len(types)))
-        bars = self.ax.bar(range(len(types)), durations, color=colors)
-
+        bars = self.ax.bar(range(len(types)), durations, color=colors, 
+                           alpha=0.8,  # Transparency
+                           linewidth=2,  # Border thickness
+                           width=0.7)  # Bar width (0.7 adds spacing)
+        
+        # Add gradient effect to bars
+        for bar, color in zip(bars, colors):
+            bar.set_capstyle('round')  # Rounded top
+        
         # Remove x-axis labels entirely
         self.ax.set_xticks([])
         self.ax.set_xlabel("")
-
+        
+        # Remove spines for cleaner look
+        self.ax.spines["top"].set_visible(False)
+        self.ax.spines["right"].set_visible(False)
+        self.ax.spines["bottom"].set_visible(False)
+        self.ax.spines["left"].set_visible(False)
+        
+        # Subtle horizontal grid only
+        self.ax.grid(True, axis='y', linestyle="--", alpha=0.2, color="gray", zorder=0)
+        
         # Create legend with type names
         self.ax.legend(
-            bars, types, title="Types", loc="upper right", bbox_to_anchor=(1.15, 1)
+            bars, types, title="Types", loc="upper right", 
+            bbox_to_anchor=(1.15, 1), framealpha=0.9, 
+            edgecolor='gray', fancybox=True, shadow=True
         )
-
-        # Add value labels on top of bars
+        
+        # Enhanced value labels on top of bars
         for bar, duration in zip(bars, durations):
             height = bar.get_height()
             self.ax.text(
@@ -87,51 +139,72 @@ class ChartView(ttk.Frame):
                 f"{duration:.1f}h",
                 ha="center",
                 va="bottom",
-                fontsize=9,
+                fontsize=10,
+                fontweight='bold',
+                bbox=dict(boxstyle='round,pad=0.3', facecolor='#A1BC98', 
+                         edgecolor='gray', alpha=0.8)
             )
-
-        self.ax.set_ylabel("Hours")
-        self.ax.set_title("Types")
-
+        
+        self.ax.set_ylabel("Hours", fontsize=12, fontweight='bold')
+        self.ax.set_title("Types", fontsize=14, fontweight='bold', pad=20)
+        
+        # Add tick parameters
+        self.ax.tick_params(axis='y', which='major', labelsize=10, width=0)
+        
         self.fig.tight_layout()
         self.canvas.draw()
 
     def update_hbar_chart(self, data):
+        self.current_data = data
+        self.chart_type = 'hbar'
+
         self.ax.clear()
+
+        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
+        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
 
         areas = [row.name for row in data]
         durations = [row.total_hours for row in data]
         colors = plt.cm.Set3(np.linspace(0, 1, len(areas)))
 
-        self.ax.barh(areas, durations, color=colors)
+        self.ax.barh(areas, durations, color=colors, height=0.7, alpha=0.8)
+        self.ax.grid(True, axis='x', linestyle="--", alpha=0.2, color="gray", zorder=0)
+        self.ax.tick_params(axis='both', which='major', labelsize=10, width=0)
+
+        self.ax.spines["top"].set_visible(False)
+        self.ax.spines["right"].set_visible(False)
+        self.ax.spines["bottom"].set_visible(False)
+        self.ax.spines["left"].set_visible(False)
+
 
         self.ax.set_title("Areas")
         self.fig.tight_layout()
-        self.canvas.draw()
 
-    def update_scatter_chart(self, data):
-        self.ax.clear()
-
-        areas = [row.area_name for row in data]
-        durations = [row.total_hours for row in data]
-
-        self.ax.scatter(areas, durations)
-
-        self.fig.tight_layout()
         self.canvas.draw()
 
     def update_stack_chart(self, days, hrs, color):
+        self.current_data = (days, hrs, color)
+        self.chart_type = 'stack'
+
         self.ax.clear()
-        self.ax.stackplot(days, hrs, colors=[color])
-        self.ax.grid(True, linestyle="--", alpha=0.3, color="gray")
+        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
+        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
+
+        self.ax.stackplot(days, hrs, colors=[color], alpha=0.7)
+        self.ax.grid(True, axis='y', linestyle="--", alpha=0.3, color="gray")
+        line = self.ax.plot(days, hrs, color=color, linewidth=2.5, solid_capstyle='round')[0]
+        line.set_path_effects([withStroke(linewidth=5, foreground='white', alpha=0.3)])
+
         self.ax.spines["top"].set_visible(False)
         self.ax.spines["right"].set_visible(False)
+        self.ax.spines["bottom"].set_visible(False)
+        self.ax.spines["left"].set_visible(False)
 
-        self.ax.spines["left"].set_color("#DDDDDD")
-        self.ax.spines["bottom"].set_color("#DDDDDD")
+        self.ax.set_ylabel('Hours', fontsize=12, fontweight='bold')
+        self.ax.set_xlabel('Days', fontsize=12, fontweight='bold')
 
+        self.ax.tick_params(axis='both', which='major', labelsize=10, width=0)
         self.ax.set_xticks(days)
-        self.ax.tick_params(axis="both", which="major", labelsize=10)
 
         # Total text annotation
         total_hours = sum(hrs)
@@ -142,8 +215,9 @@ class ChartView(ttk.Frame):
             transform=self.ax.transAxes,
             fontsize=11,
             verticalalignment="top",
-            bbox=dict(boxstyle="round", facecolor="white", alpha=0.8),
+            bbox=dict(boxstyle="round", facecolor="green", alpha=0.8),
         )
+
         self.canvas.draw()
 
 
@@ -152,7 +226,7 @@ class FilterReportView(ttk.Frame):
         super().__init__(master, **kwargs)
         self.vars = {}
         self.style = ttk.Style()
-        font = font=("TkDefaultFont", 10, "bold")
+        font = font = ("TkDefaultFont", 10, "bold")
         self.style.configure("OddRow.TLabel", background="#A1BC98", font=font)
         self.style.configure("EvenRow.TLabel", background="#658147", font=font)
 
@@ -263,7 +337,8 @@ class CalendarView(ttk.Frame):
         self.current_card = None
 
         self.style = ttk.Style()
-        self.style.configure("Normal.TFrame", background="lightgray")
+        self.style.configure("Normal.TFrame", background="#212121")
+        self.style.configure("LightNormal.TFrame", background="#fafafa")
 
         # self.rowconfigure(0, weight=1)
         for child in self.winfo_children():
@@ -378,50 +453,103 @@ class CalendarView(ttk.Frame):
         card.projects_label.config(text=f"Projects: {calendar.distinct_projects}")
 
 
+class ActionView(ttk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.root = self.master.master
+        self.style = ttk.Style()
+        self.style.configure(
+            "DarkMode.TFrame", background="#212121", foreground="#fafafa"
+        )
+        self.theme_check_var = tk.BooleanVar(value=True)
+        self.theme_text_var = tk.StringVar(value="Dark Mode")
+        theme_checkbutton = ttk.Checkbutton(
+            self,
+            bootstyle="round-toggle",
+            text="Dark Mode",
+            variable=self.theme_check_var,
+            textvariable=self.theme_text_var,
+            command=self.switch_theme,
+        )
+        theme_checkbutton.grid(row=0, column=0)
+
+    def switch_theme(self):
+        if self.theme_check_var.get():
+            self.activate_dark_theme()
+        else:
+            self.activate_light_theme()
+
+    def activate_dark_theme(self):
+        self.root.style = ttk.Style("darkly")
+        plt.style.use("dark_background")
+        self.refresh_all_charts()
+        self.root.update()
+        IS_DARK = True
+
+    def activate_light_theme(self):
+        self.root.style = ttk.Style("journal")
+        plt.style.use("seaborn-v0_8-white")
+        self.refresh_all_charts()
+        self.root.update()
+        IS_DARK = False
+
+    def refresh_all_charts(self):
+        self.master.stack_chart_view.refresh_chart()
+        self.master.pie_chart_view.refresh_chart()
+        self.master.bar_chart_view.refresh_chart()
+        self.master.hbar_chart_view.refresh_chart()
+
 class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
         # -- row 0 ---
         self.calendar_view = CalendarView(self)
-        self.calendar_view.grid(row=0, column=0, columnspan=4)
+        self.calendar_view.grid(row=0, column=0)
 
         self.filter_view = FilterView(self)
-        self.filter_view.grid(row=0, column=3)
+        self.filter_view.grid(row=0, column=1)
 
         self.filter_report_view = FilterReportView(self)
-        self.filter_report_view.grid(row=0, column=4)
+        self.filter_report_view.grid(row=0, column=2)
+
+        self.action_view = ActionView(self)
+        self.action_view.grid(row=0, column=2)
 
         # -- row 1 ---
         self.stack_chart_view = ChartView(self)
-        self.stack_chart_view.grid(row=1, column=0, columnspan=4)
+        self.stack_chart_view.grid(row=1, column=0, columnspan=2)
 
         self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=1, column=4)
+        self.pie_chart_view.grid(row=1, column=2)
 
         # -- row 2 ---
         self.bar_chart_view = ChartView(self)
-        self.bar_chart_view.grid(row=2, column=0, columnspan=4)
+        self.bar_chart_view.grid(row=2, column=0, columnspan=2)
 
         self.hbar_chart_view = ChartView(self)
-        self.hbar_chart_view.grid(row=2, column=4)
+        self.hbar_chart_view.grid(row=2, column=2)
 
         for child in self.winfo_children():
             child.config(padding=5)
             child.grid_configure(pady=5, padx=5, stick="NSWE")
 
+        self.filter_report_view.grid_configure(sticky="NSW")
+        self.action_view.grid_configure(sticky="NSE")
+
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
         self.columnconfigure(0, weight=10)
-        self.columnconfigure(4, weight=1)
+        self.columnconfigure(3, weight=1)
 
 
-class App(tk.Tk):
+class App(ttk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Gcal")
         self.minsize(640, 480)
+        self.style = ttk.Style("darkly")
         self.update_idletasks()
 
         self.mainframe = MainFrame(self)

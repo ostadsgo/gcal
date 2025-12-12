@@ -9,4 +9,5 @@ dependencies = [
     "matplotlib>=3.10.7",
     "plotly>=6.5.0",
     "pytz>=2025.2",
+    "ttkbootstrap>=1.19.2",
 ]
