@@ -277,21 +277,23 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, year, month, limit))
         return [Record(row) for row in rows]
 
-    def distinct_projects_by_year_month(self, calendar_id, year, month):
+    def distinct_projects_by_year_month(self, calendar_id, year, month, limit=5):
         query = """
-            SELECT DISTINCT 
-                p.id AS project_id,
-                p.name AS name
+            SELECT 
+                p.name AS name,
+                SUM(e.duration) AS total_hours,
+                COUNT(e.id) AS event_count
             FROM events e
             JOIN projects p ON e.project_id = p.id
-            JOIN calendars c ON e.calendar_id = c.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ? -- Year filter
-              AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
-              AND p.name IS NOT NULL
-            ORDER BY p.name ASC;
+              AND SUBSTR(e.dtstart, 1, 4) = ?
+              AND SUBSTR(e.dtstart, 5, 2) = ?
+              AND e.project_id IS NOT NULL
+            GROUP BY p.id, p.name
+            ORDER BY total_hours DESC
+            LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month))
+        rows = self.db.fetch_all(query, (calendar_id, year, month, limit))
         return [Record(row) for row in rows]
 
     def area_daily_duration(self, calendar_id, year, month, area_name):

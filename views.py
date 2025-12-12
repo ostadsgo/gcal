@@ -30,21 +30,32 @@ class ChartView(ttk.Frame):
         """Create a pie chart."""
         self.ax.clear()
 
-        names = [item.calendar_name for item in data]
-        durations = [item.total_duration for item in data]
-        colors = [item.calendar_color for item in data]
-        explode = (0, 0.1, 0, 0)
+        # data
+        names = [
+            item.name if len(item.name) < 15 else item.name[:15] + "..."
+            for item in data
+
+        ]
+        durations = [item.total_hours for item in data]
+
+        # Explode slice with the highest amount
+        max_index = durations.index(max(durations))
+        explode = [0] * len(durations)
+        explode[max_index] = 0.1
+
+        # wedge styling
         wedgeprops = {"edgecolor": "#121212"}
 
+        # draw pie chart
         self.ax.pie(
             durations,
             labels=names,
-            colors=colors,
             explode=explode,
-            autopct="%1.1f%%",
-            startangle=45,
+            autopct=lambda pct: f"{pct:.1f}%" if pct > 5.0 else "",
+            startangle=90,
             shadow=True,
             wedgeprops=wedgeprops,
+            labeldistance=1.2
         )
         self.canvas.draw()
 
@@ -79,7 +90,7 @@ class ChartView(ttk.Frame):
             )
 
         self.ax.set_ylabel("Hours")
-        self.ax.set_title("Hours by Type")
+        self.ax.set_title("Types")
 
         self.fig.tight_layout()
         self.canvas.draw()
@@ -93,6 +104,7 @@ class ChartView(ttk.Frame):
 
         self.ax.barh(areas, durations, color=colors)
 
+        self.ax.set_title("Areas")
         self.fig.tight_layout()
         self.canvas.draw()
 
@@ -161,16 +173,16 @@ class FilterReportView(ttk.Frame):
 
     def create_report_rows(self, report):
         for i, (name, value) in enumerate(report.to_dict().items()):
-            fmt_name = name.replace('_', ' ').title()
+            fmt_name = name.replace("_", " ").title()
             self.vars[name] = tk.StringVar(value=f"{fmt_name}: {value}")
             var = self.vars[name]
             ttk.Label(self, textvariable=var, justify="left").grid(
                 row=i, column=0, sticky="ew"
             )
 
-    def update_rows(self,  report):
+    def update_rows(self, report):
         for name, value in report.to_dict().items():
-            fmt_name = name.replace('_', ' ').title()
+            fmt_name = name.replace("_", " ").title()
             self.vars[name].set(f"{fmt_name}: {value}")
 
 

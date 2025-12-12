@@ -186,8 +186,11 @@ class Controller:
         self.hbar_chart_view.update_hbar_chart(top_areas)
 
     def update_pie_chart(self):
-        calendars = self.model.get_calendars_by_usage()
-        self.pie_chart_view.update_pie_chart(calendars)
+        calendar_id = self.calendar_view.selected_calendar_id
+        year = self.filter_view.year_var.get()
+        month = self.filter_view.month_var.get()
+        projects = self.model.distinct_projects_by_year_month(calendar_id, year, month)
+        self.pie_chart_view.update_pie_chart(projects)
 
     # --------------
     # Handlers
