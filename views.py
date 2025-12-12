@@ -34,7 +34,6 @@ class ChartView(ttk.Frame):
         names = [
             item.name if len(item.name) < 15 else item.name[:15] + "..."
             for item in data
-
         ]
         durations = [item.total_hours for item in data]
 
@@ -56,7 +55,7 @@ class ChartView(ttk.Frame):
             startangle=90,
             shadow=True,
             wedgeprops=wedgeprops,
-            labeldistance=1.2
+            labeldistance=1.2,
         )
         self.ax.set_title("Projects")
         self.canvas.draw()
@@ -148,18 +147,22 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
 
-
 class FilterReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.vars = {}
+        self.style = ttk.Style()
+        font = font=("TkDefaultFont", 10, "bold")
+        self.style.configure("OddRow.TLabel", background="#A1BC98", font=font)
+        self.style.configure("EvenRow.TLabel", background="#658147", font=font)
 
     def create_report_rows(self, report):
         for i, (name, value) in enumerate(report.to_dict().items()):
             fmt_name = name.replace("_", " ").title()
             self.vars[name] = tk.StringVar(value=f"{fmt_name}: {value}")
             var = self.vars[name]
-            ttk.Label(self, textvariable=var, justify="left").grid(
+            row_style = "OddRow.TLabel" if i % 2 else "EvenRow.TLabel"
+            ttk.Label(self, textvariable=var, style=row_style, padding=5).grid(
                 row=i, column=0, sticky="ew"
             )
 
@@ -405,12 +408,13 @@ class MainFrame(ttk.Frame):
 
         for child in self.winfo_children():
             child.config(padding=5)
-            child.grid_configure(pady=5, padx=5, sticky="nswe")
+            child.grid_configure(pady=5, padx=5, stick="NSWE")
 
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, weight=3)
+        self.columnconfigure(0, weight=10)
+        self.columnconfigure(4, weight=1)
 
 
 class App(tk.Tk):

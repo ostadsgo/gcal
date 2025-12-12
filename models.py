@@ -358,10 +358,6 @@ class CalendarModel:
                 SUBSTR(MIN(dtstart), 5, 2) || '-' || 
                 SUBSTR(MIN(dtstart), 7, 2) AS first_date,
                 
-                SUBSTR(MAX(dtstart), 1, 4) || '-' || 
-                SUBSTR(MAX(dtstart), 5, 2) || '-' || 
-                SUBSTR(MAX(dtstart), 7, 2) AS last_date,
-                
                 SUM(e.duration) AS total_hours,
                 COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)) AS total_days,
                 ROUND(SUM(e.duration) / COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)), 2) AS average_day,
@@ -384,10 +380,6 @@ class CalendarModel:
                 SUBSTR(MIN(dtstart), 1, 4) || '-' || 
                 SUBSTR(MIN(dtstart), 5, 2) || '-' || 
                 SUBSTR(MIN(dtstart), 7, 2) AS first_date,
-                
-                SUBSTR(MAX(dtstart), 1, 4) || '-' || 
-                SUBSTR(MAX(dtstart), 5, 2) || '-' || 
-                SUBSTR(MAX(dtstart), 7, 2) AS last_date,
                 
                 -- Rest of your query...
                 SUM(e.duration) AS total_hours,
@@ -412,10 +404,6 @@ class CalendarModel:
                 SUBSTR(MIN(dtstart), 1, 4) || '-' || 
                 SUBSTR(MIN(dtstart), 5, 2) || '-' || 
                 SUBSTR(MIN(dtstart), 7, 2) AS first_date,
-                
-                SUBSTR(MAX(dtstart), 1, 4) || '-' || 
-                SUBSTR(MAX(dtstart), 5, 2) || '-' || 
-                SUBSTR(MAX(dtstart), 7, 2) AS last_date,
                 
                 -- Rest of your query...
                 SUM(e.duration) AS total_hours,
