@@ -38,10 +38,11 @@ class ChartView(ttk.Frame):
         ]
         durations = [item.total_hours for item in data]
 
-        # Explode slice with the highest amount
-        max_index = durations.index(max(durations))
-        explode = [0] * len(durations)
-        explode[max_index] = 0.1
+        explode = []
+        if durations:
+            max_index = durations.index(max(durations))
+            explode = [0] * len(durations)
+            explode[max_index] = 0.1
 
         # wedge styling
         wedgeprops = {"edgecolor": "#121212"}
@@ -57,6 +58,7 @@ class ChartView(ttk.Frame):
             wedgeprops=wedgeprops,
             labeldistance=1.2
         )
+        self.ax.set_title("Projects")
         self.canvas.draw()
 
     def update_bar_chart(self, data):
@@ -146,25 +148,6 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
 
-class ReportView(ttk.Frame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
-        self.is_rows_created = False
-        self.vars = {}
-
-    def update_variable(self, name, value=""):
-        self.vars.update({name: tk.StringVar(value=value)})
-
-    def create_rows(self):
-        """Create label for self.vars dict."""
-        if not self.is_rows_created:
-            for index, (var_name, var) in enumerate(self.vars.items()):
-                ttk.Label(self, textvariable=var).grid(row=index, column=0)
-            self.is_rows_created = True
-
-            for child in self.winfo_children():
-                child.grid_configure(stick="ew")
-
 
 class FilterReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -180,6 +163,7 @@ class FilterReportView(ttk.Frame):
                 row=i, column=0, sticky="ew"
             )
 
+    # this is a comment
     def update_rows(self, report):
         for name, value in report.to_dict().items():
             fmt_name = name.replace("_", " ").title()
@@ -195,28 +179,28 @@ class FilterView(ttk.Frame):
         self.year_var = tk.StringVar()
         ttk.Label(self, text="Year").grid(row=0, column=0)
         self.year_combo = ttk.Combobox(self, textvariable=self.year_var)
-        self.year_combo.grid(row=1, column=0)
+        self.year_combo.grid(row=0, column=1)
 
         # Month
         self.month_var = tk.StringVar()
-        ttk.Label(self, text="Month").grid(row=0, column=1)
+        ttk.Label(self, text="Month").grid(row=1, column=0)
         self.month_combo = ttk.Combobox(self, textvariable=self.month_var)
         self.month_combo.grid(row=1, column=1)
 
         # Filters: Area, Type, Project, ...
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
-        ttk.Label(self, text="Filter").grid(row=0, column=2)
+        ttk.Label(self, text="Filter").grid(row=2, column=0)
         self.filter_combo = ttk.Combobox(
             self, values=filter_values, textvariable=self.filter_var
         )
-        self.filter_combo.grid(row=1, column=2)
+        self.filter_combo.grid(row=2, column=1)
 
         # Items: items of selected filter
         self.item_var = tk.StringVar()
-        ttk.Label(self, text="Items").grid(row=0, column=3)
+        ttk.Label(self, text="Items").grid(row=3, column=0)
         self.item_combo = ttk.Combobox(self, textvariable=self.item_var)
-        self.item_combo.grid(row=1, column=3)
+        self.item_combo.grid(row=3, column=1)
 
         for child in self.winfo_children():
             child.grid_configure(padx=10, pady=2, sticky="nswe")
@@ -359,11 +343,19 @@ class CalendarView(ttk.Frame):
             # reference to calendar id to use in event
             card.calendar_id = calendar.calendar_id
             card.name_label = ttk.Label(card, text="")
-            card.total_duration_label = ttk.Label(card, text="")
+            card.hours_label = ttk.Label(card, text="")
+            card.events_label = ttk.Label(card, text="")
+            card.areas_label = ttk.Label(card, text="")
+            card.types_label = ttk.Label(card, text="")
+            card.projects_label = ttk.Label(card, text="")
 
             # grid
             card.name_label.grid(row=0, column=0, sticky="ew")
-            card.total_duration_label.grid(row=1, column=0, sticky="ew")
+            card.hours_label.grid(row=1, column=0, sticky="ew")
+            card.events_label.grid(row=2, column=0, sticky="ew")
+            card.areas_label.grid(row=3, column=0, sticky="ew")
+            card.types_label.grid(row=4, column=0, sticky="ew")
+            card.projects_label.grid(row=5, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
             card.grid(row=0, column=i, sticky="nsew", padx=5)
@@ -376,9 +368,11 @@ class CalendarView(ttk.Frame):
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
         card.name_label.config(text=calendar.calendar_name.title())
-        card.total_duration_label.config(
-            text=f"Total hours: {calendar.total_duration} hrs"
-        )
+        card.hours_label.config(text=f"Hours: {calendar.total_duration}")
+        card.events_label.config(text=f"Events: {calendar.total_events}")
+        card.areas_label.config(text=f"Areas: {calendar.distinct_areas}")
+        card.types_label.config(text=f"Types: {calendar.distinct_types}")
+        card.projects_label.config(text=f"Projects: {calendar.distinct_projects}")
 
 
 class MainFrame(ttk.Frame):
@@ -387,28 +381,27 @@ class MainFrame(ttk.Frame):
 
         # -- row 0 ---
         self.calendar_view = CalendarView(self)
-        self.calendar_view.grid(row=0, column=0, columnspan=2)
+        self.calendar_view.grid(row=0, column=0, columnspan=4)
+
+        self.filter_view = FilterView(self)
+        self.filter_view.grid(row=0, column=3)
 
         self.filter_report_view = FilterReportView(self)
-        self.filter_report_view.grid(row=0, column=3, rowspan=2)
+        self.filter_report_view.grid(row=0, column=4)
 
         # -- row 1 ---
-        self.filter_view = FilterView(self)
-        self.filter_view.grid(row=1, column=0, columnspan=2)
-
-        # -- row 2 ---
         self.stack_chart_view = ChartView(self)
-        self.stack_chart_view.grid(row=2, column=0, columnspan=3)
+        self.stack_chart_view.grid(row=1, column=0, columnspan=4)
 
         self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=2, column=3)
+        self.pie_chart_view.grid(row=1, column=4)
 
-        # -- row 3 ---
+        # -- row 2 ---
         self.bar_chart_view = ChartView(self)
-        self.bar_chart_view.grid(row=3, column=0, columnspan=3)
+        self.bar_chart_view.grid(row=2, column=0, columnspan=4)
 
         self.hbar_chart_view = ChartView(self)
-        self.hbar_chart_view.grid(row=3, column=3)
+        self.hbar_chart_view.grid(row=2, column=4)
 
         for child in self.winfo_children():
             child.config(padding=5)
@@ -417,9 +410,7 @@ class MainFrame(ttk.Frame):
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
-        self.rowconfigure(3, weight=1)
         self.columnconfigure(0, weight=3)
-        self.columnconfigure(3, weight=1)
 
 
 class App(tk.Tk):
