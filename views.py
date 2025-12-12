@@ -227,16 +227,14 @@ class FilterReportView(ttk.Frame):
         self.vars = {}
         self.style = ttk.Style()
         font = font = ("TkDefaultFont", 10, "bold")
-        self.style.configure("OddRow.TLabel", background="#A1BC98", font=font)
-        self.style.configure("EvenRow.TLabel", background="#658147", font=font)
 
     def create_report_rows(self, report):
         for i, (name, value) in enumerate(report.to_dict().items()):
             fmt_name = name.replace("_", " ").title()
             self.vars[name] = tk.StringVar(value=f"{fmt_name}: {value}")
             var = self.vars[name]
-            row_style = "OddRow.TLabel" if i % 2 else "EvenRow.TLabel"
-            ttk.Label(self, textvariable=var, style=row_style, padding=5).grid(
+            row_style = "inverse-secondary" if i % 2 else "inverse-light"
+            ttk.Label(self, textvariable=var, bootstyle=row_style, padding=5).grid(
                 row=i, column=0, sticky="ew"
             )
 
@@ -336,10 +334,6 @@ class CalendarView(ttk.Frame):
         self.previous_card = None
         self.current_card = None
 
-        self.style = ttk.Style()
-        self.style.configure("Normal.TFrame", background="#212121")
-        self.style.configure("LightNormal.TFrame", background="#fafafa")
-
         # self.rowconfigure(0, weight=1)
         for child in self.winfo_children():
             child.grid_configure(pady=5)
@@ -354,19 +348,14 @@ class CalendarView(ttk.Frame):
 
         # Reset previous card
         if self.current_card:
-            self.current_card.config(style="Normal.TFrame")
+            self.current_card.config(bootstyle="default")
             for child in self.current_card.winfo_children():
-                child.config(style="Normal.TLabel")
+                child.config(bootstyle="inverse-default")
 
-        # Style new selected card
-        self.current_card = self.cards[self.selected_calendar_id]
 
-        frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
-        label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
-
-        self.current_card.config(style=frame_style_name)
+        self.current_card.config(bootstyle="secondary")
         for child in self.current_card.winfo_children():
-            child.config(style=label_style_name)
+            child.config(bootstyle="inverse-secondary")
 
     def on_label_select(self, event):
         handler = self.handlers["calendar_select"]
@@ -375,49 +364,34 @@ class CalendarView(ttk.Frame):
 
         # Reset previous card
         if self.current_card:
-            self.current_card.config(style="Normal.TFrame")
+            self.current_card.config(bootstyle="default")
             for child in self.current_card.winfo_children():
-                child.config(style="Normal.TLabel")
+                child.config(bootstyle="default")
 
         self.current_card = self.cards[self.selected_calendar_id]
 
-        frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
-        label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
-
-        self.current_card.config(style=frame_style_name)
+        self.current_card.config(bootstyle="secondary")
         for child in self.current_card.winfo_children():
-            child.config(style=label_style_name)
+            child.config(bootstyle="inverse-secondary")
 
     def set_card_selection(self):
         self.current_card = self.cards[self.selected_calendar_id]
 
         # Reset previous card
         if self.current_card:
-            self.current_card.config(style="Normal.TFrame")
+            self.current_card.config(bootstyle="default")
             for child in self.current_card.winfo_children():
-                child.config(style="Normal.TLabel")
+                child.config(bootstyle="default")
 
         self.current_card = self.cards[self.selected_calendar_id]
 
-        frame_style_name = f"CalendarColor{self.selected_calendar_id}.TFrame"
-        label_style_name = f"CalendarColor{self.selected_calendar_id}.TLabel"
-
-        self.current_card.config(style=frame_style_name)
+        self.current_card.config(bootstyle="secondary")
         for child in self.current_card.winfo_children():
-            child.config(style=label_style_name)
+            child.config(bootstyle="inverse-secondary")
 
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
             card = ttk.Frame(self, relief="sunken", padding=10)
-            self.style.configure(
-                f"CalendarColor{calendar.calendar_id}.TFrame",
-                background=f"{calendar.calendar_color}",
-            )
-
-            self.style.configure(
-                f"CalendarColor{calendar.calendar_id}.TLabel",
-                background=f"{calendar.calendar_color}",
-            )
             # reference to calendar id to use in event
             card.calendar_id = calendar.calendar_id
             card.name_label = ttk.Label(card, text="")
@@ -465,7 +439,7 @@ class ActionView(ttk.Frame):
         self.theme_text_var = tk.StringVar(value="Dark Mode")
         theme_checkbutton = ttk.Checkbutton(
             self,
-            bootstyle="round-toggle",
+            bootstyle="round-toggle success",
             text="Dark Mode",
             variable=self.theme_check_var,
             textvariable=self.theme_text_var,
@@ -487,7 +461,7 @@ class ActionView(ttk.Frame):
         IS_DARK = True
 
     def activate_light_theme(self):
-        self.root.style = ttk.Style("journal")
+        self.root.style = ttk.Style("flatly")
         plt.style.use("seaborn-v0_8-white")
         self.refresh_all_charts()
         self.root.update()
