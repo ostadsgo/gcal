@@ -32,7 +32,6 @@ class Controller:
         # calendars
         self.create_calendars_card()
         self.update_calendars_card()
-        self.calendar_set_selection()
 
         # widgets
         self.update_year_widget()
@@ -76,9 +75,6 @@ class Controller:
         calendars = self.model.get_calendars_by_usage()
         for calendar in calendars:
             self.calendar_view.update_card(calendar)
-
-    def calendar_set_selection(self):
-        self.calendar_view.set_card_selection()
 
     def update_year_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id

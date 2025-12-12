@@ -1,7 +1,8 @@
 import tkinter as tk
-
-# from tkinter import ttk
 import ttkbootstrap as ttk
+from ttkbootstrap.dialogs import DatePickerDialog
+
+
 
 # matplotlib
 import numpy as np
@@ -217,6 +218,15 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
 
+class DateView(ttk.Frame):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+        self.start_date_entry = ttk.DateEntry(self)
+        self.end_date_entry = ttk.DateEntry(self)
+        self.start_date_entry.grid(row=0, column=0)
+        self.end_date_entry.grid(row=1, column=0)
+        
+
 class FilterReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
@@ -312,63 +322,47 @@ class CalendarView(ttk.Frame):
         self.cards = {}
         self.handlers = {}
         self.selected_calendar_id = 1
-        self.previous_card = None
+        self.prev_card = None
         self.current_card = None
 
-        # self.rowconfigure(0, weight=1)
         for child in self.winfo_children():
             child.grid_configure(pady=5)
+
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
 
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
 
-    def on_calendar_select(self, event):
-        handler = self.handlers["calendar_select"]
-        self.selected_calendar_id = event.widget.calendar_id
-        handler()
+    def update_card_style(self):
+        # Rest before update
+        self.prev_card.config(bootstyle="default")
+        for child in self.prev_card.winfo_children():
+            child.config(bootstyle="default")
 
-        # Reset previous card
-        if self.current_card:
-            self.current_card.config(bootstyle="default")
-            for child in self.current_card.winfo_children():
-                child.config(bootstyle="inverse-default")
-
-
+        # Update
         self.current_card.config(bootstyle="secondary")
         for child in self.current_card.winfo_children():
             child.config(bootstyle="inverse-secondary")
 
+    def on_calendar_select(self, event):
+        self.prev_card = self.cards[self.selected_calendar_id]
+        handler = self.handlers["calendar_select"]
+        self.selected_calendar_id = event.widget.calendar_id
+        handler()
+        self.current_card = self.cards[self.selected_calendar_id]
+        self.update_card_style()
+
     def on_label_select(self, event):
+        # Save current card before handling event. 
+        self.prev_card = self.cards[self.selected_calendar_id]
+        # handlers
         handler = self.handlers["calendar_select"]
         self.selected_calendar_id = event.widget.master.calendar_id
         handler()
 
-        # Reset previous card
-        if self.current_card:
-            self.current_card.config(bootstyle="default")
-            for child in self.current_card.winfo_children():
-                child.config(bootstyle="default")
-
         self.current_card = self.cards[self.selected_calendar_id]
-
-        self.current_card.config(bootstyle="secondary")
-        for child in self.current_card.winfo_children():
-            child.config(bootstyle="inverse-secondary")
-
-    def set_card_selection(self):
-        self.current_card = self.cards[self.selected_calendar_id]
-
-        # Reset previous card
-        if self.current_card:
-            self.current_card.config(bootstyle="default")
-            for child in self.current_card.winfo_children():
-                child.config(bootstyle="default")
-
-        self.current_card = self.cards[self.selected_calendar_id]
-
-        self.current_card.config(bootstyle="secondary")
-        for child in self.current_card.winfo_children():
-            child.config(bootstyle="inverse-secondary")
+        self.update_card_style()
 
     def create_cards(self, calendars):
         for i, calendar in enumerate(calendars):
@@ -406,6 +400,11 @@ class CalendarView(ttk.Frame):
         card.areas_label.config(text=f"Areas: {calendar.distinct_areas}")
         card.types_label.config(text=f"Types: {calendar.distinct_types}")
         card.projects_label.config(text=f"Projects: {calendar.distinct_projects}")
+
+        # Set card selection.
+        self.prev_card = self.cards[self.selected_calendar_id]
+        self.current_card = self.cards[self.selected_calendar_id]
+        self.update_card_style()
 
 
 class ActionView(ttk.Frame):
@@ -462,6 +461,9 @@ class MainFrame(ttk.Frame):
 
         self.filter_report_view = FilterReportView(self)
         self.filter_report_view.grid(row=0, column=2)
+
+        self.date_view = DateView(self)
+        self.date_view.grid(row=0, column=2)
 
         self.action_view = ActionView(self)
         self.action_view.grid(row=0, column=2)
