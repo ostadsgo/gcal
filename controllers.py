@@ -40,13 +40,13 @@ class Controller:
 
         # # Charts
         self.update_stack_chart()
-        # self.update_hbar_chart()
-        # self.update_bar_chart()
-        # self.update_pie_chart()
+        self.update_hbar_chart()
+        self.update_bar_chart()
+        self.update_pie_chart()
         #
         # # Reports
-        # self.create_report_rows()
-        # self.update_filter_report()
+        self.create_report_rows()
+        self.update_filter_report()
 
     def create_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
@@ -54,19 +54,11 @@ class Controller:
 
     def create_report_rows(self):
         calendar_id = self.calendar_view.selected_calendar_id
+        start_date = self.filter_view.start_date
+        end_date = self.filter_view.end_date
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
-        report = None
-
-        if filter_val == "Areas":
-            report = self.model.area_report(calendar_id, year, month, item)
-        elif filter_val == "Types":
-            report = self.model.type_report(calendar_id, year, month, item)
-        elif filter_val == "Projects":
-            report = self.model.project_report(calendar_id, year, month, item)
-        else:
-            print("Unkown filter value in update report.")
-
+        report = self.model.report_by_filter(calendar_id, start_date, end_date, filter_val, item)
         self.filter_report_view.create_report_rows(report)
 
     def update_calendars_card(self):
@@ -87,30 +79,22 @@ class Controller:
 
     def update_filter_report(self):
         calendar_id = self.calendar_view.selected_calendar_id
+        start_date = self.filter_view.start_date
+        end_date = self.filter_view.end_date
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
-        report = None
-
-        if filter_val == "Areas":
-            report = self.model.area_report(calendar_id, year, month, item)
-        elif filter_val == "Types":
-            report = self.model.type_report(calendar_id, year, month, item)
-        elif filter_val == "Projects":
-            report = self.model.project_report(calendar_id, year, month, item)
-        else:
-            print("Unkown filter value in update report.")
-
+        report = self.model.report_by_filter(calendar_id, start_date, end_date, filter_val, item)
         self.filter_report_view.update_rows(report)
 
     # -- update charts --
     def update_bar_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
-        filtred_types = self.model.distinct_types_by_year_month(
-            calendar_id, year, month
+        start_date = str(self.filter_view.start_date)
+        end_date = str(self.filter_view.end_date)
+        types = self.model.distinct_types_by_date_range(
+            calendar_id, start_date, end_date
         )
-        self.bar_chart_view.update_bar_chart(filtred_types)
+        self.bar_chart_view.update_bar_chart(types)
 
     def update_stack_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -128,14 +112,16 @@ class Controller:
 
     def update_hbar_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        top_areas = self.model.distinct_areas_by_year_month(calendar_id, year, month)
-        self.hbar_chart_view.update_hbar_chart(top_areas)
+        start_date = str(self.filter_view.start_date)
+        end_date = str(self.filter_view.end_date)
+        areas = self.model.distinct_areas_by_date_range(calendar_id, start_date, end_date)
+        self.hbar_chart_view.update_hbar_chart(areas)
 
     def update_pie_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
-        projects = self.model.distinct_projects_by_year_month(calendar_id, year, month)
+        start_date = str(self.filter_view.start_date)
+        end_date = str(self.filter_view.end_date)
+        projects = self.model.distinct_projects_by_date_range(calendar_id, start_date, end_date)
         self.pie_chart_view.update_pie_chart(projects)
 
     # --------------
@@ -144,31 +130,31 @@ class Controller:
     def handle_calendar_select(self):
         self.update_item_widget()
         self.update_stack_chart()
-        # self.update_pie_chart()
-        # self.update_hbar_chart()
-        # self.update_bar_chart()
-        # self.update_filter_report()
+        self.update_pie_chart()
+        self.update_hbar_chart()
+        self.update_bar_chart()
+        self.update_filter_report()
 
     def handle_filter_select(self):
         self.update_item_widget()
         self.update_stack_chart()
-        # self.update_filter_report()
+        self.update_filter_report()
 
     def handle_start_date_selected(self):
         self.update_item_widget()
         self.update_stack_chart()
-        # self.update_filter_report()
+        self.update_filter_report()
 
     def handle_end_date_selected(self):
         self.update_item_widget()
         # charts
         self.update_stack_chart()
-        # self.update_bar_chart()
-        # self.update_pie_chart()
-        # self.update_hbar_chart()
+        self.update_bar_chart()
+        self.update_pie_chart()
+        self.update_hbar_chart()
         # # reports
-        # self.update_filter_report()
+        self.update_filter_report()
 
     def handle_item_select(self):
         self.update_stack_chart()
-        # self.update_filter_report()
+        self.update_filter_report()

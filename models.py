@@ -97,8 +97,8 @@ class CalendarModel:
         rows = self.db.fetch_all(query)
         return [Record(row) for row in rows]
 
-    def get_top_areas(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
-        """Get top areas by total hours."""
+    def get_top_areas(self, calendar_id: int, start_date: str, end_date: str, limit: int = 10) -> list[Record]:
+        """Get top areas by total hours within a date range."""
         query = """
             SELECT 
                 c.name as calendar_name,
@@ -110,15 +110,16 @@ class CalendarModel:
             JOIN events e ON c.id = e.calendar_id
             JOIN areas a ON e.area_id = a.id
             WHERE c.id = ?
+              AND e.date BETWEEN ? AND ?
             GROUP BY c.name, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, limit))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
         return [Record(row) for row in rows]
 
-    def get_top_types(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
-        """Get top projects by total hours."""
+    def get_top_types(self, calendar_id: int, start_date, end_date, limit: int = 10) -> list[Record]:
+        """Get top types by total hours within a date range."""
         query = """
             SELECT 
                 c.id as calendar_id, 
@@ -133,15 +134,16 @@ class CalendarModel:
             JOIN types t ON e.type_id = t.id
             LEFT JOIN areas a ON e.area_id = a.id
             WHERE c.id = ?
+              AND e.date BETWEEN ? AND ?
             GROUP BY c.name, t.name, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, limit))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
         return [Record(row) for row in rows]
 
-    def get_top_projects(self, calendar_id: int = 1, limit: int = 10) -> list[Record]:
-        """Get top projects by total hours."""
+    def get_top_projects(self, calendar_id: int, start_date, end_date, limit: int = 10) -> list[Record]:
+        """Get top projects by total hours within a date range."""
         query = """
             SELECT 
                 c.id as calendar_id, 
@@ -156,11 +158,12 @@ class CalendarModel:
             JOIN projects p ON e.project_id = p.id
             LEFT JOIN areas a ON p.area_id = a.id
             WHERE c.id = ?
+              AND e.date BETWEEN ? AND ?
             GROUP BY c.name, p.name, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, limit))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
         return [Record(row) for row in rows]
 
     def distinct_areas(self, calendar_id):
@@ -239,7 +242,8 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, year))
         return [Record(row) for row in rows]
 
-    def distinct_areas_by_year_month(self, calendar_id, year, month, limit=5):
+    def distinct_areas_by_date_range(self, calendar_id, start_date, end_date, limit=5):
+        """Get distinct areas within a date range with their total hours and event count"""
         query = """
             SELECT DISTINCT 
                 a.id AS area_id,
@@ -248,19 +252,18 @@ class CalendarModel:
                 COUNT(e.id) AS event_count
             FROM events e
             JOIN areas a ON e.area_id = a.id
-            JOIN calendars c ON e.calendar_id = c.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ?  -- Year filter
-              AND SUBSTR(e.dtstart, 5, 2) = ?  -- Month filter
+              AND e.date BETWEEN ? AND ?
               AND a.name IS NOT NULL
             GROUP BY a.id, a.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month, limit))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
         return [Record(row) for row in rows]
 
-    def distinct_types_by_year_month(self, calendar_id, year, month, limit=5):
+    def distinct_types_by_date_range(self, calendar_id, start_date, end_date, limit=5):
+        """Get distinct types within a date range with their total hours and event count"""
         query = """
             SELECT 
                 t.name AS name,
@@ -269,17 +272,17 @@ class CalendarModel:
             FROM events e
             JOIN types t ON e.type_id = t.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ?
-              AND SUBSTR(e.dtstart, 5, 2) = ?
+              AND e.date BETWEEN ? AND ?
               AND e.type_id IS NOT NULL
             GROUP BY t.id, t.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month, limit))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
         return [Record(row) for row in rows]
 
-    def distinct_projects_by_year_month(self, calendar_id, year, month, limit=5):
+    def distinct_projects_by_date_range(self, calendar_id, start_date, end_date, limit=5):
+        """Get distinct projects within a date range with their total hours and event count"""
         query = """
             SELECT 
                 p.name AS name,
@@ -288,14 +291,13 @@ class CalendarModel:
             FROM events e
             JOIN projects p ON e.project_id = p.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ?
-              AND SUBSTR(e.dtstart, 5, 2) = ?
+              AND e.date BETWEEN ? AND ?
               AND e.project_id IS NOT NULL
             GROUP BY p.id, p.name
             ORDER BY total_hours DESC
             LIMIT ?
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month, limit))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
         return [Record(row) for row in rows]
 
     def area_daily_duration(self, calendar_id, start_date, end_date, area_name):
@@ -354,75 +356,64 @@ class CalendarModel:
         )
         return [Record(row) for row in rows]
 
-    def area_report(self, calendar_id, year, month, area_name):
+    def area_report(self, calendar_id, start_date, end_date, area_name):
+        """Get area report statistics within a date range"""
         query = """
             SELECT 
-                -- Timeline with dashes
-                SUBSTR(MIN(dtstart), 1, 4) || '-' || 
-                SUBSTR(MIN(dtstart), 5, 2) || '-' || 
-                SUBSTR(MIN(dtstart), 7, 2) AS first_date,
-                
+                MIN(e.date) AS first_date,
+                MAX(e.date) AS last_date,
                 SUM(e.duration) AS total_hours,
-                COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)) AS total_days,
-                ROUND(SUM(e.duration) / COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)), 2) AS average_day,
+                COUNT(DISTINCT e.date) AS total_days,
+                ROUND(SUM(e.duration) / COUNT(DISTINCT e.date), 2) AS average_day,
                 MAX(e.duration) AS max_duration,
                 MIN(e.duration) AS min_duration
             FROM events e
             JOIN areas a ON e.area_id = a.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ? 
-              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND e.date BETWEEN ? AND ?
               AND a.name = ?;
         """
-        row = self.db.fetch_one(query, (calendar_id, year, month, area_name))
+        row = self.db.fetch_one(query, (calendar_id, start_date, end_date, area_name))
         return Record(row)
 
-    def type_report(self, calendar_id, year, month, type_name):
+    def type_report(self, calendar_id, start_date, end_date, type_name):
+        """Get type report statistics within a date range"""
         query = """
             SELECT 
-                -- Timeline with dashes
-                SUBSTR(MIN(dtstart), 1, 4) || '-' || 
-                SUBSTR(MIN(dtstart), 5, 2) || '-' || 
-                SUBSTR(MIN(dtstart), 7, 2) AS first_date,
-                
-                -- Rest of your query...
+                MIN(e.date) AS first_date,
+                MAX(e.date) AS last_date,
                 SUM(e.duration) AS total_hours,
-                COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)) AS total_days,
-                ROUND(SUM(e.duration) / COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)), 2) AS average_day,
+                COUNT(DISTINCT e.date) AS total_days,
+                ROUND(SUM(e.duration) / COUNT(DISTINCT e.date), 2) AS average_day,
                 MAX(e.duration) AS max_duration,
                 MIN(e.duration) AS min_duration
             FROM events e
             JOIN types t ON e.type_id = t.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ? 
-              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND e.date BETWEEN ? AND ?
               AND t.name = ?;
         """
-        row = self.db.fetch_one(query, (calendar_id, year, month, type_name))
+        row = self.db.fetch_one(query, (calendar_id, start_date, end_date, type_name))
         return Record(row)
 
-    def project_report(self, calendar_id, year, month, project_name):
+    def project_report(self, calendar_id, start_date, end_date, project_name):
+        """Get project report statistics within a date range"""
         query = """
             SELECT 
-                -- Timeline with dashes
-                SUBSTR(MIN(dtstart), 1, 4) || '-' || 
-                SUBSTR(MIN(dtstart), 5, 2) || '-' || 
-                SUBSTR(MIN(dtstart), 7, 2) AS first_date,
-                
-                -- Rest of your query...
+                MIN(e.date) AS first_date,
+                MAX(e.date) AS last_date,
                 SUM(e.duration) AS total_hours,
-                COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)) AS total_days,
-                ROUND(SUM(e.duration) / COUNT(DISTINCT SUBSTR(e.dtstart, 1, 8)), 2) AS average_day,
+                COUNT(DISTINCT e.date) AS total_days,
+                ROUND(SUM(e.duration) / COUNT(DISTINCT e.date), 2) AS average_day,
                 MAX(e.duration) AS max_duration,
                 MIN(e.duration) AS min_duration
             FROM events e
             JOIN projects p ON e.project_id = p.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ? 
-              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND e.date BETWEEN ? AND ?
               AND p.name = ?;
         """
-        row = self.db.fetch_one(query, (calendar_id, year, month, project_name))
+        row = self.db.fetch_one(query, (calendar_id, start_date, end_date, project_name))
         return Record(row)
 
     def distinct_areas_by_date_range(self, calendar_id, start_date, end_date, limit=5):
@@ -535,6 +526,19 @@ class CalendarModel:
         else:
             print(f"Filter value `{filter_val}` not a valid table.")
         return rows
+
+    def report_by_filter(self, calendar_id, start_date, end_date, filter_val, item):
+        retport = []
+
+        if filter_val == "Areas":
+            report = self.area_report(calendar_id, start_date, end_date, item)
+        elif filter_val == "Types":
+            report = self.type_report(calendar_id, start_date, end_date, item)
+        elif filter_val == "Projects":
+            report = self.project_report(calendar_id, start_date, end_date, item)
+        else:
+            print("Unkown filter value in update report.")
+        return report
 
 
 
