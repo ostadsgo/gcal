@@ -361,9 +361,9 @@ class FilterView(ttk.Frame):
         handler = self.handlers[handler_name]
         handler()
 
-    def update_combo_values(self, var, combo, values):
-        var.set(values[0] if values else "")
-        combo["values"] = values
+    def update_item_values(self, values):
+        self.item_var.set(values[0] if values else "")
+        self.item_combo["values"] = values
 
 
 # Top Frame

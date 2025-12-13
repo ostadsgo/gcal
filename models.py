@@ -298,58 +298,60 @@ class CalendarModel:
         rows = self.db.fetch_all(query, (calendar_id, year, month, limit))
         return [Record(row) for row in rows]
 
-    def area_daily_duration(self, calendar_id, year, month, area_name):
+    def area_daily_duration(self, calendar_id, start_date, end_date, area_name):
+        """Get daily duration for a specific area within a date range"""
         query = """
             SELECT 
-                SUBSTR(e.dtstart, 7, 2) as day,
+                e.date,
                 SUM(e.duration) as total_duration,
                 COUNT(*) as event_count
             FROM events e
             JOIN areas a ON e.area_id = a.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ?
-              AND SUBSTR(e.dtstart, 5, 2) = ?
+              AND e.date BETWEEN ? AND ?
               AND a.name = ?
-            GROUP BY day
-            ORDER BY CAST(day AS INTEGER);
+            GROUP BY e.date
+            ORDER BY e.date;
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month, area_name))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, area_name))
         return [Record(row) for row in rows]
 
-    def type_daily_duration(self, calendar_id, year, month, type_name):
+    def type_daily_duration(self, calendar_id, start_date, end_date, type_name):
+        """Get daily duration for a specific type within a date range"""
         query = """
             SELECT 
-                SUBSTR(e.dtstart, 7, 2) as day,
+                e.date,
                 SUM(e.duration) as total_duration,
                 COUNT(*) as event_count
             FROM events e
             JOIN types t ON e.type_id = t.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ? 
-              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND e.date BETWEEN ? AND ?
               AND t.name = ?
-            GROUP BY day
-            ORDER BY CAST(day AS INTEGER);
+            GROUP BY e.date
+            ORDER BY e.date;
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month, type_name))
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, type_name))
         return [Record(row) for row in rows]
 
-    def project_daily_duration(self, calendar_id, year, month, project_name):
+    def project_daily_duration(self, calendar_id, start_date, end_date, project_name):
+        """Get daily duration for a specific project within a date range"""
         query = """
             SELECT 
-                SUBSTR(e.dtstart, 7, 2) as day,
+                e.date,
                 SUM(e.duration) as total_duration,
                 COUNT(*) as event_count
             FROM events e
             JOIN projects p ON e.project_id = p.id
             WHERE e.calendar_id = ?
-              AND SUBSTR(e.dtstart, 1, 4) = ?  
-              AND SUBSTR(e.dtstart, 5, 2) = ? 
+              AND e.date BETWEEN ? AND ?
               AND p.name = ?
-            GROUP BY day
-            ORDER BY CAST(day AS INTEGER);
+            GROUP BY e.date
+            ORDER BY e.date;
         """
-        rows = self.db.fetch_all(query, (calendar_id, year, month, project_name))
+        rows = self.db.fetch_all(
+            query, (calendar_id, start_date, end_date, project_name)
+        )
         return [Record(row) for row in rows]
 
     def area_report(self, calendar_id, year, month, area_name):
@@ -496,7 +498,7 @@ class CalendarModel:
         rows = []
         if filter_val == "Areas":
             rows = self.distinct_areas_by_date_range(
-                 calendar_id, str(start_date), str(end_date), limit
+                calendar_id, str(start_date), str(end_date), limit
             )
         elif filter_val == "Types":
             rows = self.distinct_types_by_date_range(
@@ -510,6 +512,30 @@ class CalendarModel:
             print(f"Filter value `{filter_val}` not a valid table.")
 
         return rows
+
+    def daily_duration_by_filter(
+        self,
+        calendar_id: int,
+        start_date: date,
+        end_date: date,
+        filter_val: str,
+        item: str,
+    ) -> list[Record]:
+        rows = []
+        if filter_val == "Areas":
+            rows = self.area_daily_duration(calendar_id, str(start_date), str(end_date), item)
+        elif filter_val == "Types":
+            rows = self.type_daily_duration(
+                calendar_id, str(start_date), str(end_date), item
+            )
+        elif filter_val == "Projects":
+            rows = self.project_daily_duration(
+                calendar_id, str(start_date), str(end_date), item
+            )
+        else:
+            print(f"Filter value `{filter_val}` not a valid table.")
+        return rows
+
 
 
 class DatabaseManager:

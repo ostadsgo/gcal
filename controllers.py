@@ -39,7 +39,7 @@ class Controller:
         self.update_item_widget()
 
         # # Charts
-        # self.update_stack_chart()
+        self.update_stack_chart()
         # self.update_hbar_chart()
         # self.update_bar_chart()
         # self.update_pie_chart()
@@ -82,14 +82,8 @@ class Controller:
         rows = self.model.distinct_values_by_filter(
             calendar_id, start_date, end_date, filter_val
         )
-        print(str(start_date))
-        print(str(end_date))
-        print(rows)
-
-        # values = [row.name for row in rows]
-        # combo = self.filter_view.item_combo
-        # var = self.filter_view.item_var
-        # self.filter_view.update_combo_values(var, combo, values)
+        values = [row.name for row in rows]
+        self.filter_view.update_item_values(values)
 
     def update_filter_report(self):
         calendar_id = self.calendar_view.selected_calendar_id
@@ -120,24 +114,15 @@ class Controller:
 
     def update_stack_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
+        start_date = self.filter_view.start_date
+        end_date = self.filter_view.end_date
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
-        rows = None
-        self.models.daily_duration_by_filter(calendar_id, date)
+        rows = self.model.daily_duration_by_filter(calendar_id, start_date, end_date, filter_val, item)
         if item:
-            if filter_val == "Areas":
-                rows = self.model.area_daily_duration(calendar_id, year, month, item)
-            elif filter_val == "Types":
-                rows = self.model.type_daily_duration(calendar_id, year, month, item)
-            elif filter_val == "Projects":
-                rows = self.model.project_daily_duration(calendar_id, year, month, item)
-            else:
-                print(f"Unknow filter. {filter_val}.")
-
             # chart
-            days = [row.day for row in rows]
+            days = range(1, len(rows) + 1)
             hrs = [row.total_duration for row in rows]
-            calendar_id = self.calendar_view.selected_calendar_id
             calendar = self.model.get_calendar_by_usage(calendar_id)
             self.stack_chart_view.update_stack_chart(days, hrs, calendar.calendar_color)
 
@@ -157,27 +142,27 @@ class Controller:
     # Handlers
     # ---------------
     def handle_calendar_select(self):
-        self.update_pie_chart()
         self.update_item_widget()
         self.update_stack_chart()
-        self.update_hbar_chart()
-        self.update_bar_chart()
-        self.update_filter_report()
+        # self.update_pie_chart()
+        # self.update_hbar_chart()
+        # self.update_bar_chart()
+        # self.update_filter_report()
 
     def handle_filter_select(self):
         self.update_item_widget()
         self.update_stack_chart()
-        self.update_filter_report()
+        # self.update_filter_report()
 
     def handle_start_date_selected(self):
         self.update_item_widget()
-        # self.update_stack_chart()
+        self.update_stack_chart()
         # self.update_filter_report()
 
     def handle_end_date_selected(self):
         self.update_item_widget()
         # charts
-        # self.update_stack_chart()
+        self.update_stack_chart()
         # self.update_bar_chart()
         # self.update_pie_chart()
         # self.update_hbar_chart()
@@ -186,4 +171,4 @@ class Controller:
 
     def handle_item_select(self):
         self.update_stack_chart()
-        self.update_filter_report()
+        # self.update_filter_report()
