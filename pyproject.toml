@@ -5,9 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "customtkinter>=5.2.2",
     "icalendar>=6.3.1",
     "matplotlib>=3.10.7",
     "plotly>=6.5.0",
     "pytz>=2025.2",
     "ttkbootstrap>=1.19.2",
+    "ttkwidgets>=0.13.0",
 ]

@@ -3,6 +3,8 @@ from datetime import date
 import tkinter as tk
 import ttkbootstrap as ttk
 from ttkbootstrap.scrolled import ScrolledFrame
+import customtkinter as ctk
+
 # matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
@@ -483,6 +485,7 @@ class MainFrame(ScrolledFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.master = master
+
         # component
         self.corner_frame = ttk.Frame(self)
         self.calendar_view = CalendarView(self)
@@ -533,11 +536,7 @@ class MainFrame(ScrolledFrame):
         self.focus()
         width = self.master.winfo_width()
         height = self.master.winfo_height()
-        # print("Current width:", width)
-        # print("Current height:", height)
-        # print("Grid size", self.grid_size())
-        self.autohide_scrollbar()
-        print(self.autohide)
+        print(self.grid_size())
 
         if width <= 950:
             self.calendar_view.grid_configure(row=0, column=0)
@@ -567,6 +566,9 @@ class MainFrame(ScrolledFrame):
             self.rowconfigure(0, weight=3)
             self.rowconfigure(1, weight=1)
             self.rowconfigure(2, weight=1)
+            self.rowconfigure(3, weight=0)
+            self.rowconfigure(4, weight=0)
+            self.rowconfigure(5, weight=0)
             self.columnconfigure(0, weight=3)
             self.columnconfigure(1, weight=1)
 
@@ -580,7 +582,7 @@ class App(ttk.Tk):
         self.style = ttk.Style("darkly")
         self.update_idletasks()
 
-        self.mainframe = MainFrame(self)
+        self.mainframe = MainFrame(self, autohide=True)
         self.mainframe.grid(row=0, column=0, sticky="nsew")
 
         self.rowconfigure(0, weight=1)
