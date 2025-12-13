@@ -2,7 +2,7 @@ from datetime import date
 
 import tkinter as tk
 import ttkbootstrap as ttk
-
+from ttkbootstrap.scrolled import ScrolledFrame
 # matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
@@ -233,37 +233,7 @@ class ChartView(ttk.Frame):
         self.canvas.draw()
 
 
-class DateView(ttk.Frame):
-    def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
-        self.start_date = None
-        self.end_date = None
-        self.setup_ui()
-
-    def setup_ui(self):
-        ttk.Label(self, text="Start date").grid(row=0, column=0)
-        ttk.Label(self, text="End date").grid(row=1, column=0)
-
-        self.start_date_entry = ttk.DateEntry( self, firstweekday=0, dateformat="%Y-%m-%d")
-        self.end_date_entry = ttk.DateEntry(self, firstweekday=0, dateformat="%Y-%m-%d")
-
-        # grid
-        self.start_date_entry.grid(row=0, column=1)
-        self.end_date_entry.grid(row=1, column=1)
-
-        for child in self.winfo_children():
-            child.grid_configure(padx=5, pady=5)
-
-        self.start_date_entry.bind("<<DateEntrySelected>>", self.on_start_date_selected)
-
-    def on_start_date_selected(self, event):
-        self.start_date = event.widget.get_date().date()
-
-    def on_end_date_selected(self, event):
-        self.end_date = event.widget.get_date().date()
-
-
-class FilterReportView(ttk.Frame):
+class ReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
         self.vars = {}
@@ -297,39 +267,39 @@ class FilterView(ttk.Frame):
         self.end_date = date(2025, 11, 30)
 
         ttk.Label(self, text="Start date").grid(row=0, column=0)
-        ttk.Label(self, text="End date").grid(row=1, column=0)
+        ttk.Label(self, text="End date").grid(row=2, column=0)
 
         start_date = ttk.DateEntry(self, firstweekday=0, dateformat="%Y-%m-%d")
         end_date = ttk.DateEntry(self, firstweekday=0, dateformat="%Y-%m-%d")
         start_date.set_date(self.start_date)
         end_date.set_date(self.end_date)
 
-        start_date.grid(row=0, column=1)
-        end_date.grid(row=1, column=1)
+        start_date.grid(row=1, column=0)
+        end_date.grid(row=3, column=0)
 
         # Filters: Area, Type, Project, ...
         filter_values = ["Areas", "Types", "Projects"]
         self.filter_var = tk.StringVar(value=filter_values[0])
-        ttk.Label(self, text="Filter").grid(row=2, column=0)
+        ttk.Label(self, text="Filter").grid(row=4, column=0)
         self.filter_combo = ttk.Combobox(
             self, values=filter_values, textvariable=self.filter_var, state="readonly"
         )
-        self.filter_combo.grid(row=2, column=1)
+        self.filter_combo.grid(row=5, column=0)
 
         # Items: items of selected filter
         self.item_var = tk.StringVar()
-        ttk.Label(self, text="Items").grid(row=3, column=0)
+        ttk.Label(self, text="Items").grid(row=6, column=0)
         self.item_combo = ttk.Combobox(
             self, textvariable=self.item_var, state="readonly"
         )
-        self.item_combo.grid(row=3, column=1)
+        self.item_combo.grid(row=7, column=0)
 
         # handlers name
         self.filter_combo.handler_name = "filter_select"
         self.item_combo.handler_name = "item_select"
 
         for child in self.winfo_children():
-            child.grid_configure(padx=10, pady=2, sticky="nswe")
+            child.grid_configure(sticky="nswe")
             # bind event to each combo
             if child.widgetName == "ttk::combobox":
                 child.bind("<<ComboboxSelected>>", self.on_combo_select)
@@ -376,11 +346,14 @@ class CalendarView(ttk.Frame):
         self.prev_card = None
         self.current_card = None
 
-        for child in self.winfo_children():
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=1)
+        self.columnconfigure(2, weight=1)
+        self.columnconfigure(3, weight=1)
+        for i, child in enumerate(self.winfo_children()):
+            # self.columnconfigure(i, weight=1)
             child.grid_configure(pady=5)
 
-        self.columnconfigure(0, weight=1)
-        self.rowconfigure(0, weight=1)
 
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
@@ -443,6 +416,11 @@ class CalendarView(ttk.Frame):
                 if child.widgetName == "ttk::label":
                     child.bind("<Button-1>", self.on_label_select)
 
+        # for i, child in enumerate(self.winfo_children()):
+        #     print(i, child)
+        #     child.rowconfigure(i, weight=1)
+        #     child.columnconfigure(i, weight=1)
+
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
         card.name_label.config(text=calendar.calendar_name.title())
@@ -500,56 +478,101 @@ class ActionView(ttk.Frame):
         self.master.hbar_chart_view.refresh_chart()
 
 
-class MainFrame(ttk.Frame):
+class MainFrame(ScrolledFrame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-
-        # -- row 0 ---
+        self.master = master
+        # component
+        self.corner_frame = ttk.Frame(self)
         self.calendar_view = CalendarView(self)
-        self.calendar_view.grid(row=0, column=0)
+        self.filter_view = FilterView(self.corner_frame)
+        self.report_view = ReportView(self.corner_frame)
+        self.action_view = ActionView(self.corner_frame)
+        self.stack_chart_view = ChartView(self)
+        self.pie_chart_view = ChartView(self)
+        self.bar_chart_view = ChartView(self)
+        self.hbar_chart_view = ChartView(self)
 
-        self.filter_view = FilterView(self)
-        self.filter_view.grid(row=0, column=1)
-
-        self.filter_report_view = FilterReportView(self)
-        self.filter_report_view.grid(row=0, column=2)
-
-        self.action_view = ActionView(self)
+        # corner frame
+        self.filter_view.grid(row=0, column=0)
+        self.report_view.grid(row=0, column=1)
         self.action_view.grid(row=0, column=2)
 
-        # -- row 1 ---
-        self.stack_chart_view = ChartView(self)
-        self.stack_chart_view.grid(row=1, column=0, columnspan=2)
+        for child in self.corner_frame.winfo_children():
+            child.config(padding=5, relief="solid")
+            child.grid_configure(pady=5, padx=5, sticky="NSEW")
 
-        self.pie_chart_view = ChartView(self)
-        self.pie_chart_view.grid(row=1, column=2)
+        self.corner_frame.rowconfigure(0, weight=1)
+        self.corner_frame.columnconfigure(0, weight=3)
+        self.corner_frame.columnconfigure(1, weight=3)
+        self.corner_frame.columnconfigure(2, weight=1)
 
-        # -- row 2 ---
-        self.bar_chart_view = ChartView(self)
-        self.bar_chart_view.grid(row=2, column=0, columnspan=2)
-
-        self.hbar_chart_view = ChartView(self)
-        self.hbar_chart_view.grid(row=2, column=2)
+        # grid
+        self.calendar_view.grid(row=0, column=0)
+        self.corner_frame.grid(row=0, column=1)
+         
+        self.stack_chart_view.grid(row=1, column=0)
+        self.pie_chart_view.grid(row=1, column=1)
+        self.bar_chart_view.grid(row=2, column=0)
+        self.hbar_chart_view.grid(row=2, column=1)
 
         for child in self.winfo_children():
             child.config(padding=5)
-            child.grid_configure(pady=5, padx=5, stick="NSWE")
+            child.grid_configure(pady=5, padx=5, sticky="NSEW")
 
-        self.filter_report_view.grid_configure(sticky="NSW")
-        self.action_view.grid_configure(sticky="NSE")
-
-        self.rowconfigure(0, weight=1)
+        self.rowconfigure(0, weight=3)
         self.rowconfigure(1, weight=1)
         self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, weight=10)
-        self.columnconfigure(3, weight=1)
+        self.columnconfigure(0, weight=9)
+        self.columnconfigure(1, weight=1)
+
+        self.master.bind("<Configure>", self.on_window_resize)
+
+    def on_window_resize(self, event):
+        self.focus()
+        width = self.master.winfo_width()
+        height = self.master.winfo_height()
+        print("Current width:", width)
+        print("Current height:", height)
+        print("Grid size", self.grid_size())
+        if width <= 950:
+            self.calendar_view.grid_configure(row=0, column=0)
+            self.corner_frame.grid_configure(row=1, column=0)
+            self.stack_chart_view.grid_configure(row=2, column=0)
+            self.pie_chart_view.grid_configure(row=3, column=0)
+            self.bar_chart_view.grid_configure(row=4, column=0)
+            self.hbar_chart_view.grid_configure(row=5, column=0)
+
+            self.rowconfigure(0, weight=1)
+            self.rowconfigure(1, weight=1)
+            self.rowconfigure(2, weight=1)
+            self.rowconfigure(3, weight=1)
+            self.rowconfigure(4, weight=1)
+            self.rowconfigure(5, weight=1)
+            self.columnconfigure(0, weight=1)
+            self.columnconfigure(1, weight=0)
+
+        else:
+            self.calendar_view.grid(row=0, column=0)
+            self.corner_frame.grid(row=0, column=1)
+            self.stack_chart_view.grid(row=1, column=0)
+            self.pie_chart_view.grid(row=1, column=1)
+            self.bar_chart_view.grid(row=2, column=0)
+            self.hbar_chart_view.grid(row=2, column=1)
+
+            self.rowconfigure(0, weight=3)
+            self.rowconfigure(1, weight=1)
+            self.rowconfigure(2, weight=1)
+            self.columnconfigure(0, weight=3)
+            self.columnconfigure(1, weight=1)
 
 
 class App(ttk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Gcal")
-        self.minsize(640, 480)
+        self.minsize(550, 750)
+        self.geometry("1100x750")
         self.style = ttk.Style("darkly")
         self.update_idletasks()
 

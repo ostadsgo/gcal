@@ -7,7 +7,7 @@ class Controller:
         self.model = context.model
         self.calendar_view = context.get_view("calendar")
         self.filter_view = context.get_view("filter")
-        self.filter_report_view = context.get_view("filter_report")
+        self.report_view = context.get_view("report")
         self.stack_chart_view = context.get_view("stack_chart")
         self.bar_chart_view = context.get_view("bar_chart")
         self.hbar_chart_view = context.get_view("hbar_chart")
@@ -59,7 +59,7 @@ class Controller:
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
         report = self.model.report_by_filter(calendar_id, start_date, end_date, filter_val, item)
-        self.filter_report_view.create_report_rows(report)
+        self.report_view.create_report_rows(report)
 
     def update_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
@@ -84,7 +84,7 @@ class Controller:
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
         report = self.model.report_by_filter(calendar_id, start_date, end_date, filter_val, item)
-        self.filter_report_view.update_rows(report)
+        self.report_view.update_rows(report)
 
     # -- update charts --
     def update_bar_chart(self):
