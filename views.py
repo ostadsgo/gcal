@@ -472,10 +472,11 @@ class ActionView(ttk.Frame):
 
     def refresh_all_charts(self):
         """refresh chart to apply the theme(dark or light)."""
-        self.master.stack_chart_view.refresh_chart()
-        self.master.pie_chart_view.refresh_chart()
-        self.master.bar_chart_view.refresh_chart()
-        self.master.hbar_chart_view.refresh_chart()
+        self.mainframe = self.master.master
+        self.mainframe.stack_chart_view.refresh_chart()
+        self.mainframe.pie_chart_view.refresh_chart()
+        self.mainframe.bar_chart_view.refresh_chart()
+        self.mainframe.hbar_chart_view.refresh_chart()
 
 
 class MainFrame(ScrolledFrame):
@@ -532,9 +533,12 @@ class MainFrame(ScrolledFrame):
         self.focus()
         width = self.master.winfo_width()
         height = self.master.winfo_height()
-        print("Current width:", width)
-        print("Current height:", height)
-        print("Grid size", self.grid_size())
+        # print("Current width:", width)
+        # print("Current height:", height)
+        # print("Grid size", self.grid_size())
+        self.autohide_scrollbar()
+        print(self.autohide)
+
         if width <= 950:
             self.calendar_view.grid_configure(row=0, column=0)
             self.corner_frame.grid_configure(row=1, column=0)
