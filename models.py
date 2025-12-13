@@ -3,6 +3,8 @@ from dataclasses import dataclass
 import sqlite3
 from pathlib import Path
 
+from datetime import date
+
 
 BASE_DIR = Path(__file__).resolve().parent
 DB_PATH = BASE_DIR / "db"
@@ -420,6 +422,94 @@ class CalendarModel:
         """
         row = self.db.fetch_one(query, (calendar_id, year, month, project_name))
         return Record(row)
+
+    def distinct_areas_by_date_range(self, calendar_id, start_date, end_date, limit=5):
+        """Get distinct areas within a date range with their total hours and event count"""
+        query = """
+            SELECT DISTINCT 
+                a.id AS area_id,
+                a.name AS name,
+                SUM(e.duration) AS total_hours,
+                COUNT(e.id) AS event_count
+            FROM events e
+                JOIN areas a ON e.area_id = a.id
+            WHERE e.calendar_id = ?
+                AND e.date BETWEEN ? AND ?
+                AND a.name IS NOT NULL
+            GROUP BY a.id, a.name
+            ORDER BY total_hours DESC
+            LIMIT ?
+        """
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
+        return [Record(row) for row in rows]
+
+    def distinct_types_by_date_range(self, calendar_id, start_date, end_date, limit=5):
+        """Get distinct types within a date range with their total hours and event count"""
+        query = """
+            SELECT DISTINCT 
+                t.id AS type_id,
+                t.name AS name,
+                SUM(e.duration) AS total_hours,
+                COUNT(e.id) AS event_count
+            FROM events e
+                JOIN types t ON e.type_id = t.id
+            WHERE e.calendar_id = ?
+                AND e.date BETWEEN ? AND ?
+                AND t.name IS NOT NULL
+            GROUP BY t.id, t.name
+            ORDER BY total_hours DESC
+            LIMIT ?
+        """
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
+        return [Record(row) for row in rows]
+
+    def distinct_projects_by_date_range(
+        self, calendar_id, start_date, end_date, limit=5
+    ):
+        """Get distinct projects within a date range with their total hours and event count"""
+        query = """
+            SELECT DISTINCT 
+                p.id AS project_id,
+                p.name AS name,
+                SUM(e.duration) AS total_hours,
+                COUNT(e.id) AS event_count
+            FROM events e
+                JOIN projects p ON e.project_id = p.id
+            WHERE e.calendar_id = ?
+                AND e.date BETWEEN ? AND ?
+                AND p.name IS NOT NULL
+            GROUP BY p.id, p.name
+            ORDER BY total_hours DESC
+            LIMIT ?
+        """
+        rows = self.db.fetch_all(query, (calendar_id, start_date, end_date, limit))
+        return [Record(row) for row in rows]
+
+    def distinct_values_by_filter(
+        self,
+        calendar_id: int,
+        start_date: date,
+        end_date: date,
+        filter_val: str,
+        limit=5,
+    ) -> list[Record]:
+        rows = []
+        if filter_val == "Areas":
+            rows = self.distinct_areas_by_date_range(
+                 calendar_id, str(start_date), str(end_date), limit
+            )
+        elif filter_val == "Types":
+            rows = self.distinct_types_by_date_range(
+                calendar_id, str(start_date), str(end_date), limit
+            )
+        elif filter_val == "Projects":
+            rows = self.distinct_projects_by_date_range(
+                calendar_id, str(start_date), str(end_date), limit
+            )
+        else:
+            print(f"Filter value `{filter_val}` not a valid table.")
+
+        return rows
 
 
 class DatabaseManager:

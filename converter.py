@@ -74,7 +74,7 @@ class IcsToDb:
         """
         )
 
-        # Events table (added year, month, day, hour, minute, second fields)
+        # Events table (added date column and datetime component fields)
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS events (
@@ -83,6 +83,7 @@ class IcsToDb:
                 summary TEXT NOT NULL,
                 dtstart TEXT NOT NULL,
                 dtend TEXT NOT NULL,
+                date TEXT NOT NULL,
                 duration REAL NOT NULL,
                 year INTEGER,
                 month INTEGER,
@@ -105,6 +106,9 @@ class IcsToDb:
         # Create indexes
         cursor.execute(
             "CREATE INDEX IF NOT EXISTS idx_events_dtstart ON events(dtstart)"
+        )
+        cursor.execute(
+            "CREATE INDEX IF NOT EXISTS idx_events_date ON events(date)"
         )
         cursor.execute(
             "CREATE INDEX IF NOT EXISTS idx_events_calendar_id ON events(calendar_id)"
@@ -271,6 +275,29 @@ class IcsToDb:
 
         return None, None, None, None, None, None
 
+    def extract_date(self, dt_str):
+        """Extract date in YYYY-MM-DD format from datetime string"""
+        if not dt_str:
+            return None
+
+        try:
+            # Parse YYYYMMDD format (all-day events)
+            if len(dt_str) == 8:
+                year = dt_str[0:4]
+                month = dt_str[4:6]
+                day = dt_str[6:8]
+                return f"{year}-{month}-{day}"
+            # Parse YYYYMMDDTHHMMSS format
+            elif "T" in dt_str:
+                year = dt_str[0:4]
+                month = dt_str[4:6]
+                day = dt_str[6:8]
+                return f"{year}-{month}-{day}"
+        except (ValueError, IndexError):
+            pass
+
+        return None
+
     def datetime_to_str(self, dt, target_tz=None):
         """Convert datetime object to string in target timezone"""
         if dt is None:
@@ -347,6 +374,9 @@ class IcsToDb:
                     self.calendar_timezone if not is_all_day else None,
                 )
 
+                # Extract date in YYYY-MM-DD format
+                date_str = self.extract_date(dtstart_str)
+
                 # Calculate duration in hours (0 for all-day events)
                 duration = 0
                 if not is_all_day and dtstart and dtend:
@@ -374,16 +404,17 @@ class IcsToDb:
                     cursor.execute(
                         """
                         INSERT INTO events (
-                            calendar_id, summary, dtstart, dtend, duration,
+                            calendar_id, summary, dtstart, dtend, date, duration,
                             year, month, day, hour, minute, second,
                             area_id, project_id, type_id, is_all_day
-                        ) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        ) VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                         """,
                         (
                             calendar_id,
                             str(component.get("summary", "")),
                             dtstart_str,
                             dtend_str,
+                            date_str,
                             duration,
                             year,
                             month,

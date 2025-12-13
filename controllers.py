@@ -17,9 +17,11 @@ class Controller:
         self.calendar_view.register_event_handler(
             "calendar_select", self.handle_calendar_select
         )
-        self.filter_view.register_event_handler("year_select", self.handle_year_select)
         self.filter_view.register_event_handler(
-            "month_select", self.handle_month_select
+            "start_date_selected", self.handle_start_date_selected
+        )
+        self.filter_view.register_event_handler(
+            "end_date_selected", self.handle_end_date_selected
         )
         self.filter_view.register_event_handler(
             "filter_select", self.handle_filter_select
@@ -34,19 +36,17 @@ class Controller:
         self.update_calendars_card()
 
         # widgets
-        self.update_year_widget()
-        self.update_month_widget()
         self.update_item_widget()
 
-        # Charts
-        self.update_stack_chart()
-        self.update_hbar_chart()
-        self.update_bar_chart()
-        self.update_pie_chart()
-
-        # Reports
-        self.create_report_rows()
-        self.update_filter_report()
+        # # Charts
+        # self.update_stack_chart()
+        # self.update_hbar_chart()
+        # self.update_bar_chart()
+        # self.update_pie_chart()
+        #
+        # # Reports
+        # self.create_report_rows()
+        # self.update_filter_report()
 
     def create_calendars_card(self):
         calendars = self.model.get_calendars_by_usage()
@@ -54,8 +54,6 @@ class Controller:
 
     def create_report_rows(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
         report = None
@@ -76,51 +74,25 @@ class Controller:
         for calendar in calendars:
             self.calendar_view.update_card(calendar)
 
-    def update_year_widget(self):
-        calendar_id = self.calendar_view.selected_calendar_id
-        rows = self.model.distinct_years(calendar_id)
-        values = [row.year for row in rows]
-        var = self.filter_view.year_var 
-        combo = self.filter_view.year_combo
-        self.filter_view.update_combo_values(var, combo, values)
-
-    def update_month_widget(self):
-        calendar_id = self.calendar_view.selected_calendar_id
-        rows = self.model.distinct_months(calendar_id)
-        values = [row.month for row in rows]
-        var = self.filter_view.month_var 
-        combo = self.filter_view.month_combo
-        self.filter_view.update_combo_values(var, combo, values)
-
     def update_item_widget(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
+        start_date = self.filter_view.start_date
+        end_date = self.filter_view.end_date
         filter_val = self.filter_view.filter_var.get()
-        if all([year, month, filter_val]):
+        rows = self.model.distinct_values_by_filter(
+            calendar_id, start_date, end_date, filter_val
+        )
+        print(str(start_date))
+        print(str(end_date))
+        print(rows)
 
-            if filter_val == "Areas":
-                rows = self.model.distinct_areas_by_year_month(calendar_id, year, month)
-            elif filter_val == "Types":
-                rows = self.model.distinct_types_by_year_month(calendar_id, year, month)
-            elif filter_val == "Projects":
-                rows = self.model.distinct_projects_by_year_month(
-                    calendar_id, year, month
-                )
-            else:
-                print(f"Unknow filter. {filter_val}.")
-
-            values = [row.name for row in rows]
-            combo = self.filter_view.item_combo
-            var = self.filter_view.item_var
-            self.filter_view.update_combo_values(var, combo, values)
-        else:
-            self.filter_view.item_var.set("")
+        # values = [row.name for row in rows]
+        # combo = self.filter_view.item_combo
+        # var = self.filter_view.item_var
+        # self.filter_view.update_combo_values(var, combo, values)
 
     def update_filter_report(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
         report = None
@@ -141,16 +113,17 @@ class Controller:
         calendar_id = self.calendar_view.selected_calendar_id
         year = self.filter_view.year_var.get()
         month = self.filter_view.month_var.get()
-        filtred_types = self.model.distinct_types_by_year_month(calendar_id, year, month)
+        filtred_types = self.model.distinct_types_by_year_month(
+            calendar_id, year, month
+        )
         self.bar_chart_view.update_bar_chart(filtred_types)
 
     def update_stack_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
         filter_val = self.filter_view.filter_var.get()
         item = self.filter_view.item_var.get()
         rows = None
+        self.models.daily_duration_by_filter(calendar_id, date)
         if item:
             if filter_val == "Areas":
                 rows = self.model.area_daily_duration(calendar_id, year, month, item)
@@ -170,8 +143,6 @@ class Controller:
 
     def update_hbar_chart(self):
         calendar_id = self.calendar_view.selected_calendar_id
-        year = self.filter_view.year_var.get()
-        month = self.filter_view.month_var.get()
         top_areas = self.model.distinct_areas_by_year_month(calendar_id, year, month)
         self.hbar_chart_view.update_hbar_chart(top_areas)
 
@@ -187,8 +158,6 @@ class Controller:
     # ---------------
     def handle_calendar_select(self):
         self.update_pie_chart()
-        self.update_year_widget()
-        self.update_month_widget()
         self.update_item_widget()
         self.update_stack_chart()
         self.update_hbar_chart()
@@ -200,20 +169,20 @@ class Controller:
         self.update_stack_chart()
         self.update_filter_report()
 
-    def handle_year_select(self):
+    def handle_start_date_selected(self):
         self.update_item_widget()
-        self.update_stack_chart()
-        self.update_filter_report()
+        # self.update_stack_chart()
+        # self.update_filter_report()
 
-    def handle_month_select(self):
+    def handle_end_date_selected(self):
         self.update_item_widget()
         # charts
-        self.update_stack_chart()
-        self.update_bar_chart()
-        self.update_pie_chart()
-        self.update_hbar_chart()
-        # reports
-        self.update_filter_report()
+        # self.update_stack_chart()
+        # self.update_bar_chart()
+        # self.update_pie_chart()
+        # self.update_hbar_chart()
+        # # reports
+        # self.update_filter_report()
 
     def handle_item_select(self):
         self.update_stack_chart()

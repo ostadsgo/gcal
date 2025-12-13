@@ -1,8 +1,7 @@
+from datetime import date
+
 import tkinter as tk
 import ttkbootstrap as ttk
-from ttkbootstrap.dialogs import DatePickerDialog
-
-
 
 # matplotlib
 import numpy as np
@@ -13,7 +12,8 @@ from matplotlib.patheffects import withStroke
 
 plt.style.use("dark_background")
 
-# TODO: 
+# TODO:
+
 
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -35,26 +35,26 @@ class ChartView(ttk.Frame):
     def refresh_chart(self):
         if self.current_data is None or self.chart_type is None:
             return
-        
-        if self.chart_type == 'pie':
+
+        if self.chart_type == "pie":
             self.update_pie_chart(self.current_data)
-        elif self.chart_type == 'bar':
+        elif self.chart_type == "bar":
             self.update_bar_chart(self.current_data)
-        elif self.chart_type == 'hbar':
+        elif self.chart_type == "hbar":
             self.update_hbar_chart(self.current_data)
-        elif self.chart_type == 'scatter':
+        elif self.chart_type == "scatter":
             self.update_scatter_chart(self.current_data)
-        elif self.chart_type == 'stack':
+        elif self.chart_type == "stack":
             days, hrs, color = self.current_data
             self.update_stack_chart(days, hrs, color)
 
     def update_pie_chart(self, data):
         self.current_data = data
-        self.chart_type = 'pie'
+        self.chart_type = "pie"
 
         self.ax.clear()
-        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
-        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
+        self.fig.patch.set_facecolor(plt.rcParams["figure.facecolor"])
+        self.ax.set_facecolor(plt.rcParams["axes.facecolor"])
 
         # data
         names = [
@@ -88,45 +88,55 @@ class ChartView(ttk.Frame):
 
     def update_bar_chart(self, data):
         self.current_data = data
-        self.chart_type = 'bar'
+        self.chart_type = "bar"
         self.ax.clear()
-        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
-        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
-        
+        self.fig.patch.set_facecolor(plt.rcParams["figure.facecolor"])
+        self.ax.set_facecolor(plt.rcParams["axes.facecolor"])
+
         types = [row.name for row in data]
         durations = [row.total_hours for row in data]
-        
+
         # Create bars with different colors and enhancements
         colors = plt.cm.Set3(np.linspace(0, 1, len(types)))
-        bars = self.ax.bar(range(len(types)), durations, color=colors, 
-                           alpha=0.8,  # Transparency
-                           linewidth=2,  # Border thickness
-                           width=0.7)  # Bar width (0.7 adds spacing)
-        
+        bars = self.ax.bar(
+            range(len(types)),
+            durations,
+            color=colors,
+            alpha=0.8,  # Transparency
+            linewidth=2,  # Border thickness
+            width=0.7,
+        )  # Bar width (0.7 adds spacing)
+
         # Add gradient effect to bars
         for bar, color in zip(bars, colors):
-            bar.set_capstyle('round')  # Rounded top
-        
+            bar.set_capstyle("round")  # Rounded top
+
         # Remove x-axis labels entirely
         self.ax.set_xticks([])
         self.ax.set_xlabel("")
-        
+
         # Remove spines for cleaner look
         self.ax.spines["top"].set_visible(False)
         self.ax.spines["right"].set_visible(False)
         self.ax.spines["bottom"].set_visible(False)
         self.ax.spines["left"].set_visible(False)
-        
+
         # Subtle horizontal grid only
-        self.ax.grid(True, axis='y', linestyle="--", alpha=0.2, color="gray", zorder=0)
-        
+        self.ax.grid(True, axis="y", linestyle="--", alpha=0.2, color="gray", zorder=0)
+
         # Create legend with type names
         self.ax.legend(
-            bars, types, title="Types", loc="upper right", 
-            bbox_to_anchor=(1.15, 1), framealpha=0.9, 
-            edgecolor='gray', fancybox=True, shadow=True
+            bars,
+            types,
+            title="Types",
+            loc="upper right",
+            bbox_to_anchor=(1.15, 1),
+            framealpha=0.9,
+            edgecolor="gray",
+            fancybox=True,
+            shadow=True,
         )
-        
+
         # Enhanced value labels on top of bars
         for bar, duration in zip(bars, durations):
             height = bar.get_height()
@@ -137,42 +147,45 @@ class ChartView(ttk.Frame):
                 ha="center",
                 va="bottom",
                 fontsize=10,
-                fontweight='bold',
-                bbox=dict(boxstyle='round,pad=0.3', facecolor='#A1BC98', 
-                         edgecolor='gray', alpha=0.8)
+                fontweight="bold",
+                bbox=dict(
+                    boxstyle="round,pad=0.3",
+                    facecolor="#A1BC98",
+                    edgecolor="gray",
+                    alpha=0.8,
+                ),
             )
-        
-        self.ax.set_ylabel("Hours", fontsize=12, fontweight='bold')
-        self.ax.set_title("Types", fontsize=14, fontweight='bold', pad=20)
-        
+
+        self.ax.set_ylabel("Hours", fontsize=12, fontweight="bold")
+        self.ax.set_title("Types", fontsize=14, fontweight="bold", pad=20)
+
         # Add tick parameters
-        self.ax.tick_params(axis='y', which='major', labelsize=10, width=0)
-        
+        self.ax.tick_params(axis="y", which="major", labelsize=10, width=0)
+
         self.fig.tight_layout()
         self.canvas.draw()
 
     def update_hbar_chart(self, data):
         self.current_data = data
-        self.chart_type = 'hbar'
+        self.chart_type = "hbar"
 
         self.ax.clear()
 
-        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
-        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
+        self.fig.patch.set_facecolor(plt.rcParams["figure.facecolor"])
+        self.ax.set_facecolor(plt.rcParams["axes.facecolor"])
 
         areas = [row.name for row in data]
         durations = [row.total_hours for row in data]
         colors = plt.cm.Set3(np.linspace(0, 1, len(areas)))
 
         self.ax.barh(areas, durations, color=colors, height=0.7, alpha=0.8)
-        self.ax.grid(True, axis='x', linestyle="--", alpha=0.2, color="gray", zorder=0)
-        self.ax.tick_params(axis='both', which='major', labelsize=10, width=0)
+        self.ax.grid(True, axis="x", linestyle="--", alpha=0.2, color="gray", zorder=0)
+        self.ax.tick_params(axis="both", which="major", labelsize=10, width=0)
 
         self.ax.spines["top"].set_visible(False)
         self.ax.spines["right"].set_visible(False)
         self.ax.spines["bottom"].set_visible(False)
         self.ax.spines["left"].set_visible(False)
-
 
         self.ax.set_title("Areas")
         self.fig.tight_layout()
@@ -181,26 +194,28 @@ class ChartView(ttk.Frame):
 
     def update_stack_chart(self, days, hrs, color):
         self.current_data = (days, hrs, color)
-        self.chart_type = 'stack'
+        self.chart_type = "stack"
 
         self.ax.clear()
-        self.fig.patch.set_facecolor(plt.rcParams['figure.facecolor'])
-        self.ax.set_facecolor(plt.rcParams['axes.facecolor'])
+        self.fig.patch.set_facecolor(plt.rcParams["figure.facecolor"])
+        self.ax.set_facecolor(plt.rcParams["axes.facecolor"])
 
         self.ax.stackplot(days, hrs, colors=[color], alpha=0.7)
-        self.ax.grid(True, axis='y', linestyle="--", alpha=0.3, color="gray")
-        line = self.ax.plot(days, hrs, color=color, linewidth=2.5, solid_capstyle='round')[0]
-        line.set_path_effects([withStroke(linewidth=5, foreground='white', alpha=0.3)])
+        self.ax.grid(True, axis="y", linestyle="--", alpha=0.3, color="gray")
+        line = self.ax.plot(
+            days, hrs, color=color, linewidth=2.5, solid_capstyle="round"
+        )[0]
+        line.set_path_effects([withStroke(linewidth=5, foreground="white", alpha=0.3)])
 
         self.ax.spines["top"].set_visible(False)
         self.ax.spines["right"].set_visible(False)
         self.ax.spines["bottom"].set_visible(False)
         self.ax.spines["left"].set_visible(False)
 
-        self.ax.set_ylabel('Hours', fontsize=12, fontweight='bold')
-        self.ax.set_xlabel('Days', fontsize=12, fontweight='bold')
+        self.ax.set_ylabel("Hours", fontsize=12, fontweight="bold")
+        self.ax.set_xlabel("Days", fontsize=12, fontweight="bold")
 
-        self.ax.tick_params(axis='both', which='major', labelsize=10, width=0)
+        self.ax.tick_params(axis="both", which="major", labelsize=10, width=0)
         self.ax.set_xticks(days)
 
         # Total text annotation
@@ -221,11 +236,32 @@ class ChartView(ttk.Frame):
 class DateView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
-        self.start_date_entry = ttk.DateEntry(self)
-        self.end_date_entry = ttk.DateEntry(self)
-        self.start_date_entry.grid(row=0, column=0)
-        self.end_date_entry.grid(row=1, column=0)
-        
+        self.start_date = None
+        self.end_date = None
+        self.setup_ui()
+
+    def setup_ui(self):
+        ttk.Label(self, text="Start date").grid(row=0, column=0)
+        ttk.Label(self, text="End date").grid(row=1, column=0)
+
+        self.start_date_entry = ttk.DateEntry( self, firstweekday=0, dateformat="%Y-%m-%d")
+        self.end_date_entry = ttk.DateEntry(self, firstweekday=0, dateformat="%Y-%m-%d")
+
+        # grid
+        self.start_date_entry.grid(row=0, column=1)
+        self.end_date_entry.grid(row=1, column=1)
+
+        for child in self.winfo_children():
+            child.grid_configure(padx=5, pady=5)
+
+        self.start_date_entry.bind("<<DateEntrySelected>>", self.on_start_date_selected)
+
+    def on_start_date_selected(self, event):
+        self.start_date = event.widget.get_date().date()
+
+    def on_end_date_selected(self, event):
+        self.end_date = event.widget.get_date().date()
+
 
 class FilterReportView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -256,17 +292,20 @@ class FilterView(ttk.Frame):
         super().__init__(master, **kwargs)
         self.handlers = {}
 
-        # Year
-        self.year_var = tk.StringVar()
-        ttk.Label(self, text="Year").grid(row=0, column=0)
-        self.year_combo = ttk.Combobox(self, textvariable=self.year_var, state="readonly")
-        self.year_combo.grid(row=0, column=1)
+        # date widgets
+        self.start_date = date(2025, 11, 1)
+        self.end_date = date(2025, 11, 30)
 
-        # Month
-        self.month_var = tk.StringVar()
-        ttk.Label(self, text="Month").grid(row=1, column=0)
-        self.month_combo = ttk.Combobox(self, textvariable=self.month_var, state="readonly")
-        self.month_combo.grid(row=1, column=1)
+        ttk.Label(self, text="Start date").grid(row=0, column=0)
+        ttk.Label(self, text="End date").grid(row=1, column=0)
+
+        start_date = ttk.DateEntry(self, firstweekday=0, dateformat="%Y-%m-%d")
+        end_date = ttk.DateEntry(self, firstweekday=0, dateformat="%Y-%m-%d")
+        start_date.set_date(self.start_date)
+        end_date.set_date(self.end_date)
+
+        start_date.grid(row=0, column=1)
+        end_date.grid(row=1, column=1)
 
         # Filters: Area, Type, Project, ...
         filter_values = ["Areas", "Types", "Projects"]
@@ -280,13 +319,12 @@ class FilterView(ttk.Frame):
         # Items: items of selected filter
         self.item_var = tk.StringVar()
         ttk.Label(self, text="Items").grid(row=3, column=0)
-        self.item_combo = ttk.Combobox(self, textvariable=self.item_var, state="readonly")
+        self.item_combo = ttk.Combobox(
+            self, textvariable=self.item_var, state="readonly"
+        )
         self.item_combo.grid(row=3, column=1)
 
-
         # handlers name
-        self.year_combo.handler_name = "year_select"
-        self.month_combo.handler_name = "month_select"
         self.filter_combo.handler_name = "filter_select"
         self.item_combo.handler_name = "item_select"
 
@@ -295,6 +333,9 @@ class FilterView(ttk.Frame):
             # bind event to each combo
             if child.widgetName == "ttk::combobox":
                 child.bind("<<ComboboxSelected>>", self.on_combo_select)
+
+        start_date.bind("<<DateEntrySelected>>", self.on_start_date_selected)
+        end_date.bind("<<DateEntrySelected>>", self.on_end_date_selected)
 
         # row/columnconfigure
         self.columnconfigure(0, weight=1)
@@ -305,6 +346,15 @@ class FilterView(ttk.Frame):
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
 
+    def on_start_date_selected(self, event):
+        self.start_date = event.widget.get_date().date()
+        handler = self.handlers["start_date_selected"]
+        handler()
+
+    def on_end_date_selected(self, event):
+        self.end_date = event.widget.get_date().date()
+        handler = self.handlers["end_date_selected"]
+        handler()
 
     def on_combo_select(self, event):
         handler_name = event.widget.handler_name
@@ -314,6 +364,7 @@ class FilterView(ttk.Frame):
     def update_combo_values(self, var, combo, values):
         var.set(values[0] if values else "")
         combo["values"] = values
+
 
 # Top Frame
 class CalendarView(ttk.Frame):
@@ -354,7 +405,7 @@ class CalendarView(ttk.Frame):
         self.update_card_style()
 
     def on_label_select(self, event):
-        # Save current card before handling event. 
+        # Save current card before handling event.
         self.prev_card = self.cards[self.selected_calendar_id]
         # handlers
         handler = self.handlers["calendar_select"]
@@ -442,11 +493,12 @@ class ActionView(ttk.Frame):
         self.refresh_all_charts()
 
     def refresh_all_charts(self):
-        """ refresh chart to apply the theme(dark or light)."""
+        """refresh chart to apply the theme(dark or light)."""
         self.master.stack_chart_view.refresh_chart()
         self.master.pie_chart_view.refresh_chart()
         self.master.bar_chart_view.refresh_chart()
         self.master.hbar_chart_view.refresh_chart()
+
 
 class MainFrame(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -461,9 +513,6 @@ class MainFrame(ttk.Frame):
 
         self.filter_report_view = FilterReportView(self)
         self.filter_report_view.grid(row=0, column=2)
-
-        self.date_view = DateView(self)
-        self.date_view.grid(row=0, column=2)
 
         self.action_view = ActionView(self)
         self.action_view.grid(row=0, column=2)
