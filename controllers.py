@@ -141,11 +141,18 @@ class Controller:
         self.update_filter_report()
 
     def handle_start_date_selected(self):
+        # update the item widget
         self.update_item_widget()
+        # update charts
         self.update_stack_chart()
+        self.update_bar_chart()
+        self.update_pie_chart()
+        self.update_hbar_chart()
+        # update report
         self.update_filter_report()
 
     def handle_end_date_selected(self):
+        # update the item widget
         self.update_item_widget()
         # charts
         self.update_stack_chart()

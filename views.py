@@ -3,7 +3,6 @@ from datetime import date
 import tkinter as tk
 import ttkbootstrap as ttk
 from ttkbootstrap.scrolled import ScrolledFrame
-import customtkinter as ctk
 
 # matplotlib
 import numpy as np
@@ -26,11 +25,20 @@ class ChartView(ttk.Frame):
 
     def setup_ui(self):
         """Set up the chart canvas."""
-        self.fig = Figure(figsize=(5, 3), dpi=100)
+        self.fig = Figure(figsize=(5, 3.3), dpi=100)
         self.ax = self.fig.add_subplot(111)
+
+
+        self.ax.spines["top"].set_visible(False)
+        self.ax.spines["right"].set_visible(False)
+        self.ax.spines["bottom"].set_visible(False)
+        self.ax.spines["left"].set_visible(False)
+
         self.canvas = FigureCanvasTkAgg(self.fig, self)
-        self.canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
-        self.fig.tight_layout()
+        self.canvas.get_tk_widget().grid(row=0, column=0, sticky="nswe")
+        self.fig.tight_layout(pad=3.0)
+
+        # grid row and column configure
         self.rowconfigure(0, weight=1)
         self.columnconfigure(0, weight=1)
 
@@ -60,6 +68,7 @@ class ChartView(ttk.Frame):
 
         # data
         names = [
+            # trim item(project) name
             item.name if len(item.name) < 15 else item.name[:15] + "..."
             for item in data
         ]
@@ -104,40 +113,20 @@ class ChartView(ttk.Frame):
             range(len(types)),
             durations,
             color=colors,
-            alpha=0.8,  # Transparency
-            linewidth=2,  # Border thickness
+            alpha=0.8,
+            linewidth=2,
             width=0.7,
-        )  # Bar width (0.7 adds spacing)
+        )  
 
         # Add gradient effect to bars
         for bar, color in zip(bars, colors):
-            bar.set_capstyle("round")  # Rounded top
+            bar.set_capstyle("round")
 
-        # Remove x-axis labels entirely
-        self.ax.set_xticks([])
-        self.ax.set_xlabel("")
-
-        # Remove spines for cleaner look
-        self.ax.spines["top"].set_visible(False)
-        self.ax.spines["right"].set_visible(False)
-        self.ax.spines["bottom"].set_visible(False)
-        self.ax.spines["left"].set_visible(False)
+        self.ax.set_xticks(range(len(types)))  # Set tick positions
+        self.ax.set_xticklabels(types, rotation=0, ha='center')
 
         # Subtle horizontal grid only
         self.ax.grid(True, axis="y", linestyle="--", alpha=0.2, color="gray", zorder=0)
-
-        # Create legend with type names
-        self.ax.legend(
-            bars,
-            types,
-            title="Types",
-            loc="upper right",
-            bbox_to_anchor=(1.15, 1),
-            framealpha=0.9,
-            edgecolor="gray",
-            fancybox=True,
-            shadow=True,
-        )
 
         # Enhanced value labels on top of bars
         for bar, duration in zip(bars, durations):
@@ -164,7 +153,6 @@ class ChartView(ttk.Frame):
         # Add tick parameters
         self.ax.tick_params(axis="y", which="major", labelsize=10, width=0)
 
-        self.fig.tight_layout()
         self.canvas.draw()
 
     def update_hbar_chart(self, data):
@@ -180,17 +168,24 @@ class ChartView(ttk.Frame):
         durations = [row.total_hours for row in data]
         colors = plt.cm.Set3(np.linspace(0, 1, len(areas)))
 
-        self.ax.barh(areas, durations, color=colors, height=0.7, alpha=0.8)
+        bars = self.ax.barh(areas, durations, color=colors, height=0.7, alpha=0.8)
         self.ax.grid(True, axis="x", linestyle="--", alpha=0.2, color="gray", zorder=0)
         self.ax.tick_params(axis="both", which="major", labelsize=10, width=0)
-
-        self.ax.spines["top"].set_visible(False)
-        self.ax.spines["right"].set_visible(False)
-        self.ax.spines["bottom"].set_visible(False)
-        self.ax.spines["left"].set_visible(False)
-
+        for bar, duration in zip(bars, durations):
+            width = bar.get_width()
+            height = bar.get_y() + bar.get_height() / 2
+            text_x = width * 0.95
+            self.ax.text(
+                text_x,
+                height,
+                f"{duration:.1f}",
+                ha='right',  # Right aligned inside bar
+                va='center',
+                fontsize=9,
+                fontweight='bold',
+                color='#212121'  
+            )
         self.ax.set_title("Areas")
-        self.fig.tight_layout()
 
         self.canvas.draw()
 
@@ -209,11 +204,6 @@ class ChartView(ttk.Frame):
         )[0]
         line.set_path_effects([withStroke(linewidth=5, foreground="white", alpha=0.3)])
 
-        self.ax.spines["top"].set_visible(False)
-        self.ax.spines["right"].set_visible(False)
-        self.ax.spines["bottom"].set_visible(False)
-        self.ax.spines["left"].set_visible(False)
-
         self.ax.set_ylabel("Hours", fontsize=12, fontweight="bold")
         self.ax.set_xlabel("Days", fontsize=12, fontweight="bold")
 
@@ -229,7 +219,7 @@ class ChartView(ttk.Frame):
             transform=self.ax.transAxes,
             fontsize=11,
             verticalalignment="top",
-            bbox=dict(boxstyle="round", facecolor="green", alpha=0.8),
+            bbox=dict(boxstyle="round", facecolor="#A1BC98", alpha=0.8),
         )
 
         self.canvas.draw()
@@ -411,7 +401,7 @@ class CalendarView(ttk.Frame):
             card.projects_label.grid(row=5, column=0, sticky="ew")
 
             card.bind("<Button-1>", self.on_calendar_select)
-            card.grid(row=0, column=i, sticky="nsew", padx=5)
+            card.grid(row=0, column=i, sticky="nsew", padx=(0, 10))
             self.cards[calendar.calendar_id] = card
 
             for child in card.winfo_children():
@@ -459,7 +449,7 @@ class ActionView(ttk.Frame):
 
     def activate_dark_theme(self):
         global counter
-        self.root.style = ttk.Style("darkly")
+        self.root.style = ttk.Style("cyborg")
         plt.style.use("dark_background")
         self.refresh_all_charts()
 
@@ -479,10 +469,10 @@ class ActionView(ttk.Frame):
 
 class MainFrame(ScrolledFrame):
     def __init__(self, master, **kwargs):
-        super().__init__(master, **kwargs)
+        super().__init__(master,  **kwargs)
         self.master = master
 
-        # component
+        # Create components
         self.corner_frame = ttk.Frame(self)
         self.calendar_view = CalendarView(self)
         self.filter_view = FilterView(self.corner_frame)
@@ -493,40 +483,28 @@ class MainFrame(ScrolledFrame):
         self.bar_chart_view = ChartView(self)
         self.hbar_chart_view = ChartView(self)
 
+        self.children_config(self)
+        self.corner_frame_grid_config()
+        self.switch_big_screen_size()
+        self.master.bind("<Configure>", self.on_window_resize)
+
+    def children_config(self, frame: ttk.Frame):
+        for child in frame.winfo_children():
+            child.config(padding=5)
+            child.grid_configure(pady=5, padx=5, sticky="NSEW")
+
+    def corner_frame_grid_config(self):
         # corner frame
         self.filter_view.grid(row=0, column=0)
         self.report_view.grid(row=0, column=1)
         self.action_view.grid(row=0, column=2)
-
-        for child in self.corner_frame.winfo_children():
-            child.config(padding=5)
-            child.grid_configure(pady=5, padx=5, sticky="NSEW")
 
         self.corner_frame.rowconfigure(0, weight=1)
         self.corner_frame.columnconfigure(0, weight=3)
         self.corner_frame.columnconfigure(1, weight=3)
         self.corner_frame.columnconfigure(2, weight=1)
 
-        # grid
-        self.calendar_view.grid(row=0, column=0)
-        self.corner_frame.grid(row=0, column=1)
-         
-        self.stack_chart_view.grid(row=1, column=0)
-        self.pie_chart_view.grid(row=1, column=1)
-        self.bar_chart_view.grid(row=2, column=0)
-        self.hbar_chart_view.grid(row=2, column=1)
-
-        for child in self.winfo_children():
-            child.config(padding=5)
-            child.grid_configure(pady=5, padx=5, sticky="NSEW")
-
-        self.rowconfigure(0, weight=3)
-        self.rowconfigure(1, weight=1)
-        self.rowconfigure(2, weight=1)
-        self.columnconfigure(0, weight=9)
-        self.columnconfigure(1, weight=1)
-
-        self.master.bind("<Configure>", self.on_window_resize)
+        self.children_config(self.corner_frame)
 
     def on_window_resize(self, event):
         self.focus()
@@ -534,38 +512,45 @@ class MainFrame(ScrolledFrame):
         height = self.master.winfo_height()
 
         if width <= 950:
-            self.calendar_view.grid_configure(row=0, column=0)
-            self.corner_frame.grid_configure(row=1, column=0)
-            self.stack_chart_view.grid_configure(row=2, column=0)
-            self.pie_chart_view.grid_configure(row=3, column=0)
-            self.bar_chart_view.grid_configure(row=4, column=0)
-            self.hbar_chart_view.grid_configure(row=5, column=0)
-
-            self.rowconfigure(0, weight=1)
-            self.rowconfigure(1, weight=1)
-            self.rowconfigure(2, weight=1)
-            self.rowconfigure(3, weight=1)
-            self.rowconfigure(4, weight=1)
-            self.rowconfigure(5, weight=1)
-            self.columnconfigure(0, weight=1)
-            self.columnconfigure(1, weight=0)
-
+            self.switch_small_screen_size()
         else:
-            self.calendar_view.grid(row=0, column=0)
-            self.corner_frame.grid(row=0, column=1)
-            self.stack_chart_view.grid(row=1, column=0)
-            self.pie_chart_view.grid(row=1, column=1)
-            self.bar_chart_view.grid(row=2, column=0)
-            self.hbar_chart_view.grid(row=2, column=1)
+            self.switch_big_screen_size()
 
-            self.rowconfigure(0, weight=3)
-            self.rowconfigure(1, weight=1)
-            self.rowconfigure(2, weight=1)
-            self.rowconfigure(3, weight=0)
-            self.rowconfigure(4, weight=0)
-            self.rowconfigure(5, weight=0)
-            self.columnconfigure(0, weight=3)
-            self.columnconfigure(1, weight=1)
+    def switch_small_screen_size(self):
+        self.calendar_view.grid_configure(row=0, column=0)
+        self.corner_frame.grid_configure(row=1, column=0)
+        self.stack_chart_view.grid_configure(row=2, column=0)
+        self.pie_chart_view.grid_configure(row=3, column=0)
+        self.bar_chart_view.grid_configure(row=4, column=0)
+        self.hbar_chart_view.grid_configure(row=5, column=0)
+
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=1)
+        self.rowconfigure(4, weight=1)
+        self.rowconfigure(5, weight=1)
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=0)
+
+    def switch_big_screen_size(self):
+        self.calendar_view.grid(row=0, column=0)
+        self.corner_frame.grid(row=0, column=1)
+        self.stack_chart_view.grid(row=1, column=0)
+        self.pie_chart_view.grid(row=1, column=1)
+        self.bar_chart_view.grid(row=2, column=0)
+        self.hbar_chart_view.grid(row=2, column=1)
+
+        self.rowconfigure(0, weight=3)
+        self.rowconfigure(1, weight=1)
+        self.rowconfigure(2, weight=1)
+        self.rowconfigure(3, weight=0)
+        self.rowconfigure(4, weight=0)
+        self.rowconfigure(5, weight=0)
+        self.columnconfigure(0, weight=3)
+        self.columnconfigure(1, weight=1)
+
+
 
 
 class App(ttk.Tk):
@@ -574,7 +559,7 @@ class App(ttk.Tk):
         self.title("Gcal")
         self.minsize(550, 750)
         self.geometry("1100x750")
-        self.style = ttk.Style("darkly")
+        self.style = ttk.Style("cyborg")
         self.update_idletasks()
 
         self.mainframe = MainFrame(self, autohide=True)
