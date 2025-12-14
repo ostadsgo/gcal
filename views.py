@@ -1,4 +1,5 @@
 from datetime import date
+from math import ceil
 
 import tkinter as tk
 import ttkbootstrap as ttk
@@ -27,7 +28,6 @@ class ChartView(ttk.Frame):
         """Set up the chart canvas."""
         self.fig = Figure(figsize=(5, 3.3), dpi=100)
         self.ax = self.fig.add_subplot(111)
-
 
         self.ax.spines["top"].set_visible(False)
         self.ax.spines["right"].set_visible(False)
@@ -104,7 +104,9 @@ class ChartView(ttk.Frame):
         self.fig.patch.set_facecolor(plt.rcParams["figure.facecolor"])
         self.ax.set_facecolor(plt.rcParams["axes.facecolor"])
 
-        types = [row.name for row in data]
+        types = [
+            row.name if len(row.name) < 12 else f"{row.name[:15]}..." for row in data
+        ]
         durations = [row.total_hours for row in data]
 
         # Create bars with different colors and enhancements
@@ -116,14 +118,14 @@ class ChartView(ttk.Frame):
             alpha=0.8,
             linewidth=2,
             width=0.7,
-        )  
+        )
 
         # Add gradient effect to bars
         for bar, color in zip(bars, colors):
             bar.set_capstyle("round")
 
         self.ax.set_xticks(range(len(types)))  # Set tick positions
-        self.ax.set_xticklabels(types, rotation=0, ha='center')
+        self.ax.set_xticklabels(types, rotation=0, ha="center")
 
         # Subtle horizontal grid only
         self.ax.grid(True, axis="y", linestyle="--", alpha=0.2, color="gray", zorder=0)
@@ -179,11 +181,11 @@ class ChartView(ttk.Frame):
                 text_x,
                 height,
                 f"{duration:.1f}",
-                ha='right',  # Right aligned inside bar
-                va='center',
+                ha="right",  # Right aligned inside bar
+                va="center",
                 fontsize=9,
-                fontweight='bold',
-                color='#212121'  
+                fontweight="bold",
+                color="#212121",
             )
         self.ax.set_title("Areas")
 
@@ -208,7 +210,7 @@ class ChartView(ttk.Frame):
         self.ax.set_xlabel("Days", fontsize=12, fontweight="bold")
 
         self.ax.tick_params(axis="both", which="major", labelsize=10, width=0)
-        self.ax.set_xticks(days)
+        # self.ax.set_xticks(days)
 
         # Total text annotation
         total_hours = sum(hrs)
@@ -221,6 +223,35 @@ class ChartView(ttk.Frame):
             verticalalignment="top",
             bbox=dict(boxstyle="round", facecolor="#A1BC98", alpha=0.8),
         )
+
+        # Handle x-axis labels when there are too many days
+        num_days = len(days)
+        if num_days > 30:
+            # Calculate interval to show approximately 30 labels
+            interval = ceil(num_days / 30)
+
+            # Create list of days to show (every Nth day)
+            tick_days = []
+            tick_labels = []
+
+            for i, day in enumerate(days):
+                # Always show first and last day
+                if i == 0 or i == num_days - 1:
+                    tick_days.append(day)
+                    tick_labels.append(f"{day}")
+                # Show every Nth day in between
+                elif i % interval == 0:
+                    tick_days.append(day)
+                    tick_labels.append(f"{day}")
+
+            # Set the ticks and labels
+            self.ax.set_xticks(tick_days)
+            self.ax.set_xticklabels(tick_labels, rotation=45, ha="right")
+
+        else:
+            # Show all days if 30 or fewer
+            self.ax.set_xticks(days)
+            self.ax.set_xticklabels([f"{d}" for d in days])
 
         self.canvas.draw()
 
@@ -346,7 +377,6 @@ class CalendarView(ttk.Frame):
         for i, child in enumerate(self.winfo_children()):
             child.grid_configure(pady=5)
 
-
     def register_event_handler(self, event_name: str, handler):
         self.handlers[event_name] = handler
 
@@ -408,7 +438,6 @@ class CalendarView(ttk.Frame):
                 if child.widgetName == "ttk::label":
                     child.bind("<Button-1>", self.on_label_select)
 
-
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
         card.name_label.config(text=calendar.calendar_name.title())
@@ -469,7 +498,7 @@ class ActionView(ttk.Frame):
 
 class MainFrame(ScrolledFrame):
     def __init__(self, master, **kwargs):
-        super().__init__(master,  **kwargs)
+        super().__init__(master, **kwargs)
         self.master = master
 
         # Create components
@@ -549,8 +578,6 @@ class MainFrame(ScrolledFrame):
         self.rowconfigure(5, weight=0)
         self.columnconfigure(0, weight=3)
         self.columnconfigure(1, weight=1)
-
-
 
 
 class App(ttk.Tk):
