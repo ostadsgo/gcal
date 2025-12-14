@@ -352,8 +352,8 @@ class CalendarView(ttk.Frame):
         self.columnconfigure(1, weight=1)
         self.columnconfigure(2, weight=1)
         self.columnconfigure(3, weight=1)
+        self.rowconfigure(0, weight=1)
         for i, child in enumerate(self.winfo_children()):
-            # self.columnconfigure(i, weight=1)
             child.grid_configure(pady=5)
 
 
@@ -418,10 +418,6 @@ class CalendarView(ttk.Frame):
                 if child.widgetName == "ttk::label":
                     child.bind("<Button-1>", self.on_label_select)
 
-        # for i, child in enumerate(self.winfo_children()):
-        #     print(i, child)
-        #     child.rowconfigure(i, weight=1)
-        #     child.columnconfigure(i, weight=1)
 
     def update_card(self, calendar):
         card = self.cards.get(calendar.calendar_id)
@@ -503,7 +499,7 @@ class MainFrame(ScrolledFrame):
         self.action_view.grid(row=0, column=2)
 
         for child in self.corner_frame.winfo_children():
-            child.config(padding=5, relief="solid")
+            child.config(padding=5)
             child.grid_configure(pady=5, padx=5, sticky="NSEW")
 
         self.corner_frame.rowconfigure(0, weight=1)
@@ -536,7 +532,6 @@ class MainFrame(ScrolledFrame):
         self.focus()
         width = self.master.winfo_width()
         height = self.master.winfo_height()
-        print(self.grid_size())
 
         if width <= 950:
             self.calendar_view.grid_configure(row=0, column=0)
