@@ -1,7 +1,13 @@
+import os
+import glob
+import zipfile
 from datetime import date
 from math import ceil
+from pathlib import Path
+
 
 import tkinter as tk
+from tkinter import filedialog
 import ttkbootstrap as ttk
 from ttkbootstrap.scrolled import ScrolledFrame
 
@@ -12,10 +18,14 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from matplotlib.patheffects import withStroke
 
+import converter
+
 plt.style.use("dark_background")
 
-# TODO:
-
+BASE_DIR = Path(__file__).resolve().parent
+ICS_DIR = BASE_DIR / "ics"
+DB_DIR = BASE_DIR / "db"
+SECONDS_PER_HOUR = 3600
 
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -97,7 +107,7 @@ class ChartView(ttk.Frame):
         self.ax.set_title("Projects")
         self.canvas.draw()
 
-    def update_bar_chart(self, data):
+    def update_bar_chart(self, data: dict[str, str]):
         self.current_data = data
         self.chart_type = "bar"
         self.ax.clear()
@@ -467,7 +477,11 @@ class ActionView(ttk.Frame):
             textvariable=self.theme_text_var,
             command=self.switch_theme,
         )
-        theme_checkbutton.grid(row=0, column=0)
+        theme_checkbutton.grid(row=0, column=0, sticky="nswe")
+
+        # Read calendars zip file.
+        open_button = ttk.Button(self, text="open", command=self.read_calendar_zip_file)
+        open_button.grid(row=1, column=0, sticky="nswe", pady=20)
 
     def switch_theme(self):
         if self.theme_check_var.get():
@@ -477,7 +491,6 @@ class ActionView(ttk.Frame):
         self.root.update()
 
     def activate_dark_theme(self):
-        global counter
         self.root.style = ttk.Style("cyborg")
         plt.style.use("dark_background")
         self.refresh_all_charts()
@@ -494,6 +507,47 @@ class ActionView(ttk.Frame):
         self.mainframe.pie_chart_view.refresh_chart()
         self.mainframe.bar_chart_view.refresh_chart()
         self.mainframe.hbar_chart_view.refresh_chart()
+
+
+    def read_calendar_zip_file(self):
+        file_path = filedialog.askopenfilename(
+            title="Select calendar zip file.",
+            filetypes=[("zip file", "*.zip")],
+        )
+
+        if file_path:
+            # 0. Remove old ics files
+            for ics_file in ICS_DIR.glob("*.ics"):
+                ics_file.unlink() # remove the file
+                print(f"File {ics_file} removed.")
+
+            # 1. Unzip selected zip file in ics folder
+            os.makedirs(ICS_DIR, exist_ok=True)
+
+            with zipfile.ZipFile(file_path, 'r') as zip_file:
+                zip_file.extractall(ICS_DIR)
+
+            print(f"Extract to: {ICS_DIR}")
+            
+            # Rename ics_files to clean name
+            for ics_file in ICS_DIR.glob("*.ics"):
+                if "Birthday" in str(ics_file):
+                    ics_file.unlink()
+                    continue
+                filename = ics_file.name.split("_")[0] + ".ics"
+                ics_file.rename(ICS_DIR / filename)
+
+
+            # 2. rm db/data.db
+            db_file = DB_DIR / "data.db"
+            db_file.unlink()
+
+            # 3. create db file from ics files
+            converter.merge_to_one_db()
+
+            # 4. refresh the UI. calendars chart everything.
+
+
 
 
 class MainFrame(ScrolledFrame):
