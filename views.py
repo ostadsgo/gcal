@@ -1,9 +1,6 @@
 import os
-import glob
-import zipfile
 from datetime import date
 from math import ceil
-from pathlib import Path
 
 
 import tkinter as tk
@@ -22,10 +19,6 @@ import converter
 
 plt.style.use("dark_background")
 
-BASE_DIR = Path(__file__).resolve().parent
-ICS_DIR = BASE_DIR / "ics"
-DB_DIR = BASE_DIR / "db"
-SECONDS_PER_HOUR = 3600
 
 class ChartView(ttk.Frame):
     def __init__(self, master, **kwargs):
@@ -466,6 +459,7 @@ class CalendarView(ttk.Frame):
 class ActionView(ttk.Frame):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
+        self.handlers = {}
         self.root = self.master.master
         self.theme_check_var = tk.BooleanVar(value=True)
         self.theme_text_var = tk.StringVar(value="Dark Mode")
@@ -480,8 +474,11 @@ class ActionView(ttk.Frame):
         theme_checkbutton.grid(row=0, column=0, sticky="nswe")
 
         # Read calendars zip file.
-        open_button = ttk.Button(self, text="open", command=self.read_calendar_zip_file)
+        open_button = ttk.Button(self, text="open", command=self.on_open_button)
         open_button.grid(row=1, column=0, sticky="nswe", pady=20)
+
+    def register_event_handler(self, event_name, handler):
+        self.handlers[event_name] = handler
 
     def switch_theme(self):
         if self.theme_check_var.get():
@@ -508,46 +505,16 @@ class ActionView(ttk.Frame):
         self.mainframe.bar_chart_view.refresh_chart()
         self.mainframe.hbar_chart_view.refresh_chart()
 
+    def on_open_button(self):
+        handler = self.handlers["read_calendars"]
 
-    def read_calendar_zip_file(self):
         file_path = filedialog.askopenfilename(
             title="Select calendar zip file.",
             filetypes=[("zip file", "*.zip")],
         )
 
         if file_path:
-            # 0. Remove old ics files
-            for ics_file in ICS_DIR.glob("*.ics"):
-                ics_file.unlink() # remove the file
-                print(f"File {ics_file} removed.")
-
-            # 1. Unzip selected zip file in ics folder
-            os.makedirs(ICS_DIR, exist_ok=True)
-
-            with zipfile.ZipFile(file_path, 'r') as zip_file:
-                zip_file.extractall(ICS_DIR)
-
-            print(f"Extract to: {ICS_DIR}")
-            
-            # Rename ics_files to clean name
-            for ics_file in ICS_DIR.glob("*.ics"):
-                if "Birthday" in str(ics_file):
-                    ics_file.unlink()
-                    continue
-                filename = ics_file.name.split("_")[0] + ".ics"
-                ics_file.rename(ICS_DIR / filename)
-
-
-            # 2. rm db/data.db
-            db_file = DB_DIR / "data.db"
-            db_file.unlink()
-
-            # 3. create db file from ics files
-            converter.merge_to_one_db()
-
-            # 4. refresh the UI. calendars chart everything.
-
-
+            handler(file_path)
 
 
 class MainFrame(ScrolledFrame):

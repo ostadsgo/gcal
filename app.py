@@ -1,17 +1,16 @@
 from views import App
-from models import db
 from controllers import Controller
 
 
 class AppContext:
     def __init__(self, app):
         self.app = app
-        self.model = db.model
         self.controllers = {}
         self.views = {}
 
     def setup(self):
         # views
+        self.views["action"] = self.app.mainframe.action_view
         self.views["calendar"] = self.app.mainframe.calendar_view
         self.views["filter"] = self.app.mainframe.filter_view
         self.views["report"] = self.app.mainframe.report_view
@@ -38,9 +37,11 @@ def main():
 
     context = AppContext(app)
     context.setup()
+    controller = context.controllers["controller"]
 
     app.run()
-    db.close()
+    # clean up database right after app closing 
+    controller.db.close()
 
 
 if __name__ == "__main__":
